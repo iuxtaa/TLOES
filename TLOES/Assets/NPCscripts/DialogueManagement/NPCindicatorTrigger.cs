@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class NewBehaviourScript : MonoBehaviour
+public class NPCindicatorTrigger : MonoBehaviour
 {
+    [Header("NPC Indicator")]
     [SerializeField] private GameObject floatingIcon;
+    [Header("Dialogue Files INK")]
+    [SerializeField] private TextAsset inkJSON;
 
     private bool playerClose;
 
@@ -16,9 +20,13 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Update()
     {
-        if (playerClose)
+        if (playerClose && !DialogueScript.GetInstance().currentDialogueIsPlaying)
         {
             floatingIcon.SetActive(true);
+            if(InputsHandler.GetInstance().GetInteract())
+            {
+                DialogueScript.GetInstance().EnterDialogueView(inkJSON);
+            }
         }
         else
         {
