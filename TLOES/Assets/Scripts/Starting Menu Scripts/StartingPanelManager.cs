@@ -8,7 +8,8 @@ public class StartingPanelManager : MonoBehaviour
     [SerializeField] private GameObject loginPanel;
     [SerializeField] private GameObject signupPanel;
     
-    public void Awake() // If scene is generated
+    public static int menuChoice = (int)StartingMenuChoice.Unspecified;
+    public void Start() // If scene is generated
     {
         startingPanel.loginButton.onClick.AddListener(LogInClicked);
         startingPanel.signUpButton.onClick.AddListener(SignUpClicked);
@@ -19,16 +20,24 @@ public class StartingPanelManager : MonoBehaviour
     {
         HandleStartingPanel();
         signupPanel.SetActive(true);
+        menuChoice = (int)StartingMenuChoice.Signup;
     }
 
     private void LogInClicked()
     {
         HandleStartingPanel();
         loginPanel.SetActive(true);
+        menuChoice = (int)StartingMenuChoice.Login;
     }
 
     private void HandleStartingPanel()
     {
         startingPanel.gameObject.SetActive(false);
     }
+}
+
+public enum StartingMenuChoice {
+    Unspecified,
+    Signup,
+    Login
 }
