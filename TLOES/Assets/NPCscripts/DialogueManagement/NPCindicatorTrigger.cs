@@ -27,6 +27,7 @@ public class NPCindicatorTrigger : MonoBehaviour
             {
                 DialogueScript.GetInstance().EnterDialogueView(inkJSON);
             }
+          
         }
         else
         {
