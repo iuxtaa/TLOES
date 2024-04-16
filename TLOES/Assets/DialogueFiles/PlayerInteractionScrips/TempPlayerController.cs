@@ -25,7 +25,7 @@ public class TempPLayerController : MonoBehaviour
         {
             return;
         }
-            movement();
+        movement();
         
     }
     private void movement()

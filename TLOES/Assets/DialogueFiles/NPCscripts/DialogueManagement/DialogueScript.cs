@@ -15,7 +15,10 @@ public class DialogueScript : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
+  
+
     private Story currentDialogue;
+
     public bool currentDialogueIsPlaying { get; private set; }
 
 
@@ -62,8 +65,8 @@ public class DialogueScript : MonoBehaviour
     {
         currentDialogueIsPlaying = false;
         dialogueDisplay.SetActive(false);
-        dialogueText = null;
-
+        dialogueText.text = "";
+        
     }
 
     public void Update()
@@ -89,6 +92,7 @@ public class DialogueScript : MonoBehaviour
         else
         {
             LeaveDialogueView();
+
         }
     }
 

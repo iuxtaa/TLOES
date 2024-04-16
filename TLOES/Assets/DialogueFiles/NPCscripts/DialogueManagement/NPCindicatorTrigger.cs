@@ -7,8 +7,15 @@ public class NPCindicatorTrigger : MonoBehaviour
 {
     [Header("NPC Indicator")]
     [SerializeField] private GameObject floatingIcon;
+
+    [Header("NPC Prompt")]
+    [SerializeField] private GameObject promptIcon;
+
     [Header("Dialogue Files INK")]
     [SerializeField] private TextAsset inkJSON;
+
+    private NPCmovement NPClook;
+
 
     private bool playerClose;
 
@@ -16,6 +23,8 @@ public class NPCindicatorTrigger : MonoBehaviour
     {
         playerClose = false;
         floatingIcon.SetActive(false);
+        promptIcon.SetActive(false);
+        NPClook = GetComponent<NPCmovement>();
     }
 
     private void Update()
@@ -23,15 +32,19 @@ public class NPCindicatorTrigger : MonoBehaviour
         if (playerClose && !DialogueScript.GetInstance().currentDialogueIsPlaying)
         {
             floatingIcon.SetActive(true);
+            promptIcon.SetActive(true);
             if(InputsHandler.GetInstance().GetInteract())
             {
-                DialogueScript.GetInstance().EnterDialogueView(inkJSON);
+                NPClook.NPClookAtPlayer();
+                DialogueScript.GetInstance().EnterDialogueView(inkJSON);  
             }
-          
+            
         }
         else
         {
             floatingIcon.SetActive(false);
+            promptIcon.SetActive(false);
+
         }
     }
 
@@ -50,4 +63,5 @@ public class NPCindicatorTrigger : MonoBehaviour
             playerClose=false;
         }
     }
+
 }
