@@ -11,14 +11,18 @@ public class LoginPanelManager : MonoBehaviour
 
     public void Awake() 
     {
-        loginPanel.loginButton.onClick.AddListener(LoginClicked);
-        loginPanel.signUpButton.onClick.AddListener(SignUpClicked);
+        if(loginPanel.enabled)
+        {
+            loginPanel.loginButton.onClick.AddListener(LoginClicked);
+            loginPanel.signUpButton.onClick.AddListener(SignUpClicked);
+        }
     }
 
     private void SignUpClicked()
     {
         HandleLoginPanel();
         signUpPanel.SetActive(true);
+        StartingPanelManager.menuChoice = (int)StartingMenuChoice.Signup;
     }
 
     private void LoginClicked()

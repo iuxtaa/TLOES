@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class QuestGiver : MonoBehaviour
 {
-    public Quest quest;
-    public Player player;
+    public Quest quest; // the quest that the quest giver will give
+    public Player player; // the player that will accept the quest
 
     public GameObject questWindow;
     public TextMeshProUGUI titleText;
@@ -17,19 +17,24 @@ public class QuestGiver : MonoBehaviour
 
     public void openQuestUI()
     {
-        questWindow.SetActive(true);
-        titleText.text = quest.getTitle();
-        descriptionText.text = quest.getDescription();
-        // favourabilityText.text = quest.favourabilityReward.ToString();
-        goldText.text = quest.getGoldReward().ToString();
+        if (quest != null && player != null)
+        {
+            questWindow.SetActive(true);
+            titleText.text = quest.title;
+            descriptionText.text = quest.description;
+            goldText.text = quest.goldReward.ToString();
+        }
     }
 
     public void acceptQuest()
     {
-        questWindow.SetActive(false);
-        quest.setIsActive(true);
+        if (quest != null && player != null)
+        {
+            questWindow.SetActive(false);
+            quest.isActive = false;
 
-        // give quest to player
-        player.setCurrentQuest(quest);
+            // give quest to player
+            player.currentQuest = quest;
+        }
     }
 }
