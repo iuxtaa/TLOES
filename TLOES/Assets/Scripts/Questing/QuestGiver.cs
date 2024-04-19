@@ -31,7 +31,7 @@ public class QuestGiver : MonoBehaviour
         if (quest != null && player != null)
         {
             questWindow.SetActive(false);
-            quest.isActive = false;
+            quest.isActive = true;
 
             // give quest to player
             player.currentQuest = quest;

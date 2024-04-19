@@ -5,6 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class CollectionQuest : Quest // Inherits from Quest
 {
+    // INSTANCE VARIABLES
+    public GameObject requiredItem;
+
     // CONSTRUCTOR
     // Initializes a new instance of CollectionQuest with specified details
     public CollectionQuest(string title, string description, int goldReward, int favourabilityReward, int requiredAmount)
