@@ -207,14 +207,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingIcon: {fileID: 415272960}
   promptIcon: {fileID: 1694463205}
-  inkJSON: {fileID: 4900000, guid: 3cf64eb2ad4e07241ae3c043e664fe74, type: 3}
+  inkJSON: {fileID: 4900000, guid: b2de40e746485e041abb0b79d1ae567b, type: 3}
 --- !u!114 &354454575
 MonoBehaviour:
   m_ObjectHideFlags: 0
