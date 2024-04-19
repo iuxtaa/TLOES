@@ -802,8 +802,8 @@ RectTransform:
   - {fileID: 159457650}
   - {fileID: 807214633}
   - {fileID: 97338381}
-  - {fileID: 286163480}
   - {fileID: 1352445731}
+  - {fileID: 286163480}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1778,12 +1778,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quest:
     isActive: 0
-    title: Fetch 3 eggs!
-    description: Get 3 eggs for the old lady.
+    title: Selling Eggs
+    description: Sell your father's eggs at the market.
     favourabilityReward: 5
     goldReward: 0
     currentAmount: 0
-    requiredAmount: 0
+    requiredAmount: 3
     goal:
       goalType: 0
       requiredAmount: 0
