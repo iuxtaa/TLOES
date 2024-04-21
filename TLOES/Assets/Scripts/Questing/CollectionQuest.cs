@@ -50,7 +50,7 @@ public class CollectionQuest : Quest // Inherits from Quest
         if (isReached())
         {
             isActive = false; // Deactivate the quest
-            Debug.Log($"{title} quest is completed. Reward: {goldReward} gold and {favourabilityReward} favourability.");
+            //Debug.Log($"{title} quest is completed. Reward: {goldReward} gold and {favourabilityReward} favourability.");
         }
         else
         {
