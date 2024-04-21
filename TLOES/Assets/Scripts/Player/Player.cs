@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
         if (currentQuest != null)
         {
             currentQuest.isActive = true;
-            favourability += Quest.DEFAULT_ACCEPT_QUEST_FAVOURABILITY_REWARD;
 
             if (currentQuest.isActive == true && currentQuest is CollectionQuest)
             {
