@@ -4,7 +4,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class QuestGiver : MonoBehaviour
+[System.Serializable]
+public class QuestGiver : MonoBehaviour // this will be an NPC which 'is a' character
 {
     public Quest quest; // the quest that the quest giver will give
     public Player player; // the player that will accept the quest
@@ -12,8 +13,6 @@ public class QuestGiver : MonoBehaviour
     public GameObject questWindow;
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI descriptionText;
-    public TextMeshProUGUI favourabilityText;
-    public TextMeshProUGUI goldText;
 
     public void openQuestUI()
     {
@@ -31,10 +30,7 @@ public class QuestGiver : MonoBehaviour
         if (quest != null && player != null)
         {
             questWindow.SetActive(false);
-            quest.isActive = true;
-
-            // give quest to player
-            player.currentQuest = quest;
+            player.acceptQuest(quest);
         }
     }
 }

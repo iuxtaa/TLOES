@@ -6,27 +6,15 @@ using UnityEngine;
 public class Quest
 {
     // PRIVATE INSTANCE VARIABLES
+    public int questNumber;
 
     public bool isActive; // boolean for quest status
-
-    public static int DEFAULT_ACCEPT_QUEST_FAVOURABILITY_REWARD = 1;
 
     public string title;
     public string description;
     public int favourabilityReward;
-    public int goldReward;
-    public int currentAmount;
-    public int requiredAmount;
-
-    public QuestGoal goal;
 
     // METHODS
-
-    // Checks if the required amount has been collected
-    public bool isReached()
-    {
-        return currentAmount >= requiredAmount;
-    }
 
     public void complete()
     {

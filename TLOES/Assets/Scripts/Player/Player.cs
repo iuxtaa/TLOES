@@ -1,52 +1,63 @@
 using UnityEngine;
+using System.Collections.Generic;  // Required for Dictionary
 
 public class Player : MonoBehaviour
 {
     // INSTANCE VARIABLES 
-    public int gold;
     public int favourability;
+    public Dictionary<string, int> inventory;  // Inventory using a dictionary
+    public int currentLocation;
     public Quest currentQuest;
 
     // CONSTRUCTOR
     public Player()
     {
-        this.gold = 0;
         this.favourability = 0;
+        this.inventory = null;
+        this.currentLocation = 0;
         this.currentQuest = null;
-    }
-    // METHODS
 
-    // ignoreQuest method. Player can choose to decline quest, this will lower their favourability by the favourability value of the quest
+    }
+
+    // METHODS
+    public void acceptQuest(Quest quest)
+    {
+        currentQuest = quest;
+        currentQuest.isActive = true;
+    }
+
     public void declineQuest()
     {
-        if (currentQuest != null)
-            favourability -= currentQuest.favourabilityReward;
+
     }
 
-    // acceptQuest method. Player can accept the quest and will get a slight increase in their favourability
-    public void acceptQuest()
+    public bool canCompleteQuest()
     {
-        if (currentQuest != null)
+        if(currentQuest != null)
         {
-            currentQuest.isActive = true;
-            favourability += Quest.DEFAULT_ACCEPT_QUEST_FAVOURABILITY_REWARD;
-
-            if (currentQuest.isActive == true && currentQuest is CollectionQuest)
+            if(currentQuest is SellingQuest)
             {
-                ((CollectionQuest)currentQuest).collectItem();
-                if (currentQuest.isReached())
-                {
-                    this.completeQuest();
-                    currentQuest.complete();
-                }
+                // return (inventory.item.count >= requiredAmount)
+            }
+            if (currentQuest is DoingQuest)
+            {
+                // return true;
+            }
+            if (currentQuest is CollectingQuest)
+            {
+                // return (inventory.item.count >= requiredAmount)
             }
         }
+        return false;
     }
 
-    // Completing a quest will moderately increase your favourability
-    private void completeQuest()
+    public void completeQuest()
     {
-        if (currentQuest != null)
+        if(canCompleteQuest())
+        {
             favourability += currentQuest.favourabilityReward;
+            currentQuest.complete();
+            currentQuest = null;
+        }
     }
 }
