@@ -182,8 +182,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1ed599acc3bea6043b1c235fc96e0e31, type: 2}
+  m_sharedMaterial: {fileID: 21556483256320494, guid: 1ed599acc3bea6043b1c235fc96e0e31, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -276,7 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingIcon: {fileID: 415272960}
   promptIcon: {fileID: 1694463205}
-  inkJSON: {fileID: 4900000, guid: b2de40e746485e041abb0b79d1ae567b, type: 3}
+  inkJSON: {fileID: 4900000, guid: 99a4e437050d49d4596625ef40e07fae, type: 3}
 --- !u!114 &354454575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1122,8 +1122,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 726649114791577718, guid: ba238f5a9c5ac094597966752aba5f9f, type: 3}
-    - {fileID: 5552215214209712595, guid: ba238f5a9c5ac094597966752aba5f9f, type: 3}
     - {fileID: 3016187934527726210, guid: ba238f5a9c5ac094597966752aba5f9f, type: 3}
+    - {fileID: 5552215214209712595, guid: ba238f5a9c5ac094597966752aba5f9f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
