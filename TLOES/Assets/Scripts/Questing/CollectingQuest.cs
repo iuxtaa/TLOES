@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+[CreateAssetMenu(fileName = "New Collecting Quest", menuName = "Quest System/Collecting Quest")]
 public class CollectingQuest : Quest // Inherits from Quest
 {
     // INSTANCE VARIABLES
@@ -11,14 +12,8 @@ public class CollectingQuest : Quest // Inherits from Quest
 
     // CONSTRUCTOR
     // Initializes a new instance of CollectionQuest with specified details
-    public CollectingQuest(bool isActive, string title, string description, int favourabilityReward, int requiredAmount, int currentAmount)
+    public CollectingQuest(int requiredAmount) : base()
     {
-        // Setting the quest details via properties in the base class
-        this.title = title;
-        this.description = description;
-        this.favourabilityReward = favourabilityReward;
-        this.isActive = false; // Assuming the quest is inactive upon creation
-
         // Setting CollectionQuest-specific details
         this.requiredAmount = requiredAmount;
         // this.currentAmount = currentAmount; 

@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public int favourability;
     public Dictionary<string, int> inventory;  // Inventory using a dictionary
     public int currentLocation;
-    public Quest currentQuest;
+    [SerializeField] public Quest currentQuest;
 
     // CONSTRUCTOR
     public Player()
@@ -59,5 +59,12 @@ public class Player : MonoBehaviour
             currentQuest.complete();
             currentQuest = null;
         }
+    }
+
+    public void failQuest()
+    {
+        favourability -= currentQuest.favourabilityReward;
+        currentQuest.complete();
+        currentQuest = null;
     }
 }

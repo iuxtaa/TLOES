@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "New Selling Quest", menuName = "Quest System/Selling Quest")]
 public class SellingQuest : Quest
 {
     // INSTANCE VARIABLES
@@ -10,21 +11,14 @@ public class SellingQuest : Quest
     //public int currentAmount;
 
     // CONSTRUCTOR
-    public SellingQuest(int requiredAmount, int currentAmount)
+    public SellingQuest(int requiredAmount, int currentAmount) : base()
     {
-        this.questNumber = 0;
-
-        this.title = string.Empty;
-        this.description = string.Empty;
-        this.favourabilityReward = 0;
-        this.isActive = false;// Assuming the quest is active upon creation
-
         this.requiredAmount = requiredAmount;
         //this.currentAmount = currentAmount;
     }
 
     //public bool canSell()
     //{
-        //return requiredAmount >= currentAmount;
+    //return requiredAmount >= currentAmount;
     //}
 }

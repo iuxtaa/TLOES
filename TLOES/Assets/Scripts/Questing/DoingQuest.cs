@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "New Doing Quest", menuName = "Quest System/Doing Quest")]
 public class DoingQuest : Quest
 {
     // CONSTRUCTOR
-    public DoingQuest()
+    public DoingQuest() : base()
     {
-        this.questNumber = 0;
-
-        this.title = string.Empty;
-        this.description = string.Empty;
-        this.favourabilityReward = 0;
-        this.isActive = false;// Assuming the quest is active upon creation
     }
 
     // METHODS
