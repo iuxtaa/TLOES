@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {
     // INSTANCE VARIABLES 
     public int favourability;
-    public Dictionary<string, int> inventory;  // Inventory using a dictionary
+    public Dictionary<string, int> inventory;  // Inventory using a dictionary NEED to ask enab about how this is stored
     public int currentLocation;
     [SerializeField] public Quest currentQuest;
 

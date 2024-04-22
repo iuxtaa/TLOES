@@ -9,13 +9,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseButton;
 
     [Header("Quest")]
-    [SerializeField] private GameObject questScreen;
+    [SerializeField] private GameObject questPopup;
+    [SerializeField] private GameObject questOverlay;
 
     public void Awake()
     {
         pauseScreen.SetActive(false);
         pauseButton.SetActive(true);
-        questScreen.SetActive(false);
+        questPopup.SetActive(false);
+        questOverlay.SetActive(false);
     }
 
     public void Update()

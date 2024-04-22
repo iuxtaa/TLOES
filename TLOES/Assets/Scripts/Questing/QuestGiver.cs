@@ -11,6 +11,7 @@ public class QuestGiver : MonoBehaviour // this will be an NPC which 'is a' char
     public Player player; // the player that will accept the quest
 
     public GameObject questWindow;
+    public GameObject questOverlay;
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI descriptionText;
 
@@ -31,6 +32,7 @@ public class QuestGiver : MonoBehaviour // this will be an NPC which 'is a' char
         {
             questWindow.SetActive(false);
             player.acceptQuest(quest);
+            questOverlay.SetActive(true) ;
         }
     }
 }
