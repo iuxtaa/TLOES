@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
         this.inventory = null;
         this.currentLocation = 0;
         this.currentQuest = null;
-
     }
 
     // METHODS

@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [Header("Quest")]
     [SerializeField] private GameObject questPopup;
     [SerializeField] private GameObject questOverlay;
+    [SerializeField] private GameObject questCompletePopup;
 
     public void Awake()
     {
@@ -18,6 +19,7 @@ public class UIManager : MonoBehaviour
         pauseButton.SetActive(true);
         questPopup.SetActive(false);
         questOverlay.SetActive(false);
+        questCompletePopup.SetActive(false);
     }
 
     public void Update()

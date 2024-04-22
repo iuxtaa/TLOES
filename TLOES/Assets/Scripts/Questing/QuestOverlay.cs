@@ -28,4 +28,5 @@ public class QuestOverlay : MonoBehaviour
         titleText.text = quest.title;
         descriptionText.text = quest.description;
     }
+
 }
