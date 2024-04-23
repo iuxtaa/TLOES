@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Game Menu Screen.unity
     guid: ac528bb5feca2fa4384692ca79b94258
   - enabled: 1
-    path: Assets/Scenes/Game Screen.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/Farm.unity
+    guid: d7a89cf422a76094fb95b5165a9b91fe
+  - enabled: 1
+    path: Assets/Scenes/Market.unity
+    guid: 3c53f5b60b079b44aa2f0b0508413664
+  - enabled: 1
+    path: Assets/Scenes/Church.unity
+    guid: 330f356d7a5f13f44af18e9d7f89163a
+  - enabled: 1
+    path: Assets/Scenes/Wishing Well.unity
+    guid: 21bede875b49c444b8b383ca65c176bd
   m_configObjects: {}

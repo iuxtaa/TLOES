@@ -3,49 +3,24 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
-
 {
-    public static UIManager instance;
-
-    //Screen object variables
-    public GameObject LoginPanel;
-    public GameObject SignupPanel;
-     [Header("Pause")]
+    [Header("Pause")]
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private GameObject pauseButton;
 
+    [Header("Quest")]
+    [SerializeField] private GameObject questPopup;
+    [SerializeField] private GameObject questOverlay;
+    [SerializeField] private GameObject questCompletePopup;
 
-
-
-    private void Awake()
+    public void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != null)
-        {
-            Debug.Log("Instance already exists, destroying object!");
-            Destroy(this);
-        }
-
         pauseScreen.SetActive(false);
         pauseButton.SetActive(true);
+        questPopup.SetActive(false);
+        questOverlay.SetActive(false);
+        questCompletePopup.SetActive(false);
     }
-
-    //Functions to change the login screen UI
-    public void LoginScreen() //Back button
-    {
-        LoginPanel.SetActive(true);
-        SignupPanel.SetActive(false);
-    }
-    public void RegisterScreen() // Regester button
-    {
-        LoginPanel.SetActive(false);
-        SignupPanel.SetActive(true);
-    }
-
-   
 
     public void Update()
     {
