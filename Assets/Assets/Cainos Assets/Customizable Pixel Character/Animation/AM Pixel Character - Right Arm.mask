@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AM Pixel Character - Right Arm
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Body
+    m_Weight: 0
+  - m_Path: Cloth
+    m_Weight: 0
+  - m_Path: Expression
+    m_Weight: 0
+  - m_Path: Eye
+    m_Weight: 0
+  - m_Path: Eye Base
+    m_Weight: 0
+  - m_Path: Hair
+    m_Weight: 0
+  - m_Path: Hair Clipped
+    m_Weight: 0
+  - m_Path: Hat
+    m_Weight: 0
+  - m_Path: Pants
+    m_Weight: 0
+  - m_Path: 'Rig '
+    m_Weight: 0
+  - m_Path: Rig /Rig LPlatform
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig BSkirt
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig FSkirt
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig LThigh
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig LThigh/Rig LCalf
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig LThigh/Rig LCalf/Rig LFoot
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig RThigh
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig RThigh/Rig RCalf
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig RThigh/Rig RCalf/Rig RFoot
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig Spine1
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig Spine1/Rig Spine2
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig Spine1/Rig Spine2/Rig Ribcage
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig Spine1/Rig Spine2/Rig Ribcage/Rig LUpperarm
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig Spine1/Rig Spine2/Rig Ribcage/Rig LUpperarm/Rig LForearm
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig Spine1/Rig Spine2/Rig Ribcage/Rig Neck
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig Spine1/Rig Spine2/Rig Ribcage/Rig Neck/Rig Head
+    m_Weight: 0
+  - m_Path: Rig /Rig Pelvis/Rig Spine1/Rig Spine2/Rig Ribcage/Rig RUpperarm
+    m_Weight: 1
+  - m_Path: Rig /Rig Pelvis/Rig Spine1/Rig Spine2/Rig Ribcage/Rig RUpperarm/Rig RForearm
+    m_Weight: 1
+  - m_Path: Rig /Rig Pelvis/Rig Spine1/Rig Spine2/Rig Ribcage/Rig RUpperarm/Rig RForearm/Rig
+      Weapon
+    m_Weight: 1
+  - m_Path: Rig /Rig RPlatform
+    m_Weight: 0
+  - m_Path: Shoes
+    m_Weight: 0
+  - m_Path: Skirt
+    m_Weight: 0
+  - m_Path: Socks
+    m_Weight: 0
