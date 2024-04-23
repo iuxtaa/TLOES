@@ -1154,10 +1154,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 64404297310510550, guid: ba238f5a9c5ac094597966752aba5f9f, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1546294774153461753, guid: ba238f5a9c5ac094597966752aba5f9f, type: 3}
       propertyPath: m_Name
       value: NPC2
@@ -1743,7 +1739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3024377260798176882, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5219961313650418416, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2425,11 +2421,11 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 258366296}
-  - {fileID: 1646656515}
-  - {fileID: 1324145988}
   - {fileID: 330271087}
+  - {fileID: 1956308420}
+  - {fileID: 1646656515}
   - {fileID: 1363167714}
   - {fileID: 1601690650}
-  - {fileID: 1201324552}
-  - {fileID: 1956308420}
+  - {fileID: 1324145988}
   - {fileID: 751067073}
+  - {fileID: 1201324552}

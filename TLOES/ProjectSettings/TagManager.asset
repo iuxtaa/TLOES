@@ -10,11 +10,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - NPC
+  - 
   - Water
   - UI
   - Player
   - Ground
+  - 
   - 
   - 
   - 
@@ -51,10 +52,6 @@ TagManager:
     locked: 0
   - name: New Layer 2
     uniqueID: 3577280913
-    locked: 0
   - name: Ground
     uniqueID: 3978428765
-    locked: 0
-  - name: NPC layer
-    uniqueID: 3000707251
     locked: 0

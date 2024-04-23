@@ -5,11 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class ConfirmationPanelManager : MonoBehaviour
 {
-    // Variable objects to manage the confirmation panel
     [SerializeField] private ConfirmationPanel confirmationPanel;
     [SerializeField] private GameObject oldPlayerPanel;
 
-    // If the scene is loaded
      public void Awake()
     {
         if(confirmationPanel.enabled)
@@ -19,10 +17,9 @@ public class ConfirmationPanelManager : MonoBehaviour
         }
     }
 
-    // Move to the game scene
     private void YesClicked()
     {
-        SceneManager.LoadScene((int)ScreenEnum.Farm);
+        SceneManager.LoadScene((int)ScreenEnum.Game);
     }
 
     private void NoClicked()

@@ -6,10 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class NewPlayerPanelManager : MonoBehaviour
 {
-    // Variable object of the new player panel in the game menu scene
     [SerializeField] private NewPlayerPanel newPlayerPanel;
 
-    // If the scene is loaded and new player panel is enabled, add the following listeners
     public void Awake() 
     {
         if(newPlayerPanel.enabled)
@@ -19,13 +17,11 @@ public class NewPlayerPanelManager : MonoBehaviour
         }
     }
 
-    // If the new game button is clicked, move onto the next scene
     private void NewGameClicked()
     {
-        SceneManager.LoadScene((int)ScreenEnum.Farm);
+        SceneManager.LoadScene((int)ScreenEnum.Game);
     }
 
-    // If the quit game button is clicked, go back to the starting menu scene
     private void QuitGameClicked()
 
     {
