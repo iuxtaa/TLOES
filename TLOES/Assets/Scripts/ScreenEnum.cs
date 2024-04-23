@@ -6,5 +6,8 @@ public enum ScreenEnum
 {
     StartingMenu,
     MainMenu,
-    Game
+    Farm,
+    Market,
+    Church,
+    WishingWell
 }
