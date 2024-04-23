@@ -20,7 +20,7 @@ public class OldPlayerPanelManager : MonoBehaviour
 
     private void ContinueGameClicked()
     {
-        SceneManager.LoadScene((int)ScreenEnum.Game);
+        SceneManager.LoadScene((int)ScreenEnum.Farm);
     }
 
     private void RestartGameClicked()

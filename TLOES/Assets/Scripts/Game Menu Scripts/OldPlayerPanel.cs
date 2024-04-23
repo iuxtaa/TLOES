@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class OldPlayerPanel : MonoBehaviour
 {
+    // Variable buttons for the old player panel of the game menu scene
     public Button continueGameButton;
     public Button restartGameButton;
     public Button quitGameButton;
