@@ -131,7 +131,8 @@ public class DialogueScript : MonoBehaviour
         {
             choices[i].gameObject.SetActive(false);
         }
-        StartCoroutine(SelectedFristChoice()); 
+
+        StartCoroutine(SelectedFristChoice());
     }
 
     private IEnumerator SelectedFristChoice()
