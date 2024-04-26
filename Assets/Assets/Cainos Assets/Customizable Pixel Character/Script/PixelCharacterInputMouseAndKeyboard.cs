@@ -26,6 +26,8 @@ namespace Cainos.CustomizablePixelCharacter
         public KeyCode meleeKey = KeyCode.V;
         [Space]
         public KeyCode lookKey = KeyCode.Mouse1;
+       // [Space]
+      //  public KeyCode interact = KeyCode.I;
 
         private PixelCharacterController controller;
 
@@ -38,6 +40,7 @@ namespace Cainos.CustomizablePixelCharacter
         private bool inputAttack;
         private bool inputMelee;
         private bool inputLook;
+        //private bool inputInteract;
         private Vector2 inputTarget;
 
         private int dashKeyDownCounter;
