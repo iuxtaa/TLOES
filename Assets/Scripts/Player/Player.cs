@@ -1,34 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;  // Required for Dictionary
 
-public class Player : Character
+public class Player : MonoBehaviour
 {
-    // INSTANCE VARIABLE
-    private int favourability;
+    // INSTANCE VARIABLES 
+    public int favourability;
+    public Dictionary<string, int> inventory;  // Inventory using a dictionary NEED to ask enab about how this is stored
+    public int currentLocation;
     [SerializeField] public Quest currentQuest;
 
     // CONSTRUCTOR
-    public Player(string name) : base(name)
+    public Player()
     {
-    }
-
-    public Player(string name, int favourability, int currentLocation, int currentQuest) : base(name, currentLocation, currentQuest)
-    {
-        SetFavourability(favourability);
+        this.favourability = 0;
+        this.inventory = null;
+        this.currentLocation = 0;
+        this.currentQuest = null;
     }
 
     // METHODS
-    public void SetFavourability(int favourability)
-    {
-        this.favourability = favourability;
-    }
-
-    public int GetFavourability()
-    {
-        return this.favourability;
-    }
-
     public void acceptQuest(Quest quest)
     {
         currentQuest = quest;
@@ -42,9 +32,9 @@ public class Player : Character
 
     public bool canCompleteQuest()
     {
-        if (currentQuest != null)
+        if(currentQuest != null)
         {
-            if (currentQuest is SellingQuest)
+            if(currentQuest is SellingQuest)
             {
                 // return (inventory.item.count >= requiredAmount)
             }
@@ -62,7 +52,7 @@ public class Player : Character
 
     public void completeQuest()
     {
-        if (canCompleteQuest())
+        if(canCompleteQuest())
         {
             favourability += currentQuest.favourabilityReward;
             currentQuest.complete();

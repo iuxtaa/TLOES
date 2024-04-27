@@ -15,8 +15,6 @@ public class DialogueScript : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
-   
-
   
 
     private Story currentDialogue;
@@ -39,7 +37,6 @@ public class DialogueScript : MonoBehaviour
     {
         return instance;
     }
-
     private void Start()
     {
         currentDialogueIsPlaying = false;
@@ -74,23 +71,12 @@ public class DialogueScript : MonoBehaviour
 
     public void Update()
     {
-        if (currentDialogueIsPlaying)
+        if (!currentDialogueIsPlaying) 
         {
-            if (dialogueDisplay.activeInHierarchy)
-            {
-                FreezePlayer(true);
-            }
-        }
-        else if (!currentDialogueIsPlaying)
-        {
-            if (!dialogueDisplay.activeInHierarchy)
-            {
-                FreezePlayer(false);
-            }
             return;
         }
 
-        if (InputsHandler.GetInstance().GetContinuePressed())
+        if(InputsHandler.GetInstance().GetContinuePressed())
         {
             NextLine();
         }
@@ -131,8 +117,7 @@ public class DialogueScript : MonoBehaviour
         {
             choices[i].gameObject.SetActive(false);
         }
-
-        StartCoroutine(SelectedFristChoice());
+        StartCoroutine(SelectedFristChoice()); 
     }
 
     private IEnumerator SelectedFristChoice()
@@ -146,27 +131,7 @@ public class DialogueScript : MonoBehaviour
 
     public void chooseOption(int optionIndex)
     {
-        if (optionIndex < 0 || optionIndex >= currentDialogue.currentChoices.Count)
-        {
-            return;
-        }
         currentDialogue.ChooseChoiceIndex(optionIndex);
-    }
-
-    public void FreezePlayer(bool state)
-    {
-        //dialogueDisplay.SetActive(state);
-
-        if (state) // If status is true, pause the game
-        {
-            Time.timeScale = 0;
-        }
-            
-        else // If status is false, unpause the game
-        {
-            Time.timeScale = 1;
-        }
-            
     }
 
 }

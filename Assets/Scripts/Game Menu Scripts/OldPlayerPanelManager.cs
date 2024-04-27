@@ -20,7 +20,7 @@ public class OldPlayerPanelManager : MonoBehaviour
 
     private void ContinueGameClicked()
     {
-        SceneManager.LoadScene((int)ScreenEnum.Farm);
+        SceneManager.LoadScene((int)ScreenEnum.Farm); // Should change to saved currentLocation from database
     }
 
     private void RestartGameClicked()
