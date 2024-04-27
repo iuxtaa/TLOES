@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742476566feb1004abe448402a798e77, type: 3}
   m_Name: PrietsHolyWater
   m_EditorClassIdentifier: 
-  questNumber: 0
+  questNumber: 2
   isActive: 0
   isComplete: 0
-  title: 
-  description: 
-  favourabilityReward: 0
+  title: Holy Water
+  description: Retrieve holy water from the well and give it to the priest.
+  favourabilityReward: 5
   requiredItem: {fileID: 0}
-  requiredAmount: 0
+  requiredAmount: 1

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 394959a738f7426418f5c6908317624a, type: 3}
   m_Name: KnightsLetter
   m_EditorClassIdentifier: 
-  questNumber: 0
+  questNumber: 1
   isActive: 0
   isComplete: 0
-  title: 
-  description: 
-  favourabilityReward: 0
+  title: The Knight's Letter
+  description: Write the knight's letter to his family
+  favourabilityReward: 5
