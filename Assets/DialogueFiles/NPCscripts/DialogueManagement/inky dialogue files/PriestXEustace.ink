@@ -1,5 +1,4 @@
 Priest: Oh, hello there, farmer’s son. 
-    *[sup] PC: Sup, Priest
     *[hello] PC: Hello
 Priest: I heard you helped our knight. Thank you.
 PC: It was nothing.
