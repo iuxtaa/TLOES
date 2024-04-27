@@ -67,12 +67,6 @@ crashlytics-build.properties
 # Packed Addressables
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
-# Firebase Assets
-/[Aa]ssets/Editor Default Resources/
-/[Aa]ssets/ExternalDependencyManager/
-/[Aa]ssets/Firebase/
-/[Aa]ssets/GooglePlayPlugins/
-/[Aa]ssets/Plugins/
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
