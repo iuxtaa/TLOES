@@ -1,11 +1,6 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Assets/Cainos Assets/Customizable Pixel Character/Prefab/google-services.json.meta
-guid: 2482977f9b8e1b2458e0f0a41f4f1502
-DefaultImporter:
-========
-guid: 6448f8dbb534c1b469dfb5076a2eefcd
-PrefabImporter:
->>>>>>>> test-merge:Assets/Assets/Cainos Assets/Customizable Pixel Character/Prefab/InventoryItem 1.prefab.meta
+guid: 01944716917ad334582c2851086b5462
+TextScriptImporter:
   externalObjects: {}
   userData: 
   assetBundleName: 

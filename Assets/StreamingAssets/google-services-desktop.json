@@ -1,29 +1,11 @@
 {
   "project_info": {
     "project_number": "489882043949",
+    "firebase_url": "https://tloes-734df-default-rtdb.firebaseio.com",
     "project_id": "tloes-734df",
     "storage_bucket": "tloes-734df.appspot.com"
   },
   "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:489882043949:android:acc5639e86f22ad4b59aa4",
-        "android_client_info": {
-          "package_name": "com.DefaultCompany.Project"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCgYUURfkGnnC8e-m-WZCnGbcvHri_5zkA"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:489882043949:android:dba09bf2723f39fbb59aa4",

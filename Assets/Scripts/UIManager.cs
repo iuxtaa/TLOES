@@ -8,12 +8,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private GameObject pauseButton;
 
-    [Header("Keybinds Panel")]
-    [SerializeField] private UserKeybindsPanel userKeybindsPanel;
+    [Header("Quest")]
+    [SerializeField] private GameObject questPopup;
+    [SerializeField] private GameObject questOverlay;
+    [SerializeField] private GameObject questCompletePopup;
+
     public void Awake()
     {
         pauseScreen.SetActive(false);
         pauseButton.SetActive(true);
+        questPopup.SetActive(false);
+        questOverlay.SetActive(false);
+        questCompletePopup.SetActive(false);
     }
 
     public void Update()
@@ -32,14 +38,7 @@ public class UIManager : MonoBehaviour
     #region Pause
     public void PauseGame(bool status)
     {
-        if (userKeybindsPanel.gameObject.activeInHierarchy)
-        {
-            pauseScreen.SetActive(!status);
-        }
-        else
-        {
-            pauseScreen.SetActive(status);
-        }
+        pauseScreen.SetActive(status);
         pauseButton.SetActive(!status);
 
         if (status) // If status is true, pause the game
@@ -68,13 +67,6 @@ public class UIManager : MonoBehaviour
         Save();
     }
 
-    // Show Keybinds button
-    public void ShowKeybindsButton()
-    {
-        userKeybindsPanel.exitButton.onClick.AddListener(DeactivateKeybindsPanel);
-        userKeybindsPanel.gameObject.SetActive(true);
-        PauseGame(true);
-    }
     // Save & Quit game button
     public void SaveAndQuitGameButton()
     {
@@ -95,14 +87,4 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-    #region KeybindsPanel
-
-    // Deactivates the keybinds panel when the pause button is clicked
-    public void DeactivateKeybindsPanel()
-    {
-        userKeybindsPanel.gameObject.SetActive(false);
-        pauseScreen.SetActive(true);
-
-    }
-    #endregion
 }
