@@ -1,24 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using static UnityEditor.Progress;
+using UnityEngine.UI;
 
 
 
-    public class Testing3 : MonoBehaviour
+public class Testing3 : MonoBehaviour
+{
+    public Controller Controller;
+    public GameObject DiscardButtonObject; // Assign this in the Inspector
+
+    public Image buttonImage;
+    public TextMeshProUGUI buttonText;
+
+    private void Awake()
     {
-        public Controller Controller;
-        public Items[] discardIndices;  // Array of indices to discard
+        buttonImage = DiscardButtonObject.GetComponentInChildren<Image>(true);
+        buttonText = DiscardButtonObject.GetComponentInChildren<TextMeshProUGUI>(true);
+        UpdateButtonState(); // Check if button should be active on game start
+    }
 
-        public void DiscardItem(int index)
+    // Call this method when the Discard button is pressed
+    public void DiscardOneItem()
+    {
+        // Check if there are items to discard
+        if (Controller.inventoryItems.Count > 0)
         {
-            if (index < 0 || index >= Controller.inventoryItems.Count)
-            {
-                Debug.Log("Item Discarded");
-                return;
-            }
-
-            Controller.DiscardItem(index);
+            Controller.DiscardItem(0); // Discard the first item in the list
+            Debug.Log("One item discarded");
+            UpdateButtonState(); // Update button state after discarding
+        }
+        else
+        {
+            Debug.Log("No items to discard");
         }
     }
 
+    // Method to update the active state and appearance of the discard button
+    private void UpdateButtonState()
+    {
+        bool hasItems = Controller.inventoryItems.Count > 0;
+        DiscardButtonObject.SetActive(hasItems);
+
+        if (buttonImage)
+        {
+            buttonImage.color = new Color(buttonImage.color.r, buttonImage.color.g, buttonImage.color.b, hasItems ? 1.0f : 0.5f);
+        }
+
+        if (buttonText)
+        {
+            buttonText.enabled = hasItems;
+        }
+    }
+}

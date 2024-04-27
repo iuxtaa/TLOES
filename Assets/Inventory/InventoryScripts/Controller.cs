@@ -7,7 +7,7 @@ using static UnityEditor.Progress;
 
 public class Controller : MonoBehaviour
 {
-    public int stacked = 10;
+    public int stacked = 20;
     public InventoryItem[] Item;
     public GameObject itemprefab;
 
@@ -22,15 +22,58 @@ public class Controller : MonoBehaviour
         pickeditem = n;
     }
 
+    public void DiscardItem(int index)
+    {
+        if (index >= 0 && index < inventoryItems.Count)
+        {
+            inventoryItems.RemoveAt(index); 
+
+            
+        }
+    }
+
+    public int GetItemCount(Items item)
+    {
+        int count = 20;
+        foreach (InventoryItem it in Item)
+        {
+            ItemInside itemInsideItem = it.GetComponentInChildren<ItemInside>();
+            if (itemInsideItem != null && itemInsideItem.items == item)
+            {
+                count += itemInsideItem.count;
+            }
+        }
+        return count;
+    }
+
+    public bool CanAddItem(Items items)
+    {
+        int stacked = 50; // Assuming this is the maximum stack limit for any item
+        int currentStack = 0;
+
+        foreach (InventoryItem it in Item)
+        {
+            ItemInside itemInsideItem = it.GetComponentInChildren<ItemInside>();
+
+            if (itemInsideItem != null && itemInsideItem.items == items)
+            {
+                currentStack += itemInsideItem.count;
+            }
+        }
+
+        return currentStack < stacked;
+    }
+
+
     public bool AddItem(Items items)
     {
-        int stacked = 10; 
+        int stacked = 50; 
         
         foreach (InventoryItem it in Item)
         {
             ItemInside itemInsideItem = it.GetComponentInChildren<ItemInside>();
 
-            if (itemInsideItem != null && itemInsideItem.items == items && itemInsideItem.count < stacked)
+            if (itemInsideItem != null && itemInsideItem.items == items && itemInsideItem.count <stacked)
             {
                 itemInsideItem.count++;
                
@@ -60,7 +103,7 @@ public class Controller : MonoBehaviour
 
     
 
-    public void DiscardItem(int index)
+    public void DiscardiItem(int index)
     {
         if (index >= 0 && index < Item.Length)
         {
