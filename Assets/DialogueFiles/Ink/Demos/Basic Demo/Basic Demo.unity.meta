@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/DialogueFiles/Ink/Demos/Basic Demo/Basic Demo.unity.meta
 guid: 8af1c5cbac5094782904447c9410b35d
+========
+<<<<<<<< HEAD:Assets/Scenes/Inventory.unity.meta
+guid: a5d1327996a4aa347a0f841324c7aabc
+========
+guid: 330f356d7a5f13f44af18e9d7f89163a
+>>>>>>>> testformartinXenab:Assets/Scenes/Church.unity.meta
+>>>>>>>> Stashed changes:Assets/Scenes/Inventory.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
