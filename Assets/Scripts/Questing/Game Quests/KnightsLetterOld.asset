@@ -9,12 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 394959a738f7426418f5c6908317624a, type: 3}
-  m_Name: KnightsLetter
+  m_Script: {fileID: 11500000, guid: 32eb0f17d87806b479d290849954a5f6, type: 3}
+  m_Name: KnightsLetterOld
   m_EditorClassIdentifier: 
-  questNumber: 0
-  isActive: 0
-  isComplete: 0
-  title: 
-  description: 
-  favourabilityReward: 0
+  items: []
+  Type: 1
+  stackable: 1
+  Image: {fileID: 21300000, guid: 394899dbf2938874ca7d1025f7598406, type: 3}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 181539cf5646f564b99cac452201d37d, type: 3}
-  m_Name: PriestsHolyWater
+  m_Name: PriestsHolyWaterOld
   m_EditorClassIdentifier: 
   questNumber: 2
   isActive: 0
