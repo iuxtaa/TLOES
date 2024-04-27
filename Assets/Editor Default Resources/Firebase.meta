@@ -1,6 +1,15 @@
 fileFormatVersion: 2
-guid: 2e20c50002bbfe642833b0535a061d3d
+<<<<<<< Updated upstream
+guid: a3d0d2e9a439ecb4aaec3e17471c4975
 folderAsset: yes
+=======
+<<<<<<<< Updated upstream:TLOES/Assets/Scenes/Market.unity.meta
+guid: 3c53f5b60b079b44aa2f0b0508413664
+========
+guid: ca415fb7c64ceea4b9d445297b4fbadc
+folderAsset: yes
+>>>>>>>> Stashed changes:TLOES/Assets/Editor Default Resources/Firebase.meta
+>>>>>>> Stashed changes
 DefaultImporter:
   externalObjects: {}
   userData: 
