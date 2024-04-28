@@ -7,23 +7,19 @@ public class Character : MonoBehaviour
 {
     // INSTANCE VARIABLES
     private new String name;
-    // private Dictionary<string, int> inventory; 
     private int currentLocation;
-    private int currentQuest;
 
     // CONSTRUCTORS
     public Character(String name)
     {
         SetName(name);
         SetCurrentLocation((int)ScreenEnum.Farm);
-        SetCurrentQuest(0);
     }
 
-    public Character(String name, int currentLocation, int currentQuest)
+    public Character(String name, int currentLocation)
     {
         SetName(name);
         SetCurrentLocation(currentLocation);
-        SetCurrentQuest(currentQuest);
     }
 
     // METHODS
@@ -47,13 +43,4 @@ public class Character : MonoBehaviour
         return this.currentLocation;
     }
 
-    public void SetCurrentQuest(int currentQuest)
-    {
-        this.currentQuest = currentQuest;
-    }
-
-    public int GetCurrentQuest()
-    {
-        return this.currentQuest;
-    }
 }
