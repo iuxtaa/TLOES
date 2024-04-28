@@ -1,27 +1,52 @@
-using UnityEngine;
-using System.Collections.Generic;  // Required for Dictionary
+using System;
+using System.Collections;
+using System.Collections.Generic; // Required for Dictionary
+using UnityEngine;  
 
-public class Player : MonoBehaviour
-{
+public class Player : Character {
+
     // INSTANCE VARIABLES 
     public int favourability;
     public Dictionary<string, int> inventory;  // Inventory using a dictionary NEED to ask enab about how this is stored
-    public int currentLocation;
     [SerializeField] public Quest currentQuest;
 
-    // CONSTRUCTOR
-    public Player()
+    public Player(string name) : base(name)
     {
-        this.favourability = 0;
-        this.inventory = null;
-        this.currentLocation = 0;
-        this.currentQuest = null;
+        SetFavourability(0);
+        SetQuest(null);
+    }
+
+    public Player(string name, int currentLocation, int favourability, Quest currentQuest) : base(name, currentLocation)
+    {
+        SetFavourability(favourability);
+        SetQuest(currentQuest);
     }
 
     // METHODS
+
+    public void SetFavourability(int favourability)
+    {
+        this.favourability = favourability;
+    }
+
+    public int GetFavourability()
+    {
+        return this.favourability;
+    }
+
+    public void SetQuest(Quest quest)
+    {
+        this.currentQuest = quest;
+    }
+
+    public Quest GetQuest()
+    {
+        return this.currentQuest;
+    }
+
     public void acceptQuest(Quest quest)
     {
-        currentQuest = quest;
+        SetQuest(quest);
         currentQuest.isActive = true;
     }
 
@@ -54,16 +79,16 @@ public class Player : MonoBehaviour
     {
         if(canCompleteQuest())
         {
-            favourability += currentQuest.favourabilityReward;
+            this.favourability += currentQuest.favourabilityReward;
             currentQuest.complete();
-            currentQuest = null;
+            SetQuest(null);
         }
     }
 
     public void failQuest()
     {
-        favourability -= currentQuest.favourabilityReward;
+        this.favourability -= currentQuest.favourabilityReward;
         currentQuest.complete();
-        currentQuest = null;
+        SetQuest(null);
     }
 }
