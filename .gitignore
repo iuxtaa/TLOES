@@ -72,7 +72,7 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # Firebase Assets
-/[Aa]ssets/Editor Default Resources/
+# /[Aa]ssets/Editor Default Resources/
 /[Aa]ssets/ExternalDependencyManager/
 /[Aa]ssets/Firebase/
 /[Aa]ssets/GooglePlayPlugins/
