@@ -6,31 +6,31 @@ using static UnityEditor.Progress;
 using UnityEngine.UI;
 
 
-
 public class Testing3 : MonoBehaviour
 {
-    public Controller Controller;
-    public GameObject DiscardButtonObject; // Assign this in the Inspector
-
+    public Controller controller;  // Make sure this is correctly assigned in the Unity Inspector
+    public GameObject discardButtonObject; // Assign this in the Inspector
+    public Items[] discard;
     public Image buttonImage;
     public TextMeshProUGUI buttonText;
 
     private void Awake()
     {
-        buttonImage = DiscardButtonObject.GetComponentInChildren<Image>(true);
-        buttonText = DiscardButtonObject.GetComponentInChildren<TextMeshProUGUI>(true);
-        UpdateButtonState(); // Check if button should be active on game start
+        buttonImage = discardButtonObject.GetComponentInChildren<Image>(true);
+        buttonText = discardButtonObject.GetComponentInChildren<TextMeshProUGUI>(true);
+        
+        UpdateButtonState();
     }
 
-    // Call this method when the Discard button is pressed
+    
     public void DiscardOneItem()
     {
-        // Check if there are items to discard
-        if (Controller.inventoryItems.Count > 0)
+
+        if (controller.Item.Length > 0)
         {
-            Controller.DiscardItem(0); // Discard the first item in the list
+            controller.DiscardItem(0);
             Debug.Log("One item discarded");
-            UpdateButtonState(); // Update button state after discarding
+            UpdateButtonState();
         }
         else
         {
@@ -38,20 +38,16 @@ public class Testing3 : MonoBehaviour
         }
     }
 
-    // Method to update the active state and appearance of the discard button
+   
     private void UpdateButtonState()
     {
-        bool hasItems = Controller.inventoryItems.Count > 0;
-        DiscardButtonObject.SetActive(hasItems);
-
-        if (buttonImage)
+        if (controller.Item.Length > 0)
         {
-            buttonImage.color = new Color(buttonImage.color.r, buttonImage.color.g, buttonImage.color.b, hasItems ? 1.0f : 0.5f);
+            discardButtonObject.SetActive(true);
         }
-
-        if (buttonText)
+        else
         {
-            buttonText.enabled = hasItems;
+            discardButtonObject.SetActive(false);
         }
     }
 }

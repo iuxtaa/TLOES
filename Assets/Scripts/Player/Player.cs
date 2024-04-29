@@ -1,13 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic; // Required for Dictionary
-using UnityEngine;  
+using UnityEngine;
 
-public class Player : Character {
 
+
+public class Player : Character
+{
     // INSTANCE VARIABLES 
     public int favourability;
-    public Dictionary<string, int> inventory;  // Inventory using a dictionary NEED to ask enab about how this is stored
+    public Dictionary<string, int> inventory = new Dictionary<string, int>();  // Initialize inventory
     [SerializeField] public Quest currentQuest;
 
     public Player(string name) : base(name)
@@ -50,26 +52,50 @@ public class Player : Character {
         currentQuest.isActive = true;
     }
 
-    public void declineQuest()
+    public void AddItem(string item, int quantity)
     {
+        if (inventory.ContainsKey(item))
+        {
+            inventory[item] += quantity;
+        }
+        else
+        {
+            inventory.Add(item, quantity);
+        }
+    }
 
+    public void RemoveItem(string item, int quantity)
+    {
+        if (inventory.ContainsKey(item))
+        {
+            inventory[item] -= quantity;
+            if (inventory[item] <= 0)
+            {
+                inventory.Remove(item);
+            }
+        }
+    }
+
+    public int GetItemCount(string item)
+    {
+        return inventory.ContainsKey(item) ? inventory[item] : 0;
     }
 
     public bool canCompleteQuest()
     {
-        if(currentQuest != null)
+        if (currentQuest != null)
         {
-            if(currentQuest is SellingQuest)
+            if (currentQuest is SellingQuest sellingQuest)
             {
-                // return (inventory.item.count >= requiredAmount)
+                return GetItemCount(sellingQuest.requiredItem.name) >= sellingQuest.requiredAmount;
             }
             if (currentQuest is DoingQuest)
             {
-                // return true;
+                return true;  
             }
-            if (currentQuest is CollectingQuest)
+            if (currentQuest is CollectingQuest collectingQuest)
             {
-                // return (inventory.item.count >= requiredAmount)
+                return GetItemCount(collectingQuest.requiredItem.name) >= collectingQuest.requiredAmount;
             }
         }
         return false;
@@ -77,9 +103,17 @@ public class Player : Character {
 
     public void completeQuest()
     {
-        if(canCompleteQuest())
+        if (canCompleteQuest())
         {
             this.favourability += currentQuest.favourabilityReward;
+            if (currentQuest is CollectingQuest collectingQuest)
+            {
+                RemoveItem(collectingQuest.requiredItem.name, collectingQuest.requiredAmount);
+            }
+            else if (currentQuest is SellingQuest sellingQuest)
+            {
+                RemoveItem(sellingQuest.requiredItem.name, sellingQuest.requiredAmount);
+            }
             currentQuest.complete();
             SetQuest(null);
         }
