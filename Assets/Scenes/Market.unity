@@ -723,7 +723,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseScreen: {fileID: 1869847058}
   pauseButton: {fileID: 55064087}
-  userKeybindsPanel: {fileID: 1298044547}
+  questPopup: {fileID: 0}
+  questOverlay: {fileID: 0}
+  questCompletePopup: {fileID: 0}
 --- !u!114 &249902224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10185,13 +10187,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1554100012435694503, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2044812156}
   m_SourcePrefab: {fileID: 100100000, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
 --- !u!4 &2044812154 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5219961313650418416, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
   m_PrefabInstance: {fileID: 2044812153}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2044812155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1554100012435694503, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
+  m_PrefabInstance: {fileID: 2044812153}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2044812156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044812155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f512b4bf7e63e4db9fb5826540ee2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  favourability: 0
+  currentQuest: {fileID: 0}
 --- !u!1 &2051976784
 GameObject:
   m_ObjectHideFlags: 0
