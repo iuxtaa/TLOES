@@ -43,7 +43,8 @@ public class Controller : MonoBehaviour
                 }
                 else
                 {
-                    Destroy(it.gameObject);
+                    Destroy(it.gameObject);  // This destroys the item
+                    Item[index] = null;     // Set the array element to null after destroying
                 }
             }
         }
@@ -68,39 +69,46 @@ public class Controller : MonoBehaviour
         return GetItemCount(items) < stacked;
     }
 
-    public bool AddItem(Items items)
-    {
-        foreach (InventoryItem it in Item)
+
+        public bool AddItem(Items items)
         {
-            ItemInside itemInside = it.GetComponentInChildren<ItemInside>();
-            if (itemInside != null && itemInside.items == items)
+            // Checking if the item can be added to an existing slot
+            foreach (InventoryItem it in Item)
             {
-                if (itemInside.count < stacked)
+                ItemInside itemInside = it.GetComponentInChildren<ItemInside>();
+                if (itemInside != null && itemInside.items == items && itemInside.count < stacked)
                 {
                     itemInside.count++;
+                    UpdateUI(it);
                     return true;
                 }
             }
-        }
 
-        // If no existing item could be incremented, try to store in a new slot
-        foreach (InventoryItem it in Item)
-        {
-            if (it.GetComponentInChildren<ItemInside>() == null)
+            // Try to store in a new slot if existing slots are full
+            foreach (InventoryItem it in Item)
             {
-                StoreItem(items, it);
-                return true;
+                if (it.GetComponentInChildren<ItemInside>() == null)
+                {
+                    StoreItem(items, it);
+                    return true;
+                }
             }
+
+            return false;
         }
-        return false;
-    }
 
-    void StoreItem(Items items, InventoryItem it)
-    {
-        GameObject storeInside = Instantiate(itemPrefab, it.transform);
-        ItemInside itemInside = storeInside.GetComponent<ItemInside>();
-        itemInside.InitialiseItem(items);
-        itemInside.count = 1;  // Initialize with a count of one
-    }
-}
+        void StoreItem(Items items, InventoryItem it)
+        {
+            GameObject storeInside = Instantiate(itemPrefab, it.transform);
+            ItemInside itemInside = storeInside.GetComponent<ItemInside>();
+            itemInside.InitialiseItem(items);
+            itemInside.count = 1;  // Initialize with a count of one
+            UpdateUI(it);
+        }
 
+        void UpdateUI(InventoryItem it)
+        {
+            
+            it.UpdateUI();
+        }
+    }
