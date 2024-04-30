@@ -2718,6 +2718,9 @@ MonoBehaviour:
   pauseScreen: {fileID: 959522030}
   pauseButton: {fileID: 1563196477}
   userKeybindsPanel: {fileID: 1452624327}
+  questPopup: {fileID: 0}
+  questOverlay: {fileID: 0}
+  questCompletePopup: {fileID: 0}
 --- !u!114 &1081769193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6708,7 +6711,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1452624326}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76cb8d93c4a2cdb4a9b3ad3f851205c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e2a2b3eb5e7bfc4fbb6d109e32b610d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   exitButton: {fileID: 779225665}
@@ -9858,9 +9861,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1452247512}
+  - {fileID: 1723339873}
   - {fileID: 1911035287}
   - {fileID: 5715941}
   - {fileID: 1548826949}
   - {fileID: 1642596518}
   - {fileID: 1081769196}
-  - {fileID: 1723339873}
