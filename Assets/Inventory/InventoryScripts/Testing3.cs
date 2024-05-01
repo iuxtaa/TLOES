@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class Testing3 : MonoBehaviour
 {
-    public Controller controller;  // Make sure this is correctly assigned in the Unity Inspector
-    public GameObject discardButtonObject; // Assign this in the Inspector
+    public Controller controller;  
+    public GameObject discardButtonObject; 
     public Items[] discard;
     public Image buttonImage;
     public TextMeshProUGUI buttonText;
@@ -22,23 +22,33 @@ public class Testing3 : MonoBehaviour
         UpdateButtonState();
     }
 
-    
+
     public void DiscardOneItem()
     {
-
-        if (controller.Item.Length > 0)
+       
+        int itemToDiscardIndex = -1;
+        for (int i = 0; i < controller.Item.Length; i++)
         {
-            controller.DiscardItem(0);
-            Debug.Log("One item discarded");
-            UpdateButtonState();
+            if (controller.Item[i] != null && controller.Item[i].GetComponentInChildren<ItemInside>() != null)
+            {
+                itemToDiscardIndex = i;
+                break;
+            }
+        }
+
+        if (itemToDiscardIndex != -1)
+        {
+            controller.DiscardItem(itemToDiscardIndex);  
+            UpdateButtonState();  
         }
         else
         {
             Debug.Log("No items to discard");
+            discardButtonObject.SetActive(false); 
         }
     }
 
-   
+
     private void UpdateButtonState()
     {
         if (controller.Item.Length > 0)
