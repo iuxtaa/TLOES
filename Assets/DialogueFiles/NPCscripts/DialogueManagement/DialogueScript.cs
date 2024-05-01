@@ -71,12 +71,22 @@ public class DialogueScript : MonoBehaviour
 
     public void Update()
     {
-        if (!currentDialogueIsPlaying) 
+        if (currentDialogueIsPlaying)
         {
+            if (dialogueDisplay.activeInHierarchy)
+            {
+                FreezePlayer(true);
+            }
+        }
+        else if (!currentDialogueIsPlaying)
+        {
+            if (!dialogueDisplay.activeInHierarchy)
+            {
+                FreezePlayer(false);
+            }
             return;
         }
-
-        if(InputsHandler.GetInstance().GetContinuePressed())
+        if (InputsHandler.GetInstance().GetContinuePressed())
         {
             NextLine();
         }
@@ -132,6 +142,21 @@ public class DialogueScript : MonoBehaviour
     public void chooseOption(int optionIndex)
     {
         currentDialogue.ChooseChoiceIndex(optionIndex);
+    }
+
+    public void FreezePlayer(bool state)
+    {
+        //dialogueDisplay.SetActive(state);
+        if (state) // If status is true, pause the game
+        {
+            Time.timeScale = 0;
+        }
+
+        else // If status is false, unpause the game
+        {
+            Time.timeScale = 1;
+        }
+
     }
 
 }

@@ -12,7 +12,9 @@ public class NPCindicatorTrigger : MonoBehaviour
     [SerializeField] private GameObject promptIcon;
 
     [Header("Dialogue Files INK")]
-    [SerializeField] private TextAsset inkJSON;
+    [SerializeField] private TextAsset DialogueFile;
+    [SerializeField] private TextAsset DialogueFile2;
+    
 
     private NPCmovement NPClook;
 
@@ -36,7 +38,7 @@ public class NPCindicatorTrigger : MonoBehaviour
             if(InputsHandler.GetInstance().GetInteract())
             {
                 NPClook.NPClookAtPlayer();
-                DialogueScript.GetInstance().EnterDialogueView(inkJSON);  
+                DialogueScript.GetInstance().EnterDialogueView(DialogueFile);  
             }
             
         }
