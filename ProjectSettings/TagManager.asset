@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pause
   - New tag
+  - Questing
   layers:
   - Default
   - TransparentFX

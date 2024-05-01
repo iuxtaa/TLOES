@@ -9,13 +9,13 @@ using UnityEngine;
 public class CollectingQuest : Quest  // Inherits from Quest
 {
     // INSTANCE VARIABLES
-    public GameObject requiredItem;
+    public Items requiredItem;
     public int requiredAmount;
     public int currentAmount = 0;  // Tracks the amount of the item collected
 
     // CONSTRUCTOR
     // Initializes a new instance of CollectionQuest with specified details
-    public CollectingQuest(GameObject requiredItem, int requiredAmount) : base()
+    public CollectingQuest(Items requiredItem, int requiredAmount) : base()
     {
         this.requiredItem = requiredItem;
         this.requiredAmount = requiredAmount;
