@@ -58,11 +58,17 @@ public class DialogueScript : MonoBehaviour
         currentDialogueIsPlaying = true;
         dialogueDisplay.SetActive(true);
 
+        currentDialogue.BindExternalFunction("startQuest", (string questName) => {
+            Debug.Log(questName);// put the code to call the start quest function here instead of the debug function.
+        });
+        
+
         NextLine();
     }
 
     private void LeaveDialogueView()
     {
+        currentDialogue.UnbindExternalFunction("startQuest");
         currentDialogueIsPlaying = false;
         dialogueDisplay.SetActive(false);
         dialogueText.text = "";
