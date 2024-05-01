@@ -59,7 +59,7 @@ public class DialogueScript : MonoBehaviour
         dialogueDisplay.SetActive(true);
 
         currentDialogue.BindExternalFunction("startQuest", (string questName) => {
-            Debug.Log(questName);// put the code to call the start quest function here instead of the debug function.
+            Debug.Log(questName);// put the code to call the start quest function here instead of the debug function..
         });
         
 

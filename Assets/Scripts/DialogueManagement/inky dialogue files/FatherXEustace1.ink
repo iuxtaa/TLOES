@@ -6,5 +6,5 @@ PC:     Yes.
 Father: But my bones are growing weary. Can you be the one to sell the eggs in the       market today, son?
 PC:     Of course.
 Father: Come back when you’ve sold it all.
-~startQuest("sellingQuest")
+~startQuest("sellingQuest") 
 PC:     Okay.
