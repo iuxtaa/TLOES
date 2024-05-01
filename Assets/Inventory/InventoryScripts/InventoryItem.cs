@@ -25,7 +25,10 @@ public class InventoryItem : MonoBehaviour, IDropHandler
 
 
 
+    public void UpdateUI()
+    {
 
+    }
 
 
 
