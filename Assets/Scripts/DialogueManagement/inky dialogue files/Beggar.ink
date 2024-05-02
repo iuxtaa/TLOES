@@ -1,9 +1,11 @@
 ->main
+
 === main ===
+USE W&S TO NAVIGATE THROUGH THE OPTIONS
+USE 'E' TO SELECT AN OPTION 
 Beggar: Is this the last of your eggs? How much did they cost?
 PC: 2 silver for a dozen.
 Beggar: *laughs* That’s a lot. I don’t have that much money. If anything, none at all.
-Choose your response. Using W&S to navigate through, E to choose option
     + Would you like one? 
         Beggar: What do you mean? One? You’re giving it to me? For free? 
         PC: Yeah. For free. *gives the egg* 
