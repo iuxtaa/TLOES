@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,8 +13,10 @@ public class NPCindicatorTrigger : MonoBehaviour
     [SerializeField] private GameObject promptIcon;
 
     [Header("Dialogue Files INK")]
-    [SerializeField] private TextAsset inkJSON;
+    [SerializeField] private TextAsset DialogueFile;
+    [SerializeField] private TextAsset DialogueFile2;
 
+    public Quest questCheck;
     private NPCmovement NPClook;
 
 
@@ -36,7 +39,16 @@ public class NPCindicatorTrigger : MonoBehaviour
             if(InputsHandler.GetInstance().GetInteract())
             {
                 NPClook.NPClookAtPlayer();
-                DialogueScript.GetInstance().EnterDialogueView(inkJSON);  
+                Debug.Log("Quest check: " + questCheck.isComplete);
+                if (questCheck.isComplete)
+                {
+                    DialogueScript.GetInstance().EnterDialogueView(DialogueFile2);
+                }
+                else if(!questCheck.isComplete)
+                {
+                    DialogueScript.GetInstance().EnterDialogueView(DialogueFile);
+                }
+                
             }
             
         }

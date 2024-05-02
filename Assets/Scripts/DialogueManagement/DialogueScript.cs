@@ -16,7 +16,8 @@ public class DialogueScript : MonoBehaviour
     private TextMeshProUGUI[] choicesText;
 
     public QuestGiver questGiver;
-  
+    private Coroutine typingDialogue;
+
 
     private Story currentDialogue;
 
@@ -96,7 +97,10 @@ public class DialogueScript : MonoBehaviour
 
         if(InputsHandler.GetInstance().GetContinuePressed())
         {
-            NextLine();
+      
+                dialogueText.text = currentDialogue.currentText;
+  
+                NextLine();   
         }
     }
 
@@ -104,9 +108,16 @@ public class DialogueScript : MonoBehaviour
     {
         if (currentDialogue.canContinue)
         {
-            dialogueText.text = currentDialogue.Continue();
+           string line = currentDialogue.Continue();
+            if(typingDialogue != null)
+            {
+                StopCoroutine(typingDialogue);
+            }
+            typingDialogue = StartCoroutine(TypeText(line));
             OptionDisplay();
         }
+
+        
         else
         {
             LeaveDialogueView();
@@ -146,6 +157,20 @@ public class DialogueScript : MonoBehaviour
 
         EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
     }
+
+    private IEnumerator TypeText(string text)
+    {
+        
+        dialogueText.text = "";
+        float textDisplaySpeed = 0.03f;
+        foreach (char c in text)
+        {
+            dialogueText.text += c; // Append one character at a time
+            yield return new WaitForSecondsRealtime(textDisplaySpeed); // Wait for a specified duration
+        }
+   
+    }
+
 
     public void chooseOption(int optionIndex)
     {
