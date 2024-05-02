@@ -6,7 +6,7 @@ using UnityEngine;
 public class SellingQuest : Quest
 {
     // INSTANCE VARIABLES
-    public GameObject requiredItem;
+    public Items requiredItem;
     public int requiredAmount;
     //public int currentAmount;
 
