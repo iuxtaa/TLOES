@@ -4191,6 +4191,7 @@ MonoBehaviour:
   promptIcon: {fileID: 1302788328}
   DialogueFile: {fileID: 4900000, guid: b2de40e746485e041abb0b79d1ae567b, type: 3}
   DialogueFile2: {fileID: 4900000, guid: 80d4a46d34e315049bb478605ae43258, type: 3}
+  questCheck: {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
 --- !u!114 &591285154
 MonoBehaviour:
   m_ObjectHideFlags: 0

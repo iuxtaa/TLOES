@@ -848,6 +848,7 @@ MonoBehaviour:
   promptIcon: {fileID: 1125680633}
   DialogueFile: {fileID: 4900000, guid: 99a4e437050d49d4596625ef40e07fae, type: 3}
   DialogueFile2: {fileID: 4900000, guid: 99a4e437050d49d4596625ef40e07fae, type: 3}
+  questCheck: {fileID: 0}
 --- !u!1 &313447381
 GameObject:
   m_ObjectHideFlags: 0
@@ -8581,8 +8582,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingIcon: {fileID: 359525276}
   promptIcon: {fileID: 1805928798}
-  DialogueFile: {fileID: 4900000, guid: c4ec619e4f258e54f9a121db984ce23b, type: 3}
+  DialogueFile: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
   DialogueFile2: {fileID: 4900000, guid: c4ec619e4f258e54f9a121db984ce23b, type: 3}
+  questCheck: {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
 --- !u!114 &1665528534
 MonoBehaviour:
   m_ObjectHideFlags: 0
