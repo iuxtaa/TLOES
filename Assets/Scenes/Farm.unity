@@ -4189,7 +4189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingIcon: {fileID: 1385276071}
   promptIcon: {fileID: 1302788328}
-  inkJSON: {fileID: 4900000, guid: b2de40e746485e041abb0b79d1ae567b, type: 3}
+  DialogueFile: {fileID: 4900000, guid: b2de40e746485e041abb0b79d1ae567b, type: 3}
+  DialogueFile2: {fileID: 4900000, guid: 80d4a46d34e315049bb478605ae43258, type: 3}
 --- !u!114 &591285154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9017,6 +9018,7 @@ MonoBehaviour:
   - {fileID: 260059028}
   - {fileID: 1904169813}
   - {fileID: 2102403713}
+  questGiver: {fileID: 0}
 --- !u!1 &1837919378
 GameObject:
   m_ObjectHideFlags: 0
