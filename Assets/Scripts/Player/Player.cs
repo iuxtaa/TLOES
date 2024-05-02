@@ -8,9 +8,9 @@ using UnityEngine;
 public class Player : Character
 {
     // INSTANCE VARIABLES 
-    public int favourability;
-    public Dictionary<string, int> inventory = new Dictionary<string, int>();  // Initialize inventory
-    [SerializeField] public Quest currentQuest;
+    public static int favourability;
+    public static Dictionary<string, int> inventory = new Dictionary<string, int>();  // Initialize inventory
+    [SerializeField] public static Quest currentQuest;
 
     public Player(string name) : base(name)
     {
@@ -28,7 +28,7 @@ public class Player : Character
 
     public void SetFavourability(int favourability)
     {
-        this.favourability = favourability;
+        Player.favourability = favourability;
     }
 
     public int GetFavourability()
@@ -38,7 +38,7 @@ public class Player : Character
 
     public void SetQuest(Quest quest)
     {
-        this.currentQuest = quest;
+        Player.currentQuest = quest;
     }
 
     public Quest GetQuest()
@@ -50,6 +50,7 @@ public class Player : Character
     {
         SetQuest(quest);
         currentQuest.isActive = true;
+        Debug.Log(Player.currentQuest);
     }
 
     public void AddItem(string item, int quantity)

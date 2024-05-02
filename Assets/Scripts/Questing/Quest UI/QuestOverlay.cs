@@ -13,9 +13,9 @@ public class QuestOverlay : MonoBehaviour
 
     public void Update()
     {
-        if (player != null && player.currentQuest != null)
+        if (player != null && Player.currentQuest != null)
         {
-            if(player.currentQuest.isActive && !player.currentQuest.isComplete)
+            if(Player.currentQuest.isActive && !Player.currentQuest.isComplete)
             {
                 openQuestOverlay();
             }
@@ -24,8 +24,8 @@ public class QuestOverlay : MonoBehaviour
     private void openQuestOverlay()
     {
         questWindow.SetActive(true);
-        titleText.text = player.currentQuest.title;
-        descriptionText.text = player.currentQuest.description;
+        titleText.text = Player.currentQuest.title;
+        descriptionText.text = Player.currentQuest.description;
     }
 
 }
