@@ -8,7 +8,7 @@ public class SellingQuest : Quest
     // INSTANCE VARIABLES
     public GameObject requiredItem;
     public int requiredAmount;
-    //public int currentAmount;
+    public int currentAmount;
 
     // CONSTRUCTOR
     public SellingQuest(int requiredAmount, int currentAmount) : base()

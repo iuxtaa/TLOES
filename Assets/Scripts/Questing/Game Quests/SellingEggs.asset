@@ -20,3 +20,4 @@ MonoBehaviour:
   favourabilityReward: 5
   requiredItem: {fileID: 0}
   requiredAmount: 3
+  currentAmount: 0

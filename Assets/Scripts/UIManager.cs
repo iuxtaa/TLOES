@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
             else
                 PauseGame(true);
         }
-        if (Player.currentQuest.isActive)
+        if (Player.currentQuest != null && Player.currentQuest.isActive)
         {
             questOverlay.SetActive(true);
         }

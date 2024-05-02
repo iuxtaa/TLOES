@@ -9,11 +9,15 @@ public class Player : Character {
     public static int favourability;
     public static Dictionary<string, int> inventory = new Dictionary<string, int>();  // Initialize inventory
     [SerializeField] public static Quest currentQuest;
+    public Quest[] questHistory = new Quest[3];
 
     public Player(string name) : base(name)
     {
         SetFavourability(0);
         SetQuest(null);
+        //questHistory[0] = new SellingQuest(3,3, 0, "", "", 5);
+        //questHistory[1] = KnightsLetter;
+        //questHistory[2] = PriestsHolyWater;
     }
 
     public Player(string name, int currentLocation, int favourability, Quest currentQuest) : base(name, currentLocation)
@@ -83,11 +87,11 @@ public class Player : Character {
             favourability += currentQuest.favourabilityReward;
             if (currentQuest is CollectingQuest collectingQuest)
             {
-                RemoveItem(collectingQuest.requiredItem.name, collectingQuest.requiredAmount);
+                // RemoveItem(collectingQuest.requiredItem.name, collectingQuest.requiredAmount);
             }
             else if (currentQuest is SellingQuest sellingQuest)
             {
-                RemoveItem(sellingQuest.requiredItem.name, sellingQuest.requiredAmount);
+                // RemoveItem(sellingQuest.requiredItem.name, sellingQuest.requiredAmount);
             }
             currentQuest.complete();
             SetQuest(null);
