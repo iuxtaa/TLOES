@@ -1379,7 +1379,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1737,13 +1737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 637830985}
-  Store:
-  - {fileID: 11400000, guid: 640947eaeb868724694579b910847109, type: 2}
-  - {fileID: 11400000, guid: 6d5d4741686a65948b5db55756c84958, type: 2}
-  - {fileID: 11400000, guid: 3cf81453aa2620a4ba5521aa1efa0c5f, type: 2}
-  - {fileID: 11400000, guid: 31146cd11c779504f893b842e4d632cb, type: 2}
-  - {fileID: 11400000, guid: f73ae9f984a23f74a8140028e6b5481a, type: 2}
-  - {fileID: 11400000, guid: 91d0d3891e6d0b446b5ec75230cfa51e, type: 2}
+  Store: []
   StoreButtonObject: {fileID: 1038421938}
   buttonImage: {fileID: 1038421941}
   buttonText: {fileID: 1505737801}
@@ -1811,17 +1805,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 637830984}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8145225e29a3a644fb33087db9de7f1f, type: 3}
+  m_Script: {fileID: 11500000, guid: 515863e5f7e32014cbe4b31ac819a2aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stacked: 20
+  stacked: 10
   Item:
-  - {fileID: 7246274102031189998}
-  - {fileID: 406442592}
-  - {fileID: 129542443}
-  - {fileID: 2025228735}
-  - {fileID: 1160799779}
-  - {fileID: 401677812}
   - {fileID: 1333352801}
   - {fileID: 1319549721}
   - {fileID: 1215768882}
@@ -1840,7 +1828,20 @@ MonoBehaviour:
   - {fileID: 109457221}
   - {fileID: 1350276131}
   - {fileID: 306773741}
-  itemPrefab: {fileID: 5511063777419983235, guid: 8a9af8a8499cc8b4db2cfa4f7eeff339, type: 3}
+  - {fileID: 7246274102031189998}
+  - {fileID: 406442592}
+  - {fileID: 129542443}
+  - {fileID: 2025228735}
+  - {fileID: 1160799779}
+  - {fileID: 401677812}
+  itemprefab: {fileID: 1857736168908962612, guid: 56fdab9ff13c96940a454f88c9df8103, type: 3}
+  inventoryItems:
+  - {fileID: 11400000, guid: 5fa31687db80f0a4da8aca39baee86e9, type: 2}
+  - {fileID: 11400000, guid: 0657e1651951a9b4e87de6901cfd11f0, type: 2}
+  - {fileID: 11400000, guid: 647696cc1864f304eb182ba84f4655df, type: 2}
+  - {fileID: 11400000, guid: 6d5d4741686a65948b5db55756c84958, type: 2}
+  - {fileID: 11400000, guid: f73ae9f984a23f74a8140028e6b5481a, type: 2}
+  - {fileID: 11400000, guid: 640947eaeb868724694579b910847109, type: 2}
 --- !u!4 &637830986
 Transform:
   m_ObjectHideFlags: 0
@@ -2759,10 +2760,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Controller: {fileID: 637830985}
   Pickup:
-  - {fileID: 11400000, guid: 3cf81453aa2620a4ba5521aa1efa0c5f, type: 2}
-  - {fileID: 11400000, guid: 31146cd11c779504f893b842e4d632cb, type: 2}
+  - {fileID: 11400000, guid: 0657e1651951a9b4e87de6901cfd11f0, type: 2}
+  - {fileID: 11400000, guid: 5fa31687db80f0a4da8aca39baee86e9, type: 2}
   - {fileID: 11400000, guid: f73ae9f984a23f74a8140028e6b5481a, type: 2}
-  - {fileID: 11400000, guid: 91d0d3891e6d0b446b5ec75230cfa51e, type: 2}
+  - {fileID: 11400000, guid: 647696cc1864f304eb182ba84f4655df, type: 2}
   - {fileID: 11400000, guid: 640947eaeb868724694579b910847109, type: 2}
   - {fileID: 11400000, guid: 6d5d4741686a65948b5db55756c84958, type: 2}
   pickupButtonObject: {fileID: 1377973674}
@@ -2894,9 +2895,9 @@ MonoBehaviour:
         m_MethodName: StoreItem
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 31146cd11c779504f893b842e4d632cb, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: 0657e1651951a9b4e87de6901cfd11f0, type: 2}
           m_ObjectArgumentAssemblyTypeName: Items, Assembly-CSharp
-          m_IntArgument: 2
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4607,15 +4608,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5111542f7c2fed343ba7ec5f95060991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 637830985}
-  discardButtonObject: {fileID: 527404023}
-  discard:
-  - {fileID: 11400000, guid: 31146cd11c779504f893b842e4d632cb, type: 2}
-  - {fileID: 11400000, guid: 3cf81453aa2620a4ba5521aa1efa0c5f, type: 2}
-  - {fileID: 11400000, guid: 640947eaeb868724694579b910847109, type: 2}
-  - {fileID: 11400000, guid: 91d0d3891e6d0b446b5ec75230cfa51e, type: 2}
-  - {fileID: 11400000, guid: 640947eaeb868724694579b910847109, type: 2}
-  - {fileID: 11400000, guid: 6d5d4741686a65948b5db55756c84958, type: 2}
+  Controller: {fileID: 637830985}
+  DiscardButtonObject: {fileID: 527404023}
   buttonImage: {fileID: 527404026}
   buttonText: {fileID: 759159123}
 --- !u!114 &1554020303

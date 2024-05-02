@@ -4,20 +4,24 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class DialogueScript : MonoBehaviour
 {
     [Header("Dialogue Management UI")]
     [SerializeField] private GameObject dialogueDisplay;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    
 
     [Header("Dialogue Choice Options UI")]
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
     public QuestGiver questGiver;
-  
+    private Coroutine typingDialogue;
+    private bool canContinueNext;
 
+   
     private Story currentDialogue;
 
     public bool currentDialogueIsPlaying { get; private set; }
@@ -94,9 +98,12 @@ public class DialogueScript : MonoBehaviour
             return;
         }
 
-        if(InputsHandler.GetInstance().GetContinuePressed())
+        if(canContinueNext && InputsHandler.GetInstance().GetContinuePressed())
         {
-            NextLine();
+
+            dialogueText.text = currentDialogue.currentText;
+
+                NextLine();   
         }
     }
 
@@ -104,9 +111,17 @@ public class DialogueScript : MonoBehaviour
     {
         if (currentDialogue.canContinue)
         {
-            dialogueText.text = currentDialogue.Continue();
-            OptionDisplay();
-        }
+           string line = currentDialogue.Continue();
+            if(typingDialogue != null)
+            {
+                
+               StopCoroutine(typingDialogue);
+                
+            }
+           typingDialogue = StartCoroutine(TypeText(line));
+
+            
+        } 
         else
         {
             LeaveDialogueView();
@@ -135,6 +150,7 @@ public class DialogueScript : MonoBehaviour
         {
             choices[i].gameObject.SetActive(false);
         }
+
         StartCoroutine(SelectedFristChoice()); 
     }
 
@@ -147,8 +163,35 @@ public class DialogueScript : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
     }
 
+    private IEnumerator TypeText(string text)
+    {
+        
+        dialogueText.text = "";
+        canContinueNext = false;
+        float textDisplaySpeed = 0.03f;
+        HideOptions();
+        canContinueNext = false;
+        foreach (char c in text)
+        {
+            if(InputsHandler.GetInstance().GetContinuePressed())
+            {
+                dialogueText.text = text;
+                break;
+            }
+            dialogueText.text += c; // Append one character at a time
+            yield return new WaitForSecondsRealtime(textDisplaySpeed); // Wait for a specified duration
+        }
+        OptionDisplay();
+        canContinueNext = true; 
+    }
+
+
     public void chooseOption(int optionIndex)
     {
+        if (optionIndex < 0 || optionIndex >= currentDialogue.currentChoices.Count)
+        {
+            return;
+        }
         currentDialogue.ChooseChoiceIndex(optionIndex);
     }
 
@@ -161,6 +204,14 @@ public class DialogueScript : MonoBehaviour
         else
         {
             Time.timeScale = 1;
+        }
+    }
+
+    private void HideOptions()
+    {
+        foreach (GameObject option in choices)
+        {
+            option.SetActive(false);
         }
     }
 
