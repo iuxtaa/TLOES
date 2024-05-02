@@ -2110,12 +2110,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 249902227}
     m_Modifications:
     - target: {fileID: 2004984999478800038, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1542
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004984999478800038, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 656
+      value: 649
       objectReference: {fileID: 0}
     - target: {fileID: 2004984999478800038, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -158
+      value: -160
       objectReference: {fileID: 0}
     - target: {fileID: 4407716030668222868, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3073,8 +3077,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -102.6}
-  m_SizeDelta: {x: -11.4823, y: 193.25}
+  m_AnchoredPosition: {x: -22.25, y: -102.6}
+  m_SizeDelta: {x: -55.5, y: 193.25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &600171254
 MonoBehaviour:
@@ -5854,7 +5858,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -12.071716, y: 28.124817}
+  m_AnchoredPosition: {x: -12.071777, y: 28.124817}
   m_SizeDelta: {x: -613.88904, y: 24.466797}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1125680635
@@ -7457,8 +7461,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.3668213, y: -55.451}
-  m_SizeDelta: {x: -10.7336, y: 102.9}
+  m_AnchoredPosition: {x: -0.25, y: -55.451}
+  m_SizeDelta: {x: -10.499998, y: 102.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1453945040
 CanvasRenderer:
@@ -7551,7 +7555,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 44.409027, w: 19.994673}
+  m_margin: {x: 0, y: 0, z: 0.9717102, w: 19.994673}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -8597,7 +8601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628491345b4c9d04aa0c59b5a2f992c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quest: {fileID: 0}
+  quest: {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   player: {fileID: 2044812155}
   questWindow: {fileID: 470803700}
   questOverlay: {fileID: 470803697}
@@ -9319,7 +9323,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -12.071716, y: 28.124817}
+  m_AnchoredPosition: {x: -12.071777, y: 28.124817}
   m_SizeDelta: {x: -613.88904, y: 24.466797}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1805928800
