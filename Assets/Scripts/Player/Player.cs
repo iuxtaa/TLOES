@@ -1,15 +1,15 @@
 using System;
 using System.Collections;
-using System.Collections.Generic; // Required for Dictionary
+using System.Collections.Generic; 
 using UnityEngine;
 
 
 
 public class Player : Character
 {
-    // INSTANCE VARIABLES 
+    
     public int favourability;
-    public Dictionary<string, int> inventory = new Dictionary<string, int>();  // Initialize inventory
+    public Dictionary<string, int> inventory = new Dictionary<string, int>();  
     [SerializeField] public Quest currentQuest;
 
     public Player(string name) : base(name)
@@ -24,7 +24,7 @@ public class Player : Character
         SetQuest(currentQuest);
     }
 
-    // METHODS
+   
 
     public void SetFavourability(int favourability)
     {

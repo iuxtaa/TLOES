@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 [System.Serializable]
 [CreateAssetMenu(fileName = "New Collecting Quest", menuName = "Quest System/Collecting Quest")]
+
+
 
 
 public class CollectingQuest : Quest  // Inherits from Quest
@@ -19,7 +22,28 @@ public class CollectingQuest : Quest  // Inherits from Quest
     {
         this.requiredItem = requiredItem;
         this.requiredAmount = requiredAmount;
-        this.currentAmount = 0;  
+    }
+
+    void UpdateQuestProgress()
+    {
+        if (Controller.Instance != null && requiredItem != null)
+        {
+            
+            currentAmount = Controller.Instance.GetItemCount(requiredItem.GetComponent<Items>());
+            CheckCompletion();
+        }
+    }
+
+    void OnEnable()
+    {
+        
+        Controller.Instance.OnItemChanged += UpdateQuestProgress;
+    }
+
+    void OnDisable()
+    {
+        // Unsubscribe to avoid memory leaks
+        Controller.Instance.OnItemChanged -= UpdateQuestProgress;
     }
 
     // METHODS
@@ -31,10 +55,36 @@ public class CollectingQuest : Quest  // Inherits from Quest
     public void addItem(int amount)
     {
         currentAmount += amount;
+        CheckCompletion();
     }
 
     public bool canAddItem(int amount)
     {
         return (currentAmount + amount) <= requiredAmount;
     }
+
+
+
+
+
+    public override void complete()
+    {
+        if (!isComplete)
+        {
+            base.complete();  
+            Debug.Log(title + " quest is completed");
+            
+        }
+    }
+
+    // This function checks if the quest requirements are met and marks the quest as complete
+    void CheckCompletion()
+    {
+        if (isReached())
+        {
+            complete();
+        }
+    }
+
+    
 }

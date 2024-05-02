@@ -17,6 +17,13 @@ public abstract class Quest : ScriptableObject
     public string description;
     public int favourabilityReward;
 
+    protected Controller inventory;
+
+    public void Initialize(Controller inventory)
+    {
+        this.inventory = inventory;
+    }
+
     // CONSTRUCTOR
     public Quest()
     {
@@ -25,16 +32,17 @@ public abstract class Quest : ScriptableObject
         this.title = string.Empty;
         this.description = string.Empty;
         this.favourabilityReward = 0;
-        this.isActive = false;// Assuming the quest is active upon creation
+        this.isActive = false;/
         this.isComplete = false;
     }
 
+    
     public Quest(int questNumber, string title, string desc, int favourabilityReward)
     {
-        this.questNumber=questNumber;
+        this.questNumber = questNumber;
         this.title = title;
         this.description = desc;
-        this.favourabilityReward=favourabilityReward;
+        this.favourabilityReward = favourabilityReward;
         this.isActive = false;
         this.isComplete = false;
     }
@@ -42,10 +50,9 @@ public abstract class Quest : ScriptableObject
 
     // METHODS
 
-    public void complete()
+    public virtual void complete()
     {
         isComplete = true;
-        isActive = false;
-        Debug.Log(title + " quest is completed. ");
+        Debug.Log("Completed Quest ");
     }
 }
