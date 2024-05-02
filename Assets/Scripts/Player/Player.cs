@@ -82,11 +82,11 @@ public class Player : Character {
             favourability += currentQuest.favourabilityReward;
             if (currentQuest is CollectingQuest collectingQuest)
             {
-                RemoveItem(collectingQuest.requiredItem.name, collectingQuest.requiredAmount);
+              //  RemoveItem(collectingQuest.requiredItem.name, collectingQuest.requiredAmount);
             }
             else if (currentQuest is SellingQuest sellingQuest)
             {
-                RemoveItem(sellingQuest.requiredItem.name, sellingQuest.requiredAmount);
+               // RemoveItem(sellingQuest.requiredItem.name, sellingQuest.requiredAmount);
             }
             currentQuest.complete();
             SetQuest(null);
