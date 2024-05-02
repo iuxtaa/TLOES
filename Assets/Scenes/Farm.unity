@@ -5499,8 +5499,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f512b4bf7e63e4db9fb5826540ee2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  favourability: 0
-  currentQuest: {fileID: 0}
 --- !u!1 &929222683
 GameObject:
   m_ObjectHideFlags: 0
@@ -7566,7 +7564,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.19215688, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -8469,6 +8467,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 267061460}
     m_Modifications:
     - target: {fileID: 182461594610985622, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 182461594610985622, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_TagString
       value: Questing
       objectReference: {fileID: 0}
@@ -8507,6 +8509,30 @@ PrefabInstance:
     - target: {fileID: 2999382260023479132, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_TagString
       value: Questing
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307544923360177798, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 368.8417
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307544923360177798, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 709.4209
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117834872807746155, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 387.8639
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117834872807746155, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 51.6811
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117834872807746155, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 716.9321
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117834872807746155, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 244.15942
       objectReference: {fileID: 0}
     - target: {fileID: 4399862149433461437, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: player
@@ -8612,6 +8638,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4465760736878249052, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4466376659663859323, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_Name
       value: QuestUI
@@ -8636,9 +8666,17 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 921882241}
+    - target: {fileID: 5779782576793177342, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8671148183013306946, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_TagString
       value: Questing
+      objectReference: {fileID: 0}
+    - target: {fileID: 8671148183013306946, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8917782065436525999, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_TagString

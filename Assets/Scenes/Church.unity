@@ -4933,6 +4933,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1554100012435694503, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1554100012435694503, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -5202,8 +5206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f512b4bf7e63e4db9fb5826540ee2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  favourability: 0
-  currentQuest: {fileID: 0}
 --- !u!1 &1039588875
 GameObject:
   m_ObjectHideFlags: 0
