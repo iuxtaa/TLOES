@@ -1,4 +1,5 @@
 EXTERNAL startQuest(questName)
+PRESS 'E' TO PROGRESS THROUGH DIALOGUE
 Father: Oh, Eustace. Come, my son. 
 PC:     Yes, father.
 Father: Our crops have not been faring well for the past year. Money is running short     . You know that I have decided to sell some of our produce and animals to the     market to make money…
