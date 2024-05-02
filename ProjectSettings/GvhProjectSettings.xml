@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <projectSettings>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
   <projectSetting name="Google.IOSResolver.VerboseLoggingEnabled" value="False" />
-=======
   <projectSetting name="com.google.external-dependency-managerAnalyticsCookie" value="7595ec4a65cb4482940809573919d18d" />
   <projectSetting name="com.google.external-dependency-managerAnalyticsEnabled" value="True" />
->>>>>>> Stashed changes
-=======
   <projectSetting name="com.google.external-dependency-managerAnalyticsEnabled" value="False" />
   <projectSetting name="Google.IOSResolver.VerboseLoggingEnabled" value="False" />
->>>>>>> Stashed changes
+  <projectSetting name="com.google.external-dependency-managerAnalyticsEnabled" value="False" />
+  <projectSetting name="Google.IOSResolver.VerboseLoggingEnabled" value="False" />
   <projectSetting name="Google.PackageManagerResolver.VerboseLoggingEnabled" value="False" />
   <projectSetting name="Google.VersionHandler.VerboseLoggingEnabled" value="False" />
 </projectSettings>

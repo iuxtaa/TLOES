@@ -19,7 +19,7 @@ public class ConfirmationPanelManager : MonoBehaviour
 
     private void YesClicked()
     {
-        SceneManager.LoadScene((int)ScreenEnum.Game);
+        SceneManager.LoadScene((int)ScreenEnum.Farm); // ? Maybe needs to be changed
     }
 
     private void NoClicked()

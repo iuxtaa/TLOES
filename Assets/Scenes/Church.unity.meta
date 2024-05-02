@@ -1,9 +1,13 @@
 fileFormatVersion: 2
-<<<<<<<< Updated upstream:TLOES/Assets/Scenes/Church.unity.meta
+<<<<<<< Updated upstream
 guid: 330f356d7a5f13f44af18e9d7f89163a
+=======
+<<<<<<<< HEAD:Assets/Scenes/Inventory.unity.meta
+guid: a5d1327996a4aa347a0f841324c7aabc
 ========
-guid: 0522593691db0694faf566bac282e386
->>>>>>>> Stashed changes:TLOES/Assets/Assets/LICENSE.meta
+guid: 330f356d7a5f13f44af18e9d7f89163a
+>>>>>>>> testformartinXenab:Assets/Scenes/Church.unity.meta
+>>>>>>> Stashed changes
 DefaultImporter:
   externalObjects: {}
   userData: 

@@ -3,49 +3,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
-
 {
-    public static UIManager instance;
-
-    //Screen object variables
-    public GameObject LoginPanel;
-    public GameObject SignupPanel;
-     [Header("Pause")]
+    [Header("Pause")]
     [SerializeField] private GameObject pauseScreen;
     [SerializeField] private GameObject pauseButton;
 
+    [Header("Keybinds Panel")]
+    [SerializeField] private UserKeybindsPanel userKeybindsPanel;
 
+    [Header("Quest")]
+    [SerializeField] private GameObject questPopup;
+    [SerializeField] private GameObject questOverlay;
+    [SerializeField] private GameObject questCompletePopup;
 
-
-    private void Awake()
+    public void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != null)
-        {
-            Debug.Log("Instance already exists, destroying object!");
-            Destroy(this);
-        }
-
         pauseScreen.SetActive(false);
         pauseButton.SetActive(true);
+        questPopup.SetActive(false);
+        questOverlay.SetActive(false);
+        questCompletePopup.SetActive(false);
     }
-
-    //Functions to change the login screen UI
-    public void LoginScreen() //Back button
-    {
-        LoginPanel.SetActive(true);
-        SignupPanel.SetActive(false);
-    }
-    public void RegisterScreen() // Regester button
-    {
-        LoginPanel.SetActive(false);
-        SignupPanel.SetActive(true);
-    }
-
-   
 
     public void Update()
     {
@@ -63,7 +41,15 @@ public class UIManager : MonoBehaviour
     #region Pause
     public void PauseGame(bool status)
     {
-        pauseScreen.SetActive(status);
+        if(userKeybindsPanel.gameObject.activeInHierarchy)
+        {
+            pauseScreen.SetActive(!status);
+        }
+        else
+        {
+            pauseScreen.SetActive(status);
+        }
+
         pauseButton.SetActive(!status);
 
         if (status) // If status is true, pause the game
@@ -86,6 +72,14 @@ public class UIManager : MonoBehaviour
         PauseGame(false);
     }
 
+    // Show Keybinds button
+    public void ShowKeybindsButton()
+    {
+        userKeybindsPanel.exitButton.onClick.AddListener(DeactivateKeybindsPanel);
+        userKeybindsPanel.gameObject.SetActive(true);
+        PauseGame(true);
+    }
+
     // Save game button
     public void SaveGameButton()
     {
@@ -96,7 +90,7 @@ public class UIManager : MonoBehaviour
     public void SaveAndQuitGameButton()
     {
         Save();
-        SceneManager.LoadScene(((int)Screen.MainMenu));
+        SceneManager.LoadScene((int)ScreenEnum.StartingMenu);
 
         //Application.Quit();
 
@@ -112,10 +106,13 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-    public enum Screen
+    #region Keybinds
+    
+    //Deactivates the keybinds panel when the pause button is clicked
+    public void DeactivateKeybindsPanel()
     {
-        StartingMenu,
-        MainMenu,
-        Game
+        userKeybindsPanel.gameObject.SetActive(false);
+        pauseScreen.SetActive(true);
     }
+    #endregion
 }

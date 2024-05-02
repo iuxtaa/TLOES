@@ -19,7 +19,7 @@ public class NewPlayerPanelManager : MonoBehaviour
 
     private void NewGameClicked()
     {
-        SceneManager.LoadScene((int)ScreenEnum.Game);
+        SceneManager.LoadScene((int)ScreenEnum.Farm);
     }
 
     private void QuitGameClicked()
