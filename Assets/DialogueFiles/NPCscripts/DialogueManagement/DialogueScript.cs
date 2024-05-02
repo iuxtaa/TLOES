@@ -15,6 +15,7 @@ public class DialogueScript : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
+    public QuestGiver questGiver;
   
 
     private Story currentDialogue;
@@ -31,6 +32,7 @@ public class DialogueScript : MonoBehaviour
             Debug.LogWarning("There is more than one instance");
         }
         instance = this;
+        questGiver = FindObjectOfType<QuestGiver>();
     }
 
     public static DialogueScript GetInstance()
@@ -57,22 +59,38 @@ public class DialogueScript : MonoBehaviour
         currentDialogue = new Story(inkJSON.text);
         currentDialogueIsPlaying = true;
         dialogueDisplay.SetActive(true);
+        currentDialogue.BindExternalFunction("startQuest", (string questName) => {
+            questGiver.openQuestUI();
+        });
 
         NextLine();
     }
 
     private void LeaveDialogueView()
     {
+        currentDialogue.UnbindExternalFunction("startQuest");
         currentDialogueIsPlaying = false;
         dialogueDisplay.SetActive(false);
         dialogueText.text = "";
+
         
     }
 
     public void Update()
     {
-        if (!currentDialogueIsPlaying) 
+        if(currentDialogueIsPlaying)
         {
+            if(dialogueDisplay.activeInHierarchy)
+            {
+                FreezePlayer(true);
+            }
+        }
+        else if (!currentDialogueIsPlaying) 
+        {
+            if(!dialogueDisplay.activeInHierarchy)
+            {
+                FreezePlayer(false);
+            }
             return;
         }
 
@@ -132,6 +150,18 @@ public class DialogueScript : MonoBehaviour
     public void chooseOption(int optionIndex)
     {
         currentDialogue.ChooseChoiceIndex(optionIndex);
+    }
+
+    public void FreezePlayer(bool state)
+    {
+        if(state)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 
 }
