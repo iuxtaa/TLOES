@@ -36,6 +36,10 @@ public class UIManager : MonoBehaviour
             else
                 PauseGame(true);
         }
+        if (Player.currentQuest.isActive)
+        {
+            questOverlay.SetActive(true);
+        }
     }
 
     #region Pause

@@ -5,11 +5,26 @@ using UnityEngine;
 
 public class QuestOverlay : MonoBehaviour
 {
+    public static QuestOverlay Instance { get; private set; }
+
     public Player player; // the player that will accept the quest
 
     public GameObject questWindow;
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI descriptionText;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject); // Destroy the new object if one already exists
+        }
+    }
 
     public void Update()
     {

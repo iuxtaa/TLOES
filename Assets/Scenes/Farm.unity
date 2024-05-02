@@ -6816,7 +6816,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1284846651
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8636,6 +8636,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4465760736878249052, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4466376659663859323, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_Name
       value: QuestUI
@@ -8660,9 +8664,17 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 921882241}
+    - target: {fileID: 5779782576793177342, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8671148183013306946, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_TagString
       value: Questing
+      objectReference: {fileID: 0}
+    - target: {fileID: 8671148183013306946, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8917782065436525999, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_TagString
