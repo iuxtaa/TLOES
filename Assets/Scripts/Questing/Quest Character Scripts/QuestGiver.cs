@@ -36,7 +36,8 @@ public class QuestGiver : MonoBehaviour // this will be an NPC which 'is a' char
         {
             questWindow.SetActive(false);
             player.acceptQuest(quest);
-            questOverlay.SetActive(true) ;
+            questOverlay.SetActive(true);
         }
     }
+
 }

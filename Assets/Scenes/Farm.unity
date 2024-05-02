@@ -4189,8 +4189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingIcon: {fileID: 1385276071}
   promptIcon: {fileID: 1302788328}
-  DialogueFile: {fileID: 4900000, guid: b2de40e746485e041abb0b79d1ae567b, type: 3}
-  DialogueFile2: {fileID: 4900000, guid: 80d4a46d34e315049bb478605ae43258, type: 3}
+  inkJSON: {fileID: 4900000, guid: b2de40e746485e041abb0b79d1ae567b, type: 3}
 --- !u!114 &591285154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8489,11 +8488,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2004984999478800038, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 614
+      value: 622
       objectReference: {fileID: 0}
     - target: {fileID: 2004984999478800038, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -138
+      value: -122
       objectReference: {fileID: 0}
     - target: {fileID: 2428637062774684757, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -8593,11 +8592,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4454483362200954588, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 4454483362200954588, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 4454483362200954588, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -9018,7 +9017,6 @@ MonoBehaviour:
   - {fileID: 260059028}
   - {fileID: 1904169813}
   - {fileID: 2102403713}
-  questGiver: {fileID: 0}
 --- !u!1 &1837919378
 GameObject:
   m_ObjectHideFlags: 0

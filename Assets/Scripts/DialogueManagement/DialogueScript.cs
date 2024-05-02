@@ -15,16 +15,15 @@ public class DialogueScript : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
-
-    public QuestGiver questGiver;// reference for the quest system
+    public QuestGiver questGiver;
+  
 
     private Story currentDialogue;
 
     public bool currentDialogueIsPlaying { get; private set; }
 
 
-    private static DialogueScript instance;
-
+   private static DialogueScript instance;
 
     private void Awake()
     {
@@ -60,12 +59,9 @@ public class DialogueScript : MonoBehaviour
         currentDialogue = new Story(inkJSON.text);
         currentDialogueIsPlaying = true;
         dialogueDisplay.SetActive(true);
-
         currentDialogue.BindExternalFunction("startQuest", (string questName) => {
-            Debug.Log(questName);// put the code to call the start quest function here instead of the debug function..
             questGiver.openQuestUI();
         });
-        
 
         NextLine();
     }
@@ -76,27 +72,29 @@ public class DialogueScript : MonoBehaviour
         currentDialogueIsPlaying = false;
         dialogueDisplay.SetActive(false);
         dialogueText.text = "";
+
         
     }
 
     public void Update()
     {
-        if (currentDialogueIsPlaying)
+        if(currentDialogueIsPlaying)
         {
-            if (dialogueDisplay.activeInHierarchy)
+            if(dialogueDisplay.activeInHierarchy)
             {
                 FreezePlayer(true);
             }
         }
-        else if (!currentDialogueIsPlaying)
+        else if (!currentDialogueIsPlaying) 
         {
-            if (!dialogueDisplay.activeInHierarchy)
+            if(!dialogueDisplay.activeInHierarchy)
             {
                 FreezePlayer(false);
             }
             return;
         }
-        if (InputsHandler.GetInstance().GetContinuePressed())
+
+        if(InputsHandler.GetInstance().GetContinuePressed())
         {
             NextLine();
         }
@@ -156,17 +154,14 @@ public class DialogueScript : MonoBehaviour
 
     public void FreezePlayer(bool state)
     {
-        //dialogueDisplay.SetActive(state);
-        if (state) // If status is true, pause the game
+        if(state)
         {
             Time.timeScale = 0;
         }
-
-        else // If status is false, unpause the game
+        else
         {
             Time.timeScale = 1;
         }
-
     }
 
 }
