@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class QuestOverlay : MonoBehaviour
 {
-    public Quest quest; // the quest that the quest giver will give
     public Player player; // the player that will accept the quest
 
     public GameObject questWindow;
@@ -14,9 +13,9 @@ public class QuestOverlay : MonoBehaviour
 
     public void Update()
     {
-        if (quest != null && player != null)
+        if (player != null && player.currentQuest != null)
         {
-            if(quest.isActive && !quest.isComplete)
+            if(player.currentQuest.isActive && !player.currentQuest.isComplete)
             {
                 openQuestOverlay();
             }
@@ -25,8 +24,8 @@ public class QuestOverlay : MonoBehaviour
     private void openQuestOverlay()
     {
         questWindow.SetActive(true);
-        titleText.text = quest.title;
-        descriptionText.text = quest.description;
+        titleText.text = player.currentQuest.title;
+        descriptionText.text = player.currentQuest.description;
     }
 
 }
