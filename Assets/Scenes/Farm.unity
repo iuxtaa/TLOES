@@ -8609,7 +8609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4466376659663859323, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4466376659663859323, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_TagString
@@ -9009,6 +9009,7 @@ MonoBehaviour:
   - {fileID: 260059028}
   - {fileID: 1904169813}
   - {fileID: 2102403713}
+  questGiver: {fileID: 0}
 --- !u!1 &1837919378
 GameObject:
   m_ObjectHideFlags: 0

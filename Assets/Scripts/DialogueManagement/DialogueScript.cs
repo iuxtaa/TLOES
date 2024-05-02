@@ -15,14 +15,16 @@ public class DialogueScript : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
-  
+
+    public QuestGiver questGiver;// reference for the quest system
 
     private Story currentDialogue;
 
     public bool currentDialogueIsPlaying { get; private set; }
 
 
-   private static DialogueScript instance;
+    private static DialogueScript instance;
+
 
     private void Awake()
     {
@@ -31,6 +33,7 @@ public class DialogueScript : MonoBehaviour
             Debug.LogWarning("There is more than one instance");
         }
         instance = this;
+        questGiver = FindObjectOfType<QuestGiver>();
     }
 
     public static DialogueScript GetInstance()
@@ -60,6 +63,7 @@ public class DialogueScript : MonoBehaviour
 
         currentDialogue.BindExternalFunction("startQuest", (string questName) => {
             Debug.Log(questName);// put the code to call the start quest function here instead of the debug function..
+            questGiver.openQuestUI();
         });
         
 

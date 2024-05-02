@@ -24,6 +24,10 @@ public class QuestGiver : MonoBehaviour // this will be an NPC which 'is a' char
             descriptionText.text = quest.description;
             //goldText.text = quest.goldReward.ToString();
         }
+        else
+        {
+            Debug.Log("No avaliable quests");
+        }
     }
 
     public void acceptQuest()
