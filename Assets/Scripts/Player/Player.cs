@@ -31,7 +31,7 @@ public class Player : Character {
 
     public int GetFavourability()
     {
-        return this.favourability;
+        return favourability;
     }
 
     public void SetQuest(Quest quest)
@@ -41,7 +41,7 @@ public class Player : Character {
 
     public Quest GetQuest()
     {
-        return this.currentQuest;
+        return currentQuest;
     }
 
     public void acceptQuest(Quest quest)
@@ -79,7 +79,15 @@ public class Player : Character {
     {
         if(canCompleteQuest())
         {
-            this.favourability += currentQuest.favourabilityReward;
+            favourability += currentQuest.favourabilityReward;
+            if (currentQuest is CollectingQuest collectingQuest)
+            {
+                RemoveItem(collectingQuest.requiredItem.name, collectingQuest.requiredAmount);
+            }
+            else if (currentQuest is SellingQuest sellingQuest)
+            {
+                RemoveItem(sellingQuest.requiredItem.name, sellingQuest.requiredAmount);
+            }
             currentQuest.complete();
             SetQuest(null);
         }
@@ -87,7 +95,7 @@ public class Player : Character {
 
     public void failQuest()
     {
-        this.favourability -= currentQuest.favourabilityReward;
+        favourability -= currentQuest.favourabilityReward;
         currentQuest.complete();
         SetQuest(null);
     }
