@@ -18,6 +18,7 @@ public class DialogueScript : MonoBehaviour
     private TextMeshProUGUI[] choicesText;
 
     public QuestGiver questGiver;
+    public SellingQuest sell;
     private Coroutine typingDialogue;
     private bool canContinueNext;
 
@@ -66,6 +67,13 @@ public class DialogueScript : MonoBehaviour
         currentDialogue.BindExternalFunction("startQuest", (string questName) => {
             questGiver.openQuestUI();
         });
+        currentDialogue.BindExternalFunction("finishQuest", (string questName) =>
+        {
+            //sell.complete();
+            questGiver.quest.complete();
+            //questGiver.quest.isComplete = true;
+            Debug.Log("Completeed");
+        });
 
         NextLine();
     }
@@ -103,7 +111,7 @@ public class DialogueScript : MonoBehaviour
 
             dialogueText.text = currentDialogue.currentText;
 
-                NextLine();   
+                NextLine();
         }
     }
 

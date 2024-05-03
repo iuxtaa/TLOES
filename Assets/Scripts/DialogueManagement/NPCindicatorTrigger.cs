@@ -44,7 +44,7 @@ public class NPCindicatorTrigger : MonoBehaviour
                 Debug.Log("Quest check: " + questCheck.isComplete);
                 Debug.Log("Quest active " + questCheck.isActive);
                 //if (questCheck.isComplete)
-                if (player.CanCompleteQuest())
+                if (questCheck.isComplete)
                 {
                     DialogueScript.GetInstance().EnterDialogueView(DialogueFile2);//Dialogue 2 will only play if a preceeding quest is done
                 }

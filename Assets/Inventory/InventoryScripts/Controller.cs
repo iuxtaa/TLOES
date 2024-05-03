@@ -45,7 +45,7 @@ public class Controller : MonoBehaviour
     }
 
 
-   public void DiscardItem(int index)
+    public void DiscardItem(int index)
     {
         if (index >= 0 && index < Item.Length)
         {
@@ -128,8 +128,6 @@ public class Controller : MonoBehaviour
 
     void UpdateUI(InventoryItem it)
     {
-        it.UpdateUI();
+       // it.UpdateUI();
     }
-
-    
 }

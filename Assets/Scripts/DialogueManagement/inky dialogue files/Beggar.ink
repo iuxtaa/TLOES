@@ -1,7 +1,9 @@
+EXTERNAL finishQuest(questName) 
 USE W&S TO NAVIGATE THROUGH THE OPTIONS
 USE 'E' TO SELECT AN OPTION 
 Beggar: Is this the last of your eggs? How much did they cost?
 PC: 2 silver for a dozen.
+~finishQuest("sellingQuest")
 Beggar: *laughs* That’s a lot. I don’t have that much money. If anything, none at all.
     * Would you like one? 
         Beggar: What do you mean? One? You’re giving it to me? For free? 
@@ -22,3 +24,5 @@ Beggar: *laughs* That’s a lot. I don’t have that much money. If anything, no
             Not many people know about it. They say that if you make a wish in that well, it will grant it.
         PC: You think I would believe that? That sounds like a fairy tale. Take this egg anyway, for your troubles.
         Beggar: Thank you 
+    
+       

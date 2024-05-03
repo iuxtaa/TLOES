@@ -34,17 +34,17 @@ public class CollectingQuest : Quest  // Inherits from Quest
         }
     }
 
-    void OnEnable()
+   /* void OnEnable()
     {
         
         Controller.Instance.OnItemChanged += UpdateQuestProgress;
-    }
+    }*/
 
-    void OnDisable()
+   /* void OnDisable()
     {
         // Unsubscribe to avoid memory leaks
         Controller.Instance.OnItemChanged -= UpdateQuestProgress;
-    }
+    }*/
 
     // METHODS
     public bool isReached()
