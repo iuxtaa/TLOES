@@ -5,18 +5,32 @@ using UnityEngine;
 
 public class QuestOverlay : MonoBehaviour
 {
-    public Quest quest; // the quest that the quest giver will give
+    public static QuestOverlay Instance { get; private set; }
+
     public Player player; // the player that will accept the quest
 
     public GameObject questWindow;
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI descriptionText;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject); // Destroy the new object if one already exists
+        }
+    }
+
     public void Update()
     {
-        if (quest != null && player != null)
+        if (player != null && Player.currentQuest != null)
         {
-            if(quest.isActive && !quest.isComplete)
+            if(Player.currentQuest.isActive && !Player.currentQuest.isComplete)
             {
                 openQuestOverlay();
             }
@@ -25,8 +39,8 @@ public class QuestOverlay : MonoBehaviour
     private void openQuestOverlay()
     {
         questWindow.SetActive(true);
-        titleText.text = quest.title;
-        descriptionText.text = quest.description;
+        titleText.text = Player.currentQuest.title;
+        descriptionText.text = Player.currentQuest.description;
     }
 
 }
