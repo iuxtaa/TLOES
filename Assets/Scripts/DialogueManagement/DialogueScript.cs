@@ -64,8 +64,8 @@ public class DialogueScript : MonoBehaviour
         currentDialogueIsPlaying = true;
         dialogueDisplay.SetActive(true);
         currentDialogue.BindExternalFunction("beginQuest", (string questName) =>
-        {     
-                questGiver.openQuestUI();
+        {
+            questGiver.openQuestUI();
             Debug.Log(questName);
         });
 
@@ -79,6 +79,11 @@ public class DialogueScript : MonoBehaviour
         currentDialogueIsPlaying = false;
         dialogueDisplay.SetActive(false);
         dialogueText.text = "";
+
+        if (questGiver != null && questGiver.quest != null && questGiver.quest.isActive);
+        {
+            questGiver.quest.complete();
+        }
 
 
     }
