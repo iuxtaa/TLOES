@@ -1681,8 +1681,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5111542f7c2fed343ba7ec5f95060991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  discardButtonObject: {fileID: 0}
+  controller: {fileID: 1705923780}
+  discardButtonObject: {fileID: 1799474012}
   buttonImage: {fileID: 1799474015}
   buttonText: {fileID: 676347459}
 --- !u!114 &181860404
@@ -4866,6 +4866,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &267178614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5511063777419983235, guid: 8a9af8a8499cc8b4db2cfa4f7eeff339, type: 3}
+  m_PrefabInstance: {fileID: 1586382065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &296657038 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3196307715861033592, guid: 8a9af8a8499cc8b4db2cfa4f7eeff339, type: 3}
@@ -6042,7 +6047,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3843787201142963128, guid: 8a9af8a8499cc8b4db2cfa4f7eeff339, type: 3}
   m_PrefabInstance: {fileID: 1586382065}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 267178614}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -7254,10 +7259,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Controller: {fileID: 1705923780}
   Pickup:
-  - {fileID: 11400000, guid: 0657e1651951a9b4e87de6901cfd11f0, type: 2}
-  - {fileID: 11400000, guid: 5fa31687db80f0a4da8aca39baee86e9, type: 2}
+  - {fileID: 11400000, guid: 3cf81453aa2620a4ba5521aa1efa0c5f, type: 2}
+  - {fileID: 11400000, guid: 31146cd11c779504f893b842e4d632cb, type: 2}
   - {fileID: 11400000, guid: f73ae9f984a23f74a8140028e6b5481a, type: 2}
-  - {fileID: 11400000, guid: 647696cc1864f304eb182ba84f4655df, type: 2}
+  - {fileID: 11400000, guid: 91d0d3891e6d0b446b5ec75230cfa51e, type: 2}
   - {fileID: 11400000, guid: 640947eaeb868724694579b910847109, type: 2}
   - {fileID: 11400000, guid: 6d5d4741686a65948b5db55756c84958, type: 2}
   pickupButtonObject: {fileID: 1617965277}
@@ -10983,7 +10988,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -0.000061035156, y: 28.99999}
+  m_AnchoredPosition: {x: 0, y: 29}
   m_SizeDelta: {x: -613.88904, y: 24.466797}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1307497440
@@ -12786,17 +12791,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd40bddeb6b854419be57f6004ae885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1578997279 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 389926306843225708, guid: a31b8a3a9570acd43b7668b9d6f8fa38, type: 3}
-  m_PrefabInstance: {fileID: 1503440305}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1578997280 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7610292148003276161, guid: a31b8a3a9570acd43b7668b9d6f8fa38, type: 3}
   m_PrefabInstance: {fileID: 1503440305}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578997279}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7dd40bddeb6b854419be57f6004ae885, type: 3}
@@ -13553,7 +13553,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 733325126}
         m_TargetAssemblyTypeName: Testing, Assembly-CSharp
-        m_MethodName: Pickupitem
+        m_MethodName: PickupItem
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13935,7 +13935,7 @@ MonoBehaviour:
   - {fileID: 1627783230}
   - {fileID: 1419414383}
   - {fileID: 2097168335}
-  itemPrefab: {fileID: 1578997279}
+  itemPrefab: {fileID: 267178614}
 --- !u!4 &1705923781
 Transform:
   m_ObjectHideFlags: 0
