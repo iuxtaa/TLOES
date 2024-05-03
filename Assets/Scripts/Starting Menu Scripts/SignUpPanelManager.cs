@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 
 public class SignUpPanelManager : MonoBehaviour
 {
+    [Header ("Sign Up")]
     [SerializeField] private Panel signUpPanel;
     [SerializeField] private GameObject loginPanel;
      public TMP_Text warningText;

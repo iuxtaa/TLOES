@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class StartingPanelManager : MonoBehaviour
 {
+    [Header("Starting Panel")]
     [SerializeField] private Panel startingPanel;
     [SerializeField] private GameObject loginPanel;
     [SerializeField] private GameObject signupPanel;
