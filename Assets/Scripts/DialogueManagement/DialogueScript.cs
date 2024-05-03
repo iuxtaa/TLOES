@@ -64,17 +64,8 @@ public class DialogueScript : MonoBehaviour
         currentDialogueIsPlaying = true;
         dialogueDisplay.SetActive(true);
         currentDialogue.BindExternalFunction("beginQuest", (string questName) =>
-        {
-            if (!questGiver.quest.isComplete)
-            {
+        {     
                 questGiver.openQuestUI();
-            }
-            else
-            {
-
-                questGiver.quest.complete();
-            }
-
             Debug.Log(questName);
         });
 
