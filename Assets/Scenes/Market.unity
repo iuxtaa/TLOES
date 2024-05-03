@@ -510,6 +510,7 @@ MonoBehaviour:
   - {fileID: 952101243}
   - {fileID: 1183818754}
   questGiver: {fileID: 0}
+  sell: {fileID: 0}
 --- !u!4 &118384227 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8880890979157700243, guid: b18dcd3ee86986b469e9cfc64055704c, type: 3}
@@ -1558,12 +1559,33 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1546294774153461753, guid: 0c3361f1d17b8ae4d9f95e9bf753cb3b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 250188558}
+    - targetCorrespondingSourceObject: {fileID: 1546294774153461753, guid: 0c3361f1d17b8ae4d9f95e9bf753cb3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 316378109}
   m_SourcePrefab: {fileID: 100100000, guid: 0c3361f1d17b8ae4d9f95e9bf753cb3b, type: 3}
 --- !u!4 &316378105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5230306948048977582, guid: 0c3361f1d17b8ae4d9f95e9bf753cb3b, type: 3}
   m_PrefabInstance: {fileID: 316378104}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &316378109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250188557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 628491345b4c9d04aa0c59b5a2f992c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
+  player: {fileID: 2044812155}
+  questWindow: {fileID: 470803700}
+  questOverlay: {fileID: 470803697}
+  titleText: {fileID: 470803699}
+  descriptionText: {fileID: 470803698}
 --- !u!1 &323311899
 GameObject:
   m_ObjectHideFlags: 0
