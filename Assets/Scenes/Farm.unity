@@ -5431,8 +5431,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   favourability: 0
-  currentLocation: 0
-  currentQuest: {fileID: 0}
+  Items:
+  - {fileID: 11400000, guid: 3cf81453aa2620a4ba5521aa1efa0c5f, type: 2}
+  - {fileID: 11400000, guid: 31146cd11c779504f893b842e4d632cb, type: 2}
+  - {fileID: 11400000, guid: 640947eaeb868724694579b910847109, type: 2}
+  - {fileID: 11400000, guid: f73ae9f984a23f74a8140028e6b5481a, type: 2}
+  - {fileID: 11400000, guid: 91d0d3891e6d0b446b5ec75230cfa51e, type: 2}
+  currentQuest: {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
 --- !u!1 &929222683
 GameObject:
   m_ObjectHideFlags: 0

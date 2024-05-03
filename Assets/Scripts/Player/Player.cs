@@ -5,11 +5,12 @@ using UnityEngine;
 
 
 
+
 public class Player : Character
 {
-    
     public int favourability;
-    public Dictionary<string, int> inventory = new Dictionary<string, int>();  
+    public Dictionary<string, int> inventory = new Dictionary<string, int>();
+    public Items[] Items;
     [SerializeField] public Quest currentQuest;
 
     public Player(string name) : base(name)
@@ -23,8 +24,6 @@ public class Player : Character
         SetFavourability(favourability);
         SetQuest(currentQuest);
     }
-
-   
 
     public void SetFavourability(int favourability)
     {
@@ -49,29 +48,32 @@ public class Player : Character
     public void acceptQuest(Quest quest)
     {
         SetQuest(quest);
-        currentQuest.isActive = true;
+        if (currentQuest != null)
+            currentQuest.isActive = true;
     }
 
     public void AddItem(string item, int quantity)
     {
-        if (inventory.ContainsKey(item))
+        Items itemType = (Items)Enum.Parse(typeof(Items), item);
+        for (int i = 0; i < quantity; i++)
         {
-            inventory[item] += quantity;
-        }
-        else
-        {
-            inventory.Add(item, quantity);
+            if (Controller.Instance.CanAddItem(itemType))
+            {
+                Controller.Instance.AddItem(itemType);
+            }
         }
     }
 
     public void RemoveItem(string item, int quantity)
     {
-        if (inventory.ContainsKey(item))
+        Items itemType = (Items)Enum.Parse(typeof(Items), item);
+        for (int i = 0; i < Controller.Instance.Item.Length; i++)
         {
-            inventory[item] -= quantity;
-            if (inventory[item] <= 0)
+            InventoryItem it = Controller.Instance.Item[i];
+            if (it != null && it.GetComponentInChildren<ItemInside>().items == itemType)
             {
-                inventory.Remove(item);
+                Controller.Instance.DiscardItem(i);
+                if (--quantity <= 0) break;
             }
         }
     }
@@ -81,7 +83,7 @@ public class Player : Character
         return inventory.ContainsKey(item) ? inventory[item] : 0;
     }
 
-    public bool canCompleteQuest()
+    public bool CanCompleteQuest()
     {
         if (currentQuest != null)
         {
@@ -91,7 +93,7 @@ public class Player : Character
             }
             if (currentQuest is DoingQuest)
             {
-                return true;  
+                return true;
             }
             if (currentQuest is CollectingQuest collectingQuest)
             {
@@ -101,9 +103,9 @@ public class Player : Character
         return false;
     }
 
-    public void completeQuest()
+    public void CompleteQuest()
     {
-        if (canCompleteQuest())
+        if (CanCompleteQuest())
         {
             this.favourability += currentQuest.favourabilityReward;
             if (currentQuest is CollectingQuest collectingQuest)
@@ -119,10 +121,13 @@ public class Player : Character
         }
     }
 
-    public void failQuest()
+    public void FailQuest()
     {
-        this.favourability -= currentQuest.favourabilityReward;
-        currentQuest.complete();
-        SetQuest(null);
+        if (currentQuest != null)
+        {
+            this.favourability -= currentQuest.favourabilityReward;
+            currentQuest.complete();
+            SetQuest(null);
+        }
     }
 }

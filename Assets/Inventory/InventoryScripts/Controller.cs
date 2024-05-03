@@ -23,15 +23,14 @@ public class Controller : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject);  // Ensures there is only one instance
+            Destroy(gameObject);
         }
         else
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);  // Optional: Makes it persist across scenes
+            DontDestroyOnLoad(gameObject);
         }
     }
-
     void ChosenPickedItem(int n)
     {
         if (pickedItem >= 0 && pickedItem < Item.Length)
@@ -46,7 +45,7 @@ public class Controller : MonoBehaviour
     }
 
 
-    public void DiscardItem(int index)
+   public void DiscardItem(int index)
     {
         if (index >= 0 && index < Item.Length)
         {
@@ -64,9 +63,12 @@ public class Controller : MonoBehaviour
                     Destroy(it.gameObject);
                     Item[index] = null;
                 }
+                UpdateUI(it);
+                OnItemChanged?.Invoke(); // Trigger event when item changes
             }
         }
     }
+
 
     public int GetItemCount(Items item)
     {
@@ -90,7 +92,6 @@ public class Controller : MonoBehaviour
 
     public bool AddItem(Items items)
     {
-        // Checking if the item can be added to an existing slot
         foreach (InventoryItem it in Item)
         {
             ItemInside itemInside = it.GetComponentInChildren<ItemInside>();
@@ -98,25 +99,23 @@ public class Controller : MonoBehaviour
             {
                 itemInside.count++;
                 UpdateUI(it);
-                
+                OnItemChanged?.Invoke(); // Trigger event when item changes
                 return true;
-                
             }
         }
 
-        // Try to store in a new slot if existing slots are full
         foreach (InventoryItem it in Item)
         {
             if (it.GetComponentInChildren<ItemInside>() == null)
             {
                 StoreItem(items, it);
+                OnItemChanged?.Invoke(); // Trigger event when item changes
                 return true;
             }
         }
 
-        return false;
+        return false; // No space to add new item
     }
-
 
     void StoreItem(Items items, InventoryItem it)
     {
@@ -129,8 +128,8 @@ public class Controller : MonoBehaviour
 
     void UpdateUI(InventoryItem it)
     {
-
         it.UpdateUI();
     }
 
+    
 }

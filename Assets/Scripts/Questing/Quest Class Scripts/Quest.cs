@@ -32,7 +32,7 @@ public abstract class Quest : ScriptableObject
         this.title = string.Empty;
         this.description = string.Empty;
         this.favourabilityReward = 0;
-        this.isActive = false;/
+        this.isActive = false;
         this.isComplete = false;
     }
 
