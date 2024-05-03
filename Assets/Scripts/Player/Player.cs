@@ -48,6 +48,31 @@ public class Player : Character {
         return currentQuest;
     }
 
+    public void AddItem(string item, int quantity)
+    {
+        if (inventory.ContainsKey(item))
+        {
+            inventory[item] += quantity;
+        }
+        else
+        {
+            inventory.Add(item, quantity);
+        }
+    }
+
+    public void RemoveItem(string item, int quantity)
+    {
+        if (inventory.ContainsKey(item))
+        {
+            inventory[item] -= quantity;
+            if (inventory[item] <= 0)
+            {
+                inventory.Remove(item);
+            }
+        }
+
+    }
+
     public void acceptQuest(Quest quest)
     {
         SetQuest(quest);
@@ -87,11 +112,12 @@ public class Player : Character {
             favourability += currentQuest.favourabilityReward;
             if (currentQuest is CollectingQuest collectingQuest)
             {
-                // RemoveItem(collectingQuest.requiredItem.name, collectingQuest.requiredAmount);
+                RemoveItem(collectingQuest.requiredItem.name, collectingQuest.requiredAmount);
             }
             else if (currentQuest is SellingQuest sellingQuest)
             {
-                // RemoveItem(sellingQuest.requiredItem.name, sellingQuest.requiredAmount);
+                RemoveItem(sellingQuest.requiredItem.name, sellingQuest.requiredAmount);
+
             }
             currentQuest.complete();
             SetQuest(null);
