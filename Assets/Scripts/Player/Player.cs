@@ -84,22 +84,26 @@ public class Player : Character {
     {
 
     }
-
-    public bool canCompleteQuest()
+    public int GetItemCount(string item)
     {
-        if(currentQuest != null)
+        return inventory.ContainsKey(item) ? inventory[item] : 0;
+    }
+
+    public bool CanCompleteQuest()
+    {
+        if (currentQuest != null)
         {
-            if(currentQuest is SellingQuest)
+            if (currentQuest is SellingQuest sellingQuest)
             {
-                // return (inventory.item.count >= requiredAmount)
+                return GetItemCount(sellingQuest.requiredItem.name) >= sellingQuest.requiredAmount;
             }
             if (currentQuest is DoingQuest)
             {
-                // return true;
+                return true;
             }
-            if (currentQuest is CollectingQuest)
+            if (currentQuest is CollectingQuest collectingQuest)
             {
-                // return (inventory.item.count >= requiredAmount)
+                return GetItemCount(collectingQuest.requiredItem.name) >= collectingQuest.requiredAmount;
             }
         }
         return false;
@@ -107,7 +111,7 @@ public class Player : Character {
 
     public void completeQuest()
     {
-        if(canCompleteQuest())
+        if(CanCompleteQuest())
         {
             favourability += currentQuest.favourabilityReward;
             if (currentQuest is CollectingQuest collectingQuest)

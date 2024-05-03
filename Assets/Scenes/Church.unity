@@ -1253,6 +1253,7 @@ MonoBehaviour:
   DialogueFile: {fileID: 4900000, guid: bd46c5c83d2e9b24da08b7f5838550ca, type: 3}
   DialogueFile2: {fileID: 4900000, guid: f27b9de468cc6b3468e6a78b329e0c62, type: 3}
   questCheck: {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
+  player: {fileID: 1018197484}
 --- !u!4 &235057913 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5230306948048977582, guid: d63e64e242896924e901231bf659bdfa, type: 3}
