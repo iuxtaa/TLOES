@@ -20,7 +20,7 @@ public class SellingQuest : Quest
     }
 
     
-    public bool CanCompleteQuest(Controller inventory)
+    public bool CanCompleteQuest(InventoryController inventory)
     {
         return inventory.GetItemCount(requiredItem) >= requiredAmount;
     }
@@ -28,7 +28,7 @@ public class SellingQuest : Quest
     
     public void CompleteQuest()
     {
-        if (Controller.Instance != null && CanCompleteQuest(Controller.Instance))
+        if (InventoryController.Instance != null && CanCompleteQuest(InventoryController.Instance))
         {
             // Discard the required number of items
             for (int i = 0; i < requiredAmount; i++)
@@ -36,7 +36,7 @@ public class SellingQuest : Quest
                 int itemIndex = FindItemIndexByType(requiredItem);
                 if (itemIndex != -1)
                 {
-                    Controller.Instance.DiscardItem(itemIndex);
+                    InventoryController.Instance.DiscardItem(itemIndex);
                 }
                 else
                 {
@@ -55,9 +55,9 @@ public class SellingQuest : Quest
     // just for Finding the number of the item in inventory
     private int FindItemIndexByType(Items itemType)
     {
-        for (int i = 0; i < Controller.Instance.Item.Length; i++)
+        for (int i = 0; i < InventoryController.Instance.Item.Length; i++)
         {
-            InventoryItem it = Controller.Instance.Item[i];
+            InventoryItem it = InventoryController.Instance.Item[i];
             ItemInside itemInside = it.GetComponentInChildren<ItemInside>();
             if (itemInside != null && itemInside.items == itemType)
             {

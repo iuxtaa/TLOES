@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class Testing3 : MonoBehaviour
 {
-    public Controller controller;
+    public InventoryController controller;
     public GameObject discardButtonObject; // Assign this in the Inspector
 
     public Image buttonImage;

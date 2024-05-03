@@ -17,9 +17,9 @@ public abstract class Quest : ScriptableObject
     public string description;
     public int favourabilityReward;
 
-    protected Controller inventory;
+    protected InventoryController inventory;
 
-    public void Initialize(Controller inventory)
+    public void Initialize(InventoryController inventory)
     {
         this.inventory = inventory;
     }

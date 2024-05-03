@@ -7,9 +7,9 @@ using static UnityEditor.Progress;
 
 
 
-public class Controller : MonoBehaviour
+public class InventoryController : MonoBehaviour
 {
-    public static Controller Instance;  // Singleton instance
+    public static InventoryController Instance;  // Singleton instance
 
     public int stacked = 50;  // Maximum stack size for any item
     public InventoryItem[] Item;
@@ -70,13 +70,13 @@ public class Controller : MonoBehaviour
     }
 
 
-    public int GetItemCount(Items item)
+    public int GetItemCount(Items items)
     {
         int totalItemCount = 0;
         foreach (InventoryItem inventoryItem in Item)
         {
             ItemInside itemInside = inventoryItem.GetComponentInChildren<ItemInside>();
-            if (itemInside != null && itemInside.items == item)
+            if (itemInside != null && itemInside.items == items)
             {
                 totalItemCount += itemInside.Count;
             }

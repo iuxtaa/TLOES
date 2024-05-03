@@ -26,10 +26,10 @@ public class CollectingQuest : Quest  // Inherits from Quest
 
     void UpdateQuestProgress()
     {
-        if (Controller.Instance != null && requiredItem != null)
+        if (InventoryController.Instance != null && requiredItem != null)
         {
             
-            currentAmount = Controller.Instance.GetItemCount(requiredItem.GetComponent<Items>());
+            currentAmount = InventoryController.Instance.GetItemCount(requiredItem.GetComponent<Items>());
             CheckCompletion();
         }
     }

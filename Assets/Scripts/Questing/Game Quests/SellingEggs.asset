@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questNumber: 0
   isActive: 1
-  isComplete: 1
+  isComplete: 0
   title: Selling Eggs
   description: Sell your father's chicken eggs at the market!
   favourabilityReward: 5
-  requiredItem: {fileID: 0}
+  requiredItem: {fileID: 11400000, guid: 3cf81453aa2620a4ba5521aa1efa0c5f, type: 2}
   requiredAmount: 3
