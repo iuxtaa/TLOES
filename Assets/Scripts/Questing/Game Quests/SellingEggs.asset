@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questNumber: 0
   isActive: 0
+<<<<<<< Updated upstream
   isComplete: 0
+=======
+  isComplete: 1
+>>>>>>> Stashed changes
   title: Selling Eggs
   description: Sell your father's chicken eggs at the market!
   favourabilityReward: 5

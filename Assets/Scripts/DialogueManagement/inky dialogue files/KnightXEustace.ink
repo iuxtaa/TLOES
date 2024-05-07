@@ -22,4 +22,3 @@ Knight: I’m trying to write a letter for my family, but I cannot read nor writ
         PC: *writes and finishes* Here you go.
         Knight: Thank you. I appreciate it. Can I take you to the chapel? I’d like you to meet the priest. 
         PC: Sure.
-    

@@ -18,6 +18,7 @@ public class DialogueScript : MonoBehaviour
     private TextMeshProUGUI[] choicesText;
 
     public QuestGiver questGiver;
+    
     private Coroutine typingDialogue;
     private bool canContinueNext;
 
@@ -25,7 +26,7 @@ public class DialogueScript : MonoBehaviour
     private Story currentDialogue;
 
     public bool currentDialogueIsPlaying { get; private set; }
-
+    
 
    private static DialogueScript instance;
 
@@ -37,6 +38,7 @@ public class DialogueScript : MonoBehaviour
         }
         instance = this;
         questGiver = FindObjectOfType<QuestGiver>();
+       
     }
 
     public static DialogueScript GetInstance()
@@ -60,24 +62,49 @@ public class DialogueScript : MonoBehaviour
 
     public void EnterDialogueView(TextAsset inkJSON)
     {
+       
         currentDialogue = new Story(inkJSON.text);
         currentDialogueIsPlaying = true;
         dialogueDisplay.SetActive(true);
+<<<<<<< Updated upstream
         currentDialogue.BindExternalFunction("startQuest", (string questName) => {
             questGiver.openQuestUI();
         });
 
+=======
+
+        currentDialogue.BindExternalFunction("beginQuest", (string questName) =>
+        {
+            questGiver.openQuestUI();
+
+        });
+
+
+      //  currentDialogue.BindExternalFunction("trigger", (string triggerName) =>
+      //  {
+            
+      //  });
+
+>>>>>>> Stashed changes
         NextLine();
     }
 
     private void LeaveDialogueView()
     {
+<<<<<<< Updated upstream
         currentDialogue.UnbindExternalFunction("startQuest");
         currentDialogueIsPlaying = false;
         dialogueDisplay.SetActive(false);
         dialogueText.text = "";
 
         
+=======
+        currentDialogue.UnbindExternalFunction("beginQuest");
+        //currentDialogue.UnbindExternalFunction("trigger");
+        currentDialogueIsPlaying = false;
+        dialogueDisplay.SetActive(false);
+        dialogueText.text = "";      
+>>>>>>> Stashed changes
     }
 
     public void Update()
