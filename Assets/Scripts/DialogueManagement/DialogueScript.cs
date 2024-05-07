@@ -11,34 +11,32 @@ public class DialogueScript : MonoBehaviour
     [Header("Dialogue Management UI")]
     [SerializeField] private GameObject dialogueDisplay;
     [SerializeField] private TextMeshProUGUI dialogueText;
-    
+
 
     [Header("Dialogue Choice Options UI")]
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
     public QuestGiver questGiver;
-    
     private Coroutine typingDialogue;
     private bool canContinueNext;
 
-   
+
     private Story currentDialogue;
 
     public bool currentDialogueIsPlaying { get; private set; }
-    
 
-   private static DialogueScript instance;
+
+    private static DialogueScript instance;
 
     private void Awake()
     {
-        if(instance != null)
+        if (instance != null)
         {
             Debug.LogWarning("There is more than one instance");
         }
         instance = this;
         questGiver = FindObjectOfType<QuestGiver>();
-       
     }
 
     public static DialogueScript GetInstance()
@@ -53,7 +51,7 @@ public class DialogueScript : MonoBehaviour
         choicesText = new TextMeshProUGUI[choices.Length];
         int index = 0;
 
-        foreach(GameObject choice in choices)
+        foreach (GameObject choice in choices)
         {
             choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
             index++;
@@ -62,75 +60,58 @@ public class DialogueScript : MonoBehaviour
 
     public void EnterDialogueView(TextAsset inkJSON)
     {
-       
         currentDialogue = new Story(inkJSON.text);
         currentDialogueIsPlaying = true;
         dialogueDisplay.SetActive(true);
-<<<<<<< Updated upstream
-        currentDialogue.BindExternalFunction("startQuest", (string questName) => {
-            questGiver.openQuestUI();
-        });
-
-=======
-
         currentDialogue.BindExternalFunction("beginQuest", (string questName) =>
         {
             questGiver.openQuestUI();
-
+            Debug.Log(questName);
         });
 
 
-      //  currentDialogue.BindExternalFunction("trigger", (string triggerName) =>
-      //  {
-            
-      //  });
-
->>>>>>> Stashed changes
         NextLine();
     }
 
     private void LeaveDialogueView()
     {
-<<<<<<< Updated upstream
-        currentDialogue.UnbindExternalFunction("startQuest");
+        currentDialogue.UnbindExternalFunction("beginQuest");
         currentDialogueIsPlaying = false;
         dialogueDisplay.SetActive(false);
         dialogueText.text = "";
 
-        
-=======
-        currentDialogue.UnbindExternalFunction("beginQuest");
-        //currentDialogue.UnbindExternalFunction("trigger");
-        currentDialogueIsPlaying = false;
-        dialogueDisplay.SetActive(false);
-        dialogueText.text = "";      
->>>>>>> Stashed changes
+        if (questGiver != null && questGiver.quest != null && questGiver.quest.isActive);
+        {
+            questGiver.quest.complete();
+        }
+
+
     }
 
     public void Update()
     {
-        if(currentDialogueIsPlaying)
+        if (currentDialogueIsPlaying)
         {
-            if(dialogueDisplay.activeInHierarchy)
+            if (dialogueDisplay.activeInHierarchy)
             {
                 FreezePlayer(true);
             }
         }
-        else if (!currentDialogueIsPlaying) 
+        else if (!currentDialogueIsPlaying)
         {
-            if(!dialogueDisplay.activeInHierarchy)
+            if (!dialogueDisplay.activeInHierarchy)
             {
                 FreezePlayer(false);
             }
             return;
         }
 
-        if(canContinueNext && InputsHandler.GetInstance().GetContinuePressed())
+        if (canContinueNext && InputsHandler.GetInstance().GetContinuePressed())
         {
 
             dialogueText.text = currentDialogue.currentText;
 
-                NextLine();   
+            NextLine();
         }
     }
 
@@ -138,17 +119,17 @@ public class DialogueScript : MonoBehaviour
     {
         if (currentDialogue.canContinue)
         {
-           string line = currentDialogue.Continue();
-            if(typingDialogue != null)
+            string line = currentDialogue.Continue();
+            if (typingDialogue != null)
             {
-                
-               StopCoroutine(typingDialogue);
-                
-            }
-           typingDialogue = StartCoroutine(TypeText(line));
 
-            
-        } 
+                StopCoroutine(typingDialogue);
+
+            }
+            typingDialogue = StartCoroutine(TypeText(line));
+
+
+        }
         else
         {
             LeaveDialogueView();
@@ -160,25 +141,25 @@ public class DialogueScript : MonoBehaviour
     {
         List<Choice> currentChoices = currentDialogue.currentChoices;
 
-        if(currentChoices.Count > choices.Length) 
+        if (currentChoices.Count > choices.Length)
         {
             Debug.Log("there are too many choices" + currentChoices.Count);
         }
 
-        int index = 0;  
-        foreach(Choice choice in currentChoices) 
+        int index = 0;
+        foreach (Choice choice in currentChoices)
         {
             choices[index].gameObject.SetActive(true);
             choicesText[index].text = choice.text;
             index++;
         }
 
-        for(int i = index; i < choices.Length; i++)
+        for (int i = index; i < choices.Length; i++)
         {
             choices[i].gameObject.SetActive(false);
         }
 
-        StartCoroutine(SelectedFristChoice()); 
+        StartCoroutine(SelectedFristChoice());
     }
 
     private IEnumerator SelectedFristChoice()
@@ -192,7 +173,7 @@ public class DialogueScript : MonoBehaviour
 
     private IEnumerator TypeText(string text)
     {
-        
+
         dialogueText.text = "";
         canContinueNext = false;
         float textDisplaySpeed = 0.03f;
@@ -200,7 +181,7 @@ public class DialogueScript : MonoBehaviour
         canContinueNext = false;
         foreach (char c in text)
         {
-            if(InputsHandler.GetInstance().GetContinuePressed())
+            if (InputsHandler.GetInstance().GetContinuePressed())
             {
                 dialogueText.text = text;
                 break;
@@ -209,7 +190,7 @@ public class DialogueScript : MonoBehaviour
             yield return new WaitForSecondsRealtime(textDisplaySpeed); // Wait for a specified duration
         }
         OptionDisplay();
-        canContinueNext = true; 
+        canContinueNext = true;
     }
 
 
@@ -224,7 +205,7 @@ public class DialogueScript : MonoBehaviour
 
     public void FreezePlayer(bool state)
     {
-        if(state)
+        if (state)
         {
             Time.timeScale = 0;
         }

@@ -1,4 +1,4 @@
-EXTERNAL startQuest(questName)
+EXTERNAL beginQuest(questName)
 PRESS 'E' TO PROGRESS THROUGH DIALOGUE
 Father: Oh, Eustace. Come, my son. 
 PC:     Yes, father.
@@ -8,8 +8,4 @@ Father: But my bones are growing weary. Can you be the one to sell the eggs in t
 PC:     Of course.
 Father: Come back when you’ve sold it all.
 PC:     Okay.
-<<<<<<< Updated upstream
-~startQuest("sellingQuest")
-=======
 ~beginQuest("sellingQuest")
->>>>>>> Stashed changes

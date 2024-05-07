@@ -8,7 +8,7 @@ public class Testing2 : MonoBehaviour
 {
    
 
-    public Controller Controller;
+    public InventoryController Controller;
     public Items[] Store;
     public GameObject StoreButtonObject;
 

@@ -1131,7 +1131,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   favourability: 0
-  currentLocation: 0
+  Items:
+  - {fileID: 11400000, guid: 3cf81453aa2620a4ba5521aa1efa0c5f, type: 2}
+  - {fileID: 11400000, guid: 31146cd11c779504f893b842e4d632cb, type: 2}
+  - {fileID: 11400000, guid: 640947eaeb868724694579b910847109, type: 2}
+  - {fileID: 11400000, guid: f73ae9f984a23f74a8140028e6b5481a, type: 2}
+  - {fileID: 11400000, guid: 91d0d3891e6d0b446b5ec75230cfa51e, type: 2}
   currentQuest: {fileID: 0}
 --- !u!212 &1377918309
 SpriteRenderer:
@@ -1824,7 +1829,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseScreen: {fileID: 585985266}
   pauseButton: {fileID: 37643356}
-  questScreen: {fileID: 1482243820}
+  questPopup: {fileID: 0}
+  questOverlay: {fileID: 0}
+  questCompletePopup: {fileID: 0}
 --- !u!114 &1548042178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1920,6 +1927,7 @@ MonoBehaviour:
   quest: {fileID: 11400000, guid: 6a2ebffa23d995b4790ddbfaa1bec06b, type: 2}
   player: {fileID: 1377918308}
   questWindow: {fileID: 1482243820}
+  questOverlay: {fileID: 0}
   titleText: {fileID: 2114670430}
   descriptionText: {fileID: 1858755049}
 --- !u!4 &1569381899
@@ -1943,22 +1951,38 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1482243818}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!222 &1858755050
+CanvasRenderer:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_CullTransparentMesh: 1
 --- !u!114 &2114670430 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8974937879817097756, guid: 256c2ba7d424a2d4c8c7dac6e778443e, type: 3}
   m_PrefabInstance: {fileID: 1482243818}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!222 &2114670431
+CanvasRenderer:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_CullTransparentMesh: 1
 --- !u!1001 &2133588738
 PrefabInstance:
   m_ObjectHideFlags: 0

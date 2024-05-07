@@ -129,11 +129,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 418724869}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!222 &9046632
+CanvasRenderer:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_CullTransparentMesh: 1
 --- !u!1 &188903718
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,11 +758,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 418724869}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!222 &522252214
+CanvasRenderer:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_CullTransparentMesh: 1
 --- !u!1 &617561803
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,8 +1009,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   favourability: 0
-  currentLocation: 0
-  currentQuest: {fileID: 0}
+  Items:
+  - {fileID: 11400000, guid: 3cf81453aa2620a4ba5521aa1efa0c5f, type: 2}
+  - {fileID: 11400000, guid: 31146cd11c779504f893b842e4d632cb, type: 2}
+  - {fileID: 11400000, guid: 640947eaeb868724694579b910847109, type: 2}
+  - {fileID: 11400000, guid: f73ae9f984a23f74a8140028e6b5481a, type: 2}
+  - {fileID: 11400000, guid: 91d0d3891e6d0b446b5ec75230cfa51e, type: 2}
+  currentQuest: {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
 --- !u!212 &687307513
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1120,7 +1141,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseScreen: {fileID: 198190023}
   pauseButton: {fileID: 641340879}
-  questScreen: {fileID: 284289175}
+  questPopup: {fileID: 0}
+  questOverlay: {fileID: 0}
+  questCompletePopup: {fileID: 0}
 --- !u!114 &816117383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1751,6 +1774,7 @@ MonoBehaviour:
   quest: {fileID: 11400000, guid: b27bc7c9717813c4d88f0ca6c1ee7d8d, type: 2}
   player: {fileID: 687307512}
   questWindow: {fileID: 284289175}
+  questOverlay: {fileID: 0}
   titleText: {fileID: 522252213}
   descriptionText: {fileID: 9046631}
 --- !u!4 &2008338607

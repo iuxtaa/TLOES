@@ -5,142 +5,129 @@ using static UnityEditor.Progress;
 
 
 
-public class Controller : MonoBehaviour
-{
-    public int stacked = 20;
-    public InventoryItem[] Item;
-    public GameObject itemprefab;
 
-    int pickeditem = -1; 
-    void ChosenPickedItem (int n)
+
+public class InventoryController : MonoBehaviour
+{
+    public static InventoryController Instance;  // Singleton instance
+
+    public int stacked = 50;  // Maximum stack size for any item
+    public InventoryItem[] Item;
+    public delegate void ItemChanged();
+    public event ItemChanged OnItemChanged;
+    public GameObject itemPrefab;
+
+    int pickedItem = -1;
+
+    void Awake()
     {
-        if (pickeditem < 0)
+        if (Instance != null && Instance != this)
         {
-            Item[pickeditem].NotPick();
+            Destroy(gameObject);
         }
-        Item[n].pick();
-        pickeditem = n;
+        else
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
+    void ChosenPickedItem(int n)
+    {
+        if (pickedItem >= 0 && pickedItem < Item.Length)
+        {
+            Item[pickedItem].NotPick();
+        }
+        if (n >= 0 && n < Item.Length)
+        {
+            Item[n].pick();
+            pickedItem = n;
+        }
+    }
+
 
     public void DiscardItem(int index)
     {
-        if (index >= 0 && index < inventoryItems.Count)
+        if (index >= 0 && index < Item.Length)
         {
-            inventoryItems.RemoveAt(index); 
+            InventoryItem it = Item[index];
+            ItemInside itemInside = it.GetComponentInChildren<ItemInside>();
 
-            
+            if (itemInside != null)
+            {
+                if (itemInside.count > 1)
+                {
+                    itemInside.count--;
+                }
+                else
+                {
+                    Destroy(it.gameObject);
+                    Item[index] = null;
+                }
+                UpdateUI(it);
+                OnItemChanged?.Invoke(); // Trigger event when item changes
+            }
         }
     }
 
-    public int GetItemCount(Items item)
+
+    public int GetItemCount(Items items)
     {
-        int count = 20;
-        foreach (InventoryItem it in Item)
+        int totalItemCount = 0;
+        foreach (InventoryItem inventoryItem in Item)
         {
-            ItemInside itemInsideItem = it.GetComponentInChildren<ItemInside>();
-            if (itemInsideItem != null && itemInsideItem.items == item)
+            ItemInside itemInside = inventoryItem.GetComponentInChildren<ItemInside>();
+            if (itemInside != null && itemInside.items == items)
             {
-                count += itemInsideItem.count;
+                totalItemCount += itemInside.Count;
             }
         }
-        return count;
+        return totalItemCount;
     }
 
     public bool CanAddItem(Items items)
     {
-        int stacked = 50; // Assuming this is the maximum stack limit for any item
-        int currentStack = 0;
-
-        foreach (InventoryItem it in Item)
-        {
-            ItemInside itemInsideItem = it.GetComponentInChildren<ItemInside>();
-
-            if (itemInsideItem != null && itemInsideItem.items == items)
-            {
-                currentStack += itemInsideItem.count;
-            }
-        }
-
-        return currentStack < stacked;
+        return GetItemCount(items) < stacked;
     }
 
 
     public bool AddItem(Items items)
     {
-        int stacked = 50; 
-        
         foreach (InventoryItem it in Item)
         {
-            ItemInside itemInsideItem = it.GetComponentInChildren<ItemInside>();
-
-            if (itemInsideItem != null && itemInsideItem.items == items && itemInsideItem.count <stacked)
+            ItemInside itemInside = it.GetComponentInChildren<ItemInside>();
+            if (itemInside != null && itemInside.items == items && itemInside.count < stacked)
             {
-                itemInsideItem.count++;
-               
+                itemInside.count++;
+                UpdateUI(it);
+                OnItemChanged?.Invoke(); // Trigger event when item changes
                 return true;
             }
-            if (!inventoryItems.Contains(items))
-            {
-                inventoryItems.Add(items);
-                return true;
-            }
-            
         }
 
-        foreach(InventoryItem it in Item)
+        foreach (InventoryItem it in Item)
         {
-            ItemInside itemInsideItem = it.GetComponentInChildren<ItemInside>();
-            if (itemInsideItem == null)
+            if (it.GetComponentInChildren<ItemInside>() == null)
             {
                 StoreItem(items, it);
+                OnItemChanged?.Invoke(); // Trigger event when item changes
                 return true;
             }
         }
-        return false;
+
+        return false; // No space to add new item
     }
-
-    public List<Items> inventoryItems = new List<Items>();
-
-    
-
-    public void DiscardiItem(int index)
-    {
-        if (index >= 0 && index < Item.Length)
-        {
-            InventoryItem it = Item[index];
-            ItemInside itemInsideItem = it.GetComponentInChildren<ItemInside>();
-
-            if (itemInsideItem != null)
-            {
-                if (itemInsideItem.count > 1)
-                {
-                    itemInsideItem.count--;
-                   
-                }
-                else
-                {
-                    
-                    Destroy(it.gameObject);
-                    
-                }
-            }
-        }
-    }
-
 
     void StoreItem(Items items, InventoryItem it)
     {
-        GameObject storeInside = Instantiate(itemprefab, it.transform);
-        ItemInside itemInside = storeInside.GetComponentInChildren<ItemInside>();
-
+        GameObject storeInside = Instantiate(itemPrefab, it.transform);
+        ItemInside itemInside = storeInside.GetComponent<ItemInside>();
         itemInside.InitialiseItem(items);
+        itemInside.count = 1;  // Initialize with a count of one
+        UpdateUI(it);
+    }
+
+    void UpdateUI(InventoryItem it)
+    {
+       // it.UpdateUI();
     }
 }
-
-
-
-
-
-
-
-

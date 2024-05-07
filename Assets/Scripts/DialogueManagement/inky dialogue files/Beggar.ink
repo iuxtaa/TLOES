@@ -21,9 +21,4 @@ Beggar: *laughs* That’s a lot. I don’t have that much money. If anything, no
         Beggar: There is a well in the far east. Some say that it is a blessing, a gift given by the Goddess to the people.
             Not many people know about it. They say that if you make a wish in that well, it will grant it.
         PC: You think I would believe that? That sounds like a fairy tale. Take this egg anyway, for your troubles.
-<<<<<<< Updated upstream
-        Beggar: Thank you 
-=======
         Beggar: Thank you
- 
->>>>>>> Stashed changes
