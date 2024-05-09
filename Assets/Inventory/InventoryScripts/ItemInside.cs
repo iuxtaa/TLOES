@@ -35,7 +35,8 @@ public class ItemInside : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     {
         items = Newitems;
         Picture.sprite = Newitems.Image;
-    
+
+        Count = 1;
     }
 
     public void OnBeginDrag(UnityEngine.EventSystems.PointerEventData eventData)

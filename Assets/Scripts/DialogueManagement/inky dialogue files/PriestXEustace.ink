@@ -1,4 +1,4 @@
-EXTERNAL startQuest(questName)
+EXTERNAL beginQuest(questName)
 Priest: Oh, hello there, farmer’s son. 
     *[hello] PC: Hello
 Priest: I heard you helped our knight. Thank you.
@@ -11,9 +11,9 @@ Do you think you can help us, farmer’s son?
     Priest: Thank you. If you go far east from here, you will find a ruined temple.
     There is a well, and I need you to fetch the water from that well and bring it back.
     PC: Okay 
-    ~startQuest("PriestsHolyWater")
+    ~beginQuest("PriestsHolyWater")
     ** [I'm not sure, sorry.] PC: I'm not sure, sorry.
     Priest: We need your help, please. 
     PC: Fine. I’ll do it. 
     Priest: Know that your efforts are appreciated, farmer’s son. 
-    ~startQuest("PriestsHolyWater")
+    ~beginQuest("PriestsHolyWater")

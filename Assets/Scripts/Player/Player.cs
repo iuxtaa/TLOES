@@ -6,14 +6,18 @@ using UnityEngine;
 public class Player : Character {
 
     // INSTANCE VARIABLES 
-    public int favourability;
-    public Dictionary<string, int> inventory;  // Inventory using a dictionary NEED to ask enab about how this is stored
-    [SerializeField] public Quest currentQuest;
+    public static int favourability;
+    public static Dictionary<string, int> inventory = new Dictionary<string, int>();  // Initialize inventory
+    [SerializeField] public static Quest currentQuest;
+    public Quest[] questHistory = new Quest[3];
 
     public Player(string name) : base(name)
     {
         SetFavourability(0);
         SetQuest(null);
+        //questHistory[0] = new SellingQuest(3,3, 0, "", "", 5);
+        //questHistory[1] = KnightsLetter;
+        //questHistory[2] = PriestsHolyWater;
     }
 
     public Player(string name, int currentLocation, int favourability, Quest currentQuest) : base(name, currentLocation)
@@ -26,7 +30,7 @@ public class Player : Character {
 
     public void SetFavourability(int favourability)
     {
-        this.favourability = favourability;
+        Player.favourability = favourability;
     }
 
     public int GetFavourability()
@@ -36,7 +40,7 @@ public class Player : Character {
 
     public void SetQuest(Quest quest)
     {
-        this.currentQuest = quest;
+        Player.currentQuest = quest;
     }
 
     public Quest GetQuest()
@@ -66,34 +70,40 @@ public class Player : Character {
                 inventory.Remove(item);
             }
         }
+
     }
 
     public void acceptQuest(Quest quest)
     {
         SetQuest(quest);
         currentQuest.isActive = true;
+        Debug.Log(Player.currentQuest);
     }
 
     public void declineQuest()
     {
 
     }
-
-    public bool canCompleteQuest()
+    public int GetItemCount(string item)
     {
-        if(currentQuest != null)
+        return inventory.ContainsKey(item) ? inventory[item] : 0;
+    }
+
+    public bool CanCompleteQuest()
+    {
+        if (currentQuest != null)
         {
-            if(currentQuest is SellingQuest)
+            if (currentQuest is SellingQuest sellingQuest)
             {
-                // return (inventory.item.count >= requiredAmount)
+                return GetItemCount(sellingQuest.requiredItem.name) >= sellingQuest.requiredAmount;
             }
             if (currentQuest is DoingQuest)
             {
-                // return true;
+                return true;
             }
-            if (currentQuest is CollectingQuest)
+            if (currentQuest is CollectingQuest collectingQuest)
             {
-                // return (inventory.item.count >= requiredAmount)
+                return GetItemCount(collectingQuest.requiredItem.name) >= collectingQuest.requiredAmount;
             }
         }
         return false;
@@ -101,7 +111,7 @@ public class Player : Character {
 
     public void completeQuest()
     {
-        if(canCompleteQuest())
+        if(CanCompleteQuest())
         {
             favourability += currentQuest.favourabilityReward;
             if (currentQuest is CollectingQuest collectingQuest)
@@ -111,6 +121,7 @@ public class Player : Character {
             else if (currentQuest is SellingQuest sellingQuest)
             {
                 RemoveItem(sellingQuest.requiredItem.name, sellingQuest.requiredAmount);
+
             }
             currentQuest.complete();
             SetQuest(null);

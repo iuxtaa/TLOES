@@ -19,6 +19,7 @@ public class NPCindicatorTrigger : MonoBehaviour
     public Quest questCheck;
     private NPCmovement NPClook;
 
+    public Player player;
 
     private bool playerClose;
 
@@ -28,6 +29,7 @@ public class NPCindicatorTrigger : MonoBehaviour
         floatingIcon.SetActive(false);
         promptIcon.SetActive(false);
         NPClook = GetComponent<NPCmovement>();
+       
     }
 
     private void Update()
@@ -40,6 +42,8 @@ public class NPCindicatorTrigger : MonoBehaviour
             {
                 NPClook.NPClookAtPlayer();
                 Debug.Log("Quest check: " + questCheck.isComplete);
+                Debug.Log("Quest active " + questCheck.isActive);
+                //if (questCheck.isComplete)
                 if (questCheck.isComplete)
                 {
                     DialogueScript.GetInstance().EnterDialogueView(DialogueFile2);//Dialogue 2 will only play if a preceeding quest is done
@@ -48,6 +52,15 @@ public class NPCindicatorTrigger : MonoBehaviour
                 {
                     DialogueScript.GetInstance().EnterDialogueView(DialogueFile);
                 }
+
+                /*if(questCheck.isActive)
+                {
+                    DialogueScript.GetInstance().EnterDialogueView(DialogueFile2);
+                }
+                else if(questCheck.isActive)
+                {
+                    DialogueScript.GetInstance().EnterDialogueView(DialogueFile);
+                }*/
                 
             }
             

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: KnightsLetter
   m_EditorClassIdentifier: 
   questNumber: 1
-  isActive: 0
-  isComplete: 0
+  isActive: 1
+  isComplete: 1
   title: The Knight's Letter
   description: Write the knight's letter to his family.
   favourabilityReward: 5

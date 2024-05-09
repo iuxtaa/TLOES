@@ -849,6 +849,7 @@ MonoBehaviour:
   DialogueFile: {fileID: 4900000, guid: 99a4e437050d49d4596625ef40e07fae, type: 3}
   DialogueFile2: {fileID: 4900000, guid: 99a4e437050d49d4596625ef40e07fae, type: 3}
   questCheck: {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
+  player: {fileID: 2044812155}
 --- !u!1 &268779572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1557,12 +1558,33 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1546294774153461753, guid: 0c3361f1d17b8ae4d9f95e9bf753cb3b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 250188558}
+    - targetCorrespondingSourceObject: {fileID: 1546294774153461753, guid: 0c3361f1d17b8ae4d9f95e9bf753cb3b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 316378109}
   m_SourcePrefab: {fileID: 100100000, guid: 0c3361f1d17b8ae4d9f95e9bf753cb3b, type: 3}
 --- !u!4 &316378105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5230306948048977582, guid: 0c3361f1d17b8ae4d9f95e9bf753cb3b, type: 3}
   m_PrefabInstance: {fileID: 316378104}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &316378109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250188557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 628491345b4c9d04aa0c59b5a2f992c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  quest: {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
+  player: {fileID: 2044812155}
+  questWindow: {fileID: 470803700}
+  questOverlay: {fileID: 470803697}
+  titleText: {fileID: 470803699}
+  descriptionText: {fileID: 470803698}
 --- !u!1 &323311899
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,6 +2670,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 249902227}
     m_Modifications:
+    - target: {fileID: 182461594610985622, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2004984999478800038, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_SizeDelta.x
       value: 1542
@@ -2660,6 +2686,46 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -160
       objectReference: {fileID: 0}
+    - target: {fileID: 3307544923360177798, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 370
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307544923360177798, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 74
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307544923360177798, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307544923360177798, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117834872807746155, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117834872807746155, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117834872807746155, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117834872807746155, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 4399862149433461437, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: quest
+      value: 
+      objectReference: {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
+    - target: {fileID: 4399862149433461437, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2044812155}
     - target: {fileID: 4407716030668222868, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2756,6 +2822,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5368126501785934771, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2044812155}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4537191945935623770, guid: 4e918ea8c2655614f894a41cbe759b58, type: 3}
@@ -3616,8 +3686,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -22.25, y: -102.6}
-  m_SizeDelta: {x: -55.5, y: 193.25}
+  m_AnchoredPosition: {x: -22.25, y: -88}
+  m_SizeDelta: {x: -55.5, y: 164}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &600171254
 MonoBehaviour:
@@ -9830,6 +9900,7 @@ MonoBehaviour:
   DialogueFile: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
   DialogueFile2: {fileID: 4900000, guid: c4ec619e4f258e54f9a121db984ce23b, type: 3}
   questCheck: {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
+  player: {fileID: 2044812155}
 --- !u!114 &1665528534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11851,6 +11922,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1554100012435694503, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1554100012435694503, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -12111,8 +12186,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f512b4bf7e63e4db9fb5826540ee2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  favourability: 0
-  currentQuest: {fileID: 0}
+  questHistory:
+  - {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
+  - {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
+  - {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
 --- !u!1 &2051976784
 GameObject:
   m_ObjectHideFlags: 0
