@@ -7,6 +7,8 @@ TagManager:
   - Pause
   - New tag
   - Questing
+  - NextMap
+  - PrevMap
   layers:
   - Default
   - TransparentFX

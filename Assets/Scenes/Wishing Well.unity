@@ -153,7 +153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4863355952554908547, guid: d39672cc18ccd9545840277c51264e6f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4863355952554908547, guid: d39672cc18ccd9545840277c51264e6f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8131,9 +8131,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1028730238175853086, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
+      propertyPath: sceneToLoad
+      value: Church
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028730238175853086, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
+      propertyPath: playerPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: fce9b2cfa7deaa14db422030ecbd1ac9, type: 2}
+    - target: {fileID: 1028730238175853086, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
+      propertyPath: newPlayerPosition.x
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028730238175853086, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
+      propertyPath: newPlayerPosition.y
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 7795312536302734404, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
       propertyPath: m_Name
       value: '[Checkpoint] PF Village Props - Road Sign Return Variant'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7795312536302734404, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
+      propertyPath: m_TagString
+      value: PrevMap
       objectReference: {fileID: 0}
     - target: {fileID: 7795312536302734405, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
       propertyPath: m_SortingLayer
@@ -8145,15 +8165,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7795312536302734410, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.644125
+      value: -18
       objectReference: {fileID: 0}
     - target: {fileID: 7795312536302734410, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.073135
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7795312536302734410, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7795312536302734410, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8616,6 +8636,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1554100012435694503, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 2972210481919786716, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: lookKey
       value: 0
@@ -8642,11 +8666,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5219961313650418416, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.393256
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 5219961313650418416, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.0087292
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5219961313650418416, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -9537,6 +9561,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
   - {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   - {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
+  startingPosition: {fileID: 11400000, guid: fce9b2cfa7deaa14db422030ecbd1ac9, type: 2}
 --- !u!1001 &1781393023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10051,7 +10076,7 @@ Transform:
   m_GameObject: {fileID: 1911035285}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

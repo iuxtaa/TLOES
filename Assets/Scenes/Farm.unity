@@ -1317,11 +1317,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5219961313650418416, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.47
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 5219961313650418416, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.0087292
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5219961313650418416, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8516,6 +8516,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
   - {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   - {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
+  startingPosition: {fileID: 11400000, guid: fce9b2cfa7deaa14db422030ecbd1ac9, type: 2}
 --- !u!1 &929222683
 GameObject:
   m_ObjectHideFlags: 0
@@ -11727,7 +11728,7 @@ Transform:
   m_GameObject: {fileID: 1452247509}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.6, y: 1.5, z: -10}
+  m_LocalPosition: {x: -10.44, y: 1.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14740,7 +14741,6 @@ MonoBehaviour:
   - {fileID: 1904169813}
   - {fileID: 2102403713}
   questGiver: {fileID: 0}
-  sell: {fileID: 0}
 --- !u!1 &1837919378
 GameObject:
   m_ObjectHideFlags: 0
@@ -15576,7 +15576,7 @@ Transform:
   m_GameObject: {fileID: 1911035285}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17383,9 +17383,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2236738492558090796, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
+      propertyPath: sceneToLoad
+      value: Market
+      objectReference: {fileID: 0}
+    - target: {fileID: 2236738492558090796, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
+      propertyPath: playerPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: fce9b2cfa7deaa14db422030ecbd1ac9, type: 2}
+    - target: {fileID: 2236738492558090796, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
+      propertyPath: newPlayerPosition.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 2236738492558090796, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
+      propertyPath: newPlayerPosition.y
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 6307222396959475778, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
       propertyPath: m_Name
       value: '[Checkpoint] PF Village Props - Road Sign Forward'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6307222396959475778, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
+      propertyPath: m_TagString
+      value: NextMap
       objectReference: {fileID: 0}
     - target: {fileID: 6307222396959475804, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17397,7 +17417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6307222396959475804, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6307222396959475804, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17427,7 +17447,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8936086249753743667, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
