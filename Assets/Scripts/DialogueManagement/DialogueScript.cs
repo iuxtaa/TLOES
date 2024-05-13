@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SearchService;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class DialogueScript : MonoBehaviour
@@ -11,6 +12,8 @@ public class DialogueScript : MonoBehaviour
     [Header("Dialogue Management UI")]
     [SerializeField] private GameObject dialogueDisplay;
     [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private TextMeshProUGUI speakerNameText;
+    [SerializeField] private Animator imageAnimator;
 
 
     [Header("Dialogue Choice Options UI")]
@@ -28,6 +31,9 @@ public class DialogueScript : MonoBehaviour
 
 
     private static DialogueScript instance;
+    private const string SPEAKER_TAG = "speaker";
+    private const string PORTRAIT_TAG = "image";
+    private const string LAYOUT_TAG = "structure";
 
     private void Awake()
     {
@@ -128,12 +134,45 @@ public class DialogueScript : MonoBehaviour
             }
             typingDialogue = StartCoroutine(TypeText(line));
 
-
+            HandleTags(currentDialogue.currentTags);
         }
         else
         {
             LeaveDialogueView();
 
+        }
+    }
+
+    private void HandleTags(List<string> currentTags)
+    {
+        foreach (string tag in currentTags)
+        {
+            string[] splitTag = tag.Split(':');
+            if(splitTag.Length !=2)
+            {
+                Debug.LogError("Tag could not be appropriately parsed: " +tag);
+            }
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            // temperary code
+            switch (tagKey)
+            {
+                case SPEAKER_TAG:
+                    speakerNameText.text = tagValue;
+                    Debug.Log("speaker=" + tagValue);
+                    break;
+                case PORTRAIT_TAG:
+                    imageAnimator.Play(tagValue);
+                    Debug.Log("image=" + tagValue);
+                    break;
+                case LAYOUT_TAG:
+                    Debug.Log("layout=" + tagValue);
+                    break;
+                default:
+                    Debug.LogWarning("tag that is being used it not fully handled" + tagValue);
+                    break;
+            }
         }
     }
 
