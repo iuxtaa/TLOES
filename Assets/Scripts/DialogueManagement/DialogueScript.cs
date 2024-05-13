@@ -84,13 +84,6 @@ public class DialogueScript : MonoBehaviour
         currentDialogueIsPlaying = false;
         dialogueDisplay.SetActive(false);
         dialogueText.text = "";
-
-        if (questGiver != null && questGiver.quest != null && questGiver.quest.isActive);
-        {
-            questGiver.quest.complete();
-        }
-
-
     }
 
     public void Update()
