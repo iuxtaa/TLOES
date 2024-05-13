@@ -80,7 +80,7 @@ public class DialogueScript : MonoBehaviour
         dialogueDisplay.SetActive(false);
         dialogueText.text = "";
 
-        if (questGiver != null && questGiver.quest != null && questGiver.quest.isActive);
+        if (questGiver != null && questGiver.quest != null && questGiver.quest.isActive)
         {
             questGiver.quest.complete();
         }
