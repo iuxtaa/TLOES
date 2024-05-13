@@ -1,15 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic; // Required for Dictionary
-using UnityEngine;  
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : Character {
+
+    #region Variables
 
     // INSTANCE VARIABLES 
     public static int favourability;
     public static Dictionary<string, int> inventory = new Dictionary<string, int>();  // Initialize inventory
     [SerializeField] public static Quest currentQuest;
     public Quest[] questHistory = new Quest[3];
+    public VectorValue startingPosition;
+
+    #endregion 
+
+    #region Constructor
 
     public Player(string name) : base(name)
     {
@@ -26,8 +34,21 @@ public class Player : Character {
         SetQuest(currentQuest);
     }
 
-    // METHODS
+    #endregion 
 
+    #region SpawnMethods
+
+    public void Awake()
+    {
+        transform.position = startingPosition.changingValue;
+        startingPosition.changingValue = startingPosition.initialValue;
+    }
+
+    #endregion
+
+    #region SetAndGetMethods
+
+    // METHODS
     public void SetFavourability(int favourability)
     {
         Player.favourability = favourability;
@@ -48,6 +69,9 @@ public class Player : Character {
         return currentQuest;
     }
 
+    #endregion
+
+    #region InventoryMethods 
     public void AddItem(string item, int quantity)
     {
         if (inventory.ContainsKey(item))
@@ -73,20 +97,18 @@ public class Player : Character {
 
     }
 
+    public int GetItemCount(string item)
+    {
+        return inventory.ContainsKey(item) ? inventory[item] : 0;
+    }
+    #endregion 
+
+    #region QuestingMethods
     public void acceptQuest(Quest quest)
     {
         SetQuest(quest);
         currentQuest.isActive = true;
         Debug.Log(Player.currentQuest);
-    }
-
-    public void declineQuest()
-    {
-
-    }
-    public int GetItemCount(string item)
-    {
-        return inventory.ContainsKey(item) ? inventory[item] : 0;
     }
 
     public bool CanCompleteQuest()
@@ -134,4 +156,5 @@ public class Player : Character {
         currentQuest.complete();
         SetQuest(null);
     }
+    #endregion
 }

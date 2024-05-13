@@ -335,21 +335,49 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1028730238175853086, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
+      propertyPath: sceneToLoad
+      value: Market
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028730238175853086, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
+      propertyPath: playerPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: fce9b2cfa7deaa14db422030ecbd1ac9, type: 2}
+    - target: {fileID: 1028730238175853086, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
+      propertyPath: newPlayerPosition.x
+      value: 79
+      objectReference: {fileID: 0}
+    - target: {fileID: 1028730238175853086, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
+      propertyPath: newPlayerPosition.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4783862159425614666, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1018197482}
+    - target: {fileID: 4783862159425614666, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
+      propertyPath: prevSceneTravelCheckpoint
+      value: 
+      objectReference: {fileID: 1327438457}
     - target: {fileID: 7795312536302734404, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
       propertyPath: m_Name
       value: '[Checkpoint] PF Village Props - Road Sign Return Variant'
       objectReference: {fileID: 0}
+    - target: {fileID: 7795312536302734404, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
+      propertyPath: m_TagString
+      value: PrevMap
+      objectReference: {fileID: 0}
     - target: {fileID: 7795312536302734410, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.514993
+      value: -19.199999
       objectReference: {fileID: 0}
     - target: {fileID: 7795312536302734410, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.15
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7795312536302734410, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7795312536302734410, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
       propertyPath: m_LocalRotation.w
@@ -379,7 +407,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4783862159425614666, guid: 5e715faf145a71b4a9a066a403283492, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -3158,7 +3187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5230306948048977582, guid: ba238f5a9c5ac094597966752aba5f9f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.42
+      value: 7.2200003
       objectReference: {fileID: 0}
     - target: {fileID: 5230306948048977582, guid: ba238f5a9c5ac094597966752aba5f9f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5576,11 +5605,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5219961313650418416, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.66
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 5219961313650418416, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.0087292
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5219961313650418416, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5816,6 +5845,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
   - {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   - {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
+  startingPosition: {fileID: 11400000, guid: fce9b2cfa7deaa14db422030ecbd1ac9, type: 2}
 --- !u!1 &1039588875
 GameObject:
   m_ObjectHideFlags: 0
@@ -7390,7 +7420,7 @@ Transform:
   m_GameObject: {fileID: 1296705203}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 808.8501, y: 409.58377, z: 2.0339444}
+  m_LocalPosition: {x: 799.2501, y: 409.58377, z: 2.0339444}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7605,13 +7635,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2236738492558090796, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
+      propertyPath: sceneToLoad
+      value: Wishing Well
+      objectReference: {fileID: 0}
+    - target: {fileID: 2236738492558090796, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
+      propertyPath: playerPosition
+      value: 
+      objectReference: {fileID: 11400000, guid: fce9b2cfa7deaa14db422030ecbd1ac9, type: 2}
+    - target: {fileID: 2236738492558090796, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
+      propertyPath: newPlayerPosition.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 2236738492558090796, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
+      propertyPath: newPlayerPosition.y
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 6307222396959475778, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
       propertyPath: m_Name
       value: '[Checkpoint] PF Village Props - Road Sign Forward Variant'
       objectReference: {fileID: 0}
+    - target: {fileID: 6307222396959475778, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
+      propertyPath: m_TagString
+      value: NextMap
+      objectReference: {fileID: 0}
     - target: {fileID: 6307222396959475804, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.19
+      value: 23.989996
       objectReference: {fileID: 0}
     - target: {fileID: 6307222396959475804, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7619,7 +7669,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6307222396959475804, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6307222396959475804, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7649,11 +7699,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8936086249753743667, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
+--- !u!4 &1327438457 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6307222396959475804, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
+  m_PrefabInstance: {fileID: 1327438456}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1331174708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12470,7 +12526,7 @@ Transform:
   m_GameObject: {fileID: 1911035285}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -10.2, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

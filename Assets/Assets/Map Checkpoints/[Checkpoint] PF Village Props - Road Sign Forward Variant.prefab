@@ -61,7 +61,7 @@ PrefabInstance:
       addedObject: {fileID: 819739625396853503}
     - targetCorrespondingSourceObject: {fileID: 7471922057008591172, guid: bbde5b0f2fde63f47aab9703a1e8e784, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8936086249753743667}
+      addedObject: {fileID: 2236738492558090796}
   m_SourcePrefab: {fileID: 100100000, guid: bbde5b0f2fde63f47aab9703a1e8e784, type: 3}
 --- !u!1 &6307222396959475778 stripped
 GameObject:
@@ -113,7 +113,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.84375, y: 1.28125}
   m_EdgeRadius: 0
---- !u!114 &8936086249753743667
+--- !u!114 &2236738492558090796
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6307222396959475778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6d1941cc21e32a4bb9813e1335511e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b6f7bfacbe448244b1a53b4e4a9329b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoad: Church
