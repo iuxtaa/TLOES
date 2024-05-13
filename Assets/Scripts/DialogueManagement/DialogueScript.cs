@@ -33,7 +33,6 @@ public class DialogueScript : MonoBehaviour
     private static DialogueScript instance;
     private const string SPEAKER_TAG = "speaker";
     private const string PORTRAIT_TAG = "image";
-    private const string LAYOUT_TAG = "structure";
 
     private void Awake()
     {
@@ -165,9 +164,6 @@ public class DialogueScript : MonoBehaviour
                 case PORTRAIT_TAG:
                     imageAnimator.Play(tagValue);
                     Debug.Log("image=" + tagValue);
-                    break;
-                case LAYOUT_TAG:
-                    Debug.Log("layout=" + tagValue);
                     break;
                 default:
                     Debug.LogWarning("tag that is being used it not fully handled" + tagValue);
