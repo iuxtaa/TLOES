@@ -6,7 +6,6 @@ public class questTriggerChecker : MonoBehaviour
 {
     public Player player;
     public GameObject triggerCheckConds;
-    public Quest questCheck;
     public bool droppedItem;// this is a place holder fir inventory
 
     private bool playerClose;
@@ -19,15 +18,7 @@ public class questTriggerChecker : MonoBehaviour
     }
     public void Update()
     {
-        if (playerClose && !questCheck.isComplete && questCheck.isActive && !droppedItem) //if item is not in the inventory then run this code 
-        {
-            droppedItem = true;//place holder for inventory
-            //add logic that will be triggered by the dialogue, in bool
-        }
-        else if (!playerClose && questCheck.isActive && droppedItem)
-        {
-            triggerCheckConds.SetActive(false);
-        }
+       
 
     }
 
