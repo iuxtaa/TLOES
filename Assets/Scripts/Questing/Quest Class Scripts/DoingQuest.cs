@@ -10,5 +10,6 @@ public class DoingQuest : Quest
     {
     }
 
+
     // METHODS
 }
