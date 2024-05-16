@@ -4,22 +4,16 @@ using TMPro;
 using Firebase;
 using Firebase.Auth;
 using System;
-using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
-
-
 
 public class LoginPanelManager : MonoBehaviour
 {
     [SerializeField] private Panel loginPanel;
     [SerializeField] public GameObject signUpPanel;
-     public TMP_Text warningText;
-     public TMP_InputField emailInput;
-     public TMP_InputField passwordInput;
-     public Button loginButton;
-    
-
+    public TMP_Text warningText;
+    public TMP_InputField emailInput;
+    public TMP_InputField passwordInput;
+    public Button loginButton;
 
     private FirebaseAuth auth;
 
@@ -47,8 +41,25 @@ public class LoginPanelManager : MonoBehaviour
 
         try
         {
-            await auth.SignInWithEmailAndPasswordAsync(email, password);
-            SceneManager.LoadScene((int)ScreenEnum.MainMenu);
+            var authTask = await auth.SignInWithEmailAndPasswordAsync(email, password);
+            var user = authTask.User;
+
+            if (user != null)
+            {
+                await user.ReloadAsync(); // Reload user data to get the latest email verification status
+                if (user.IsEmailVerified)
+                {
+                    SceneManager.LoadScene((int)ScreenEnum.MainMenu);
+                }
+                else
+                {
+                    warningText.text = "Please verify your email!";
+                }
+            }
+            else
+            {
+                warningText.text = "User not found. Please check your credentials.";
+            }
         }
         catch (System.Exception e)
         {
@@ -62,6 +73,11 @@ public class LoginPanelManager : MonoBehaviour
         HandleLoginPanel();
         signUpPanel.SetActive(true);
         StartingPanelManager.menuChoice = (int)StartingMenuChoice.Signup;
+
+        // Reset the login panel fields and warning text
+        emailInput.text = "";
+        passwordInput.text = "";
+        warningText.text = "";
     }
 
     private void HandleLoginPanel()
@@ -69,3 +85,5 @@ public class LoginPanelManager : MonoBehaviour
         loginPanel.gameObject.SetActive(false);
     }
 }
+
+
