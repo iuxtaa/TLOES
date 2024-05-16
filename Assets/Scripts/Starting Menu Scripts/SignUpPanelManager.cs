@@ -9,10 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class SignUpPanelManager : MonoBehaviour
 {
-<<<<<<< Updated upstream
-=======
     [Header("Sign Up")]
->>>>>>> Stashed changes
     [SerializeField] private Panel signUpPanel;
     [SerializeField] private GameObject loginPanel;
     public TMP_Text warningText;

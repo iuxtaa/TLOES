@@ -61,7 +61,7 @@ PrefabInstance:
       addedObject: {fileID: 7690265546514283889}
     - targetCorrespondingSourceObject: {fileID: 3008790804299420976, guid: 05d871b9365825b4ca356e1345739ee2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4783862159425614666}
+      addedObject: {fileID: 1028730238175853086}
   m_SourcePrefab: {fileID: 100100000, guid: 05d871b9365825b4ca356e1345739ee2, type: 3}
 --- !u!1 &7795312536302734404 stripped
 GameObject:
@@ -113,7 +113,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.96875, y: 1.65625}
   m_EdgeRadius: 0
---- !u!114 &4783862159425614666
+--- !u!114 &1028730238175853086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,6 +122,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7795312536302734404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2d81b72724ff0a48984f6fb551114e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b6f7bfacbe448244b1a53b4e4a9329b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneToLoad: Farm

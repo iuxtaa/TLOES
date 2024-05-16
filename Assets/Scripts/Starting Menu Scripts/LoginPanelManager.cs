@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class LoginPanelManager : MonoBehaviour
 {
+    [Header("Login")]
     [SerializeField] private Panel loginPanel;
     [SerializeField] public GameObject signUpPanel;
     public TMP_Text warningText;

@@ -1,1 +1,0 @@
-﻿{"inkVersion":21,"root":[["^Father: Did you sell it all, my son?","\n","^PC: Yes, father.","\n","^Father: That’s good. Can you do it again today? I’ll give you a paper and quill.","\n","^PC: Of course.","\n","^Father: Go on, then. *gives quill and paper* Thank you.","\n",["done",{"#f":5,"#n":"g-0"}],null],"done",{"#f":1}],"listDefs":{}}
