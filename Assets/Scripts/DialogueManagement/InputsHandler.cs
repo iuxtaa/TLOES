@@ -9,6 +9,7 @@ public class InputsHandler : MonoBehaviour
     private Vector2 move;
     private bool interact;
     private bool continuePressed;
+    private bool inventoryPressed;
 
     private static InputsHandler instance;
 
@@ -55,6 +56,27 @@ public class InputsHandler : MonoBehaviour
         continuePressed = false;
         return endresult;
     }
+
+    public void inventoryButtonPressed(InputAction.CallbackContext action)
+    {
+        if (action.performed)
+        {
+            inventoryPressed = true;
+        }
+        else if (action.canceled)
+        {
+            inventoryPressed = false;
+        }
+    }
+    public bool inventoryButtonPressed()
+    {
+        bool endresult = inventoryPressed;
+        inventoryPressed = false;
+        return endresult;
+    }
+
+
+
 
     public void InteractPressed(InputAction.CallbackContext action)
     {
