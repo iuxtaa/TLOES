@@ -14,8 +14,12 @@ public class Player : Character {
     [SerializeField] public static Quest currentQuest;
     public Quest[] questHistory = new Quest[3];
     public VectorValue startingPosition;
+   
+    public TempInventory tempInventory;// this is the temperary code for the inventory
+    
 
-    #endregion 
+
+    #endregion
 
     #region Constructor
 
@@ -42,8 +46,10 @@ public class Player : Character {
     {
         transform.position = startingPosition.changingValue;
         startingPosition.changingValue = startingPosition.initialValue;
+        tempInventory = new TempInventory(4);//temperary inventory stuff might delete later
     }
 
+   
     #endregion
 
     #region SetAndGetMethods

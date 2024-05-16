@@ -13,7 +13,7 @@ namespace Cainos.CustomizablePixelCharacter
         private static readonly float CLIMB_POS_LERP_SPEED = 7.5f;                                  // lerp speed when moving the character to the climb position
         private static readonly float PIXEL_SIZE = 0.03125f;                                        // size of one pixel: 1/32
         private static readonly float SURFACE_ANGLE_LIMIT = 46.0f;                                  // the max angle of a slope the character can stand on, if the slope angle is larger than this, the character will slide down the slope
-        private static readonly float CHARACTER_HEIGHT = 1.90625f;
+       // private static readonly float CHARACTER_HEIGHT = 1.90625f;
         private static readonly float CHARACTER_WEIGHT = 50.0f;
 
         private static Vector3 TOP_POS_OFFSET = new(0.0f, PIXEL_SIZE * 60, 0.0f);
