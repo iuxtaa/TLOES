@@ -4,20 +4,12 @@ using System.Collections.Generic; // Required for Dictionary
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : Character {
-
-    #region Variables
-
-    // INSTANCE VARIABLES 
-    public static int favourability;
-    public static Dictionary<string, int> inventory = new Dictionary<string, int>();  // Initialize inventory
-    [SerializeField] public static Quest currentQuest;
-    public Quest[] questHistory = new Quest[3];
-    public VectorValue startingPosition;
-
-    #endregion 
-
-    #region Constructor
+public class Player : Character
+{
+    public int favourability;
+    public Dictionary<string, int> inventory = new Dictionary<string, int>();
+    public Items[] Items;
+    [SerializeField] public Quest currentQuest;
 
     public KeyCode discardKey = KeyCode.Q;  // Key to discard an item set to Q
 
@@ -25,9 +17,6 @@ public class Player : Character {
     {
         SetFavourability(0);
         SetQuest(null);
-        //questHistory[0] = new SellingQuest(3,3, 0, "", "", 5);
-        //questHistory[1] = KnightsLetter;
-        //questHistory[2] = PriestsHolyWater;
     }
 
     public Player(string name, int currentLocation, int favourability, Quest currentQuest) : base(name, currentLocation)
@@ -45,29 +34,14 @@ public class Player : Character {
         }
     }
 
-    #endregion 
-
-    #region SpawnMethods
-
-    public void Awake()
-    {
-        transform.position = startingPosition.changingValue;
-        startingPosition.changingValue = startingPosition.initialValue;
-    }
-
-    #endregion
-
-    #region SetAndGetMethods
-
-    // METHODS
     public void SetFavourability(int favourability)
     {
-        Player.favourability = favourability;
+        this.favourability = favourability;
     }
 
     public int GetFavourability()
     {
-        return favourability;
+        return this.favourability;
     }
 
     public void SetQuest(Quest quest)
@@ -81,7 +55,7 @@ public class Player : Character {
 
     public Quest GetQuest()
     {
-        return currentQuest;
+        return this.currentQuest;
     }
 
     public void AcceptQuest(Quest quest)
@@ -172,46 +146,12 @@ public class Player : Character {
                     }
                 }
             }
-    #endregion
-
-    #region InventoryMethods 
-    public void AddItem(string item, int quantity)
-    {
-        if (inventory.ContainsKey(item))
-        {
-            inventory[item] += quantity;
-        }
-        else
-        {
-            inventory.Add(item, quantity);
         }
     }
 
     public int GetItemCount(string itemName)
     {
-        if (inventory.ContainsKey(item))
-        {
-            inventory[item] -= quantity;
-            if (inventory[item] <= 0)
-            {
-                inventory.Remove(item);
-            }
-        }
-
-    }
-
-    public int GetItemCount(string item)
-    {
-        return inventory.ContainsKey(item) ? inventory[item] : 0;
-    }
-    #endregion 
-
-    #region QuestingMethods
-    public void acceptQuest(Quest quest)
-    {
-        SetQuest(quest);
-        currentQuest.isActive = true;
-        Debug.Log(Player.currentQuest);
+        return inventory.ContainsKey(itemName) ? inventory[itemName] : 0;
     }
 
     public bool CanCompleteQuest()
@@ -234,11 +174,11 @@ public class Player : Character {
         return false;
     }
 
-    public void completeQuest()
+    public void CompleteQuest()
     {
-        if(CanCompleteQuest())
+        if (CanCompleteQuest())
         {
-            favourability += currentQuest.favourabilityReward;
+            this.favourability += currentQuest.favourabilityReward;
             if (currentQuest is CollectingQuest collectingQuest)
             {
                 RemoveItem(collectingQuest.requiredItem.name, collectingQuest.requiredAmount);
@@ -246,18 +186,19 @@ public class Player : Character {
             else if (currentQuest is SellingQuest sellingQuest)
             {
                 RemoveItem(sellingQuest.requiredItem.name, sellingQuest.requiredAmount);
-
             }
             currentQuest.complete();
             SetQuest(null);
         }
     }
 
-    public void failQuest()
+    public void FailQuest()
     {
-        favourability -= currentQuest.favourabilityReward;
-        currentQuest.complete();
-        SetQuest(null);
+        if (currentQuest != null)
+        {
+            this.favourability -= currentQuest.favourabilityReward;
+            currentQuest.complete();
+            SetQuest(null);
+        }
     }
-    #endregion
 }
