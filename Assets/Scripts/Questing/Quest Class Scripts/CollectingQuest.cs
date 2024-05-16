@@ -4,87 +4,44 @@ using UnityEngine;
 using static UnityEditor.Progress;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "New Collecting Quest", menuName = "Quest System/Collecting Quest")]
 
 
 
-
-public class CollectingQuest : Quest  // Inherits from Quest
+[CreateAssetMenu(fileName = "New Collecting Quest", menuName = "Quests/CollectingQuest")]
+public class CollectingQuest : Quest
 {
-    // INSTANCE VARIABLES
-    public GameObject requiredItem;
+    public Items requiredItem;
     public int requiredAmount;
-    public int currentAmount = 0;  // Tracks the amount of the item collected
 
-    // CONSTRUCTOR
-    // Initializes a new instance of CollectionQuest with specified details
-    public CollectingQuest(GameObject requiredItem, int requiredAmount) : base()
+    // Constructor
+    public CollectingQuest(int questNumber, string title, string desc, int favourabilityReward, Items requiredItem, int requiredAmount)
+        : base(questNumber, title, desc, favourabilityReward)
     {
         this.requiredItem = requiredItem;
         this.requiredAmount = requiredAmount;
     }
 
-    void UpdateQuestProgress()
+    public bool CanCompleteQuest()
     {
-        if (Controller.Instance != null && requiredItem != null)
+        return inventory.GetItemCount(requiredItem.name) >= requiredAmount;
+    }
+
+    public void CompleteQuest()
+    {
+        if (inventory != null && CanCompleteQuest())
         {
-            
-            currentAmount = Controller.Instance.GetItemCount(requiredItem.GetComponent<Items>());
-            CheckCompletion();
+            inventory.RemoveItem(requiredItem.name, requiredAmount);
+            complete();
+        }
+        else
+        {
+            Debug.Log("Cannot complete quest. Item count not sufficient or Controller not available.");
         }
     }
-
-    void OnEnable()
-    {
-        
-        Controller.Instance.OnItemChanged += UpdateQuestProgress;
-    }
-
-    void OnDisable()
-    {
-        // Unsubscribe to avoid memory leaks
-        Controller.Instance.OnItemChanged -= UpdateQuestProgress;
-    }
-
-    // METHODS
-    public bool isReached()
-    {
-        return currentAmount >= requiredAmount;
-    }
-
-    public void addItem(int amount)
-    {
-        currentAmount += amount;
-        CheckCompletion();
-    }
-
-    public bool canAddItem(int amount)
-    {
-        return (currentAmount + amount) <= requiredAmount;
-    }
-
-
-
-
 
     public override void complete()
     {
-        if (!isComplete)
-        {
-            base.complete();  
-            Debug.Log(title + " quest is completed");
-            
-        }
+        base.complete();
+        Debug.Log(title + " quest is completed. Congratulations!");
     }
-
-    // This function checks if the quest requirements are met and marks the quest as complete
-    void CheckCompletion()
-    {
-        if (isReached())
-        {
-            complete();
-        }
-    }
-
-    
 }

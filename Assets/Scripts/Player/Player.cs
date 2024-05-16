@@ -6,12 +6,15 @@ using UnityEngine;
 
 
 
+
 public class Player : Character
 {
     public int favourability;
     public Dictionary<string, int> inventory = new Dictionary<string, int>();
     public Items[] Items;
     [SerializeField] public Quest currentQuest;
+
+    public KeyCode discardKey = KeyCode.Q;  // Key to discard an item set to Q
 
     public Player(string name) : base(name)
     {
@@ -23,6 +26,15 @@ public class Player : Character
     {
         SetFavourability(favourability);
         SetQuest(currentQuest);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(discardKey))
+        {
+            // Discard the first item in the inventory when the key is pressed
+            RemoveFirstItem(); // You can change this to target a specific item
+        }
     }
 
     public void SetFavourability(int favourability)
@@ -38,6 +50,10 @@ public class Player : Character
     public void SetQuest(Quest quest)
     {
         this.currentQuest = quest;
+        if (quest != null)
+        {
+            quest.Initialize(Controller.Instance);
+        }
     }
 
     public Quest GetQuest()
@@ -45,42 +61,100 @@ public class Player : Character
         return this.currentQuest;
     }
 
-    public void acceptQuest(Quest quest)
+    public void AcceptQuest(Quest quest)
     {
         SetQuest(quest);
         if (currentQuest != null)
             currentQuest.isActive = true;
     }
 
-    public void AddItem(string item, int quantity)
+    public void AddItem(string itemName, int quantity)
     {
-        Items itemType = (Items)Enum.Parse(typeof(Items), item);
-        for (int i = 0; i < quantity; i++)
+        Items itemType = Array.Find(Items, item => item.name == itemName);
+        if (itemType != null)
         {
-            if (Controller.Instance.CanAddItem(itemType))
+            for (int i = 0; i < quantity; i++)
             {
-                Controller.Instance.AddItem(itemType);
+                if (Controller.Instance != null)
+                {
+                    Controller.Instance.AddItem(itemType, 1);
+                }
+            }
+
+            if (inventory.ContainsKey(itemName))
+            {
+                inventory[itemName] += quantity;
+            }
+            else
+            {
+                inventory[itemName] = quantity;
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"Item {itemName} not found in Items array.");
+        }
+    }
+
+    public void RemoveItem(string itemName, int quantity)
+    {
+        Items itemType = Array.Find(Items, item => item.name == itemName);
+        if (itemType != null)
+        {
+            var itemsList = new List<InventoryItem>(Controller.Instance.itemsParent.GetComponentsInChildren<InventoryItem>());
+            int removedCount = 0;
+
+            for (int i = 0; i < itemsList.Count; i++)
+            {
+                InventoryItem it = itemsList[i];
+                if (it != null && it.itemInside.items == itemType)
+                {
+                    Controller.Instance.DiscardItem(i);
+                    removedCount++;
+                    if (removedCount >= quantity) break;
+                }
+            }
+
+            if (inventory.ContainsKey(itemName))
+            {
+                inventory[itemName] -= quantity;
+                if (inventory[itemName] <= 0)
+                {
+                    inventory.Remove(itemName);
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"Item {itemName} not found in Items array.");
+        }
+    }
+
+    public void RemoveFirstItem()
+    {
+        var itemsList = new List<InventoryItem>(Controller.Instance.itemsParent.GetComponentsInChildren<InventoryItem>());
+        if (itemsList.Count > 0)
+        {
+            InventoryItem firstItem = itemsList[0];
+            if (firstItem != null)
+            {
+                Controller.Instance.DiscardItem(0);
+                string itemName = firstItem.itemInside.items.name;
+                if (inventory.ContainsKey(itemName))
+                {
+                    inventory[itemName]--;
+                    if (inventory[itemName] <= 0)
+                    {
+                        inventory.Remove(itemName);
+                    }
+                }
             }
         }
     }
 
-    public void RemoveItem(string item, int quantity)
+    public int GetItemCount(string itemName)
     {
-        Items itemType = (Items)Enum.Parse(typeof(Items), item);
-        for (int i = 0; i < Controller.Instance.Item.Length; i++)
-        {
-            InventoryItem it = Controller.Instance.Item[i];
-            if (it != null && it.GetComponentInChildren<ItemInside>().items == itemType)
-            {
-                Controller.Instance.DiscardItem(i);
-                if (--quantity <= 0) break;
-            }
-        }
-    }
-
-    public int GetItemCount(string item)
-    {
-        return inventory.ContainsKey(item) ? inventory[item] : 0;
+        return inventory.ContainsKey(itemName) ? inventory[itemName] : 0;
     }
 
     public bool CanCompleteQuest()

@@ -3,133 +3,141 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Progress;
 
-
-
-
-
 public class Controller : MonoBehaviour
 {
-    public static Controller Instance;  // Singleton instance
-
-    public int stacked = 50;  // Maximum stack size for any item
-    public InventoryItem[] Item;
-    public delegate void ItemChanged();
-    public event ItemChanged OnItemChanged;
-    public GameObject itemPrefab;
-
-    int pickedItem = -1;
+    public static Controller Instance; // Singleton instance
+    public GameObject inventoryUI; // Reference to the inventory UI GameObject
+    public Transform itemsParent; // Parent object to hold UI item slots
+    public GameObject itemSlotPrefab; // Prefab for item slot UI
+    private List<InventoryItem> items = new List<InventoryItem>();
+    private bool isInventoryOpen = false;
 
     void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance == null)
         {
-            Destroy(gameObject);
+            Instance = this;
         }
         else
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
         }
-    }
-    void ChosenPickedItem(int n)
-    {
-        if (pickedItem >= 0 && pickedItem < Item.Length)
+
+        if (inventoryUI != null)
         {
-            Item[pickedItem].NotPick();
-        }
-        if (n >= 0 && n < Item.Length)
-        {
-            Item[n].pick();
-            pickedItem = n;
+            inventoryUI.SetActive(isInventoryOpen); // Ensure the inventory is closed at the start
         }
     }
 
-
-   public void DiscardItem(int index)
+    void Start()
     {
-        if (index >= 0 && index < Item.Length)
-        {
-            InventoryItem it = Item[index];
-            ItemInside itemInside = it.GetComponentInChildren<ItemInside>();
+      //  if (inventoryUI != null)
+      //  {
+      //      inventoryUI.SetActive(isInventoryOpen); // Ensure the inventory is closed at the start
+      //  }
+    }
 
-            if (itemInside != null)
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            ToggleInventory();
+        }
+
+        // Test: Add a dummy item when P key is pressed (for pickup simulation)
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Items testItem = ScriptableObject.CreateInstance<Items>();
+            testItem.Type = Items.ItemType.Coin;
+            testItem.Image = null; // Replace with actual sprite
+            AddItem(testItem, 1); // Replace with actual item data and quantity
+        }
+    }
+
+    public void ToggleInventory()
+    {
+        isInventoryOpen = !isInventoryOpen;
+        if (inventoryUI != null)
+        {
+            inventoryUI.SetActive(isInventoryOpen);
+        }
+    }
+
+    public void AddItem(Items itemData, int quantity)
+    {
+        GameObject itemObject = new GameObject(itemData.name);
+        ItemInside itemInside = itemObject.AddComponent<ItemInside>();
+        itemInside.InitialiseItem(itemData, quantity);
+
+        InventoryItem newItem = itemObject.AddComponent<InventoryItem>();
+        newItem.itemInside = itemInside;
+        items.Add(newItem);
+        itemObject.transform.SetParent(itemsParent); // Ensure the item is parented under the itemsParent
+        UpdateInventoryUI();
+    }
+
+    public void RemoveItem(string itemName, int quantity)
+    {
+        var itemsList = new List<InventoryItem>(itemsParent.GetComponentsInChildren<InventoryItem>());
+        int removedCount = 0;
+
+        for (int i = 0; i < itemsList.Count; i++)
+        {
+            InventoryItem it = itemsList[i];
+            if (it != null && it.itemInside.items.name == itemName)
             {
-                if (itemInside.count > 1)
-                {
-                    itemInside.count--;
-                }
-                else
-                {
-                    Destroy(it.gameObject);
-                    Item[index] = null;
-                }
-                UpdateUI(it);
-                OnItemChanged?.Invoke(); // Trigger event when item changes
+                items.Remove(it);
+                Destroy(it.gameObject);
+                removedCount++;
+                if (removedCount >= quantity) break;
+            }
+        }
+
+        UpdateInventoryUI();
+    }
+
+    private void UpdateInventoryUI()
+    {
+        // Clear current UI slots
+        foreach (Transform child in itemsParent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // Create new UI slots
+        foreach (InventoryItem item in items)
+        {
+            GameObject newSlot = Instantiate(itemSlotPrefab, itemsParent);
+            InventoryItem slotScript = newSlot.GetComponent<InventoryItem>();
+            if (slotScript != null)
+            {
+                slotScript.itemInside = item.itemInside;
+                slotScript.UpdateUI();
             }
         }
     }
 
-
-    public int GetItemCount(Items item)
+    public int GetItemCount(string itemName)
     {
-        int totalItemCount = 0;
-        foreach (InventoryItem inventoryItem in Item)
+        int count = 0;
+        foreach (var item in items)
         {
-            ItemInside itemInside = inventoryItem.GetComponentInChildren<ItemInside>();
-            if (itemInside != null && itemInside.items == item)
+            if (item.itemInside.items.name == itemName)
             {
-                totalItemCount += itemInside.Count;
+                count += item.itemInside.Count;
             }
         }
-        return totalItemCount;
+        return count;
     }
 
-    public bool CanAddItem(Items items)
+    public void DiscardItem(int index)
     {
-        return GetItemCount(items) < stacked;
-    }
-
-
-    public bool AddItem(Items items)
-    {
-        foreach (InventoryItem it in Item)
+        if (index >= 0 && index < items.Count)
         {
-            ItemInside itemInside = it.GetComponentInChildren<ItemInside>();
-            if (itemInside != null && itemInside.items == items && itemInside.count < stacked)
-            {
-                itemInside.count++;
-                UpdateUI(it);
-                OnItemChanged?.Invoke(); // Trigger event when item changes
-                return true;
-            }
+            InventoryItem itemToDiscard = items[index];
+            items.RemoveAt(index);
+            Destroy(itemToDiscard.gameObject);
+            UpdateInventoryUI();
         }
-
-        foreach (InventoryItem it in Item)
-        {
-            if (it.GetComponentInChildren<ItemInside>() == null)
-            {
-                StoreItem(items, it);
-                OnItemChanged?.Invoke(); // Trigger event when item changes
-                return true;
-            }
-        }
-
-        return false; // No space to add new item
     }
-
-    void StoreItem(Items items, InventoryItem it)
-    {
-        GameObject storeInside = Instantiate(itemPrefab, it.transform);
-        ItemInside itemInside = storeInside.GetComponent<ItemInside>();
-        itemInside.InitialiseItem(items);
-        itemInside.count = 1;  // Initialize with a count of one
-        UpdateUI(it);
-    }
-
-    void UpdateUI(InventoryItem it)
-    {
-        it.UpdateUI();
-    }
-
-    
 }

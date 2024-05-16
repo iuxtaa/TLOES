@@ -8,6 +8,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using TMPro;
+using Debug = UnityEngine.Debug;
+
+
+
+
+
 
 
 public class ItemInside : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
@@ -18,7 +24,7 @@ public class ItemInside : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     [HideInInspector] public Items items;
     [HideInInspector] public Transform AfterDrag;
-    public int count = 1;
+   public int count = 1;
 
     public int Count
     {
@@ -26,34 +32,47 @@ public class ItemInside : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         set
         {
             count = value;
-       //     Refreshcount();
+            RefreshCount();
         }
     }
 
-
-    public void InitialiseItem(Items Newitems)
+    public void InitialiseItem(Items newItem, int quantity = 1)
     {
-        items = Newitems;
-        Picture.sprite = Newitems.Image;
-
-        Count = 1;
+        if (newItem != null)
+        {
+            items = newItem;
+            Picture.sprite = newItem.Image;
+            Count = quantity;
+        }
+        else
+        {
+            Debug.LogWarning("Newitems is null!");
+        }
     }
 
-    public void OnBeginDrag(UnityEngine.EventSystems.PointerEventData eventData)
+    public void OnBeginDrag(PointerEventData eventData)
     {
         Picture.raycastTarget = false;
         AfterDrag = transform.parent;
         transform.SetParent(transform.root);
     }
 
-    public void OnDrag(UnityEngine.EventSystems.PointerEventData eventData)
+    public void OnDrag(PointerEventData eventData)
     {
         transform.position = Input.mousePosition;
     }
 
-    public void OnEndDrag(UnityEngine.EventSystems.PointerEventData eventData)
+    public void OnEndDrag(PointerEventData eventData)
     {
         transform.SetParent(AfterDrag);
         Picture.raycastTarget = true;
+    }
+
+    public void RefreshCount()
+    {
+        if (countText != null)
+        {
+            countText.text = count.ToString();
+        }
     }
 }

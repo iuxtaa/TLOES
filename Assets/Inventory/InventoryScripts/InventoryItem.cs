@@ -5,42 +5,41 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
+
+
+
 public class InventoryItem : MonoBehaviour, IDropHandler
 {
+    public ItemInside itemInside;
 
-    public Image image;
-    public Color pickedColor, NotPickedColor;
-
-   
-    public void pick()
+    void Awake()
     {
-        image.color = pickedColor;
-
+        itemInside = GetComponentInChildren<ItemInside>();
     }
-
-    public void NotPick()
-    {
-        image.color = NotPickedColor;
-    }
-
-
 
     public void UpdateUI()
     {
-
+        if (itemInside != null)
+        {
+            itemInside.RefreshCount();
+        }
     }
-
-
-
-
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (transform.childCount > 0)
+        GameObject dropItem = eventData.pointerDrag;
+        if (dropItem != null)
         {
-            GameObject DropItem = eventData.pointerDrag;
-            ItemInside itemInside = DropItem.GetComponent<ItemInside>();
-            itemInside.AfterDrag = transform;
+            ItemInside draggedItemInside = dropItem.GetComponent<ItemInside>();
+            if (draggedItemInside != null && transform.childCount == 0)
+            {
+                draggedItemInside.AfterDrag = transform;
+                dropItem.transform.SetParent(transform);
+                dropItem.transform.position = transform.position;
+
+                // Update the UI of the dropped item
+                UpdateUI();
+            }
         }
     }
 }

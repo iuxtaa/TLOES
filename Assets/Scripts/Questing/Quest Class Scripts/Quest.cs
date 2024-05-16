@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 [System.Serializable] // Unity will serialize these fields so that they will show up in the Inspector
 [CreateAssetMenu(fileName = "New Quest", menuName = "Quest System/Quest")]
+
+
 public abstract class Quest : ScriptableObject
 {
     // PRIVATE INSTANCE VARIABLES
@@ -19,16 +21,10 @@ public abstract class Quest : ScriptableObject
 
     protected Controller inventory;
 
-    public void Initialize(Controller inventory)
-    {
-        this.inventory = inventory;
-    }
-
-    // CONSTRUCTOR
+    // Constructor
     public Quest()
     {
         this.questNumber = 0;
-
         this.title = string.Empty;
         this.description = string.Empty;
         this.favourabilityReward = 0;
@@ -36,7 +32,6 @@ public abstract class Quest : ScriptableObject
         this.isComplete = false;
     }
 
-    
     public Quest(int questNumber, string title, string desc, int favourabilityReward)
     {
         this.questNumber = questNumber;
@@ -47,12 +42,16 @@ public abstract class Quest : ScriptableObject
         this.isComplete = false;
     }
 
+    // Initialize the quest with a reference to the inventory
+    public void Initialize(Controller inventory)
+    {
+        this.inventory = inventory;
+    }
 
     // METHODS
-
     public virtual void complete()
     {
         isComplete = true;
-        Debug.Log("Completed Quest ");
+        Debug.Log("Completed Quest: " + title);
     }
 }

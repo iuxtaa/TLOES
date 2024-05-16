@@ -21,28 +21,28 @@ public class Testing2 : MonoBehaviour
         buttonText = StoreButtonObject.GetComponentInChildren<TextMeshProUGUI>(true);
     }
 
-    public void StoreItem(Items itemToStore)
-    {
+    //public void StoreItem(Items itemToStore)
+   // {
         
-        if (Controller.CanAddItem(itemToStore))
-        {
-            bool result = Controller.AddItem(itemToStore);
-            if (result)
-            {
-                Debug.Log("Stored Item");
-            }
-            else
-            {
-                Debug.Log("Cannot store more item, stack limit reached.");
-                DisableButton();
-            }
-        }
-        else
-        {
-            Debug.Log("Cannot store item, stack limit reached.");
-            DisableButton();
-        }
-    }
+    //    if (Controller.CanAddItem(itemToStore))
+     //   {
+      //      bool result = Controller.AddItem(itemToStore);
+       //     if (result)
+       //     {
+        //        Debug.Log("Stored Item");
+        //    }
+        //    else
+        //    {
+       //         Debug.Log("Cannot store more item, stack limit reached.");
+       //         DisableButton();
+         //   }
+       // }
+     //   else
+     //   {
+      //      Debug.Log("Cannot store item, stack limit reached.");
+     //       DisableButton();
+    //    }
+  //  }
 
 
     public void DisableButton()

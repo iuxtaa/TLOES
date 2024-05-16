@@ -5,30 +5,27 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Selling Quest", menuName = "Quest System/Selling Quest")]
 
 
-
-
 public class SellingQuest : Quest
 {
-    public Items requiredItem; 
+    public Items requiredItem;
     public int requiredAmount;
 
     // Constructor
-    public SellingQuest(Items requiredItem, int requiredAmount)
+    public SellingQuest(int questNumber, string title, string desc, int favourabilityReward, Items requiredItem, int requiredAmount)
+        : base(questNumber, title, desc, favourabilityReward)
     {
         this.requiredItem = requiredItem;
         this.requiredAmount = requiredAmount;
     }
 
-    
-    public bool CanCompleteQuest(Controller inventory)
+    public bool CanCompleteQuest()
     {
-        return inventory.GetItemCount(requiredItem) >= requiredAmount;
+        return inventory.GetItemCount(requiredItem.name) >= requiredAmount;
     }
 
-    
     public void CompleteQuest()
     {
-        if (Controller.Instance != null && CanCompleteQuest(Controller.Instance))
+        if (inventory != null && CanCompleteQuest())
         {
             // Discard the required number of items
             for (int i = 0; i < requiredAmount; i++)
@@ -36,7 +33,7 @@ public class SellingQuest : Quest
                 int itemIndex = FindItemIndexByType(requiredItem);
                 if (itemIndex != -1)
                 {
-                    Controller.Instance.DiscardItem(itemIndex);
+                    inventory.DiscardItem(itemIndex);
                 }
                 else
                 {
@@ -52,30 +49,24 @@ public class SellingQuest : Quest
         }
     }
 
-    // just for Finding the number of the item in inventory
     private int FindItemIndexByType(Items itemType)
     {
-        for (int i = 0; i < Controller.Instance.Item.Length; i++)
+        var itemsList = new List<InventoryItem>(inventory.itemsParent.GetComponentsInChildren<InventoryItem>());
+        for (int i = 0; i < itemsList.Count; i++)
         {
-            InventoryItem it = Controller.Instance.Item[i];
+            InventoryItem it = itemsList[i];
             ItemInside itemInside = it.GetComponentInChildren<ItemInside>();
             if (itemInside != null && itemInside.items == itemType)
             {
-                return i; // Found the item 
+                return i; // Found the item
             }
         }
         return -1; // Item not found
     }
 
-   
     public override void complete()
     {
-        if (!isComplete)
-        {
-            base.complete();
-            Debug.Log(title + " quest is completed. Congratulations!");
-           
-        }
+        base.complete();
+        Debug.Log(title + " quest is completed. Congratulations!");
     }
 }
-
