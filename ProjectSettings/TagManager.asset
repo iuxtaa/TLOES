@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Pause
   - New tag
+  - Questing
+  - NextMap
+  - PrevMap
   layers:
   - Default
   - TransparentFX
@@ -40,7 +43,10 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
+  - name: Scenic Background
+    uniqueID: 1787677399
+    locked: 0
+  - name: Terrain Background
     uniqueID: 3390673047
     locked: 0
   - name: Default
