@@ -73,6 +73,8 @@ public class DialogueScript : MonoBehaviour
             questGiver.openQuestUI();
             Debug.Log(questName);
         });
+        //add Binding function here that will call the buy function
+        //add another binding function that will call the sell function.
 
 
         NextLine();

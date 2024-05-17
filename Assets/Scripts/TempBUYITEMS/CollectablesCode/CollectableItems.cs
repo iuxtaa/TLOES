@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class CollectableItems : MonoBehaviour
 {
-  
+  //this script connects to the item you want to buy
     public Player player;
     private bool playerClose =false;
     public CollectableItemsType type;
     public Sprite icon;
-    public TempInventory inventoryCountCheck;
+   // public TempInventory inventoryCountCheck;
    
     public int changingnum = 0;
     public static int moneyAmount = 10;
@@ -114,7 +114,6 @@ public class CollectableItems : MonoBehaviour
                        
             }
         }
-
     }
 
     private bool CanRemoveItemFromInventory(CollectableItemsType itemType)
