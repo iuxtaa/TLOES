@@ -8,6 +8,7 @@ public class SlotManager : MonoBehaviour
 {
     public Image itemIcon;
     public TextMeshProUGUI amountText;
+    
 
     public void SetItem(TempInventory.Slot slot)
     {

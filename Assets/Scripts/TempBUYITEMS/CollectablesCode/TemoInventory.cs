@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TempInventory;
 
 [System.Serializable]
 public class TempInventory 
@@ -31,6 +32,8 @@ public class TempInventory
                 return false;
             }
         }
+
+      
 
         public void AddItem(CollectableItems item)
         {
@@ -83,6 +86,29 @@ public class TempInventory
                 slot.AddItem(item);
                 return;
             }
+        }
+    }
+
+    public void Removing(CollectableItems item)
+    {
+        foreach (Slot slot in slots)
+        {
+            if (slot.type == item.type && CanRemoveItem(slot))
+            {
+                slot.RemoveItem();
+                return;
+            }
+        }
+    }
+    public bool CanRemoveItem(Slot slot)
+    {
+        if (slot.count > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

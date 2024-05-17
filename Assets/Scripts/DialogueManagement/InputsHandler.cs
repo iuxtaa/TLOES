@@ -11,6 +11,7 @@ public class InputsHandler : MonoBehaviour
     private bool continuePressed;
     private bool inventoryPressed;
     private bool buyPressed;
+    private bool sellPressed;
 
     private static InputsHandler instance;
 
@@ -91,6 +92,24 @@ public class InputsHandler : MonoBehaviour
     {
         bool endresult = buyPressed;
         buyPressed = false;
+        return endresult;
+    }
+
+    public void sellButtonPressed(InputAction.CallbackContext action)
+    {
+        if (action.performed)
+        {
+            sellPressed = true;
+        }
+        else if (action.canceled)
+        {
+            sellPressed = false;
+        }
+    }
+    public bool sellButtonPressed()
+    {
+        bool endresult = sellPressed;
+        sellPressed = false;
         return endresult;
     }
 
