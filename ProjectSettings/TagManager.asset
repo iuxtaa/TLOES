@@ -7,6 +7,12 @@ TagManager:
   - Pause
   - New tag
   - Questing
+  - NextMap
+  - PrevMap
+  - HAM
+  - Wine
+  - Apple
+  - AppleSeller
   layers:
   - Default
   - TransparentFX
