@@ -13,8 +13,6 @@ TagManager:
   - Wine
   - Apple
   - AppleSeller
-  - EGG
-  - BOOK
   layers:
   - Default
   - TransparentFX

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryUI : MonoBehaviour
+public class TempInventoryUI : MonoBehaviour
 {
-    public GameObject inventoryPanel;
+    public GameObject tempInventoryPanel;
     public Player player;
     public List<SlotManager> slots = new List<SlotManager>();
    
@@ -21,26 +21,26 @@ public class InventoryUI : MonoBehaviour
     public void ToggleTempInventory()
     {
         
-        if (!inventoryPanel.activeSelf)
+        if (!tempInventoryPanel.activeSelf)
         {
-            inventoryPanel.SetActive(true);
+            tempInventoryPanel.SetActive(true);
            
         }
         else
         {
-            inventoryPanel.SetActive(false);   
+            tempInventoryPanel.SetActive(false);   
         }
     }
 
     public void Refresh()
     {
-        if(slots.Count == player.inventory.slots.Count)
+        if(slots.Count == player.tempInventory.slots.Count)
         {
             for(int i= 0; i<slots.Count; i++)
             {
-                if (player.inventory.slots[i].type != CollectableItemsType.NONE)
+                if (player.tempInventory.slots[i].type != CollectableItemsType.NONE)
                 {
-                    slots[i].SetItem(player.inventory.slots[i]);
+                    slots[i].SetItem(player.tempInventory.slots[i]);
                 }
                 else
                 {
@@ -52,7 +52,7 @@ public class InventoryUI : MonoBehaviour
 
     public void Remove(int slotNUM)
     {  
-            player.inventory.Remove(slotNUM);
+            player.tempInventory.Remove(slotNUM);
     }
 
 }

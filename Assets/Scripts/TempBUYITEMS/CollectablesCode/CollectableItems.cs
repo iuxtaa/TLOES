@@ -2,84 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class CollectableItems : MonoBehaviour
 {
   
     public Player player;
-    private bool playerClose = false;
+    private bool playerClose =false;
     public CollectableItemsType type;
     public Sprite icon;
-    public Inventory inventoryCountCheck;
+    public TempInventory inventoryCountCheck;
    
     public int changingnum = 0;
     public static int moneyAmount = 10;
-    private const int HAM_COST = 6;
-    private const int WINE_COST = 8;
-    private const int APPLE_CONST = 2;
-    private const int PAPER_CONST = 2;
-    private const int QUILL_CONST = 3;
+    private int hamCost = 6;
+    private int wineCost = 8;
+    private int appleCost = 2;
 
-    private const int HAM_SELL = 5;
-    private const int WINE_SELL = 6;
-    private const int APPLE_SELL = 1;
-    //public Quest currentQuest;
+    private int hamSell = 5;
+    private int wineSell = 6;
+    private int appleSell = 1;
 
     public void Update()
     {
         BuyItem();
         SellItem();
-       // ReceiveItem();
-        PickupItem();
         changingnum = moneyAmount;
     }
 
-    public void PickupItem()
-    {
-        if(playerClose)
-        {
-            if(this.gameObject.tag == "BOOK")
-            {
-                if(player.inventory.CanAddToCurrentSlot(this))
-                {
-                    player.inventory.Adding(this);
-                    Destroy(this.gameObject);
-                }
-            }
-        }
-    }
-
-    /* public void ReceiveItem()
-     {
-         if(playerClose && currentQuest.isActive)
-         {
-             if(this.gameObject.tag == "EGG")
-             {
-                 if(player.inventory.CanAddToCurrentSlot(this))
-                 {
-                     player.inventory.Adding(this);
-                 }
-             }
-
-             else if(this.gameObject.tag == "EMPTYBOTTLE")
-             {
-                 player.inventory.Adding(this);
-             }
-         }
-
-     }*/
-
+    
+   
     public void BuyItem()
     {
       if(playerClose && InputsHandler.GetInstance().buyButtonPressed())
         {
             if(this.gameObject.tag == "HAM")
             { 
-                if(moneyAmount>= HAM_COST)
+                if(moneyAmount>= hamCost)
                 {
-                    player.inventory.Adding(this);
-                    moneyAmount -= HAM_COST;
+                    player.tempInventory.Adding(this);
+                    moneyAmount -= hamCost;
                     Debug.Log("Ham picked up");
                 }
                 else
@@ -90,10 +51,10 @@ public class CollectableItems : MonoBehaviour
 
             else if (this.gameObject.tag == "Wine")
             {
-                if(moneyAmount>= WINE_COST)
+                if(moneyAmount>= wineCost)
                 {
-                    player.inventory.Adding(this);
-                    moneyAmount -= WINE_COST;
+                    player.tempInventory.Adding(this);
+                    moneyAmount -= wineCost;
                     Debug.Log("Wine picked up");
                 }
                 else
@@ -103,10 +64,10 @@ public class CollectableItems : MonoBehaviour
             }
             else if (this.gameObject.tag == "Apple")
             {
-                if(moneyAmount>= APPLE_CONST)
+                if(moneyAmount>= appleCost)
                 {
-                    player.inventory.Adding(this);
-                    moneyAmount -= APPLE_CONST;
+                    player.tempInventory.Adding(this);
+                    moneyAmount -= appleCost;
                     Debug.Log("Apple bought");
                 }
                 else
@@ -114,32 +75,6 @@ public class CollectableItems : MonoBehaviour
                     Debug.Log("Not enought money message will be triggered here");
                 }
                 
-            }
-
-            else if(this.gameObject.tag == "Paper")
-            {
-                if (moneyAmount>= PAPER_CONST)
-                {
-                    player.inventory.Adding(this);
-                    moneyAmount -= PAPER_CONST;
-                }
-                else
-                {
-                    Debug.Log("Not enought money message will be triggered here");
-                }
-            }
-
-            else if(this.gameObject.tag == "Quill")
-            {
-                if (moneyAmount>= QUILL_CONST)
-                {
-                    player.inventory.Adding(this);
-                    moneyAmount -= QUILL_CONST;
-                }
-                else
-                {
-                    Debug.Log("Not enought money message will be triggered here");
-                }
             }
         }
     }
@@ -153,8 +88,8 @@ public class CollectableItems : MonoBehaviour
             {
                 if (CanRemoveItemFromInventory(CollectableItemsType.HAM))
                 {
-                    player.inventory.Removing(this);
-                    moneyAmount += HAM_SELL;
+                    player.tempInventory.Removing(this);
+                    moneyAmount += hamSell;
                     Debug.Log("Ham Sold");
                 }
             }
@@ -163,8 +98,8 @@ public class CollectableItems : MonoBehaviour
             {
                 if (CanRemoveItemFromInventory(CollectableItemsType.WINE))
                 {
-                    player.inventory.Removing(this);
-                    moneyAmount += WINE_SELL;
+                    player.tempInventory.Removing(this);
+                    moneyAmount += wineSell;
                     Debug.Log("Wine Sold");
                 }
             }
@@ -172,8 +107,8 @@ public class CollectableItems : MonoBehaviour
             {
                 if(CanRemoveItemFromInventory(CollectableItemsType.APPLE))
                 {
-                    player.inventory.Removing(this);
-                    moneyAmount += APPLE_SELL;
+                    player.tempInventory.Removing(this);
+                    moneyAmount += appleSell;
                     Debug.Log("Apple Sold");
                 }
                        
@@ -184,16 +119,15 @@ public class CollectableItems : MonoBehaviour
 
     private bool CanRemoveItemFromInventory(CollectableItemsType itemType)
     {
-        foreach (var slot in player.inventory.slots)
+        foreach (var slot in player.tempInventory.slots)
         {
             if (slot.type == itemType)
             {
-                return player.inventory.CanRemoveItem(slot);
+                return player.tempInventory.CanRemoveItem(slot);
             }
         }
         return false;
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -213,5 +147,5 @@ public class CollectableItems : MonoBehaviour
 
 public enum CollectableItemsType
 {
-    NONE, HAM, APPLE, WINE, EGG, PAPER, QUILL, EMPTYBOTTLE, WATERBOTTLE, BOOK
+    NONE, HAM, APPLE, WINE
 }

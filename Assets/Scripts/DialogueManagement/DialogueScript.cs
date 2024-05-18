@@ -21,13 +21,6 @@ public class DialogueScript : MonoBehaviour
     private TextMeshProUGUI[] choicesText;
 
     public QuestGiver questGiver;
-
-    [Header("Dialogue Choice Options UI")]
-    public MarketTrigger AppleSellerTrigger;
-    public MarketTrigger HamSellerTrigger;
-    public MarketTrigger WineSellerTrigger;
-
-
     private Coroutine typingDialogue;
     private bool canContinueNext;
 
@@ -80,23 +73,6 @@ public class DialogueScript : MonoBehaviour
             questGiver.openQuestUI();
             Debug.Log(questName);
         });
-        //add Binding function here that will call the buy function
-         currentDialogue.BindExternalFunction("buyingandsellingApples", (string AppleActivity) =>
-          {
-              AppleSellerTrigger.purchase();  
-              Debug.Log(AppleActivity); 
-         });
-        currentDialogue.BindExternalFunction("buyingandsellingHam", (string HamActivity) =>
-        {
-            HamSellerTrigger.purchase();
-            Debug.Log(HamActivity);
-        });
-        currentDialogue.BindExternalFunction("buyingandsellingWine", (string WineActivity) =>
-        {
-            WineSellerTrigger.purchase();
-            Debug.Log(WineActivity);
-        });
-        //add another binding function that will call the sell function.
 
 
         NextLine();
@@ -105,9 +81,6 @@ public class DialogueScript : MonoBehaviour
     private void LeaveDialogueView()
     {
         currentDialogue.UnbindExternalFunction("beginQuest");
-        currentDialogue.UnbindExternalFunction("buyingandsellingApples");
-        currentDialogue.UnbindExternalFunction("buyingandsellingHam");
-        currentDialogue.UnbindExternalFunction("buyingandsellingWine");
         currentDialogueIsPlaying = false;
         dialogueDisplay.SetActive(false);
         dialogueText.text = "";
