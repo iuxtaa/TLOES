@@ -8,16 +8,30 @@ public class DoingQuestObjective : QuestObjective
 {
     public DoingQuestObjective(string description) : base(description)
     {
-        
+    }
+
+    public void doObjective()
+    {
+        completionStatus = true;
     }
 
     public override bool checkCanComplete()
     {
-        throw new System.NotImplementedException();
+        if(completionStatus)
+        {
+            complete();
+            return true ;
+        }
+        return false;
     }
 
     public override string toString()
     {
-        return description + completionStatus;
+        return description + " " + readableStatus();
+    }
+
+    private string readableStatus()
+    {
+        return (completionStatus ? "Done" : "");
     }
 }

@@ -11,7 +11,7 @@ public class Quest : ScriptableObject
     public int questNumber;
 
     public bool isActive; // boolean for quest activity status
-    public bool isComplete; // boolean for quest completion status
+    public bool completionStatus; // boolean for quest completion status
 
     public string title;
     public string description;
@@ -28,7 +28,7 @@ public class Quest : ScriptableObject
         this.description = string.Empty;
         this.favourabilityReward = 0;
         this.isActive = false;
-        this.isComplete = false;
+        this.completionStatus = false;
 
         this.objectives = new List<QuestObjective>(); // Initialize the objectives list
     }
@@ -41,7 +41,7 @@ public class Quest : ScriptableObject
         this.description = desc;
         this.favourabilityReward = favourabilityReward;
         this.isActive = false;
-        this.isComplete = false;
+        this.completionStatus = false;
 
         this.objectives = new List<QuestObjective>(); // Initialize the objectives list
     }
@@ -49,17 +49,19 @@ public class Quest : ScriptableObject
     // METHODS
     public bool canComplete()
     {
-        for(int i = 0; i < objectives.Count; i++)
+        for(int i = 0; i < objectives.Count - 1; i++)
         {
             if (objectives[i].completionStatus == false)
                 return false;
         }
+        complete();
         return true;
     }
 
     public void complete()
     {
-        isComplete = true;
+        this.isActive = false;
+        this.completionStatus = true;
         Debug.Log(title + " quest is complete");
     }
 

@@ -15,7 +15,8 @@ MonoBehaviour:
   questNumber: 1
   isActive: 0
   isComplete: 0
-  title: 
-  description: 
+  title: The Knight's Letter
+  description: Write the letter for the knight to his family.
   favourabilityReward: 0
-  objectives: []
+  objectives:
+  - {fileID: 11400000, guid: ab9e3ff8f8eb3354b8c83094467df76b, type: 2}

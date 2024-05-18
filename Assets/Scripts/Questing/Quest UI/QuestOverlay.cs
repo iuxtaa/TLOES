@@ -31,7 +31,7 @@ public class QuestOverlay : MonoBehaviour
     {
         if (player != null && Player.currentQuest != null)
         {
-            if(Player.currentQuest.isActive && !Player.currentQuest.isComplete)
+            if(Player.currentQuest.isActive && !Player.currentQuest.completionStatus)
             {
                 openQuestOverlay();
             }
