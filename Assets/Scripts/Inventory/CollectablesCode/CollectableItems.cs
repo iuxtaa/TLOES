@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Ink.Parsed;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,6 +13,8 @@ public class CollectableItems : MonoBehaviour
     public CollectableItemsType type;
     public Sprite icon;
     public Inventory inventoryCountCheck;
+    public GameObject popupText;
+
    
     public int changingnum = 0;
     public static int moneyAmount = 10;
@@ -33,6 +36,7 @@ public class CollectableItems : MonoBehaviour
        // ReceiveItem();
         PickupItem();
         changingnum = moneyAmount;
+        popupText.GetComponent<Animator>().Play("Default");
     }
 
     public void PickupItem()
@@ -80,12 +84,15 @@ public class CollectableItems : MonoBehaviour
                 {
                     player.inventory.Adding(this);
                     moneyAmount -= HAM_COST;
+                    popupText.GetComponent<TextMeshProUGUI>().text = "Ham has been added to your inventory.";
                     Debug.Log("Ham picked up");
                 }
                 else
                 {
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You do not have enough money to buy ham.";
                     Debug.Log("Not enought money message will be triggered here");
-                }    
+                }
+                // popupText.GetComponent<Animator>().Play("Popup");    
             }
 
             else if (this.gameObject.tag == "Wine")
@@ -94,10 +101,12 @@ public class CollectableItems : MonoBehaviour
                 {
                     player.inventory.Adding(this);
                     moneyAmount -= WINE_COST;
+                    popupText.GetComponent<TextMeshProUGUI>().text = "Wine has been added to your inventory.";
                     Debug.Log("Wine picked up");
                 }
                 else
                 {
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You do not have enough money to buy wine.";
                     Debug.Log("Not enought money message will be triggered here");
                 }  
             }
@@ -107,10 +116,12 @@ public class CollectableItems : MonoBehaviour
                 {
                     player.inventory.Adding(this);
                     moneyAmount -= APPLE_CONST;
+                    // popupText.GetComponent<TextMeshProUGUI>().text = "Apple has been added to your inventory.";
                     Debug.Log("Apple bought");
                 }
                 else
                 {
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You do not have enough money to buy apple.";
                     Debug.Log("Not enought money message will be triggered here");
                 }
                 
@@ -141,7 +152,9 @@ public class CollectableItems : MonoBehaviour
                     Debug.Log("Not enought money message will be triggered here");
                 }
             }
+            popupText.GetComponent<Animator>().Play("Popup");
         }
+        // popupText.GetComponent<Animator>().Play("Popup");
     }
 
    public void SellItem()
