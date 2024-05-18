@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryUI : MonoBehaviour
+public class TempInventoryUI : MonoBehaviour
 {
-    public GameObject inventoryPanel;
+    public GameObject tempInventoryPanel;
     public Player player;
     public List<SlotManager> slots = new List<SlotManager>();
    
@@ -21,14 +21,14 @@ public class InventoryUI : MonoBehaviour
     public void ToggleTempInventory()
     {
         
-        if (!inventoryPanel.activeSelf)
+        if (!tempInventoryPanel.activeSelf)
         {
-            inventoryPanel.SetActive(true);
+            tempInventoryPanel.SetActive(true);
            
         }
         else
         {
-            inventoryPanel.SetActive(false);   
+            tempInventoryPanel.SetActive(false);   
         }
     }
 

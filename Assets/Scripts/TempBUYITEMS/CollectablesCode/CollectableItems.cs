@@ -10,17 +10,17 @@ public class CollectableItems : MonoBehaviour
     private bool playerClose =false;
     public CollectableItemsType type;
     public Sprite icon;
-    public Inventory inventoryCountCheck;
+   // public TempInventory inventoryCountCheck;
    
     public int changingnum = 0;
     public static int moneyAmount = 10;
-    private const int HAM_COST = 6;
-    private const int WINE_COST = 8;
-    private const int APPLE_CONST = 2;
+    private int hamCost = 6;
+    private int wineCost = 8;
+    private int appleCost = 2;
 
-    private const int HAM_SELL = 5;
-    private const int WINE_SELL = 6;
-    private const int APPLE_SELL = 1;
+    private int hamSell = 5;
+    private int wineSell = 6;
+    private int appleSell = 1;
 
     public void Update()
     {
@@ -37,10 +37,10 @@ public class CollectableItems : MonoBehaviour
         {
             if(this.gameObject.tag == "HAM")
             { 
-                if(moneyAmount>= HAM_COST)
+                if(moneyAmount>= hamCost)
                 {
                     player.tempInventory.Adding(this);
-                    moneyAmount -= HAM_COST;
+                    moneyAmount -= hamCost;
                     Debug.Log("Ham picked up");
                 }
                 else
@@ -51,10 +51,10 @@ public class CollectableItems : MonoBehaviour
 
             else if (this.gameObject.tag == "Wine")
             {
-                if(moneyAmount>= WINE_COST)
+                if(moneyAmount>= wineCost)
                 {
                     player.tempInventory.Adding(this);
-                    moneyAmount -= WINE_COST;
+                    moneyAmount -= wineCost;
                     Debug.Log("Wine picked up");
                 }
                 else
@@ -64,10 +64,10 @@ public class CollectableItems : MonoBehaviour
             }
             else if (this.gameObject.tag == "Apple")
             {
-                if(moneyAmount>= APPLE_CONST)
+                if(moneyAmount>= appleCost)
                 {
                     player.tempInventory.Adding(this);
-                    moneyAmount -= APPLE_CONST;
+                    moneyAmount -= appleCost;
                     Debug.Log("Apple bought");
                 }
                 else
@@ -89,7 +89,7 @@ public class CollectableItems : MonoBehaviour
                 if (CanRemoveItemFromInventory(CollectableItemsType.HAM))
                 {
                     player.tempInventory.Removing(this);
-                    moneyAmount += HAM_SELL;
+                    moneyAmount += hamSell;
                     Debug.Log("Ham Sold");
                 }
             }
@@ -99,7 +99,7 @@ public class CollectableItems : MonoBehaviour
                 if (CanRemoveItemFromInventory(CollectableItemsType.WINE))
                 {
                     player.tempInventory.Removing(this);
-                    moneyAmount += WINE_SELL;
+                    moneyAmount += wineSell;
                     Debug.Log("Wine Sold");
                 }
             }
@@ -108,7 +108,7 @@ public class CollectableItems : MonoBehaviour
                 if(CanRemoveItemFromInventory(CollectableItemsType.APPLE))
                 {
                     player.tempInventory.Removing(this);
-                    moneyAmount += APPLE_SELL;
+                    moneyAmount += appleSell;
                     Debug.Log("Apple Sold");
                 }
                        
