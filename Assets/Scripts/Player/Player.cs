@@ -8,6 +8,8 @@ public class Player : Character {
 
     #region Variables
 
+    // CONSTANT VARIABLES
+    public const int MAX_SLOTS = 5;
     // INSTANCE VARIABLES 
     public static int favourability;
     public static Dictionary<string, int> inventory = new Dictionary<string, int>();  // Initialize inventory
@@ -15,7 +17,7 @@ public class Player : Character {
     public Quest[] questHistory = new Quest[3];
     public VectorValue startingPosition;
    
-    public TempInventory tempInventory;// this is the temperary code for the inventory
+    public Inventory tempInventory;// this is the temperary code for the inventory
     
 
 
@@ -46,7 +48,7 @@ public class Player : Character {
     {
         transform.position = startingPosition.changingValue;
         startingPosition.changingValue = startingPosition.initialValue;
-        tempInventory = new TempInventory(4);//temperary inventory stuff might delete later
+        tempInventory = new Inventory(MAX_SLOTS);//temperary inventory stuff might delete later
     }
 
    
