@@ -9,6 +9,9 @@ public class InputsHandler : MonoBehaviour
     private Vector2 move;
     private bool interact;
     private bool continuePressed;
+    private bool inventoryPressed;
+    private bool buyPressed;
+    private bool sellPressed;
 
     private static InputsHandler instance;
 
@@ -55,6 +58,63 @@ public class InputsHandler : MonoBehaviour
         continuePressed = false;
         return endresult;
     }
+
+    public void inventoryButtonPressed(InputAction.CallbackContext action)
+    {
+        if (action.performed)
+        {
+            inventoryPressed = true;
+        }
+        else if (action.canceled)
+        {
+            inventoryPressed = false;
+        }
+    }
+    public bool inventoryButtonPressed()
+    {
+        bool endresult = inventoryPressed;
+        inventoryPressed = false;
+        return endresult;
+    }
+
+    public void buyButtonPressed(InputAction.CallbackContext action)
+    {
+        if (action.performed)
+        {
+            buyPressed = true;
+        }
+        else if (action.canceled)
+        {
+            buyPressed = false;
+        }
+    }
+    public bool buyButtonPressed()
+    {
+        bool endresult = buyPressed;
+        buyPressed = false;
+        return endresult;
+    }
+
+    public void sellButtonPressed(InputAction.CallbackContext action)
+    {
+        if (action.performed)
+        {
+            sellPressed = true;
+        }
+        else if (action.canceled)
+        {
+            sellPressed = false;
+        }
+    }
+    public bool sellButtonPressed()
+    {
+        bool endresult = sellPressed;
+        sellPressed = false;
+        return endresult;
+    }
+
+
+
 
     public void InteractPressed(InputAction.CallbackContext action)
     {

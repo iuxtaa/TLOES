@@ -9,6 +9,10 @@ TagManager:
   - Questing
   - NextMap
   - PrevMap
+  - HAM
+  - Wine
+  - Apple
+  - AppleSeller
   layers:
   - Default
   - TransparentFX
