@@ -12,7 +12,7 @@ public class MarketTrigger : MonoBehaviour
     [SerializeField] private GameObject promptIcon;
 
     private NPCmovement NPClook;
-    private GameObject invent;
+    public GameObject invent;
 
 
     private void Awake()
@@ -20,7 +20,7 @@ public class MarketTrigger : MonoBehaviour
         playerClose = false;
         promptIcon.SetActive(false);
         NPClook = GetComponent<NPCmovement>();
-        invent = GameObject.Find("inventorybg");
+        // invent = GameObject.Find("inventorybg");
 
     }
 

@@ -1,29 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static TempInventory;
 
 [System.Serializable]
-public class TempInventory 
+public class Inventory 
 {
     [System.Serializable]
     public class Slot
     {
+        // CONSTANT VARIABLES
+        public const int MAX_DEFAULT_STACK = 5;
         public CollectableItemsType type;
         public int count;
-        public int MaxAllowed;
         public Sprite Icon;
 
         public Slot()
         {
             type = CollectableItemsType.NONE;
             count = 0;
-            MaxAllowed = 3;
         }
 
         public bool CanAddItem()
         {
-            if(count < MaxAllowed)
+            if(count < MAX_DEFAULT_STACK)
             {
                 return true;
             }
@@ -59,7 +58,7 @@ public class TempInventory
 
     }
     public List<Slot> slots = new List<Slot>();
-    public TempInventory(int numSlots)
+    public Inventory(int numSlots)
     {
         for(int i = 0; i < numSlots; i++)
         {
