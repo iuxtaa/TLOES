@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CollectableItems : MonoBehaviour
 {
@@ -23,22 +24,42 @@ public class CollectableItems : MonoBehaviour
     private const int HAM_SELL = 5;
     private const int WINE_SELL = 6;
     private const int APPLE_SELL = 1;
+    public Quest currentQuest;
 
     public void Update()
     {
         BuyItem();
         SellItem();
         ReceiveItem();
+        PickupItem();
         changingnum = moneyAmount;
+    }
+
+    public void PickupItem()
+    {
+        if(playerClose)
+        {
+            if(this.gameObject.tag == "BOOK")
+            {
+                if(player.inventory.CanAddToCurrentSlot(this))
+                {
+                    player.inventory.Adding(this);
+                    Destroy(this.gameObject);
+                }
+            }
+        }
     }
 
     public void ReceiveItem()
     {
-        if(playerClose && player.GetQuest().isActive)
+        if(playerClose && currentQuest.isActive)
         {
             if(this.gameObject.tag == "EGG")
             {
-                player.inventory.Adding(this);
+                if(player.inventory.CanAddToCurrentSlot(this))
+                {
+                    player.inventory.Adding(this);
+                }
             }
 
             else if(this.gameObject.tag == "EMPTYBOTTLE")
@@ -48,7 +69,7 @@ public class CollectableItems : MonoBehaviour
         }
 
     }
-   
+
     public void BuyItem()
     {
       if(playerClose && InputsHandler.GetInstance().buyButtonPressed())
@@ -172,6 +193,7 @@ public class CollectableItems : MonoBehaviour
         }
         return false;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -191,5 +213,5 @@ public class CollectableItems : MonoBehaviour
 
 public enum CollectableItemsType
 {
-    NONE, HAM, APPLE, WINE, EGG, PAPER, QUILL, EMPTYBOTTLE, WATERBOTTLE
+    NONE, HAM, APPLE, WINE, EGG, PAPER, QUILL, EMPTYBOTTLE, WATERBOTTLE, BOOK
 }
