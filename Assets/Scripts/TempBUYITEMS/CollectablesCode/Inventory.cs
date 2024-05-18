@@ -4,6 +4,7 @@ using System.Xml.Serialization;
 using Ink.Parsed;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Inventory;
 
 [System.Serializable]
 public class Inventory 
@@ -11,10 +12,9 @@ public class Inventory
     [System.Serializable]
     public class Slot
     {
-        // CONSTANT VARIABLES
-        public const int MAX_DEFAULT_STACK = 5;
         public CollectableItemsType type;
         public int count;
+        public const int MAX_DEFAULT_STACK =5;
         public Sprite Icon;
 
         public Slot()
