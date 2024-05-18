@@ -11,5 +11,12 @@ public class DoingQuest : Quest
     }
 
 
+
+
+
     // METHODS
+    public override string progress()
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -23,7 +23,7 @@ public class SellingQuest : Quest
         return true;
     }
 
-    public string progress()
+    public override string progress()
     {
         return "1" + "/" + requiredAmount;
     }

@@ -27,7 +27,7 @@ public class CollectingQuest : Quest  // Inherits from Quest
         return currentAmount >= requiredAmount;
     }
     
-    public string progress()
+    public override string progress()
     {
         return "1" + "/" + requiredAmount;
     }

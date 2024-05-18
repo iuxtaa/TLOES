@@ -19,16 +19,11 @@ public class QuestObjective
 
     public string objectiveToString()
     {
-        if(state == State.NUMBERABLE)
+        if (state == State.NUMBERABLE)
         {
-            if (Player.currentQuest is SellingQuest sellingQuest)
-                return description + " " + sellingQuest.progress();
-            if (Player.currentQuest is CollectingQuest collectingQuest)
-                return description + " " + collectingQuest.progress();
-            else
-                return description;
+            return description + " " + Player.currentQuest.progress();
         }
-        else 
+        else
         {
             return description + " " + isComplete;
         }

@@ -63,4 +63,6 @@ public abstract class Quest : ScriptableObject
         }
         return output;
     }
+
+    public abstract string progress();
 }
