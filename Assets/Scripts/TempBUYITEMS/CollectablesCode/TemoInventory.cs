@@ -1,5 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
+using Ink.Parsed;
+using Unity.VisualScripting;
 using UnityEngine;
 using static TempInventory;
 
@@ -110,6 +113,27 @@ public class TempInventory
         {
             return false;
         }
+    }
+
+    public bool CanAddToCurrentSlot(CollectableItems item)
+    {
+        foreach (Slot slot in slots)
+        {
+            if(slot.type != CollectableItemsType.NONE)
+            {
+                continue;
+            }
+            else
+            {
+                slot.type = item.type;
+                if(slot.count == 0)
+                {
+                    // slot.type = item.type;
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void Remove(int index)
