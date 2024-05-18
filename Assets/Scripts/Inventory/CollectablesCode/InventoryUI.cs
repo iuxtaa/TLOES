@@ -34,13 +34,13 @@ public class InventoryUI : MonoBehaviour
 
     public void Refresh()
     {
-        if(slots.Count == player.tempInventory.slots.Count)
+        if(slots.Count == player.inventory.slots.Count)
         {
             for(int i= 0; i<slots.Count; i++)
             {
-                if (player.tempInventory.slots[i].type != CollectableItemsType.NONE)
+                if (player.inventory.slots[i].type != CollectableItemsType.NONE)
                 {
-                    slots[i].SetItem(player.tempInventory.slots[i]);
+                    slots[i].SetItem(player.inventory.slots[i]);
                 }
                 else
                 {
@@ -52,7 +52,7 @@ public class InventoryUI : MonoBehaviour
 
     public void Remove(int slotNUM)
     {  
-            player.tempInventory.Remove(slotNUM);
+            player.inventory.Remove(slotNUM);
     }
 
 }
