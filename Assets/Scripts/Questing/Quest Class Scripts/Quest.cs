@@ -19,13 +19,6 @@ public abstract class Quest : ScriptableObject
 
     public List<QuestObjective> objectives; // List of objectives for the quest
 
-    protected InventoryController inventory;
-
-    public void Initialize(InventoryController inventory)
-    {
-        this.inventory = inventory;
-    }
-
     // CONSTRUCTOR
     public Quest()
     {
@@ -59,5 +52,15 @@ public abstract class Quest : ScriptableObject
     {
         isComplete = true;
         Debug.Log("Completed Quest ");
+    }
+
+    public string objectivesToString()
+    {
+        string output = "";
+        for (int i = 0; i < objectives.Count; i++)
+        {
+            output += "   " + objectives[i].objectiveToString() + "\n";
+        }
+        return output;
     }
 }

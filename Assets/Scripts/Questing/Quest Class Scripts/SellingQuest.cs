@@ -4,78 +4,28 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Selling Quest", menuName = "Quest System/Selling Quest")]
 
-
-
-
 public class SellingQuest : Quest
 {
-    public Items requiredItem; 
+    public CollectableItems requiredItem; 
     public int requiredAmount;
 
     // Constructor
-    public SellingQuest(Items requiredItem, int requiredAmount)
+    public SellingQuest(CollectableItems requiredItem, int requiredAmount)
     {
         this.requiredItem = requiredItem;
         this.requiredAmount = requiredAmount;
     }
 
-    
-    public bool CanCompleteQuest(InventoryController inventory)
+    // METHODS
+    public bool canComplete()
     {
-        return inventory.GetItemCount(requiredItem) >= requiredAmount;
+        //if Player.inventory.
+        return true;
     }
 
-    
-    public void CompleteQuest()
+    public string progress()
     {
-        if (InventoryController.Instance != null && CanCompleteQuest(InventoryController.Instance))
-        {
-            // Discard the required number of items
-            for (int i = 0; i < requiredAmount; i++)
-            {
-                int itemIndex = FindItemIndexByType(requiredItem);
-                if (itemIndex != -1)
-                {
-                    InventoryController.Instance.DiscardItem(itemIndex);
-                }
-                else
-                {
-                    Debug.Log("Error: Not enough items left to discard.");
-                    break;
-                }
-            }
-            complete();
-        }
-        else
-        {
-            Debug.Log("Cannot complete quest. Item count not sufficient or Controller not available.");
-        }
-    }
-
-    // just for Finding the number of the item in inventory
-    private int FindItemIndexByType(Items itemType)
-    {
-        for (int i = 0; i < InventoryController.Instance.Item.Length; i++)
-        {
-            InventoryItem it = InventoryController.Instance.Item[i];
-            ItemInside itemInside = it.GetComponentInChildren<ItemInside>();
-            if (itemInside != null && itemInside.items == itemType)
-            {
-                return i; // Found the item 
-            }
-        }
-        return -1; // Item not found
-    }
-
-   
-    public override void complete()
-    {
-        if (!isComplete)
-        {
-            base.complete();
-            Debug.Log(title + " quest is completed. Congratulations!");
-           
-        }
+        return "1" + "/" + requiredAmount;
     }
 }
 

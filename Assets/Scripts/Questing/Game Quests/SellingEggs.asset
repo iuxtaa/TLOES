@@ -18,5 +18,12 @@ MonoBehaviour:
   title: Selling Eggs
   description: Sell your father's chicken eggs at the market!
   favourabilityReward: 5
+  objectives:
+  - description: Sell all your eggs
+    isActive: 0
+    isComplete: 0
+  - description: Talk to your father
+    isActive: 0
+    isComplete: 0
   requiredItem: {fileID: 11400000, guid: 3cf81453aa2620a4ba5521aa1efa0c5f, type: 2}
-  requiredAmount: 3
+  requiredAmount: 5

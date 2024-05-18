@@ -12,6 +12,7 @@ public class QuestOverlay : MonoBehaviour
     public GameObject questWindow;
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI descriptionText;
+    public TextMeshProUGUI objectiveText;
 
     private void Awake()
     {
@@ -41,6 +42,7 @@ public class QuestOverlay : MonoBehaviour
         questWindow.SetActive(true);
         titleText.text = Player.currentQuest.title;
         descriptionText.text = Player.currentQuest.description;
+        objectiveText.text = Player.currentQuest.objectivesToString();
     }
 
 }

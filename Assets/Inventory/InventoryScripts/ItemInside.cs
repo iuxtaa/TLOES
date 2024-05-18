@@ -16,7 +16,7 @@ public class ItemInside : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public Image Picture;
     public TextMeshProUGUI countText;
 
-    [HideInInspector] public Items items;
+    [HideInInspector] public CollectableItems items;
     [HideInInspector] public Transform AfterDrag;
     public int count = 1;
 
@@ -31,10 +31,10 @@ public class ItemInside : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     }
 
 
-    public void InitialiseItem(Items Newitems)
+    public void InitialiseItem(CollectableItems Newitems)
     {
         items = Newitems;
-        Picture.sprite = Newitems.Image;
+        //Picture.sprite = Newitems.Image;
 
         Count = 1;
     }
