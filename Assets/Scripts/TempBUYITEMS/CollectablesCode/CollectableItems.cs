@@ -24,13 +24,13 @@ public class CollectableItems : MonoBehaviour
     private const int HAM_SELL = 5;
     private const int WINE_SELL = 6;
     private const int APPLE_SELL = 1;
-    public Quest currentQuest;
+    //public Quest currentQuest;
 
     public void Update()
     {
         BuyItem();
         SellItem();
-        ReceiveItem();
+       // ReceiveItem();
         PickupItem();
         changingnum = moneyAmount;
     }
@@ -50,25 +50,25 @@ public class CollectableItems : MonoBehaviour
         }
     }
 
-    public void ReceiveItem()
-    {
-        if(playerClose && currentQuest.isActive)
-        {
-            if(this.gameObject.tag == "EGG")
-            {
-                if(player.inventory.CanAddToCurrentSlot(this))
-                {
-                    player.inventory.Adding(this);
-                }
-            }
+    /* public void ReceiveItem()
+     {
+         if(playerClose && currentQuest.isActive)
+         {
+             if(this.gameObject.tag == "EGG")
+             {
+                 if(player.inventory.CanAddToCurrentSlot(this))
+                 {
+                     player.inventory.Adding(this);
+                 }
+             }
 
-            else if(this.gameObject.tag == "EMPTYBOTTLE")
-            {
-                player.inventory.Adding(this);
-            }
-        }
+             else if(this.gameObject.tag == "EMPTYBOTTLE")
+             {
+                 player.inventory.Adding(this);
+             }
+         }
 
-    }
+     }*/
 
     public void BuyItem()
     {

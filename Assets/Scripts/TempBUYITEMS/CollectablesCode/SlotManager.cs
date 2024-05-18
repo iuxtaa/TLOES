@@ -10,7 +10,7 @@ public class SlotManager : MonoBehaviour
     public TextMeshProUGUI amountText;
     
 
-    public void SetItem(TempInventory.Slot slot)
+    public void SetItem(Inventory.Slot slot)
     {
         if(slot != null)
         {

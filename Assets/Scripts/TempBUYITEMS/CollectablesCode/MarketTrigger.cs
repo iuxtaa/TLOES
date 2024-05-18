@@ -57,10 +57,15 @@ public class MarketTrigger : MonoBehaviour
             {
                 promptIcon.SetActive(true);
             }
+            else
+            {
+                promptIcon.SetActive(false);
+            }
         }
-        else //if(!playerClose)
+        else if(!playerClose)
         {
             promptmessage.SetActive(false);
+            promptIcon.SetActive(false);
         }
         
       
