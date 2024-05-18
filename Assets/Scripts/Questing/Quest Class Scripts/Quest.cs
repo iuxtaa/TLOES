@@ -10,12 +10,14 @@ public abstract class Quest : ScriptableObject
     // PRIVATE INSTANCE VARIABLES
     public int questNumber;
 
-    public bool isActive; // boolean for quest status
-    public bool isComplete;
+    public bool isActive; // boolean for quest activity status
+    public bool isComplete; // boolean for quest completion status
 
     public string title;
     public string description;
     public int favourabilityReward;
+
+    public List<QuestObjective> objectives; // List of objectives for the quest
 
     protected InventoryController inventory;
 
@@ -34,6 +36,8 @@ public abstract class Quest : ScriptableObject
         this.favourabilityReward = 0;
         this.isActive = false;
         this.isComplete = false;
+
+        this.objectives = new List<QuestObjective>(); // Initialize the objectives list
     }
 
     
@@ -45,8 +49,9 @@ public abstract class Quest : ScriptableObject
         this.favourabilityReward = favourabilityReward;
         this.isActive = false;
         this.isComplete = false;
-    }
 
+        this.objectives = new List<QuestObjective>(); // Initialize the objectives list
+    }
 
     // METHODS
 
