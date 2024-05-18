@@ -145,3 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   type: 1
+  icon: {fileID: 0}
+  inventoryCountCheck:
+    slots: []
+  changingnum: 0
