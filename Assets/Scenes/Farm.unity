@@ -5463,7 +5463,7 @@ MonoBehaviour:
   promptIcon: {fileID: 1302788328}
   DialogueFile: {fileID: 4900000, guid: b2de40e746485e041abb0b79d1ae567b, type: 3}
   DialogueFile2: {fileID: 4900000, guid: 80d4a46d34e315049bb478605ae43258, type: 3}
-  questCheck: {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
+  questCheck: {fileID: 11400000, guid: 603aad6306cb9d74c8f716b6d40953c9, type: 2}
   player: {fileID: 921882241}
 --- !u!114 &591285154
 MonoBehaviour:
@@ -5477,7 +5477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628491345b4c9d04aa0c59b5a2f992c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  quest: {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
+  quest: {fileID: 11400000, guid: 603aad6306cb9d74c8f716b6d40953c9, type: 2}
   player: {fileID: 921882241}
   questWindow: {fileID: 1726614711}
   questOverlay: {fileID: 1726614710}
@@ -6942,8 +6942,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questHistory:
   - {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
-  - {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
-  - {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   startingPosition: {fileID: 11400000, guid: fce9b2cfa7deaa14db422030ecbd1ac9, type: 2}
   inventory:
     slots: []
@@ -8821,7 +8821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1284846651
 RectTransform:
   m_ObjectHideFlags: 0

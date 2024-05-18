@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102cd6e59845c4f4ea6f3f8ac7e627ef, type: 3}
-  m_Name: KnightsLetter
+  m_Script: {fileID: 11500000, guid: 712be4712a2427b4582f4bed48aff80d, type: 3}
+  m_Name: SellEggs
   m_EditorClassIdentifier: 
-  questNumber: 1
-  isActive: 0
-  isComplete: 0
-  title: 
-  description: 
-  favourabilityReward: 0
-  objectives: []
+  description: Sell your father's eggs
+  completionStatus: 0
+  requiredItem: {fileID: 0}
+  requiredSellingAmount: 5
+  sellingCount: 0

@@ -3,37 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class QuestObjective
+[CreateAssetMenu(fileName = "New Quest Objective", menuName = "Quest System/Quest Objective")]
+public abstract class QuestObjective : ScriptableObject
 {
     public string description;
-    public bool isActive;
-    public bool isComplete;
-    public State state;
+    public bool completionStatus;
 
-    public QuestObjective(string description, State state)
+    public QuestObjective(string description)
     {
         this.description = description;
-        this.isComplete = false;
-        this.state = state;
+        this.completionStatus = false;
     }
 
-    public string objectiveToString()
+    public abstract bool checkCanComplete();
+    public void complete()
     {
-        if (state == State.NUMBERABLE)
-        {
-            return description + " " + Player.currentQuest.progress();
-        }
-        else
-        {
-            return description + " " + isComplete;
-        }
+        this.completionStatus = true;
     }
-
-    public enum State
-    {
-        NUMBERABLE,
-        SIMPLE
-    }
-
+    public abstract string toString();
 }
 

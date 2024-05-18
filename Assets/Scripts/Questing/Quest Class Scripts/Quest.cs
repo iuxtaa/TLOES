@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 [System.Serializable] // Unity will serialize these fields so that they will show up in the Inspector
 [CreateAssetMenu(fileName = "New Quest", menuName = "Quest System/Quest")]
-public abstract class Quest : ScriptableObject
+public class Quest : ScriptableObject
 {
     // PRIVATE INSTANCE VARIABLES
     public int questNumber;
@@ -47,22 +47,29 @@ public abstract class Quest : ScriptableObject
     }
 
     // METHODS
+    public bool canComplete()
+    {
+        for(int i = 0; i < objectives.Count; i++)
+        {
+            if (objectives[i].completionStatus == false)
+                return false;
+        }
+        return true;
+    }
 
-    public virtual void complete()
+    public void complete()
     {
         isComplete = true;
-        Debug.Log("Completed Quest ");
+        Debug.Log(title + " quest is complete");
     }
 
     public string objectivesToString()
     {
         string output = "";
-        for (int i = 0; i < objectives.Count; i++)
+        for(int i =0; i < objectives.Count;i++)
         {
-            output += "   " + objectives[i].objectiveToString() + "\n";
+            output += objectives[i].toString() + "\n";
         }
         return output;
     }
-
-    public abstract string progress();
 }
