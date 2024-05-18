@@ -8,14 +8,16 @@ public class Player : Character {
 
     #region Variables
 
+    // CONSTANT VARIABLES
+    public const int MAX_SLOTS = 5;
     // INSTANCE VARIABLES 
     public static int favourability;
-    public static Dictionary<string, int> inventory = new Dictionary<string, int>();  // Initialize inventory
+    public static Dictionary<string, int> tempinventory2 = new Dictionary<string, int>();  // Initialize inventory
     [SerializeField] public static Quest currentQuest;
     public Quest[] questHistory = new Quest[3];
     public VectorValue startingPosition;
    
-    public TempInventory tempInventory;// this is the temperary code for the inventory
+    public Inventory inventory;// this is the temperary code for the inventory
     
 
 
@@ -46,7 +48,7 @@ public class Player : Character {
     {
         transform.position = startingPosition.changingValue;
         startingPosition.changingValue = startingPosition.initialValue;
-        tempInventory = new TempInventory(4);//temperary inventory stuff might delete later
+        inventory = new Inventory(MAX_SLOTS);//temperary inventory stuff might delete later
     }
 
    
@@ -80,24 +82,24 @@ public class Player : Character {
     #region InventoryMethods 
     public void AddItem(string item, int quantity)
     {
-        if (inventory.ContainsKey(item))
+        if (tempinventory2.ContainsKey(item))
         {
-            inventory[item] += quantity;
+            tempinventory2[item] += quantity;
         }
         else
         {
-            inventory.Add(item, quantity);
+            tempinventory2.Add(item, quantity);
         }
     }
 
     public void RemoveItem(string item, int quantity)
     {
-        if (inventory.ContainsKey(item))
+        if (tempinventory2.ContainsKey(item))
         {
-            inventory[item] -= quantity;
-            if (inventory[item] <= 0)
+            tempinventory2[item] -= quantity;
+            if (tempinventory2[item] <= 0)
             {
-                inventory.Remove(item);
+                tempinventory2.Remove(item);
             }
         }
 
@@ -105,7 +107,7 @@ public class Player : Character {
 
     public int GetItemCount(string item)
     {
-        return inventory.ContainsKey(item) ? inventory[item] : 0;
+        return tempinventory2.ContainsKey(item) ? tempinventory2[item] : 0;
     }
     #endregion 
 

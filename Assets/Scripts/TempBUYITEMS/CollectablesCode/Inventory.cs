@@ -1,29 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
+using Ink.Parsed;
+using Unity.VisualScripting;
 using UnityEngine;
-using static TempInventory;
+using static Inventory;
 
 [System.Serializable]
-public class TempInventory 
+public class Inventory 
 {
     [System.Serializable]
     public class Slot
     {
         public CollectableItemsType type;
         public int count;
-        public int MaxAllowed;
+        public const int MAX_DEFAULT_STACK =5;
         public Sprite Icon;
 
         public Slot()
         {
             type = CollectableItemsType.NONE;
             count = 0;
-            MaxAllowed = 3;
         }
 
         public bool CanAddItem()
         {
-            if(count < MaxAllowed)
+            if(count < MAX_DEFAULT_STACK)
             {
                 return true;
             }
@@ -59,7 +61,7 @@ public class TempInventory
 
     }
     public List<Slot> slots = new List<Slot>();
-    public TempInventory(int numSlots)
+    public Inventory(int numSlots)
     {
         for(int i = 0; i < numSlots; i++)
         {
@@ -110,6 +112,27 @@ public class TempInventory
         {
             return false;
         }
+    }
+
+    public bool CanAddToCurrentSlot(CollectableItems item)
+    {
+        foreach (Slot slot in slots)
+        {
+            if(slot.type != CollectableItemsType.NONE)
+            {
+                continue;
+            }
+            else
+            {
+                slot.type = item.type;
+                if(slot.count == 0)
+                {
+                    // slot.type = item.type;
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void Remove(int index)
