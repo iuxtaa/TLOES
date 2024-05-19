@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class NPCindicatorTrigger : MonoBehaviour
 {
-    [Header("NPC Indicator")]
+    [Header("NPC Indicator")] // header
     [SerializeField] private GameObject floatingIcon;
 
     [Header("NPC Prompt")]
