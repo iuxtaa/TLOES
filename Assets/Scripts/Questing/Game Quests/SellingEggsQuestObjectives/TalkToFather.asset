@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TalkToFather
   m_EditorClassIdentifier: 
   description: Return to your father
-  completionStatus: 1
+  completionStatus: 0
