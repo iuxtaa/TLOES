@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 public class CoinCounter : MonoBehaviour
 {
+    //insertable objects
     public TextMeshProUGUI money;
     private CollectableItems collect;
 

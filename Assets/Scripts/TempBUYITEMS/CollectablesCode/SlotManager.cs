@@ -6,6 +6,7 @@ using TMPro;
 
 public class SlotManager : MonoBehaviour
 {
+    //icon and text object insertion
     public Image itemIcon;
     public TextMeshProUGUI amountText;
     
