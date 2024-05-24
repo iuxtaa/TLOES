@@ -85,6 +85,16 @@ public class MarketTrigger : MonoBehaviour
         itemToBuyOrSell.SetActive(false); // Deactivate the item
     }
 
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            playerClose = true;
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")

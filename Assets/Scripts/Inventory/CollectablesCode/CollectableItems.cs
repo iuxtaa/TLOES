@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Ink.Parsed;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CollectableItems : MonoBehaviour
@@ -8,9 +10,12 @@ public class CollectableItems : MonoBehaviour
   
     public Player player;
     private bool playerClose = false;
+    private bool showPopup = false;
     public CollectableItemsType type;
     public Sprite icon;
     public Inventory inventoryCountCheck;
+    public GameObject popupText;
+
    
     public int changingnum = 0;
     public static int moneyAmount = 10;
@@ -58,12 +63,16 @@ public class CollectableItems : MonoBehaviour
                 {
                     player.inventory.Adding(this);
                     moneyAmount -= HAM_COST;
+                    popupText.GetComponent<TextMeshProUGUI>().text = "Ham has been added to your inventory.";
                     Debug.Log("Ham picked up");
+                    popupText.SetActive(true);
                 }
                 else
                 {
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You do not have enough money to buy ham.";
                     Debug.Log("Not enought money message will be triggered here");
-                }    
+                    popupText.SetActive(true);
+                }
             }
 
             else if (this.gameObject.tag == "Wine")
@@ -72,11 +81,15 @@ public class CollectableItems : MonoBehaviour
                 {
                     player.inventory.Adding(this);
                     moneyAmount -= WINE_COST;
+                    popupText.GetComponent<TextMeshProUGUI>().text = "Wine has been added to your inventory.";
                     Debug.Log("Wine picked up");
+                    popupText.SetActive(true);
                 }
                 else
                 {
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You do not have enough money to buy wine.";
                     Debug.Log("Not enought money message will be triggered here");
+                    popupText.SetActive(true);
                 }  
             }
             else if (this.gameObject.tag == "Apple")
@@ -85,11 +98,15 @@ public class CollectableItems : MonoBehaviour
                 {
                     player.inventory.Adding(this);
                     moneyAmount -= APPLE_CONST;
+                    popupText.GetComponent<TextMeshProUGUI>().text = "Apple has been added to your inventory.";
                     Debug.Log("Apple bought");
+                    popupText.SetActive(true);
                 }
                 else
                 {
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You do not have enough money to buy apple.";
                     Debug.Log("Not enought money message will be triggered here");
+                    popupText.SetActive(true);
                 }
                 
             }
@@ -120,6 +137,7 @@ public class CollectableItems : MonoBehaviour
                 }
             }
         }
+        // Invoke("HidePopupText", 5f);
     }
 
    public void SellItem()
@@ -133,7 +151,9 @@ public class CollectableItems : MonoBehaviour
                 {
                     player.inventory.Removing(this);
                     moneyAmount += HAM_SELL;
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold a ham to Butch!";
                     Debug.Log("Ham Sold");
+                    popupText.SetActive(true);
                 }
             }
 
@@ -143,7 +163,9 @@ public class CollectableItems : MonoBehaviour
                 {
                     player.inventory.Removing(this);
                     moneyAmount += WINE_SELL;
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold a wine to Jack!";
                     Debug.Log("Wine Sold");
+                    popupText.SetActive(true);
                 }
             }
             else if (this.gameObject.tag == "Apple")
@@ -152,12 +174,19 @@ public class CollectableItems : MonoBehaviour
                 {
                     player.inventory.Removing(this);
                     moneyAmount += APPLE_SELL;
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold a apple to Kate!";
                     Debug.Log("Apple Sold");
+                    popupText.SetActive(true);
                 }
                        
             }
         }
+        // Invoke("HidePopupText", 5f);
+    }
 
+    public void HidePopupText()
+    {
+        popupText.SetActive(false);
     }
 
     private bool CanRemoveItemFromInventory(CollectableItemsType itemType)
@@ -176,6 +205,7 @@ public class CollectableItems : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerClose = true;
+            Invoke("HidePopupText", 5f);
         }
     }
 
@@ -184,6 +214,7 @@ public class CollectableItems : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerClose = false;
+            Invoke("HidePopupText", 5f);
         }
     }
 }
