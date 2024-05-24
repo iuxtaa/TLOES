@@ -9,16 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102cd6e59845c4f4ea6f3f8ac7e627ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c6eab7eb871cc94585bad43e7475d37, type: 3}
   m_Name: SellingEggs
   m_EditorClassIdentifier: 
   questNumber: 0
-  isActive: 0
-  completionStatus: 1
-  dependentQuest: {fileID: 0}
+  isActive: 1
+  isComplete: 0
   title: Selling Eggs
-  description: Sell your father's eggs at the market!
+  description: Sell your father's chicken eggs at the market!
   favourabilityReward: 5
-  objectives:
-  - {fileID: 11400000, guid: 3b440b5158493704084b0fe238a3b6c8, type: 2}
-  - {fileID: 11400000, guid: bda7aa4554ac96148b9d309d7cdbc2ac, type: 2}
+  requiredItem: {fileID: 11400000, guid: 3cf81453aa2620a4ba5521aa1efa0c5f, type: 2}
+  requiredAmount: 3

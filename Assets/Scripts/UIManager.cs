@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UserKeybindsPanel userKeybindsPanel;
 
     [Header("Quest")]
+    [SerializeField] private GameObject questPopup;
     [SerializeField] private GameObject questOverlay;
     [SerializeField] private GameObject questCompletePopup;
 
@@ -19,6 +20,7 @@ public class UIManager : MonoBehaviour
     {
         pauseScreen.SetActive(false);
         pauseButton.SetActive(true);
+        questPopup.SetActive(false);
         questOverlay.SetActive(false);
         questCompletePopup.SetActive(false);
     }

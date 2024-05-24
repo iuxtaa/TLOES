@@ -8,4 +8,4 @@ But my bones are growing weary. Can you be the one to sell the eggs in the      
 Of course.#speaker:Eustace #image:PlayerImage
 Come back when you’ve sold it all.#speaker:Father #image:FatherImage
 Okay.#speaker:Eustace #image:PlayerImage
-~beginQuest("SellingsEggs")
+~beginQuest("sellingQuest")

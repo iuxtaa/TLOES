@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class Testing : MonoBehaviour
 {
     public InventoryController Controller;
-    public CollectableItems[] Pickup;
+    public Items[] Pickup;
     public GameObject pickupButtonObject; 
 
     public Image buttonImage;
