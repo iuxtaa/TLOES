@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
-
 using TMPro;
 using Firebase;
 using Firebase.Auth;
+using Firebase.Database;
 using System;
 using UnityEngine.SceneManagement;
 
@@ -19,10 +19,12 @@ public class SignUpPanelManager : MonoBehaviour
     public Button signUpButton;
 
     private FirebaseAuth auth;
+    private DatabaseReference databaseReference;
 
     private void Awake()
     {
         auth = FirebaseAuth.DefaultInstance;
+        databaseReference = FirebaseDatabase.DefaultInstance.RootReference;
 
         if (signUpPanel.enabled)
         {
@@ -45,20 +47,32 @@ public class SignUpPanelManager : MonoBehaviour
 
         try
         {
+            // Check if the username is already taken
+            var usernameCheck = await databaseReference.Child("usernames").Child(username).GetValueAsync();
+            if (usernameCheck.Exists)
+            {
+                warningText.text = "Username already in use!";
+                return;
+            }
+
+            // Create user with email and password
             var authTask = await auth.CreateUserWithEmailAndPasswordAsync(email, password);
             var user = authTask.User;
 
-            // Send verification email
             if (user != null)
             {
+                // Save the username to the database
+                await databaseReference.Child("usernames").Child(username).SetValueAsync(user.UserId);
+
+                // Save additional user information if needed
+                // Example: await databaseReference.Child("users").Child(user.UserId).SetValueAsync(new { username = username, email = email });
+
+                // Send verification email
                 await user.SendEmailVerificationAsync();
                 warningText.text = "Verification email has been sent!";
             }
-
-            // Optionally, you can save the username to a database or user profile
-            // Example: SaveUsernameToDatabase(username);
         }
-        catch (System.Exception e)
+        catch (Exception e)
         {
             Debug.LogError("Firebase authentication failed: " + e.Message);
             warningText.text = "Sign up failed. Please try again later.";
