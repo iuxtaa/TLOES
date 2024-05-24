@@ -119,40 +119,11 @@ public class Player : Character {
         Debug.Log(Player.currentQuest);
     }
 
-    public bool CanCompleteQuest()
-    {
-        if (currentQuest != null)
-        {
-            if (currentQuest is SellingQuest sellingQuest)
-            {
-                return GetItemCount(sellingQuest.requiredItem.name) >= sellingQuest.requiredAmount;
-            }
-            if (currentQuest is DoingQuest)
-            {
-                return true;
-            }
-            if (currentQuest is CollectingQuest collectingQuest)
-            {
-                return GetItemCount(collectingQuest.requiredItem.name) >= collectingQuest.requiredAmount;
-            }
-        }
-        return false;
-    }
-
     public void completeQuest()
     {
-        if(CanCompleteQuest())
+        if(currentQuest.canComplete())
         {
             favourability += currentQuest.favourabilityReward;
-            if (currentQuest is CollectingQuest collectingQuest)
-            {
-                RemoveItem(collectingQuest.requiredItem.name, collectingQuest.requiredAmount);
-            }
-            else if (currentQuest is SellingQuest sellingQuest)
-            {
-                RemoveItem(sellingQuest.requiredItem.name, sellingQuest.requiredAmount);
-
-            }
             currentQuest.complete();
             SetQuest(null);
         }
