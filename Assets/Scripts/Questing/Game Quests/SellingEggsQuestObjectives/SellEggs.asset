@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SellEggs
   m_EditorClassIdentifier: 
   description: Sell your father's eggs
-  completionStatus: 1
+  completionStatus: 0
   requiredItem: {fileID: 0}
   requiredSellingAmount: 5
   sellingCount: 0

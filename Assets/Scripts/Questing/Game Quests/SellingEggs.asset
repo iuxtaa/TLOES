@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SellingEggs
   m_EditorClassIdentifier: 
   questNumber: 0
-  isActive: 0
-  completionStatus: 1
+  isActive: 1
+  completionStatus: 0
   title: Selling Eggs
   description: Sell your father's eggs at the market!
   favourabilityReward: 5

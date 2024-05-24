@@ -77,7 +77,7 @@ public class DialogueScript : MonoBehaviour
         dialogueDisplay.SetActive(true);
         currentDialogue.BindExternalFunction("beginQuest", (string questName) =>
         {
-            questGiver.openQuestUI();
+            questGiver.acceptQuest();
             Debug.Log(questName);
         });
         //add Binding function here that will call the buy function
