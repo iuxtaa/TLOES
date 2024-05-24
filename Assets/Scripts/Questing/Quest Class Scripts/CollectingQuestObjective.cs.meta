@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Questing/Quest Class Scripts/CollectingQuestObjective.cs.meta
 guid: 5dd0763ea97a6b64b95a9074d9309a23
+========
+guid: 960f964054dff254f93b5195f8d09e84
+>>>>>>>> ann-dev-2:Assets/Scripts/Questing/Quest Class Scripts/DoingQuestObjective.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
