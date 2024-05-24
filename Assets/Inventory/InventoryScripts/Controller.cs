@@ -70,7 +70,7 @@ public class InventoryController : MonoBehaviour
     }
 
 
-    public int GetItemCount(Items items)
+    public int GetItemCount(CollectableItems items)
     {
         int totalItemCount = 0;
         foreach (InventoryItem inventoryItem in Item)
@@ -84,13 +84,13 @@ public class InventoryController : MonoBehaviour
         return totalItemCount;
     }
 
-    public bool CanAddItem(Items items)
+    public bool CanAddItem(CollectableItems items)
     {
         return GetItemCount(items) < stacked;
     }
 
 
-    public bool AddItem(Items items)
+    public bool AddItem(CollectableItems items)
     {
         foreach (InventoryItem it in Item)
         {
@@ -117,7 +117,7 @@ public class InventoryController : MonoBehaviour
         return false; // No space to add new item
     }
 
-    void StoreItem(Items items, InventoryItem it)
+    void StoreItem(CollectableItems items, InventoryItem it)
     {
         GameObject storeInside = Instantiate(itemPrefab, it.transform);
         ItemInside itemInside = storeInside.GetComponent<ItemInside>();
