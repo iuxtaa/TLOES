@@ -11,8 +11,8 @@ public class CollectingQuestObjective : QuestObjective
     public int requiredAmount;
 
     // Constructor that initializes all fields
-    public CollectingQuestObjective(string description, CollectableItems requiredItem, int requiredAmount)
-        : base(description)
+    public CollectingQuestObjective(QuestObjective dependentObjective, string description, CollectableItems requiredItem, int requiredAmount)
+        : base(dependentObjective, description)
     {
         this.requiredItem = requiredItem;
         this.requiredAmount = requiredAmount;

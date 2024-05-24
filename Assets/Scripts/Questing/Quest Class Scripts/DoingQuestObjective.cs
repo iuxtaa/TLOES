@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Quest Objective", menuName = "Quest System/Doing Quest Objective")]
 public class DoingQuestObjective : QuestObjective
 {
-    public DoingQuestObjective(string description) : base(description)
+    public DoingQuestObjective(QuestObjective dependentObjective, string description) : base(dependentObjective, description)
     {
     }
 

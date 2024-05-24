@@ -3037,7 +3037,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2082935536619001729, guid: 706f5e011fdf6fc44b592b28712e161b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 706f5e011fdf6fc44b592b28712e161b, type: 3}
@@ -3049,11 +3050,6 @@ GameObject:
 --- !u!1 &1072496392 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6373627749978922443, guid: 706f5e011fdf6fc44b592b28712e161b, type: 3}
-  m_PrefabInstance: {fileID: 1072496390}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1072496393 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2082935536619001729, guid: 706f5e011fdf6fc44b592b28712e161b, type: 3}
   m_PrefabInstance: {fileID: 1072496390}
   m_PrefabAsset: {fileID: 0}
 --- !u!224 &1072496394 stripped
@@ -3096,7 +3092,6 @@ MonoBehaviour:
   pauseScreen: {fileID: 959522030}
   pauseButton: {fileID: 1563196477}
   userKeybindsPanel: {fileID: 1452624327}
-  questPopup: {fileID: 1072496393}
   questOverlay: {fileID: 1072496392}
   questCompletePopup: {fileID: 1072496391}
 --- !u!114 &1081769193

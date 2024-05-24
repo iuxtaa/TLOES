@@ -19,7 +19,7 @@ public class MarketTrigger : MonoBehaviour
     private NPCmovement NPClook;
     private GameObject invent;
 
-   
+
     public GameObject itemToBuyOrSell;
 
 
@@ -35,7 +35,7 @@ public class MarketTrigger : MonoBehaviour
 
     private void Update()
     {
-        if(playerClose)
+        if (playerClose)
         {
             promptmessage.SetActive(true);
             if (!invent.activeInHierarchy && !DialogueScript.GetInstance().currentDialogueIsPlaying)
@@ -62,13 +62,13 @@ public class MarketTrigger : MonoBehaviour
                 promptIcon.SetActive(false);
             }
         }
-        else if(!playerClose)
+        else if (!playerClose)
         {
             promptmessage.SetActive(false);
             promptIcon.SetActive(false);
         }
-        
-      
+
+
 
     }
 

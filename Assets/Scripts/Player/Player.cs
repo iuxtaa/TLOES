@@ -4,7 +4,8 @@ using System.Collections.Generic; // Required for Dictionary
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : Character {
+public class Player : Character
+{
 
     #region Variables
 
@@ -16,9 +17,9 @@ public class Player : Character {
     [SerializeField] public static Quest currentQuest;
     public Quest[] questHistory = new Quest[3];
     public VectorValue startingPosition;
-   
+
     public Inventory inventory;// this is the temperary code for the inventory
-    
+
 
 
     #endregion
@@ -48,7 +49,7 @@ public class Player : Character {
         inventory = new Inventory(MAX_SLOTS);//temperary inventory stuff might delete later
     }
 
-   
+
     #endregion
 
     #region SetAndGetMethods
@@ -132,7 +133,7 @@ public class Player : Character {
 
     private Quest findActiveQuest()
     {
-        for(int i = 0; i < questHistory.Length; i++)
+        for (int i = 0; i < questHistory.Length; i++)
         {
             if (questHistory[i].isActive)
                 return questHistory[i];

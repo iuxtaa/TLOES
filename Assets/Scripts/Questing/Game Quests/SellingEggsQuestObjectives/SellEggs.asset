@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 712be4712a2427b4582f4bed48aff80d, type: 3}
   m_Name: SellEggs
   m_EditorClassIdentifier: 
+  dependentObjective: {fileID: 0}
   description: Sell your father's eggs
   completionStatus: 0
   requiredItem: {fileID: 0}
   requiredSellingAmount: 5
-  sellingCount: 0
+  sellingCount: 10

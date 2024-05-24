@@ -12,6 +12,7 @@ public class Quest : ScriptableObject
 
     public bool isActive; // boolean for quest activity status
     public bool completionStatus; // boolean for quest completion status
+    public Quest dependentQuest;
 
     public string title;
     public string description;
@@ -29,14 +30,16 @@ public class Quest : ScriptableObject
         this.favourabilityReward = 0;
         this.isActive = false;
         this.completionStatus = false;
+        this.dependentQuest = null;
 
         this.objectives = new List<QuestObjective>(); // Initialize the objectives list
     }
 
     
-    public Quest(int questNumber, string title, string desc, int favourabilityReward)
+    public Quest(int questNumber, Quest dependentQuest, string title, string desc, int favourabilityReward)
     {
         this.questNumber = questNumber;
+        this.dependentQuest = dependentQuest;
         this.title = title;
         this.description = desc;
         this.favourabilityReward = favourabilityReward;
@@ -49,19 +52,19 @@ public class Quest : ScriptableObject
     // METHODS
     public bool canComplete()
     {
-        for(int i = 0; i < objectives.Count - 1; i++)
+        for(int i = 0; i < objectives.Count-1; i++)
         {
             if (objectives[i].completionStatus == false)
                 return false;
         }
-        complete();
+        // complete();
         return true;
     }
 
     public void complete()
     {
-        this.isActive = false;
         this.completionStatus = true;
+        this.isActive = false;
         Debug.Log(title + " quest is complete");
     }
 
@@ -73,5 +76,17 @@ public class Quest : ScriptableObject
             output += objectives[i].toString() + "\n";
         }
         return output;
+    }
+
+    public bool isDependent()
+    {
+        return (this.dependentQuest != null);
+    }
+
+    public bool isDependentQuestComplete()
+    {
+        if(this.dependentQuest != null)
+            return (this.dependentQuest.completionStatus);
+        return true;
     }
 }

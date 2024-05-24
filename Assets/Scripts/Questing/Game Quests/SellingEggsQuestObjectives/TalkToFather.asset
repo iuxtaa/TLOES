@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960f964054dff254f93b5195f8d09e84, type: 3}
   m_Name: TalkToFather
   m_EditorClassIdentifier: 
+  dependentObjective: {fileID: 11400000, guid: 3b440b5158493704084b0fe238a3b6c8, type: 2}
   description: Return to your father
   completionStatus: 0

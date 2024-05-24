@@ -1,10 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Serialization;
-using Ink.Parsed;
-using Unity.VisualScripting;
 using UnityEngine;
-using static Inventory;
 
 [System.Serializable]
 public class Inventory 
@@ -12,9 +8,10 @@ public class Inventory
     [System.Serializable]
     public class Slot
     {
+        // CONSTANT VARIABLES
+        public const int MAX_DEFAULT_STACK = 5;
         public CollectableItemsType type;
         public int count;
-        public const int MAX_DEFAULT_STACK =5;
         public Sprite Icon;
 
         public Slot()
@@ -112,27 +109,6 @@ public class Inventory
         {
             return false;
         }
-    }
-
-    public bool CanAddToCurrentSlot(CollectableItems item)
-    {
-        foreach (Slot slot in slots)
-        {
-            if(slot.type != CollectableItemsType.NONE)
-            {
-                continue;
-            }
-            else
-            {
-                slot.type = item.type;
-                if(slot.count == 0)
-                {
-                    // slot.type = item.type;
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     public void Remove(int index)

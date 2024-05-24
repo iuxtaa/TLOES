@@ -4,7 +4,6 @@ using Ink.Parsed;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class CollectableItems : MonoBehaviour
 {
@@ -29,52 +28,31 @@ public class CollectableItems : MonoBehaviour
     private const int HAM_SELL = 5;
     private const int WINE_SELL = 6;
     private const int APPLE_SELL = 1;
-    //public Quest currentQuest;
 
     public void Update()
     {
         BuyItem();
         SellItem();
-       // ReceiveItem();
-        PickupItem();
+        ReceiveItem();
         changingnum = moneyAmount;
     }
 
-    public void PickupItem()
+    public void ReceiveItem()
     {
-        if(playerClose)
+        if(playerClose && player.GetQuest().isActive)
         {
-            if(this.gameObject.tag == "BOOK")
+            if(this.gameObject.tag == "EGG")
             {
-                if(player.inventory.CanAddToCurrentSlot(this))
-                {
-                    player.inventory.Adding(this);
-                    Destroy(this.gameObject);
-                }
+                player.inventory.Adding(this);
+            }
+
+            else if(this.gameObject.tag == "EMPTYBOTTLE")
+            {
+                player.inventory.Adding(this);
             }
         }
     }
-
-    /* public void ReceiveItem()
-     {
-         if(playerClose && currentQuest.isActive)
-         {
-             if(this.gameObject.tag == "EGG")
-             {
-                 if(player.inventory.CanAddToCurrentSlot(this))
-                 {
-                     player.inventory.Adding(this);
-                 }
-             }
-
-             else if(this.gameObject.tag == "EMPTYBOTTLE")
-             {
-                 player.inventory.Adding(this);
-             }
-         }
-
-     }*/
-
+   
     public void BuyItem()
     {
       if(playerClose && InputsHandler.GetInstance().buyButtonPressed())
@@ -222,7 +200,6 @@ public class CollectableItems : MonoBehaviour
         }
         return false;
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
@@ -244,5 +221,5 @@ public class CollectableItems : MonoBehaviour
 
 public enum CollectableItemsType
 {
-    NONE, HAM, APPLE, WINE, EGG, PAPER, QUILL, EMPTYBOTTLE, WATERBOTTLE, BOOK
+    NONE, HAM, APPLE, WINE, EGG, PAPER, QUILL, EMPTYBOTTLE, WATERBOTTLE
 }

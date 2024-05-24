@@ -44,5 +44,4 @@ public class QuestOverlay : MonoBehaviour
         descriptionText.text = Player.currentQuest.description;
         objectiveText.text = Player.currentQuest.objectivesToString();
     }
-
 }

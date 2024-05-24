@@ -15,6 +15,7 @@ TagManager:
   - AppleSeller
   - EGG
   - BOOK
+  - Begger
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,7 @@ public class QuestGiver : MonoBehaviour // this will be an NPC which 'is a' char
     public Player player; // the player that will accept the quest
 
     public GameObject questOverlay;
+
     public void acceptQuest()
     {
         if (quest != null && player != null)
@@ -21,12 +22,11 @@ public class QuestGiver : MonoBehaviour // this will be an NPC which 'is a' char
     }
 
     public void completeQuest()
-{
-    if (quest != null && player != null)
     {
-        quest.complete();
-        questOverlay.SetActive(false);
+        if (quest != null && player != null)
+        {
+            quest.complete();
+            questOverlay.SetActive(false);
+        }
     }
-}
-
 }
