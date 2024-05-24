@@ -20,7 +20,7 @@ public class CollectingQuestObjective : QuestObjective
 
     public override bool checkCanComplete()
     {
-        //if (Player.inventory.getRequiredItem.getCount ?? >= requiredAmount)
+        //if (Player.inventory.getRequiredItem.getCount ?? >= requiredAmount) ?? NOT SURE -Ann
         if (3 >= requiredAmount)
         {
             complete();

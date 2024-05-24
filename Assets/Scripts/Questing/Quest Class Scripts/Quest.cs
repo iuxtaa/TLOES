@@ -17,6 +17,7 @@ public class Quest : ScriptableObject
     public string title;
     public string description;
     public int favourabilityReward;
+    public int goldReward;
 
     public List<QuestObjective> objectives; // List of objectives for the quest
 
@@ -28,6 +29,7 @@ public class Quest : ScriptableObject
         this.title = string.Empty;
         this.description = string.Empty;
         this.favourabilityReward = 0;
+        this.goldReward = 0;
         this.isActive = false;
         this.completionStatus = false;
         this.dependentQuest = null;
@@ -36,13 +38,14 @@ public class Quest : ScriptableObject
     }
 
     
-    public Quest(int questNumber, Quest dependentQuest, string title, string desc, int favourabilityReward)
+    public Quest(int questNumber, Quest dependentQuest, string title, string desc, int favourabilityReward, int goldReward)
     {
         this.questNumber = questNumber;
         this.dependentQuest = dependentQuest;
         this.title = title;
         this.description = desc;
         this.favourabilityReward = favourabilityReward;
+        this.goldReward = goldReward;
         this.isActive = false;
         this.completionStatus = false;
 
