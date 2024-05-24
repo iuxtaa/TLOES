@@ -20,6 +20,10 @@ public class DialogueScript : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
+    public MarketTrigger AppleSellerTrigger;
+    public MarketTrigger HamSellerTrigger;
+    public MarketTrigger WineSellerTrigger;
+
     public Player player;
     public QuestGiver questGiver;
     private Coroutine typingDialogue;
@@ -42,7 +46,7 @@ public class DialogueScript : MonoBehaviour
             Debug.LogWarning("There is more than one instance");
         }
         instance = this;
-        questGiver = FindObjectOfType<QuestGiver>();
+        //questGiver = FindObjectOfType<QuestGiver>();
     }
 
     public static DialogueScript GetInstance()
@@ -71,15 +75,35 @@ public class DialogueScript : MonoBehaviour
         dialogueDisplay.SetActive(true);
         currentDialogue.BindExternalFunction("beginQuest", (string questName) =>
         {
+            Debug.Log("Selling eggs letter should be running");
             questGiver.acceptQuest();
             Debug.Log(questName);
         });
-        currentDialogue.BindExternalFunction("completeQuest", (string questName) =>
+        
+        currentDialogue.BindExternalFunction("completeQuest", (string compquestName) =>
         {
-            // player.completeQuest();
             questGiver.completeQuest();
-            Debug.Log(questName + "completion");
+            Debug.Log(compquestName + "completion");
         });
+
+        //add Binding function here that will call the buy function
+        currentDialogue.BindExternalFunction("buyingandsellingApples", (string AppleActivity) =>
+          {
+              AppleSellerTrigger.purchase();  
+              Debug.Log(AppleActivity); 
+         });
+        currentDialogue.BindExternalFunction("buyingandsellingHam", (string HamActivity) =>
+        {
+            HamSellerTrigger.purchase();
+            Debug.Log(HamActivity);
+        });
+        currentDialogue.BindExternalFunction("buyingandsellingWine", (string WineActivity) =>
+        {
+            WineSellerTrigger.purchase();
+            Debug.Log(WineActivity);
+        });
+        //add another binding function that will call the sell function.
+
 
         NextLine();
     }
@@ -88,6 +112,9 @@ public class DialogueScript : MonoBehaviour
     {
         currentDialogue.UnbindExternalFunction("beginQuest");
         currentDialogue.UnbindExternalFunction("completeQuest");
+        currentDialogue.UnbindExternalFunction("buyingandsellingApples");
+        currentDialogue.UnbindExternalFunction("buyingandsellingHam");
+        currentDialogue.UnbindExternalFunction("buyingandsellingWine");
         currentDialogueIsPlaying = false;
         dialogueDisplay.SetActive(false);
         dialogueText.text = "";

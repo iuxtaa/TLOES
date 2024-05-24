@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,7 +24,7 @@ public class UIManager : MonoBehaviour
 
     public void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             // If pause screen is already active, unpause
             if (pauseScreen.activeInHierarchy)
@@ -43,7 +42,7 @@ public class UIManager : MonoBehaviour
     #region Pause
     public void PauseGame(bool status)
     {
-        if(userKeybindsPanel.gameObject.activeInHierarchy)
+        if (userKeybindsPanel.gameObject.activeInHierarchy)
         {
             pauseScreen.SetActive(!status);
         }
@@ -109,7 +108,7 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region Keybinds
-    
+
     //Deactivates the keybinds panel when the pause button is clicked
     public void DeactivateKeybindsPanel()
     {

@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class NPCindicatorTrigger : MonoBehaviour
 {
-    [Header("NPC Indicator")]
+    [Header("NPC Indicator")] // header
     [SerializeField] private GameObject floatingIcon;
 
     [Header("NPC Prompt")]
@@ -46,7 +46,6 @@ public class NPCindicatorTrigger : MonoBehaviour
             if(InputsHandler.GetInstance().GetInteract())
             {
                 NPClook.NPClookAtPlayer();
-                // Player cannot start quest
                 try
                 {
                     if (!questCheck.isDependentQuestComplete())
@@ -87,11 +86,10 @@ public class NPCindicatorTrigger : MonoBehaviour
                         }
                     }
                 }
-                catch(ArgumentNullException)
+                catch (ArgumentNullException)
                 {
                     Debug.Log("Null ");
                 }
-                
             }
             
         }

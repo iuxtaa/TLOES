@@ -14,16 +14,16 @@ I do not have a quill and paper.
                 WRITES A LETTER***  Here you go. #speaker:Eustace #image:PlayerImage
                 Thank you. I appreciate it. Can I take you to the chapel? I’d like you to meet the priest.#speaker:Knight #image:KnightImage 
                 Sure.#speaker:Eustace #image:PlayerImage
-		~completeQuest("KnightsLetter")
+		        ~completeQuest("KnightsLetter")
             **I can’t. Sorry. #speaker:Eustace #image:PlayerImage
                 Oh, okay.  *Player doesn’t get the quest*. #speaker:Knight #image:KnightImage 
     * I can write your letter for you. 
         I can do it. I can write your letter for you. #speaker:Eustace #image:PlayerImage
-	~beginQuest("KnightsLetter")
+	    ~beginQuest("KnightsLetter")
         Really? Thank you so much. It means a lot. #speaker:Knight #image:KnightImage
         What do you want to say to them? *takes out paper and quill* I can use a bit of the paper I have. #speaker:Eustace #image:PlayerImage
         This means everything to me. I just wanted to tell them that I miss them. I hope they’re doing well. I will be home soon. Someday. #speaker:Knight #image:KnightImage
         WRITES A LETTER*** Here you go.#speaker:Eustace #image:PlayerImage
         Thank you. I appreciate it. Can I take you to the chapel? I’d like you to meet the priest. #speaker:Knight #image:KnightImage
         Sure.#speaker:Eustace #image:PlayerImage
-	~completeQuest("KnightsLetter")
+	    ~completeQuest("KnightsLetter")
