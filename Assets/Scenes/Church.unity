@@ -7926,8 +7926,8 @@ MonoBehaviour:
   AppleSellerTrigger: {fileID: 0}
   HamSellerTrigger: {fileID: 0}
   WineSellerTrigger: {fileID: 0}
-  player: {fileID: 0}
-  questGiver: {fileID: 0}
+  player: {fileID: 1018197484}
+  questGiver: {fileID: 235057914}
 --- !u!4 &1270375201
 Transform:
   m_ObjectHideFlags: 0
@@ -8183,6 +8183,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1315343165}
     m_Modifications:
+    - target: {fileID: 1137598824274066093, guid: 06cc0d74375fa7745a9f21f7a6bf1b8f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1018197484}
     - target: {fileID: 6138181137001472691, guid: 06cc0d74375fa7745a9f21f7a6bf1b8f, type: 3}
       propertyPath: m_Name
       value: QuestUI
