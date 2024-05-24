@@ -29,6 +29,9 @@ public class Player : Character {
     {
         SetFavourability(0);
         SetQuest(null);
+        //questHistory[0] = new SellingQuest(3,3, 0, "", "", 5);
+        //questHistory[1] = KnightsLetter;
+        //questHistory[2] = PriestsHolyWater;
     }
 
     public Player(string name, int currentLocation, int favourability, Quest currentQuest) : base(name, currentLocation)
@@ -116,11 +119,43 @@ public class Player : Character {
         Debug.Log(Player.currentQuest);
     }
 
+    public bool CanCompleteQuest()
+    {
+        if (currentQuest != null)
+        {
+            if (currentQuest is SellingQuest sellingQuest)
+            {
+                return GetItemCount(sellingQuest.requiredItem.name) >= sellingQuest.requiredAmount;
+            }
+            if (currentQuest is DoingQuest)
+            {
+                return true;
+            }
+            if (currentQuest is CollectingQuest collectingQuest)
+            {
+                return GetItemCount(collectingQuest.requiredItem.name) >= collectingQuest.requiredAmount;
+            }
+        }
+        return false;
+    }
+
     public void completeQuest()
     {
-        favourability += currentQuest.favourabilityReward;
-        currentQuest.complete();
-        SetQuest(null);
+        if(CanCompleteQuest())
+        {
+            favourability += currentQuest.favourabilityReward;
+            if (currentQuest is CollectingQuest collectingQuest)
+            {
+                RemoveItem(collectingQuest.requiredItem.name, collectingQuest.requiredAmount);
+            }
+            else if (currentQuest is SellingQuest sellingQuest)
+            {
+                RemoveItem(sellingQuest.requiredItem.name, sellingQuest.requiredAmount);
+
+            }
+            currentQuest.complete();
+            SetQuest(null);
+        }
     }
 
     public void failQuest()
@@ -128,21 +163,6 @@ public class Player : Character {
         favourability -= currentQuest.favourabilityReward;
         currentQuest.complete();
         SetQuest(null);
-    }
-
-    private Quest findActiveQuest()
-    {
-        for(int i = 0; i < questHistory.Length; i++)
-        {
-            if (questHistory[i].isActive)
-                return questHistory[i];
-        }
-        return null;
-    }
-
-    public void setActiveQuest()
-    {
-        SetQuest(findActiveQuest());
     }
     #endregion
 }

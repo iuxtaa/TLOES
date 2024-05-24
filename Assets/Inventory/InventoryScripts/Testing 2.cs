@@ -9,7 +9,7 @@ public class Testing2 : MonoBehaviour
    
 
     public InventoryController Controller;
-    public CollectableItems[] Store;
+    public Items[] Store;
     public GameObject StoreButtonObject;
 
     public Image buttonImage;
@@ -21,7 +21,7 @@ public class Testing2 : MonoBehaviour
         buttonText = StoreButtonObject.GetComponentInChildren<TextMeshProUGUI>(true);
     }
 
-    public void StoreItem(CollectableItems itemToStore)
+    public void StoreItem(Items itemToStore)
     {
         
         if (Controller.CanAddItem(itemToStore))
