@@ -511,7 +511,8 @@ MonoBehaviour:
   - {fileID: 1586356484}
   - {fileID: 952101243}
   - {fileID: 1183818754}
-  questGiver: {fileID: 0}
+  player: {fileID: 2044812155}
+  questGiver: {fileID: 1665528534}
 --- !u!4 &118384227 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8880890979157700243, guid: b18dcd3ee86986b469e9cfc64055704c, type: 3}
@@ -1149,7 +1150,6 @@ MonoBehaviour:
   pauseScreen: {fileID: 1869847058}
   pauseButton: {fileID: 55064087}
   userKeybindsPanel: {fileID: 1298044547}
-  questPopup: {fileID: 1741229189}
   questOverlay: {fileID: 1421209830}
   questCompletePopup: {fileID: 158405050}
 --- !u!114 &249902224
@@ -1271,8 +1271,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingIcon: {fileID: 1091183749}
   promptIcon: {fileID: 1125680633}
-  DialogueFile: {fileID: 4900000, guid: 99a4e437050d49d4596625ef40e07fae, type: 3}
-  DialogueFile2: {fileID: 4900000, guid: 99a4e437050d49d4596625ef40e07fae, type: 3}
+  dialogueNoTalk: {fileID: 4900000, guid: 99a4e437050d49d4596625ef40e07fae, type: 3}
+  dialogueStartQuest: {fileID: 4900000, guid: 99a4e437050d49d4596625ef40e07fae, type: 3}
+  dialogueCannotFinishQuest: {fileID: 4900000, guid: 99a4e437050d49d4596625ef40e07fae, type: 3}
+  dialogueCanFinishQuest: {fileID: 4900000, guid: 99a4e437050d49d4596625ef40e07fae, type: 3}
+  dialogueFinishedQuest: {fileID: 4900000, guid: 99a4e437050d49d4596625ef40e07fae, type: 3}
   questCheck: {fileID: 11400000, guid: 603aad6306cb9d74c8f716b6d40953c9, type: 2}
   player: {fileID: 2044812155}
 --- !u!1 &268779572
@@ -1537,17 +1540,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &290419248 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2428121829088949961, guid: 706f5e011fdf6fc44b592b28712e161b, type: 3}
-  m_PrefabInstance: {fileID: 1200914003}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &313447381
 GameObject:
   m_ObjectHideFlags: 0
@@ -2027,10 +2019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: 603aad6306cb9d74c8f716b6d40953c9, type: 2}
   player: {fileID: 2044812155}
-  questWindow: {fileID: 1741229189}
   questOverlay: {fileID: 1421209830}
-  titleText: {fileID: 521541453}
-  descriptionText: {fileID: 290419248}
 --- !u!1 &323311899
 GameObject:
   m_ObjectHideFlags: 0
@@ -3533,17 +3522,6 @@ Transform:
   - {fileID: 1523734055}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &521541453 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4839245441883892907, guid: 706f5e011fdf6fc44b592b28712e161b, type: 3}
-  m_PrefabInstance: {fileID: 1200914003}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &535483074
 GameObject:
   m_ObjectHideFlags: 0
@@ -9680,7 +9658,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2082935536619001729, guid: 706f5e011fdf6fc44b592b28712e161b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 706f5e011fdf6fc44b592b28712e161b, type: 3}
@@ -12564,9 +12543,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingIcon: {fileID: 359525276}
   promptIcon: {fileID: 1805928798}
-  DialogueFile: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
-  DialogueFile2: {fileID: 4900000, guid: c4ec619e4f258e54f9a121db984ce23b, type: 3}
-  questCheck: {fileID: 11400000, guid: 603aad6306cb9d74c8f716b6d40953c9, type: 2}
+  dialogueNoTalk: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
+  dialogueStartQuest: {fileID: 4900000, guid: c4ec619e4f258e54f9a121db984ce23b, type: 3}
+  dialogueCannotFinishQuest: {fileID: 0}
+  dialogueCanFinishQuest: {fileID: 0}
+  dialogueFinishedQuest: {fileID: 0}
+  questCheck: {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   player: {fileID: 2044812155}
 --- !u!114 &1665528534
 MonoBehaviour:
@@ -12582,10 +12564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   player: {fileID: 2044812155}
-  questWindow: {fileID: 1741229189}
   questOverlay: {fileID: 1421209830}
-  titleText: {fileID: 521541453}
-  descriptionText: {fileID: 290419248}
 --- !u!1001 &1698425622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13629,11 +13608,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8764381751610422878, guid: 28ae4e85426a2f54a98737a016d4cbc2, type: 3}
   m_PrefabInstance: {fileID: 1740377721}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1741229189 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2082935536619001729, guid: 706f5e011fdf6fc44b592b28712e161b, type: 3}
-  m_PrefabInstance: {fileID: 1200914003}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1785323627
 GameObject:
@@ -15965,7 +15939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questHistory:
-  - {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
+  - {fileID: 11400000, guid: 603aad6306cb9d74c8f716b6d40953c9, type: 2}
   - {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   - {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
   startingPosition: {fileID: 11400000, guid: fce9b2cfa7deaa14db422030ecbd1ac9, type: 2}

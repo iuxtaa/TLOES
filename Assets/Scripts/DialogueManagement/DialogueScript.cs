@@ -20,6 +20,7 @@ public class DialogueScript : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
+    public Player player;
     public QuestGiver questGiver;
     private Coroutine typingDialogue;
     private bool canContinueNext;
@@ -70,10 +71,15 @@ public class DialogueScript : MonoBehaviour
         dialogueDisplay.SetActive(true);
         currentDialogue.BindExternalFunction("beginQuest", (string questName) =>
         {
-            questGiver.openQuestUI();
+            questGiver.acceptQuest();
             Debug.Log(questName);
         });
-
+        currentDialogue.BindExternalFunction("completeQuest", (string questName) =>
+        {
+            // player.completeQuest();
+            questGiver.completeQuest();
+            Debug.Log(questName + "completion");
+        });
 
         NextLine();
     }
@@ -81,6 +87,7 @@ public class DialogueScript : MonoBehaviour
     private void LeaveDialogueView()
     {
         currentDialogue.UnbindExternalFunction("beginQuest");
+        currentDialogue.UnbindExternalFunction("completeQuest");
         currentDialogueIsPlaying = false;
         dialogueDisplay.SetActive(false);
         dialogueText.text = "";

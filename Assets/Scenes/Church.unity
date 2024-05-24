@@ -1412,9 +1412,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingIcon: {fileID: 1639010226}
   promptIcon: {fileID: 1039588875}
-  DialogueFile: {fileID: 4900000, guid: bd46c5c83d2e9b24da08b7f5838550ca, type: 3}
-  DialogueFile2: {fileID: 4900000, guid: 3263cb05e8d0785418193651b0277b79, type: 3}
-  questCheck: {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
+  dialogueNoTalk: {fileID: 4900000, guid: bd46c5c83d2e9b24da08b7f5838550ca, type: 3}
+  dialogueStartQuest: {fileID: 4900000, guid: 3263cb05e8d0785418193651b0277b79, type: 3}
+  dialogueCannotFinishQuest: {fileID: 0}
+  dialogueCanFinishQuest: {fileID: 0}
+  dialogueFinishedQuest: {fileID: 0}
+  questCheck: {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
   player: {fileID: 1018197484}
 --- !u!4 &235057913 stripped
 Transform:
@@ -1435,10 +1438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
   player: {fileID: 1018197484}
-  questWindow: {fileID: 1307670395}
   questOverlay: {fileID: 1307670394}
-  titleText: {fileID: 0}
-  descriptionText: {fileID: 0}
 --- !u!1001 &242627404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6594,6 +6594,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 32d1650a-f313-4184-ae12-e9f8a2ae027d
     m_ActionName: Player/Drop Item[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 40f71c93-2c76-4d16-bdac-77dbd75443f2
+    m_ActionName: Player/BuyItem[/Keyboard/b]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4f93ce46-ad20-4790-bb9d-1d1fcab3c100
+    m_ActionName: Player/SellButton[/Keyboard/v]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -7482,7 +7490,8 @@ MonoBehaviour:
   - {fileID: 1907818562}
   - {fileID: 1467412555}
   - {fileID: 114112291}
-  questGiver: {fileID: 0}
+  player: {fileID: 1018197484}
+  questGiver: {fileID: 235057914}
 --- !u!4 &1270375201
 Transform:
   m_ObjectHideFlags: 0
@@ -7715,7 +7724,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2082935536619001729, guid: 706f5e011fdf6fc44b592b28712e161b, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 706f5e011fdf6fc44b592b28712e161b, type: 3}
@@ -7732,11 +7742,6 @@ GameObject:
 --- !u!1 &1307670394 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6373627749978922443, guid: 706f5e011fdf6fc44b592b28712e161b, type: 3}
-  m_PrefabInstance: {fileID: 1307670391}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1307670395 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2082935536619001729, guid: 706f5e011fdf6fc44b592b28712e161b, type: 3}
   m_PrefabInstance: {fileID: 1307670391}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1315343160
@@ -7774,7 +7779,6 @@ MonoBehaviour:
   pauseScreen: {fileID: 510750776}
   pauseButton: {fileID: 694388447}
   userKeybindsPanel: {fileID: 1182678637}
-  questPopup: {fileID: 1307670395}
   questOverlay: {fileID: 1307670394}
   questCompletePopup: {fileID: 1307670393}
 --- !u!114 &1315343162

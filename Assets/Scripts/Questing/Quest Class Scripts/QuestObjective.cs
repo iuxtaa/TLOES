@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +7,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Quest Objective", menuName = "Quest System/Quest Objective")]
 public abstract class QuestObjective : ScriptableObject
 {
+    public QuestObjective dependentObjective;
     public string description;
     public bool completionStatus;
 
-    public QuestObjective(string description)
+    public QuestObjective(QuestObjective dependentObjective, string description)
     {
+        this.dependentObjective = dependentObjective;
         this.description = description;
         this.completionStatus = false;
     }
@@ -20,6 +23,19 @@ public abstract class QuestObjective : ScriptableObject
     {
         this.completionStatus = true;
     }
+
+    public bool isDependent()
+    {
+        return(this.dependentObjective != null);
+    }
+
+    public bool isDependentObjectiveComplete()
+    {
+        if(this.dependentObjective != null)
+            return (this.dependentObjective.completionStatus);
+        return true;
+    }
+
     public abstract string toString();
 }
 

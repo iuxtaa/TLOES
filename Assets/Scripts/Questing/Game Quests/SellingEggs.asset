@@ -15,6 +15,7 @@ MonoBehaviour:
   questNumber: 0
   isActive: 0
   completionStatus: 1
+  dependentQuest: {fileID: 0}
   title: Selling Eggs
   description: Sell your father's eggs at the market!
   favourabilityReward: 5

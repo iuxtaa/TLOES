@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questNumber: 2
   isActive: 0
-  isComplete: 0
+  completionStatus: 0
+  dependentQuest: {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   title: Priests Holy Water
   description: Gather Holy water and return it to the Priest.
   favourabilityReward: 5
   objectives:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 6098a56bcc3ccb741b2230231c58a70c, type: 2}
+  - {fileID: 11400000, guid: 9a180a8d25f23b240a1c2d9fda6d25f7, type: 2}

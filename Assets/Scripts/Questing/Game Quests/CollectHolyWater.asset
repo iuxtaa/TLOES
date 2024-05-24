@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 712be4712a2427b4582f4bed48aff80d, type: 3}
-  m_Name: SellEggs
+  m_Script: {fileID: 11500000, guid: 5dd0763ea97a6b64b95a9074d9309a23, type: 3}
+  m_Name: CollectHolyWater
   m_EditorClassIdentifier: 
   dependentObjective: {fileID: 0}
-  description: Sell your father's eggs
-  completionStatus: 1
+  description: Retrieve Holy Water
+  completionStatus: 0
   requiredItem: {fileID: 0}
-  requiredSellingAmount: 5
-  sellingCount: 10
+  requiredAmount: 1

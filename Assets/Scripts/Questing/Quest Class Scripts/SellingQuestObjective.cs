@@ -12,8 +12,8 @@ public class SellingQuestObjective : QuestObjective
     public int sellingCount;
 
     // Constructor that initializes all fields
-    public SellingQuestObjective(string description, CollectableItems requiredItem, int requiredSellingAmount)
-        : base(description)
+    public SellingQuestObjective(QuestObjective dependentObjective, string description, CollectableItems requiredItem, int requiredSellingAmount)
+        : base(dependentObjective, description)
     {
         this.requiredItem = requiredItem;
         this.requiredSellingAmount = requiredSellingAmount;

@@ -46,7 +46,6 @@ public class CollectableItems : MonoBehaviour
                 player.inventory.Adding(this);
             }
         }
-
     }
    
     public void BuyItem()
