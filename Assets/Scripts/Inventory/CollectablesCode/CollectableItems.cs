@@ -39,7 +39,7 @@ public class CollectableItems : MonoBehaviour
 
     public void ReceiveItem()
     {
-        if(playerClose && player.GetQuest().isActive)
+        if(playerClose)
         {
             if(this.gameObject.tag == "EGG")
             {
