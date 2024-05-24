@@ -20,14 +20,12 @@ public class DialogueScript : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
-    public QuestGiver questGiver;
-
-    [Header("Dialogue Choice Options UI")]
     public MarketTrigger AppleSellerTrigger;
     public MarketTrigger HamSellerTrigger;
     public MarketTrigger WineSellerTrigger;
 
-
+    public Player player;
+    public QuestGiver questGiver;
     private Coroutine typingDialogue;
     private bool canContinueNext;
 
@@ -48,7 +46,7 @@ public class DialogueScript : MonoBehaviour
             Debug.LogWarning("There is more than one instance");
         }
         instance = this;
-        questGiver = FindObjectOfType<QuestGiver>();
+        //questGiver = FindObjectOfType<QuestGiver>();
     }
 
     public static DialogueScript GetInstance()
@@ -77,11 +75,19 @@ public class DialogueScript : MonoBehaviour
         dialogueDisplay.SetActive(true);
         currentDialogue.BindExternalFunction("beginQuest", (string questName) =>
         {
-            questGiver.openQuestUI();
+            Debug.Log("Selling eggs letter should be running");
+            questGiver.acceptQuest();
             Debug.Log(questName);
         });
+        
+        currentDialogue.BindExternalFunction("completeQuest", (string compquestName) =>
+        {
+            questGiver.completeQuest();
+            Debug.Log(compquestName + "completion");
+        });
+
         //add Binding function here that will call the buy function
-         currentDialogue.BindExternalFunction("buyingandsellingApples", (string AppleActivity) =>
+        currentDialogue.BindExternalFunction("buyingandsellingApples", (string AppleActivity) =>
           {
               AppleSellerTrigger.purchase();  
               Debug.Log(AppleActivity); 
@@ -105,6 +111,7 @@ public class DialogueScript : MonoBehaviour
     private void LeaveDialogueView()
     {
         currentDialogue.UnbindExternalFunction("beginQuest");
+        currentDialogue.UnbindExternalFunction("completeQuest");
         currentDialogue.UnbindExternalFunction("buyingandsellingApples");
         currentDialogue.UnbindExternalFunction("buyingandsellingHam");
         currentDialogue.UnbindExternalFunction("buyingandsellingWine");
