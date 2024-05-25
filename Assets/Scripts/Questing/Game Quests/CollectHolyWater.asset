@@ -16,4 +16,4 @@ MonoBehaviour:
   description: Retrieve Holy Water
   completionStatus: 0
   requiredItem: {fileID: 0}
-  requiredAmount: 1
+  requiredAmount: 2

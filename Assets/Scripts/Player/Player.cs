@@ -120,6 +120,8 @@ public class Player : Character
     public void completeQuest()
     {
         favourability += currentQuest.favourabilityReward;
+        // FOR YZA
+        // goldCount ?? += currentQuest.goldReward;
         currentQuest.complete();
         SetQuest(null);
     }
