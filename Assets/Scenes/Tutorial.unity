@@ -871,7 +871,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2043998107}
         m_TargetAssemblyTypeName: DialogueScript, Assembly-CSharp
         m_MethodName: chooseOption
         m_Mode: 3
@@ -10705,7 +10705,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2043998107}
         m_TargetAssemblyTypeName: DialogueScript, Assembly-CSharp
         m_MethodName: chooseOption
         m_Mode: 3
@@ -13333,11 +13333,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   floatingIcon: {fileID: 1111527122}
   promptIcon: {fileID: 1068781234}
-  dialogueNoTalk: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
-  dialogueStartQuest: {fileID: 4900000, guid: c4ec619e4f258e54f9a121db984ce23b, type: 3}
-  dialogueCannotFinishQuest: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
-  dialogueCanFinishQuest: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
-  dialogueFinishedQuest: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
+  dialogueNoTalk: {fileID: 4900000, guid: b191a1f8100a0ef40b3f0ae18e77e644, type: 3}
+  dialogueStartQuest: {fileID: 4900000, guid: b191a1f8100a0ef40b3f0ae18e77e644, type: 3}
+  dialogueCannotFinishQuest: {fileID: 4900000, guid: b191a1f8100a0ef40b3f0ae18e77e644, type: 3}
+  dialogueCanFinishQuest: {fileID: 4900000, guid: b191a1f8100a0ef40b3f0ae18e77e644, type: 3}
+  dialogueFinishedQuest: {fileID: 4900000, guid: b191a1f8100a0ef40b3f0ae18e77e644, type: 3}
   questCheck: {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   player: {fileID: 1587823106}
 --- !u!1 &1726777737
@@ -13888,7 +13888,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 2043998107}
         m_TargetAssemblyTypeName: DialogueScript, Assembly-CSharp
         m_MethodName: chooseOption
         m_Mode: 3
@@ -15386,7 +15386,7 @@ MonoBehaviour:
   player: {fileID: 1587823106}
   promptIcon: {fileID: 68932653}
   promptmessage: {fileID: 1079344669}
-  DialogueFile: {fileID: 4900000, guid: 355b7bdd1e9a97a44a805992cfd3b7c4, type: 3}
+  DialogueFile: {fileID: 4900000, guid: 8a60a5d9729ac81498538db66c300aed, type: 3}
   invent: {fileID: 571075999}
   itemToBuyOrSell: {fileID: 102347206}
 --- !u!1 &2052976335
