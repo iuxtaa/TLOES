@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class CollectableItems : MonoBehaviour
 {
-  
+
     public Player player;
     private bool playerClose = false;
     private bool showPopup = false;
@@ -16,107 +16,79 @@ public class CollectableItems : MonoBehaviour
     public Inventory inventoryCountCheck;
     public GameObject popupText;
 
-   
+
     public int changingnum = 0;
     public static int moneyAmount = 10;
     private const int HAM_COST = 6;
     private const int WINE_COST = 8;
-    private const int APPLE_CONST = 2;
-    private const int PAPER_CONST = 2;
-    private const int QUILL_CONST = 3;
+    private const int APPLE_COST = 2;
+    private const int PAPER_COST = 2;
+    private const int QUILL_COST = 3;
 
     private const int HAM_SELL = 5;
     private const int WINE_SELL = 6;
     private const int APPLE_SELL = 1;
+    private const int EGG_SELL = 2;
 
     public void Update()
     {
         BuyItem();
         SellItem();
-        ReceiveItem();
         changingnum = moneyAmount;
     }
 
-    public void ReceiveItem()
-    {
-        if(playerClose) //&& player.GetQuest().isActive
-        {
-            if(this.gameObject.tag == "EGG")
-            {
-                player.inventory.Adding(this);
-            }
-
-            else if(this.gameObject.tag == "EMPTYBOTTLE")
-            {
-                player.inventory.Adding(this);
-            }
-        }
-    }
-   
     public void BuyItem()
     {
-      if(playerClose && InputsHandler.GetInstance().buyButtonPressed())
+        if (playerClose && InputsHandler.GetInstance().buyButtonPressed())
         {
-            if(this.gameObject.tag == "HAM")
-            { 
-                if(moneyAmount>= HAM_COST)
+            if (this.gameObject.tag.Equals(CollectableItemsType.HAM.ToString()))
+            {
+                if (moneyAmount >= HAM_COST)
                 {
                     player.inventory.Adding(this);
                     moneyAmount -= HAM_COST;
                     popupText.GetComponent<TextMeshProUGUI>().text = "Ham has been added to your inventory.";
-                    Debug.Log("Ham picked up");
-                    popupText.SetActive(true);
                 }
                 else
                 {
                     popupText.GetComponent<TextMeshProUGUI>().text = "You do not have enough money to buy ham.";
-                    Debug.Log("Not enought money message will be triggered here");
-                    popupText.SetActive(true);
                 }
             }
 
-            else if (this.gameObject.tag == "Wine")
+            else if (this.gameObject.tag.Equals(CollectableItemsType.WINE.ToString()))
             {
-                if(moneyAmount>= WINE_COST)
+                if (moneyAmount >= WINE_COST)
                 {
                     player.inventory.Adding(this);
                     moneyAmount -= WINE_COST;
                     popupText.GetComponent<TextMeshProUGUI>().text = "Wine has been added to your inventory.";
-                    Debug.Log("Wine picked up");
-                    popupText.SetActive(true);
                 }
                 else
                 {
                     popupText.GetComponent<TextMeshProUGUI>().text = "You do not have enough money to buy wine.";
-                    Debug.Log("Not enought money message will be triggered here");
-                    popupText.SetActive(true);
-                }  
+                }
             }
-            else if (this.gameObject.tag == "Apple")
+            else if (this.gameObject.tag.Equals(CollectableItemsType.APPLE.ToString()))
             {
-                if(moneyAmount>= APPLE_CONST)
+                if (moneyAmount >= APPLE_COST)
                 {
                     player.inventory.Adding(this);
-                    moneyAmount -= APPLE_CONST;
+                    moneyAmount -= APPLE_COST;
                     popupText.GetComponent<TextMeshProUGUI>().text = "Apple has been added to your inventory.";
-                    Debug.Log("Apple bought");
-                    popupText.SetActive(true);
                 }
                 else
                 {
                     popupText.GetComponent<TextMeshProUGUI>().text = "You do not have enough money to buy apple.";
-                    Debug.Log("Not enought money message will be triggered here");
-                    popupText.SetActive(true);
                 }
-                
+
             }
 
-            else if(this.gameObject.tag == "Paper")
+            else if (this.gameObject.tag == "Paper")
             {
-                if (moneyAmount>= PAPER_CONST)
+                if (moneyAmount >= PAPER_COST)
                 {
                     player.inventory.Adding(this);
-                    moneyAmount -= PAPER_CONST;
+                    moneyAmount -= PAPER_COST;
                 }
                 else
                 {
@@ -124,69 +96,85 @@ public class CollectableItems : MonoBehaviour
                 }
             }
 
-            else if(this.gameObject.tag == "Quill")
+            else if (this.gameObject.tag == "Quill")
             {
-                if (moneyAmount>= QUILL_CONST)
+                if (moneyAmount >= QUILL_COST)
                 {
                     player.inventory.Adding(this);
-                    moneyAmount -= QUILL_CONST;
+                    moneyAmount -= QUILL_COST;
                 }
                 else
                 {
                     Debug.Log("Not enought money message will be triggered here");
                 }
             }
+            popupText.SetActive(true);
         }
-        // Invoke("HidePopupText", 5f);
     }
 
-   public void SellItem()
+    public void SellItem()
     {
         if (playerClose && InputsHandler.GetInstance().sellButtonPressed())
         {
             Debug.Log("V is pressed");
-            if (this.gameObject.tag == "HAM")
+            if (this.gameObject.tag.Equals(CollectableItemsType.HAM.ToString()))
             {
                 if (CanRemoveItemFromInventory(CollectableItemsType.HAM))
                 {
                     player.inventory.Removing(this);
                     moneyAmount += HAM_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a ham to Butch!";
-                    Debug.Log("Ham Sold");
-                    popupText.SetActive(true);
                 }
             }
 
-            else if (this.gameObject.tag == "Wine")
+            else if (this.gameObject.tag.Equals(CollectableItemsType.WINE.ToString()))
             {
                 if (CanRemoveItemFromInventory(CollectableItemsType.WINE))
                 {
                     player.inventory.Removing(this);
                     moneyAmount += WINE_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a wine to Jack!";
-                    Debug.Log("Wine Sold");
-                    popupText.SetActive(true);
                 }
             }
-            else if (this.gameObject.tag == "Apple")
+            else if (this.gameObject.tag.Equals(CollectableItemsType.APPLE.ToString()))
             {
-                if(CanRemoveItemFromInventory(CollectableItemsType.APPLE))
+                if (CanRemoveItemFromInventory(CollectableItemsType.APPLE))
                 {
                     player.inventory.Removing(this);
                     moneyAmount += APPLE_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a apple to Kate!";
-                    Debug.Log("Apple Sold");
-                    popupText.SetActive(true);
                 }
-                       
+                popupText.SetActive(true);
             }
         }
-        // Invoke("HidePopupText", 5f);
     }
+
+    public bool SellQuestItem()
+    {
+        if (playerClose && InputsHandler.GetInstance().sellButtonPressed())
+        {
+            if (this.gameObject.tag.Equals(CollectableItemsType.EGG.ToString()))
+            {
+                if (CanRemoveItemFromInventory(CollectableItemsType.EGG))
+                {
+                    player.inventory.Removing(this);
+                    moneyAmount += EGG_SELL;
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold an egg!";
+                }
+            }
+            popupText.SetActive(true);
+            return true;
+        }
+        return false;
+    }
+
 
     public void HidePopupText()
     {
-        popupText.SetActive(false);
+        if (popupText.activeInHierarchy)
+        {
+            popupText.SetActive(false);
+        }
     }
 
     private bool CanRemoveItemFromInventory(CollectableItemsType itemType)

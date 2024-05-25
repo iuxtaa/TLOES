@@ -10,12 +10,11 @@ TagManager:
   - NextMap
   - PrevMap
   - HAM
-  - Wine
   - Apple
-  - AppleSeller
   - EGG
-  - BOOK
   - Begger
+  - WINE
+  - APPLE
   layers:
   - Default
   - TransparentFX
