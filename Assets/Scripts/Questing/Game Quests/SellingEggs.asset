@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questNumber: 0
   isActive: 0
-  completionStatus: 1
+  completionStatus: 0
   dependentQuest: {fileID: 0}
   title: Selling Eggs
   description: Sell your father's eggs at the market!
   favourabilityReward: 5
+  goldReward: 0
   objectives:
   - {fileID: 11400000, guid: 3b440b5158493704084b0fe238a3b6c8, type: 2}
   - {fileID: 11400000, guid: bda7aa4554ac96148b9d309d7cdbc2ac, type: 2}

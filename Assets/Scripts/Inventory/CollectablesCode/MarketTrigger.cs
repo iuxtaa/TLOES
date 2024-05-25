@@ -17,7 +17,7 @@ public class MarketTrigger : MonoBehaviour
     [SerializeField] private TextAsset DialogueFile;
 
     private NPCmovement NPClook;
-    private GameObject invent;
+    public GameObject invent;
 
 
     public GameObject itemToBuyOrSell;
@@ -29,7 +29,6 @@ public class MarketTrigger : MonoBehaviour
         promptIcon.SetActive(false);
         promptmessage.SetActive(false);
         NPClook = GetComponent<NPCmovement>();
-        invent = GameObject.Find("inventorybg");
         itemToBuyOrSell.SetActive(false);
     }
 

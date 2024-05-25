@@ -1403,7 +1403,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
+  questObjective: {fileID: 11400000, guid: 6098a56bcc3ccb741b2230231c58a70c, type: 2}
   player: {fileID: 1018197484}
+  questItem: {fileID: 0}
   questOverlay: {fileID: 1326176445}
 --- !u!114 &235057918
 MonoBehaviour:

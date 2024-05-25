@@ -2066,7 +2066,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: 603aad6306cb9d74c8f716b6d40953c9, type: 2}
+  questObjective: {fileID: 0}
   player: {fileID: 2044812155}
+  questItem: {fileID: 0}
   questOverlay: {fileID: 1328474738}
 --- !u!1 &323311899
 GameObject:
@@ -5670,7 +5672,8 @@ MonoBehaviour:
   player: {fileID: 2044812155}
   promptIcon: {fileID: 216442902}
   promptmessage: {fileID: 702678249}
-  DialogueFile: {fileID: 4900000, guid: 0a67f4181a404684a9571fe666e0d0b3, type: 3}
+  DialogueFile: {fileID: 4900000, guid: 355b7bdd1e9a97a44a805992cfd3b7c4, type: 3}
+  invent: {fileID: 1703277710}
   itemToBuyOrSell: {fileID: 2062799042}
 --- !u!114 &693590396
 MonoBehaviour:
@@ -6278,7 +6281,8 @@ MonoBehaviour:
   player: {fileID: 2044812155}
   promptIcon: {fileID: 1298204528}
   promptmessage: {fileID: 1365076285}
-  DialogueFile: {fileID: 4900000, guid: 185ad912dfd81e74f8d9f5d9b44cba76, type: 3}
+  DialogueFile: {fileID: 4900000, guid: 18aaf55ce0883fe4c8cfaa9a4471a5d7, type: 3}
+  invent: {fileID: 1703277710}
   itemToBuyOrSell: {fileID: 1707435646}
 --- !u!114 &709642916
 MonoBehaviour:
@@ -6460,7 +6464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1546294774153461753, guid: e0f563e04d2a7b64195a18a417c456f8, type: 3}
       propertyPath: m_TagString
-      value: AppleSeller
+      value: New tag
       objectReference: {fileID: 0}
     - target: {fileID: 2360343922492329317, guid: e0f563e04d2a7b64195a18a417c456f8, type: 3}
       propertyPath: m_Layer
@@ -13433,7 +13437,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
+  questObjective: {fileID: 0}
   player: {fileID: 2044812155}
+  questItem: {fileID: 0}
   questOverlay: {fileID: 1328474738}
 --- !u!1001 &1698425622
 PrefabInstance:
@@ -15270,7 +15276,8 @@ MonoBehaviour:
   player: {fileID: 2044812155}
   promptIcon: {fileID: 147817310}
   promptmessage: {fileID: 2120237615}
-  DialogueFile: {fileID: 4900000, guid: 180dca61cd3b17048ba8be461225498e, type: 3}
+  DialogueFile: {fileID: 4900000, guid: 3f08be03d5657f64199a8cb8580a7db8, type: 3}
+  invent: {fileID: 1703277710}
   itemToBuyOrSell: {fileID: 1204774999}
 --- !u!114 &1888621778 stripped
 MonoBehaviour:
@@ -22184,6 +22191,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apple_Kate
       objectReference: {fileID: 0}
+    - target: {fileID: 4971334779744985494, guid: 76f24f105c8d62749ba6547d1e52008f, type: 3}
+      propertyPath: m_TagString
+      value: APPLE
+      objectReference: {fileID: 0}
     - target: {fileID: 5243312435919983221, guid: 76f24f105c8d62749ba6547d1e52008f, type: 3}
       propertyPath: m_Size.x
       value: 6.9730506
@@ -22383,6 +22394,10 @@ PrefabInstance:
     - target: {fileID: 5181977727091367919, guid: 5e4b7f939b2a0934c91a272cb95a977b, type: 3}
       propertyPath: m_Name
       value: Wine_Jack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5181977727091367919, guid: 5e4b7f939b2a0934c91a272cb95a977b, type: 3}
+      propertyPath: m_TagString
+      value: WINE
       objectReference: {fileID: 0}
     - target: {fileID: 5444200185226946654, guid: 5e4b7f939b2a0934c91a272cb95a977b, type: 3}
       propertyPath: m_Size.x

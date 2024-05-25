@@ -10,7 +10,7 @@ public class QuestGiver : MonoBehaviour // this will be an NPC which 'is a' char
     public Quest quest; // the quest that the quest giver will give
     public QuestObjective questObjective;
     public Player player; // the player that will accept the quest
-
+    public CollectableItems questItem;
     public GameObject questOverlay;
 
     public void acceptQuest()
@@ -24,9 +24,17 @@ public class QuestGiver : MonoBehaviour // this will be an NPC which 'is a' char
                 {
                     
                 }
+                
                 if(questObjective is SellingQuestObjective sellingQuestObjective)
                 {
-
+                    if(questItem.tag.Equals(CollectableItemsType.EGG.ToString()))
+                    {
+                        Debug.Log("Player has received the egg");
+                        for(int i = 0; i < sellingQuestObjective.requiredSellingAmount; i++)
+                        {
+                            player.inventory.Adding(questItem);
+                        }
+                    }
                 }
             }
             questOverlay.SetActive(true);
