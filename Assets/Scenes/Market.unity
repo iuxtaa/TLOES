@@ -2066,6 +2066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: 603aad6306cb9d74c8f716b6d40953c9, type: 2}
+  questObjective: {fileID: 0}
   player: {fileID: 2044812155}
   questOverlay: {fileID: 1328474738}
 --- !u!1 &323311899
@@ -5670,7 +5671,7 @@ MonoBehaviour:
   player: {fileID: 2044812155}
   promptIcon: {fileID: 216442902}
   promptmessage: {fileID: 702678249}
-  DialogueFile: {fileID: 0}
+  DialogueFile: {fileID: 4900000, guid: 355b7bdd1e9a97a44a805992cfd3b7c4, type: 3}
   invent: {fileID: 1703277710}
   itemToBuyOrSell: {fileID: 2062799042}
 --- !u!114 &693590396
@@ -6279,7 +6280,7 @@ MonoBehaviour:
   player: {fileID: 2044812155}
   promptIcon: {fileID: 1298204528}
   promptmessage: {fileID: 1365076285}
-  DialogueFile: {fileID: 0}
+  DialogueFile: {fileID: 4900000, guid: 18aaf55ce0883fe4c8cfaa9a4471a5d7, type: 3}
   invent: {fileID: 1703277710}
   itemToBuyOrSell: {fileID: 2062799042}
 --- !u!114 &709642916
@@ -13435,6 +13436,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
+  questObjective: {fileID: 0}
   player: {fileID: 2044812155}
   questOverlay: {fileID: 1328474738}
 --- !u!1001 &1698425622
@@ -15272,7 +15274,7 @@ MonoBehaviour:
   player: {fileID: 2044812155}
   promptIcon: {fileID: 147817310}
   promptmessage: {fileID: 2120237615}
-  DialogueFile: {fileID: 0}
+  DialogueFile: {fileID: 4900000, guid: 3f08be03d5657f64199a8cb8580a7db8, type: 3}
   invent: {fileID: 1703277710}
   itemToBuyOrSell: {fileID: 1204774999}
 --- !u!114 &1888621778 stripped
