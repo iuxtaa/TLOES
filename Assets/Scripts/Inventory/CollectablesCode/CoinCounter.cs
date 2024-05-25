@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class CoinCounter : MonoBehaviour
 {
-    public TextMeshProUGUI money;
+    public TextMeshProUGUI money;//amount display
     private CollectableItems collect;
 
     public void Awake()

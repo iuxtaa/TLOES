@@ -20,6 +20,7 @@ public class CollectableItems : MonoBehaviour
     private const int PAPER_CONST = 2;
     private const int QUILL_CONST = 3;
 
+    //cost
     private const int HAM_SELL = 5;
     private const int WINE_SELL = 6;
     private const int APPLE_SELL = 1;
@@ -34,7 +35,7 @@ public class CollectableItems : MonoBehaviour
 
     public void ReceiveItem()
     {
-        if(playerClose && player.GetQuest().isActive)
+        if(playerClose) // && player.GetQuest().isActive
         {
             if(this.gameObject.tag == "EGG")
             {
