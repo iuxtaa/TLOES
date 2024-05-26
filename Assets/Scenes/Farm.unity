@@ -6793,8 +6793,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   - {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
   startingPosition: {fileID: 11400000, guid: fce9b2cfa7deaa14db422030ecbd1ac9, type: 2}
-  inventory:
-    slots: []
+  inventory: {fileID: 1176081473}
+  inventoryUI: {fileID: 1176081469}
 --- !u!82 &921882242
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8359,6 +8359,7 @@ GameObject:
   - component: {fileID: 1176081471}
   - component: {fileID: 1176081470}
   - component: {fileID: 1176081469}
+  - component: {fileID: 1176081473}
   m_Layer: 5
   m_Name: InventoryCanvas
   m_TagString: Untagged
@@ -8471,6 +8472,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1176081473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176081467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c51b39cf31e1a46820baacdbc52867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1196750043
 GameObject:
   m_ObjectHideFlags: 0
@@ -13951,8 +13964,7 @@ MonoBehaviour:
   player: {fileID: 921882241}
   type: 4
   icon: {fileID: 21300000, guid: ce993d5f7ca6ea8459974fd88e71861d, type: 3}
-  inventoryCountCheck:
-    slots: []
+  inventoryCountCheck: {fileID: 1176081473}
   popupText: {fileID: 1924488629}
   changingnum: 0
 --- !u!1660057539 &9223372036854775807

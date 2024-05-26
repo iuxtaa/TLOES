@@ -4,12 +4,26 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
+    public static InventoryUI Instance { get; private set;}
     public GameObject inventoryPanel;
     public Player player;
     public List<SlotManager> slots = new List<SlotManager>();
    
+//    private void Awake()
+//    {
+//         if(Instance == null)
+//         {
+//             Instance = this;
+//             DontDestroyOnLoad(gameObject);
+//         }
+//         else 
+//         {
+//             Destroy(gameObject);
+//         }
+//    }
+
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if(InputsHandler.GetInstance().inventoryButtonPressed())
         {

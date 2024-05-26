@@ -10,7 +10,6 @@ public class CollectableItems : MonoBehaviour
   
     public Player player;
     private bool playerClose = false;
-    private bool showPopup = false;
     public CollectableItemsType type;
     public Sprite icon;
     public Inventory inventoryCountCheck;

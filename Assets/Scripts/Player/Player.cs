@@ -8,6 +8,7 @@ public class Player : Character
 {
 
     #region Variables
+    public static Player Instance { get; private set; }
 
     // CONSTANT VARIABLES
     public const int MAX_SLOTS = 5;
@@ -17,9 +18,8 @@ public class Player : Character
     [SerializeField] public static Quest currentQuest;
     public Quest[] questHistory = new Quest[3];
     public VectorValue startingPosition;
-
-    public Inventory inventory;// this is the temperary code for the inventory
-
+    public Inventory inventory;
+    public InventoryUI inventoryUI;
 
 
     #endregion
@@ -46,7 +46,6 @@ public class Player : Character
     {
         transform.position = startingPosition.changingValue;
         startingPosition.changingValue = startingPosition.initialValue;
-        inventory = new Inventory(MAX_SLOTS);//temperary inventory stuff might delete later
     }
 
 
@@ -76,38 +75,6 @@ public class Player : Character
     }
 
     #endregion
-
-    #region InventoryMethods 
-    public void AddItem(string item, int quantity)
-    {
-        if (tempinventory2.ContainsKey(item))
-        {
-            tempinventory2[item] += quantity;
-        }
-        else
-        {
-            tempinventory2.Add(item, quantity);
-        }
-    }
-
-    public void RemoveItem(string item, int quantity)
-    {
-        if (tempinventory2.ContainsKey(item))
-        {
-            tempinventory2[item] -= quantity;
-            if (tempinventory2[item] <= 0)
-            {
-                tempinventory2.Remove(item);
-            }
-        }
-
-    }
-
-    public int GetItemCount(string item)
-    {
-        return tempinventory2.ContainsKey(item) ? tempinventory2[item] : 0;
-    }
-    #endregion 
 
     #region QuestingMethods
     public void acceptQuest(Quest quest)
