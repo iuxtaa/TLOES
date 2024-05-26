@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class CollectableItems : MonoBehaviour
 {
-  
+
     public Player player;
     private bool playerClose = false;
     public CollectableItemsType type;
@@ -15,7 +15,7 @@ public class CollectableItems : MonoBehaviour
     public Inventory inventoryCountCheck;
     public GameObject popupText;
 
-   
+
     public int changingnum = 0;
     public static int moneyAmount = 10;
     private const int HAM_COST = 6;
@@ -35,14 +35,13 @@ public class CollectableItems : MonoBehaviour
         SellItem();
         changingnum = moneyAmount;
     }
-   
     public void BuyItem()
     {
-      if(playerClose && InputsHandler.GetInstance().buyButtonPressed())
+        if (playerClose && InputsHandler.GetInstance().buyButtonPressed())
         {
-            if(this.gameObject.tag.Equals(CollectableItemsType.HAM.ToString()))
-            { 
-                if(moneyAmount>= HAM_COST)
+            if (this.gameObject.tag.Equals(CollectableItemsType.HAM.ToString()))
+            {
+                if (moneyAmount >= HAM_COST)
                 {
                     player.inventory.Adding(this);
                     moneyAmount -= HAM_COST;
@@ -56,7 +55,7 @@ public class CollectableItems : MonoBehaviour
 
             else if (this.gameObject.tag.Equals(CollectableItemsType.WINE.ToString()))
             {
-                if(moneyAmount>= WINE_COST)
+                if (moneyAmount >= WINE_COST)
                 {
                     player.inventory.Adding(this);
                     moneyAmount -= WINE_COST;
@@ -65,11 +64,11 @@ public class CollectableItems : MonoBehaviour
                 else
                 {
                     popupText.GetComponent<TextMeshProUGUI>().text = "You do not have enough money to buy wine.";
-                }  
+                }
             }
             else if (this.gameObject.tag.Equals(CollectableItemsType.APPLE.ToString()))
             {
-                if(moneyAmount>= APPLE_COST)
+                if (moneyAmount >= APPLE_COST)
                 {
                     player.inventory.Adding(this);
                     moneyAmount -= APPLE_COST;
@@ -79,10 +78,10 @@ public class CollectableItems : MonoBehaviour
                 {
                     popupText.GetComponent<TextMeshProUGUI>().text = "You do not have enough money to buy apple.";
                 }
-                
+
             }
 
-            else if(this.gameObject.tag == "Paper")
+            else if (this.gameObject.tag == "Paper")
             {
                 if (moneyAmount>= PAPER_COST)
                 {
@@ -95,9 +94,9 @@ public class CollectableItems : MonoBehaviour
                 }
             }
 
-            else if(this.gameObject.tag == "Quill")
+            else if (this.gameObject.tag == "Quill")
             {
-                if (moneyAmount>= QUILL_COST)
+                if (moneyAmount >= QUILL_COST)
                 {
                     player.inventory.Adding(this);
                     moneyAmount -= QUILL_COST;
@@ -111,7 +110,7 @@ public class CollectableItems : MonoBehaviour
         }
     }
 
-   public void SellItem()
+    public void SellItem()
     {
         if (playerClose && InputsHandler.GetInstance().sellButtonPressed())
         {
@@ -137,7 +136,7 @@ public class CollectableItems : MonoBehaviour
             }
             else if (this.gameObject.tag.Equals(CollectableItemsType.APPLE.ToString()))
             {
-                if(CanRemoveItemFromInventory(CollectableItemsType.APPLE))
+                if (CanRemoveItemFromInventory(CollectableItemsType.APPLE))
                 {
                     player.inventory.Removing(this);
                     moneyAmount += APPLE_SELL;
@@ -166,7 +165,6 @@ public class CollectableItems : MonoBehaviour
         }
         return false;
     }
-
     
     public void HidePopupText()
     {

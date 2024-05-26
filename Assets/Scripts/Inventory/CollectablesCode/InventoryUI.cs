@@ -9,21 +9,8 @@ public class InventoryUI : MonoBehaviour
     public Player player;
     public List<SlotManager> slots = new List<SlotManager>();
    
-//    private void Awake()
-//    {
-//         if(Instance == null)
-//         {
-//             Instance = this;
-//             DontDestroyOnLoad(gameObject);
-//         }
-//         else 
-//         {
-//             Destroy(gameObject);
-//         }
-//    }
-
-    // Update is called once per frame
-    public void Update()
+    // Update is called once per frame...
+    void Update()
     {
         if(InputsHandler.GetInstance().inventoryButtonPressed())
         {

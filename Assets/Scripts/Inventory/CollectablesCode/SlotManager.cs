@@ -20,7 +20,7 @@ public class SlotManager : MonoBehaviour
         }
     }
 
-    public void SetEmpty()
+    public void SetEmpty()//resets slot
     {
         itemIcon.sprite = null;
         itemIcon.color = new Color(1,1,1,0);

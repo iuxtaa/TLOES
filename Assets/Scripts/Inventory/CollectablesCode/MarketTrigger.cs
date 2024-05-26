@@ -18,8 +18,6 @@ public class MarketTrigger : MonoBehaviour
 
     private NPCmovement NPClook;
     public GameObject invent;
-
-
     public GameObject itemToBuyOrSell;
 
 
