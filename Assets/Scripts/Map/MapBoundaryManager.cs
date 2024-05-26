@@ -8,7 +8,7 @@ public class MapBoundaryManager : MonoBehaviour
     public VectorValue playerPosition;
     public Player player;
     public GameObject warningText;
-    private const float INVOKE_OFFSET = 5f;
+    private const float INVOKE_OFFSET = 3.5f;
 
     public void OnTriggerEnter2D(Collider2D collision)
     {

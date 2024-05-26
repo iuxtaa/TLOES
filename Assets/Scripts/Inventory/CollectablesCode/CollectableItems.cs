@@ -29,6 +29,8 @@ public class CollectableItems : MonoBehaviour
     private const int APPLE_SELL = 1;
     private const int EGG_SELL = 2;
 
+    private const float INVOKE_OFFSET = 3.5f;
+
     public void Update()
     {
         BuyItem();
@@ -190,7 +192,7 @@ public class CollectableItems : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerClose = true;
-            Invoke("HidePopupText", 5f);
+            Invoke("HidePopupText", INVOKE_OFFSET);
         }
     }
 
@@ -199,7 +201,7 @@ public class CollectableItems : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerClose = false;
-            Invoke("HidePopupText", 5f);
+            Invoke("HidePopupText", INVOKE_OFFSET);
         }
     }
 }
