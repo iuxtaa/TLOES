@@ -134,4 +134,22 @@ public class InputsHandler : MonoBehaviour
         return endresult ;
     }
 
+    public void teleportButtonPressed(InputAction.CallbackContext action)
+    {
+        if (action.performed)
+        {
+            sellPressed = true;
+        }
+        else if (action.canceled)
+        {
+            sellPressed = false;
+        }
+    }
+    public bool teleportButtonPressed()
+    {
+        bool endresult = sellPressed;
+        sellPressed = false;
+        return endresult;
+    }
+
 }

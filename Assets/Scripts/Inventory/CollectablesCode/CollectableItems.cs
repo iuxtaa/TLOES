@@ -21,13 +21,14 @@ public class CollectableItems : MonoBehaviour
     private const int HAM_COST = 6;
     private const int WINE_COST = 8;
     private const int APPLE_COST = 2;
-    private const int PAPER_COST = 2;
+    private const int PAPER_COST = 3;
     private const int QUILL_COST = 3;
 
     private const int HAM_SELL = 5;
     private const int WINE_SELL = 6;
     private const int APPLE_SELL = 1;
     private const int EGG_SELL = 2;
+    private const int PAPER_SELL = 2;
 
     private const float INVOKE_OFFSET = 3.5f;
 
@@ -35,6 +36,7 @@ public class CollectableItems : MonoBehaviour
     {
         BuyItem();
         SellItem();
+        SellQuestItem();
         changingnum = moneyAmount;
     }
     public void BuyItem()
@@ -83,29 +85,17 @@ public class CollectableItems : MonoBehaviour
 
             }
 
-            else if (this.gameObject.tag == "Paper")
+            else if (this.gameObject.tag.Equals(CollectableItemsType.PAPER.ToString()))
             {
                 if (moneyAmount>= PAPER_COST)
                 {
                     player.inventory.Adding(this);
                     moneyAmount -= PAPER_COST;
+                    popupText.GetComponent<TextMeshProUGUI>().text = "Paper has been added to your inventory.";
                 }
                 else
                 {
-                    Debug.Log("Not enought money message will be triggered here");
-                }
-            }
-
-            else if (this.gameObject.tag == "Quill")
-            {
-                if (moneyAmount >= QUILL_COST)
-                {
-                    player.inventory.Adding(this);
-                    moneyAmount -= QUILL_COST;
-                }
-                else
-                {
-                    Debug.Log("Not enought money message will be triggered here");
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You do not have enough money to buy paper.";
                 }
             }
             popupText.SetActive(true);
@@ -143,9 +133,18 @@ public class CollectableItems : MonoBehaviour
                     player.inventory.Removing(this);
                     moneyAmount += APPLE_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a apple to Kate!";
+                }
+            }
+            else if (this.gameObject.tag.Equals(CollectableItemsType.PAPER.ToString()))
+            {
+                if (CanRemoveItemFromInventory(CollectableItemsType.PAPER))
+                {
+                    player.inventory.Removing(this);
+                    moneyAmount += PAPER_SELL;
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold a paper to Patrick!";
+                }
             }
             popupText.SetActive(true);
-            }
         }
     }
     
@@ -157,9 +156,12 @@ public class CollectableItems : MonoBehaviour
             {
                 if(CanRemoveItemFromInventory(CollectableItemsType.EGG))
                 {
-                    player.inventory.Removing(this);
-                    moneyAmount += EGG_SELL;
-                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold an egg!";
+                    for(int i = 0; i < 4; i++)
+                    {
+                        player.inventory.Removing(this);
+                        moneyAmount += EGG_SELL;
+                    }
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold some eggs!";
                 }
             }
             popupText.SetActive(true);

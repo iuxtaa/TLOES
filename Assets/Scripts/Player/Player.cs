@@ -17,7 +17,8 @@ public class Player : Character
     public static Dictionary<string, int> tempinventory2 = new Dictionary<string, int>();  // Initialize inventory
     [SerializeField] public static Quest currentQuest;
     public Quest[] questHistory = new Quest[3];
-    public VectorValue startingPosition;
+    // public VectorValue startingPosition;
+    public PlayerVectorValue startingPosition;
     public Inventory inventory;
     public InventoryUI inventoryUI;
 

@@ -90,6 +90,7 @@ public class DialogueScript : MonoBehaviour
         currentDialogue.BindExternalFunction("buyingandsellingApples", (string AppleActivity) =>
           {
               AppleSellerTrigger.purchase();  
+              Debug.Log("buying apples");
               Debug.Log(AppleActivity); 
          });
         currentDialogue.BindExternalFunction("buyingandsellingHam", (string HamActivity) =>

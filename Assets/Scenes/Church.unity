@@ -5973,9 +5973,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
   - {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   - {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
-  startingPosition: {fileID: 11400000, guid: fce9b2cfa7deaa14db422030ecbd1ac9, type: 2}
-  inventory:
-    slots: []
+  startingPosition: {fileID: 0}
+  inventory: {fileID: 0}
+  inventoryUI: {fileID: 0}
 --- !u!82 &1018197485
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6276,7 +6276,7 @@ GameObject:
   - component: {fileID: 1039588877}
   - component: {fileID: 1039588876}
   m_Layer: 5
-  m_Name: NPCpromptMessage
+  m_Name: PriestpromptMessage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
