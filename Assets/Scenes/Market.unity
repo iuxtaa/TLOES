@@ -2068,6 +2068,7 @@ MonoBehaviour:
   quest: {fileID: 11400000, guid: 603aad6306cb9d74c8f716b6d40953c9, type: 2}
   questObjective: {fileID: 0}
   player: {fileID: 2044812155}
+  questItem: {fileID: 0}
   questOverlay: {fileID: 1328474738}
 --- !u!1 &323311899
 GameObject:
@@ -5731,6 +5732,10 @@ PrefabInstance:
       propertyPath: popupText
       value: 
       objectReference: {fileID: 1779928991}
+    - target: {fileID: 7824451954255973315, guid: 76f24f105c8d62749ba6547d1e52008f, type: 3}
+      propertyPath: inventoryCountCheck
+      value: 
+      objectReference: {fileID: 1523734060}
     - target: {fileID: 8572078694449169242, guid: 76f24f105c8d62749ba6547d1e52008f, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.3431772
@@ -10630,7 +10635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1269736297}
   m_Layer: 0
-  m_Name: Butcher
+  m_Name: ButcherNPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12309,6 +12314,7 @@ GameObject:
   - component: {fileID: 1523734058}
   - component: {fileID: 1523734057}
   - component: {fileID: 1523734056}
+  - component: {fileID: 1523734060}
   m_Layer: 5
   m_Name: InventoryCanvas
   m_TagString: Untagged
@@ -12421,6 +12427,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1523734060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523734054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c51b39cf31e1a46820baacdbc52867, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1548554732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13446,6 +13464,7 @@ MonoBehaviour:
   quest: {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   questObjective: {fileID: 0}
   player: {fileID: 2044812155}
+  questItem: {fileID: 0}
   questOverlay: {fileID: 1328474738}
 --- !u!1001 &1698425622
 PrefabInstance:
@@ -17805,8 +17824,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   - {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
   startingPosition: {fileID: 11400000, guid: fce9b2cfa7deaa14db422030ecbd1ac9, type: 2}
-  inventory:
-    slots: []
+  inventory: {fileID: 1523734060}
+  inventoryUI: {fileID: 1523734056}
 --- !u!82 &2044812156
 AudioSource:
   m_ObjectHideFlags: 0
@@ -22749,6 +22768,10 @@ PrefabInstance:
       propertyPath: popupText
       value: 
       objectReference: {fileID: 1779928991}
+    - target: {fileID: 7824451954255973315, guid: 76f24f105c8d62749ba6547d1e52008f, type: 3}
+      propertyPath: inventoryCountCheck
+      value: 
+      objectReference: {fileID: 1523734060}
     - target: {fileID: 8572078694449169242, guid: 76f24f105c8d62749ba6547d1e52008f, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.3431772
@@ -22833,6 +22856,10 @@ PrefabInstance:
       propertyPath: popupText
       value: 
       objectReference: {fileID: 1779928991}
+    - target: {fileID: 1451266113834281721, guid: 239bf75045e3c9846af9e5fae32b5a93, type: 3}
+      propertyPath: inventoryCountCheck
+      value: 
+      objectReference: {fileID: 1523734060}
     - target: {fileID: 2238745050702115783, guid: 239bf75045e3c9846af9e5fae32b5a93, type: 3}
       propertyPath: m_Size.x
       value: 3.9257722
@@ -22953,6 +22980,10 @@ PrefabInstance:
       propertyPath: popupText
       value: 
       objectReference: {fileID: 1779928991}
+    - target: {fileID: 7207542523651455663, guid: 5e4b7f939b2a0934c91a272cb95a977b, type: 3}
+      propertyPath: inventoryCountCheck
+      value: 
+      objectReference: {fileID: 1523734060}
     - target: {fileID: 8629284500865797969, guid: 5e4b7f939b2a0934c91a272cb95a977b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5689

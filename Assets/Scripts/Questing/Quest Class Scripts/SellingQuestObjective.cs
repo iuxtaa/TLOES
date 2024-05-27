@@ -21,8 +21,11 @@ public class SellingQuestObjective : QuestObjective
     }
     public void incSellingCount(int amount)
     {
-        sellingCount += amount;
-        checkCanComplete();
+        if(requiredItem.SellQuestItem())
+        {
+            sellingCount += amount;
+            checkCanComplete();
+        }
     }
     public override bool checkCanComplete()
     {

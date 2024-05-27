@@ -10,7 +10,6 @@ public class CollectableItems : MonoBehaviour
 
     public Player player;
     private bool playerClose = false;
-    private bool showPopup = false;
     public CollectableItemsType type;
     public Sprite icon;
     public Inventory inventoryCountCheck;
@@ -22,21 +21,24 @@ public class CollectableItems : MonoBehaviour
     private const int HAM_COST = 6;
     private const int WINE_COST = 8;
     private const int APPLE_COST = 2;
-    private const int PAPER_COST = 2;
+    private const int PAPER_COST = 3;
     private const int QUILL_COST = 3;
 
     private const int HAM_SELL = 5;
     private const int WINE_SELL = 6;
     private const int APPLE_SELL = 1;
     private const int EGG_SELL = 2;
+    private const int PAPER_SELL = 2;
+
+    private const float INVOKE_OFFSET = 3.5f;
 
     public void Update()
     {
         BuyItem();
         SellItem();
+        SellQuestItem();
         changingnum = moneyAmount;
     }
-
     public void BuyItem()
     {
         if (playerClose && InputsHandler.GetInstance().buyButtonPressed())
@@ -83,29 +85,17 @@ public class CollectableItems : MonoBehaviour
 
             }
 
-            else if (this.gameObject.tag == "Paper")
+            else if (this.gameObject.tag.Equals(CollectableItemsType.PAPER.ToString()))
             {
-                if (moneyAmount >= PAPER_COST)
+                if (moneyAmount>= PAPER_COST)
                 {
                     player.inventory.Adding(this);
                     moneyAmount -= PAPER_COST;
+                    popupText.GetComponent<TextMeshProUGUI>().text = "Paper has been added to your inventory.";
                 }
                 else
                 {
-                    Debug.Log("Not enought money message will be triggered here");
-                }
-            }
-
-            else if (this.gameObject.tag == "Quill")
-            {
-                if (moneyAmount >= QUILL_COST)
-                {
-                    player.inventory.Adding(this);
-                    moneyAmount -= QUILL_COST;
-                }
-                else
-                {
-                    Debug.Log("Not enought money message will be triggered here");
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You do not have enough money to buy paper.";
                 }
             }
             popupText.SetActive(true);
@@ -144,22 +134,34 @@ public class CollectableItems : MonoBehaviour
                     moneyAmount += APPLE_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a apple to Kate!";
                 }
-                popupText.SetActive(true);
             }
+            else if (this.gameObject.tag.Equals(CollectableItemsType.PAPER.ToString()))
+            {
+                if (CanRemoveItemFromInventory(CollectableItemsType.PAPER))
+                {
+                    player.inventory.Removing(this);
+                    moneyAmount += PAPER_SELL;
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold a paper to Patrick!";
+                }
+            }
+            popupText.SetActive(true);
         }
     }
-
+    
     public bool SellQuestItem()
     {
         if (playerClose && InputsHandler.GetInstance().sellButtonPressed())
         {
-            if (this.gameObject.tag.Equals(CollectableItemsType.EGG.ToString()))
+            if(this.gameObject.tag.Equals(CollectableItemsType.EGG.ToString()))
             {
-                if (CanRemoveItemFromInventory(CollectableItemsType.EGG))
+                if(CanRemoveItemFromInventory(CollectableItemsType.EGG))
                 {
-                    player.inventory.Removing(this);
-                    moneyAmount += EGG_SELL;
-                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold an egg!";
+                    for(int i = 0; i < 4; i++)
+                    {
+                        player.inventory.Removing(this);
+                        moneyAmount += EGG_SELL;
+                    }
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold some eggs!";
                 }
             }
             popupText.SetActive(true);
@@ -167,13 +169,12 @@ public class CollectableItems : MonoBehaviour
         }
         return false;
     }
-
-
+    
     public void HidePopupText()
     {
-        if (popupText.activeInHierarchy)
+        if(popupText.activeInHierarchy)
         {
-            popupText.SetActive(false);
+            popupText.SetActive(false);       
         }
     }
 
@@ -193,7 +194,7 @@ public class CollectableItems : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerClose = true;
-            Invoke("HidePopupText", 5f);
+            Invoke("HidePopupText", INVOKE_OFFSET);
         }
     }
 
@@ -202,7 +203,7 @@ public class CollectableItems : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             playerClose = false;
-            Invoke("HidePopupText", 5f);
+            Invoke("HidePopupText", INVOKE_OFFSET);
         }
     }
 }

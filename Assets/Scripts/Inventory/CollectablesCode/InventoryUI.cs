@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
+    public static InventoryUI Instance { get; private set;}
     public GameObject inventoryPanel;
     public Player player;
     public List<SlotManager> slots = new List<SlotManager>();

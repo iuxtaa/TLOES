@@ -15,6 +15,13 @@ TagManager:
   - Begger
   - WINE
   - APPLE
+  - FARM
+  - CHURCH
+  - MARKET
+  - WELL
+  - PAPER
+  - EMPTYBOTTLE
+  - WATERBOTTLE
   layers:
   - Default
   - TransparentFX
