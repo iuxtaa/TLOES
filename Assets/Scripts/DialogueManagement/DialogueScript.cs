@@ -23,6 +23,8 @@ public class DialogueScript : MonoBehaviour
     public MarketTrigger AppleSellerTrigger;
     public MarketTrigger HamSellerTrigger;
     public MarketTrigger WineSellerTrigger;
+    public MarketTrigger EggSellerTrigger;
+    public MarketTrigger PaperSellerTrigger;
 
     public Player player;
     public QuestGiver questGiver;
@@ -103,6 +105,17 @@ public class DialogueScript : MonoBehaviour
             WineSellerTrigger.purchase();
             Debug.Log(WineActivity);
         });
+        currentDialogue.BindExternalFunction("buyingandsellingEggs", (string EggActivity) =>
+        {
+            EggSellerTrigger.purchase();
+            Debug.Log(EggActivity);
+            Debug.Log("buying eggs");
+        });
+        currentDialogue.BindExternalFunction("buyingandsellingPaper", (string PaperActivity) =>
+        {
+            PaperSellerTrigger.purchase();
+            Debug.Log(PaperActivity);
+        });
         //add another binding function that will call the sell function.
 
 
@@ -116,6 +129,8 @@ public class DialogueScript : MonoBehaviour
         currentDialogue.UnbindExternalFunction("buyingandsellingApples");
         currentDialogue.UnbindExternalFunction("buyingandsellingHam");
         currentDialogue.UnbindExternalFunction("buyingandsellingWine");
+        currentDialogue.UnbindExternalFunction("buyingandsellingEggs");
+        currentDialogue.UnbindExternalFunction("buyingandsellingPaper");
         currentDialogueIsPlaying = false;
         dialogueDisplay.SetActive(false);
         dialogueText.text = "";

@@ -31,7 +31,7 @@ public class CollectableItems : MonoBehaviour
     private const int PAPER_SELL = 2;
 
     private const float INVOKE_OFFSET = 3.5f;
-
+    int index = 0;
     public void Update()
     {
         BuyItem();
@@ -106,6 +106,7 @@ public class CollectableItems : MonoBehaviour
     {
         if (playerClose && InputsHandler.GetInstance().sellButtonPressed())
         {
+            
             Debug.Log("V is pressed");
             if (this.gameObject.tag.Equals(CollectableItemsType.HAM.ToString()))
             {
@@ -144,6 +145,24 @@ public class CollectableItems : MonoBehaviour
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a paper to Patrick!";
                 }
             }
+            else if(this.gameObject.tag.Equals(CollectableItemsType.EGG.ToString()))
+            {
+                Debug.Log("Level 2");
+                
+                if (CanRemoveItemFromInventory(CollectableItemsType.EGG) && index <1 )
+                {
+                    index++;
+                    Debug.Log("Level 3");
+                    for (int i = 0; i < 4; i++)
+                    { 
+                        player.inventory.Removing(this);
+                        moneyAmount += EGG_SELL;
+                        Debug.Log("Level 4");
+                    }
+
+                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold some eggs!";
+                }
+            }
             popupText.SetActive(true);
         }
     }
@@ -152,14 +171,18 @@ public class CollectableItems : MonoBehaviour
     {
         if (playerClose && InputsHandler.GetInstance().sellButtonPressed())
         {
+            Debug.Log("Level 1");
             if(this.gameObject.tag.Equals(CollectableItemsType.EGG.ToString()))
             {
-                if(CanRemoveItemFromInventory(CollectableItemsType.EGG))
+                Debug.Log("Level 2");
+                if (CanRemoveItemFromInventory(CollectableItemsType.EGG))
                 {
-                    for(int i = 0; i < 4; i++)
+                    Debug.Log("Level 3");
+                    for (int i = 0; i < 4; i++)
                     {
                         player.inventory.Removing(this);
                         moneyAmount += EGG_SELL;
+                        Debug.Log("Level 4");
                     }
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold some eggs!";
                 }
