@@ -109,7 +109,7 @@ public class DialogueScript : MonoBehaviour
         currentDialogue.BindExternalFunction("completeFatherQuest", (string compquestName) =>
         {
            father.completeQuest();
-            Debug.Log(compquestName + "completion");
+           Debug.Log(compquestName + "completion");
         });
         currentDialogue.BindExternalFunction("completePriestQuest", (string compquestName) =>
         {
