@@ -7,7 +7,7 @@ public class TutorialTrigger : MonoBehaviour
 {
     public GameObject tutorialText;
     private bool playerClose = false;
-    private const float INVOKE_OFFSET = 3.5f;
+    private const float INVOKE_OFFSET = 7.0f;
 
     private void HideTutorialText()
     {
