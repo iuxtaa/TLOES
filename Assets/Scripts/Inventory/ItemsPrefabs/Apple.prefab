@@ -101,6 +101,10 @@ MonoBehaviour:
   player: {fileID: 0}
   type: 2
   icon: {fileID: 0}
+  inventoryCountCheck:
+    slots: []
+  popupText: {fileID: 0}
+  changingnum: 0
 --- !u!61 &5243312435919983221
 BoxCollider2D:
   m_ObjectHideFlags: 0

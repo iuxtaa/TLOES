@@ -19,6 +19,7 @@ MonoBehaviour:
   title: Priests Holy Water
   description: Gather Holy water and return it to the Priest.
   favourabilityReward: 5
+  goldReward: 0
   objectives:
   - {fileID: 11400000, guid: 6098a56bcc3ccb741b2230231c58a70c, type: 2}
   - {fileID: 11400000, guid: 9a180a8d25f23b240a1c2d9fda6d25f7, type: 2}

@@ -19,5 +19,6 @@ MonoBehaviour:
   title: The Knight's Letter
   description: Write the letter for the knight to his family.
   favourabilityReward: 5
+  goldReward: 0
   objectives:
   - {fileID: 11400000, guid: ab9e3ff8f8eb3354b8c83094467df76b, type: 2}

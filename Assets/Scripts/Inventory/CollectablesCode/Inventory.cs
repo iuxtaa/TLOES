@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Inventory 
+//[System.Serializable]
+public class Inventory : MonoBehaviour
 {
-    [System.Serializable]
+    //[System.Serializable]
     public class Slot
     {
         // CONSTANT VARIABLES
@@ -57,10 +57,26 @@ public class Inventory
 
 
     }
+
+    public static Inventory Instance { get; private set; }
     public List<Slot> slots = new List<Slot>();
-    public Inventory(int numSlots)
+    
+//     private void Awake()
+//     {
+//         if(Instance == null)
+//         {
+//             Instance = this;
+//             DontDestroyOnLoad(gameObject);
+//         }
+//         else 
+//         {
+//             Destroy(gameObject);
+//         }
+//    }
+   
+    public Inventory()
     {
-        for(int i = 0; i < numSlots; i++)
+        for(int i = 0; i < Player.MAX_SLOTS; i++)
         {
             Slot slot = new Slot();
             slots.Add(slot);
