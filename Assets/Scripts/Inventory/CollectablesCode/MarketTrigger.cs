@@ -10,7 +10,7 @@ public class MarketTrigger : MonoBehaviour
     private bool playerClose = false;
 
     [Header("NPC Prompt")]
-    [SerializeField] private GameObject promptIcon;
+    [SerializeField] private GameObject Instruction;
     [SerializeField] private GameObject promptmessage;
 
     [Header("Dialogue Files INK")]
@@ -24,7 +24,7 @@ public class MarketTrigger : MonoBehaviour
     private void Awake()
     {
         playerClose = false;
-        promptIcon.SetActive(false);
+        Instruction.SetActive(false);
         promptmessage.SetActive(false);
         NPClook = GetComponent<NPCmovement>();
         itemToBuyOrSell.SetActive(false);
@@ -46,23 +46,23 @@ public class MarketTrigger : MonoBehaviour
             else
             {
 
-                promptIcon.SetActive(false);
+                Instruction.SetActive(false);
                 promptmessage.SetActive(false);
             }
 
             if (!invent.activeInHierarchy && !DialogueScript.GetInstance().currentDialogueIsPlaying && itemToBuyOrSell.activeSelf)
             {
-                promptIcon.SetActive(true);
+                Instruction.SetActive(true);
             }
             else
             {
-                promptIcon.SetActive(false);
+                Instruction.SetActive(false);
             }
         }
         else if (!playerClose)
         {
             promptmessage.SetActive(false);
-            promptIcon.SetActive(false);
+            Instruction.SetActive(false);
         }
 
 
@@ -77,9 +77,10 @@ public class MarketTrigger : MonoBehaviour
 
     private IEnumerator ActivateBuy()
     {
-        itemToBuyOrSell.SetActive(true); // Activate the item
-        yield return new WaitForSeconds(20); // Wait for 10 seconds
-        itemToBuyOrSell.SetActive(false); // Deactivate the item
+        
+            itemToBuyOrSell.SetActive(true); // Activate the item
+            yield return new WaitForSeconds(20); // Wait for 10 seconds
+            itemToBuyOrSell.SetActive(false); // Deactivate the item
     }
 
 

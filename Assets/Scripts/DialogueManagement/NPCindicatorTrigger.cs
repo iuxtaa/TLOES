@@ -20,9 +20,11 @@ public class NPCindicatorTrigger : MonoBehaviour
     [SerializeField] private TextAsset dialogueCanFinishQuest;
     [SerializeField] private TextAsset dialogueFinishedQuest;
 
+    [Header("Quest Check Object")]
     public Quest questCheck;
     private NPCmovement NPClook;
-    
+
+   
 
     public Player player;
 
@@ -34,11 +36,22 @@ public class NPCindicatorTrigger : MonoBehaviour
         floatingIcon.SetActive(false);
         promptIcon.SetActive(false);
         NPClook = GetComponent<NPCmovement>();
-
     }
+
+    public  void QuestAcceptance(QuestGiver questGiver) 
+    {
+        questGiver.acceptQuest();
+    }
+
+    public void QuestCompletion(QuestGiver questGiver)
+    {
+        questGiver.completeQuest();
+    }
+
 
     private void Update()
     {
+
         if (playerClose && !DialogueScript.GetInstance().currentDialogueIsPlaying)
         {
             floatingIcon.SetActive(true);
@@ -48,19 +61,23 @@ public class NPCindicatorTrigger : MonoBehaviour
                 NPClook.NPClookAtPlayer();
                 try
                 {
+                    
                     if (!questCheck.isDependentQuestComplete())
                     {
+                        
                         DialogueScript.GetInstance().EnterDialogueView(dialogueNoTalk);
                         Debug.Log("CANNOT START QUEST DIALOGUE");
                     }
                     // Player can start quest
                     else
                     {
+                        
                         // First time starting the quest
                         if (!questCheck.isActive && !questCheck.completionStatus)
                         {
                             DialogueScript.GetInstance().EnterDialogueView(dialogueStartQuest);
                             Debug.Log("STARTING QUEST DIALOGUE");
+                            
                         }
                         // Has started quest already but CANNOT complete the quest
                         else if (questCheck.isActive && !questCheck.canComplete())
@@ -100,6 +117,7 @@ public class NPCindicatorTrigger : MonoBehaviour
 
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
