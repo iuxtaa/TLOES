@@ -22,6 +22,8 @@ TagManager:
   - PAPER
   - EMPTYBOTTLE
   - WATERBOTTLE
+  - Wine
+  - BEGGEREGG
   layers:
   - Default
   - TransparentFX

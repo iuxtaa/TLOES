@@ -1,4 +1,4 @@
-EXTERNAL beginQuest(questName)
+EXTERNAL fatherQuest(questName)
 PRESS 'E' TO PROGRESS THROUGH DIALOGUE'#speaker:Narrator #image:default
 Oh, Eustace. Come, my son. #speaker:Father #image:FatherImage
 Yes, father.#speaker:Eustace #image:PlayerImage
@@ -8,4 +8,4 @@ But my bones are growing weary. Can you be the one to sell the eggs in the      
 Of course.#speaker:Eustace #image:PlayerImage
 Come back when you’ve sold it all.#speaker:Father #image:FatherImage
 Okay.#speaker:Eustace #image:PlayerImage
-~beginQuest("SellingsEggs")
+~fatherQuest("SellingsEggs")

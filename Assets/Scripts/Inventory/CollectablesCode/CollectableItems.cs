@@ -163,6 +163,20 @@ public class CollectableItems : MonoBehaviour
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold some eggs!";
                 }
             }
+            else if (this.gameObject.tag.Equals("BEGGEREGG"))//one egg is given to the begger
+            {
+                if (CanRemoveItemFromInventory(CollectableItemsType.EGG))
+                {
+                    for (int i = 0; i < 1; i++)
+                    {
+                        player.inventory.Removing(this);
+                        gameObject.SetActive(false);
+                    }
+                    popupText.GetComponent<TextMeshProUGUI>().text = "BEGGER says 'Thanks Bud' ";
+                    
+                }
+            }
+
             popupText.SetActive(true);
         }
     }

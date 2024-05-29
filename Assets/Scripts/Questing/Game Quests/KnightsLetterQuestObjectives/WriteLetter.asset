@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960f964054dff254f93b5195f8d09e84, type: 3}
   m_Name: WriteLetter
   m_EditorClassIdentifier: 
-  dependentObjective: {fileID: 0}
-  description: Write Letter
+  dependentObjective: {fileID: 11400000, guid: 99b37e6ec6ff903478454c5000ba5fa1, type: 2}
+  description: Write the letter
   completionStatus: 0

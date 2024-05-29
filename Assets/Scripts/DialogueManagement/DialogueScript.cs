@@ -20,14 +20,26 @@ public class DialogueScript : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
+    [Header("Trigger Zone Objects")]
     public MarketTrigger AppleSellerTrigger;
     public MarketTrigger HamSellerTrigger;
     public MarketTrigger WineSellerTrigger;
     public MarketTrigger EggSellerTrigger;
     public MarketTrigger PaperSellerTrigger;
+    public MarketTrigger BeggerTrigger;
 
+    [Header("Quest Giver Objects")]
+    public QuestGiver father;
+    public QuestGiver Knight;
+    public QuestGiver Priest;
+
+    [Header("Player Object")]
     public Player player;
-    public QuestGiver questGiver;
+
+
+    //private NPCindicatorTrigger npcIndicator;
+
+    //private QuestGiver questGivercurrent;
     private Coroutine typingDialogue;
     private bool canContinueNext;
 
@@ -48,7 +60,7 @@ public class DialogueScript : MonoBehaviour
             Debug.LogWarning("There is more than one instance");
         }
         instance = this;
-        //questGiver = FindObjectOfType<QuestGiver>();
+       
     }
 
     public static DialogueScript GetInstance()
@@ -75,23 +87,46 @@ public class DialogueScript : MonoBehaviour
         currentDialogue = new Story(inkJSON.text);
         currentDialogueIsPlaying = true;
         dialogueDisplay.SetActive(true);
-        currentDialogue.BindExternalFunction("beginQuest", (string questName) =>
+        //Quest start Binders
+        currentDialogue.BindExternalFunction("fatherQuest", (string questName) =>
         {
             Debug.Log("Selling eggs letter should be running");
-            questGiver.acceptQuest();
+            father.acceptQuest();
             Debug.Log(questName);
         });
-        
-        currentDialogue.BindExternalFunction("completeQuest", (string compquestName) =>
+        currentDialogue.BindExternalFunction("KnightQuest", (string questName) =>
         {
-            questGiver.completeQuest();
+            Knight.acceptQuest();
+            Debug.Log(questName);
+        });
+        currentDialogue.BindExternalFunction("PriestQuest", (string questName) =>
+        {
+            Priest.acceptQuest();
+            Debug.Log(questName);
+        });
+
+        //Quest end binders
+        currentDialogue.BindExternalFunction("completeFatherQuest", (string compquestName) =>
+        {
+           father.completeQuest();
+           Debug.Log(compquestName + "completion");
+        });
+        currentDialogue.BindExternalFunction("completePriestQuest", (string compquestName) =>
+        {
+           Priest.completeQuest();
             Debug.Log(compquestName + "completion");
         });
 
-        //add Binding function here that will call the buy function
+        currentDialogue.BindExternalFunction("completeKnightQuest", (string compquestName) =>
+        {
+           Knight.completeQuest();
+            Debug.Log(compquestName + "completion");
+        });
+
+        //Buying and Selling Binders
         currentDialogue.BindExternalFunction("buyingandsellingApples", (string AppleActivity) =>
           {
-              AppleSellerTrigger.purchase();  
+              EggSellerTrigger.purchase();  
               Debug.Log("buying apples");
               Debug.Log(AppleActivity); 
          });
@@ -116,7 +151,13 @@ public class DialogueScript : MonoBehaviour
             PaperSellerTrigger.purchase();
             Debug.Log(PaperActivity);
         });
-        //add another binding function that will call the sell function.
+
+        //NPC actions
+        currentDialogue.BindExternalFunction("BeggerEgg", (string actionName) =>
+        {
+            BeggerTrigger.purchase();
+            Debug.Log(actionName + "completion");
+        });
 
 
         NextLine();
@@ -124,13 +165,23 @@ public class DialogueScript : MonoBehaviour
 
     private void LeaveDialogueView()
     {
-        currentDialogue.UnbindExternalFunction("beginQuest");
-        currentDialogue.UnbindExternalFunction("completeQuest");
+        //Quests start unbinders
+        currentDialogue.UnbindExternalFunction("KnightQuest");
+        currentDialogue.UnbindExternalFunction("fatherQuest");
+        currentDialogue.UnbindExternalFunction("PriestQuest");
+        //Quest End unbinders
+        currentDialogue.UnbindExternalFunction("completeFatherQuest");
+        currentDialogue.UnbindExternalFunction("completePriestQuest");
+        currentDialogue.UnbindExternalFunction("completeKnightQuest");
+        //Selling unbunders
         currentDialogue.UnbindExternalFunction("buyingandsellingApples");
         currentDialogue.UnbindExternalFunction("buyingandsellingHam");
         currentDialogue.UnbindExternalFunction("buyingandsellingWine");
         currentDialogue.UnbindExternalFunction("buyingandsellingEggs");
         currentDialogue.UnbindExternalFunction("buyingandsellingPaper");
+        //quest actions
+        currentDialogue.UnbindExternalFunction("BeggerEgg");
+
         currentDialogueIsPlaying = false;
         dialogueDisplay.SetActive(false);
         dialogueText.text = "";

@@ -24,17 +24,18 @@ public class SellingQuestObjective : QuestObjective
         if(requiredItem.SellQuestItem())
         {
             sellingCount += amount;
-            checkCanComplete();
+            // checkCanComplete();
         }
     }
     public override bool checkCanComplete()
     {
-        if (sellingCount >= requiredSellingAmount)
-        {
-            complete();
-            return true;
-        }
-        return false;
+        return(sellingCount >= requiredSellingAmount);
+        //if (sellingCount >= requiredSellingAmount)
+        //{
+        //    //complete();
+        //    return true;
+        //}
+        //return false;
     }
 
     public override string toString()

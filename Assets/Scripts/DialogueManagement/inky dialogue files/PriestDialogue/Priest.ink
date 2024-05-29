@@ -1,4 +1,4 @@
-EXTERNAL beginQuest(questName)
+EXTERNAL PriestQuest(questName)
 Oh, hello there, farmer’s son. #speaker:Priest #image:PriestImage
 Hello#speaker:Eustace #image:PlayerImage
 I heard you helped our knight. Thank you.#speaker:Priest #image:PriestImage
@@ -10,5 +10,5 @@ I would like you to please head east, you will find a runied temple
 There is a well, I would like you to fetch water from that well
 and bring it back here to me.
 Okay understood#speaker:Eustace #image:PlayerImage
-~beginQuest("PriestsHolyWater")
+~PriestQuest("PriestsHolyWater")
 Know that your efforts are appreciated, farmers son.#speaker:Priest #image:PriestImage
