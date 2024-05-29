@@ -16,4 +16,4 @@ MonoBehaviour:
   description: Gather paper for the Knight's letter
   completionStatus: 0
   requiredItem: {fileID: 0}
-  requiredAmount: 0
+  requiredAmount: 1

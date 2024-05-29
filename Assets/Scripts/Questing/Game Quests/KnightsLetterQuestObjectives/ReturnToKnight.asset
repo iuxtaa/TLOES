@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ReturnToKnight
   m_EditorClassIdentifier: 
   dependentObjective: {fileID: 11400000, guid: 3253d0401e8e0da4f86fd71829166132, type: 2}
-  description: Return to the knight with paper
+  description: Return to the knight
   completionStatus: 0

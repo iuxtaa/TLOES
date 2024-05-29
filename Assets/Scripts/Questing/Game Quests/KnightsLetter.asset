@@ -21,4 +21,6 @@ MonoBehaviour:
   favourabilityReward: 5
   goldReward: 0
   objectives:
+  - {fileID: 11400000, guid: 3253d0401e8e0da4f86fd71829166132, type: 2}
+  - {fileID: 11400000, guid: 99b37e6ec6ff903478454c5000ba5fa1, type: 2}
   - {fileID: 11400000, guid: ab9e3ff8f8eb3354b8c83094467df76b, type: 2}
