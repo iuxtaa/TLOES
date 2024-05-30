@@ -53,4 +53,16 @@ public class QuestObjectiveManager : MonoBehaviour
             sellingQuestObjective.incSellingCount(increment);
         }
     }
+
+    // Method for checking if the quest objective is dependent on another quest objective being complete
+    public bool isDependent(QuestObjective objective)
+    {
+        return (objective.isDependent());
+    }
+
+    // Method for checking if the quest objective's depend objective is complete.
+    public bool isDependentObjectiveComplete(QuestObjective objective)
+    {
+        return (objective.isDependentObjectiveComplete());
+    }
 }
