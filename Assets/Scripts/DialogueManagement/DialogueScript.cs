@@ -126,7 +126,7 @@ public class DialogueScript : MonoBehaviour
         //Buying and Selling Binders
         currentDialogue.BindExternalFunction("buyingandsellingApples", (string AppleActivity) =>
           {
-              EggSellerTrigger.purchase();  
+              AppleSellerTrigger.purchase();  
               Debug.Log("buying apples");
               Debug.Log(AppleActivity); 
          });
