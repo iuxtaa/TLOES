@@ -22,7 +22,6 @@ public class CollectableItems : MonoBehaviour
     private const int WINE_COST = 8;
     private const int APPLE_COST = 2;
     private const int PAPER_COST = 3;
-    private const int QUILL_COST = 3;
 
     private const int HAM_SELL = 5;
     private const int WINE_SELL = 6;
@@ -37,7 +36,7 @@ public class CollectableItems : MonoBehaviour
         BuyItem();
         SellItem();
         SellQuestItem();
-        changingnum = moneyAmount;
+        changingnum = Player.money;
     }
     public void BuyItem()
     {
@@ -48,7 +47,7 @@ public class CollectableItems : MonoBehaviour
                 if (moneyAmount >= HAM_COST)
                 {
                     player.inventory.Adding(this);
-                    moneyAmount -= HAM_COST;
+                    Player.money -= HAM_COST;
                     popupText.GetComponent<TextMeshProUGUI>().text = "Ham has been added to your inventory.";
                 }
                 else
@@ -62,7 +61,7 @@ public class CollectableItems : MonoBehaviour
                 if (moneyAmount >= WINE_COST)
                 {
                     player.inventory.Adding(this);
-                    moneyAmount -= WINE_COST;
+                    Player.money -= WINE_COST;
                     popupText.GetComponent<TextMeshProUGUI>().text = "Wine has been added to your inventory.";
                 }
                 else
@@ -75,7 +74,7 @@ public class CollectableItems : MonoBehaviour
                 if (moneyAmount >= APPLE_COST)
                 {
                     player.inventory.Adding(this);
-                    moneyAmount -= APPLE_COST;
+                    Player.money -= APPLE_COST;
                     popupText.GetComponent<TextMeshProUGUI>().text = "Apple has been added to your inventory.";
                 }
                 else
@@ -90,7 +89,7 @@ public class CollectableItems : MonoBehaviour
                 if (moneyAmount>= PAPER_COST)
                 {
                     player.inventory.Adding(this);
-                    moneyAmount -= PAPER_COST;
+                    Player.money -= PAPER_COST;
                     popupText.GetComponent<TextMeshProUGUI>().text = "Paper has been added to your inventory.";
                 }
                 else
@@ -113,7 +112,7 @@ public class CollectableItems : MonoBehaviour
                 if (CanRemoveItemFromInventory(CollectableItemsType.HAM))
                 {
                     player.inventory.Removing(this);
-                    moneyAmount += HAM_SELL;
+                    Player.money += HAM_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a ham to Butch!";
                 }
             }
@@ -123,7 +122,7 @@ public class CollectableItems : MonoBehaviour
                 if (CanRemoveItemFromInventory(CollectableItemsType.WINE))
                 {
                     player.inventory.Removing(this);
-                    moneyAmount += WINE_SELL;
+                    Player.money += WINE_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a wine to Jack!";
                 }
             }
@@ -132,7 +131,7 @@ public class CollectableItems : MonoBehaviour
                 if (CanRemoveItemFromInventory(CollectableItemsType.APPLE))
                 {
                     player.inventory.Removing(this);
-                    moneyAmount += APPLE_SELL;
+                    Player.money += APPLE_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a apple to Kate!";
                 }
             }
@@ -141,7 +140,7 @@ public class CollectableItems : MonoBehaviour
                 if (CanRemoveItemFromInventory(CollectableItemsType.PAPER))
                 {
                     player.inventory.Removing(this);
-                    moneyAmount += PAPER_SELL;
+                    Player.money += PAPER_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a paper to Patrick!";
                 }
             }
@@ -156,7 +155,7 @@ public class CollectableItems : MonoBehaviour
                     for (int i = 0; i < 4; i++)
                     { 
                         player.inventory.Removing(this);
-                        moneyAmount += EGG_SELL;
+                        Player.money += EGG_SELL;
                         Debug.Log("Level 4");
                     }
 
