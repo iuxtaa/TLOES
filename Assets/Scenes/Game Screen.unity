@@ -3355,7 +3355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
-  questObjective: {fileID: 11400000, guid: 9a180a8d25f23b240a1c2d9fda6d25f7, type: 2}
+  questObjective: {fileID: 11400000, guid: 6098a56bcc3ccb741b2230231c58a70c, type: 2}
   player: {fileID: 2003926461}
   questItem: {fileID: 714308900288054376}
 --- !u!1 &161997574
