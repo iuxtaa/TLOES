@@ -102,6 +102,19 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
+    public void Removing(CollectableItemsType itemType)
+    {
+        foreach (Slot slot in slots)
+        {
+            if (slot.type == itemType && CanRemoveItem(slot))
+            {
+                slot.RemoveItem();
+                return;
+            }
+        }
+    }
+    
     public bool CanRemoveItem(Slot slot)
     {
         if (slot.count > 0)
