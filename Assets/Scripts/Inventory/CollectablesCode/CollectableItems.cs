@@ -17,7 +17,6 @@ public class CollectableItems : MonoBehaviour
 
 
     public int changingnum = 0;
-    public static int moneyAmount = 10;
     private const int HAM_COST = 6;
     private const int WINE_COST = 8;
     private const int APPLE_COST = 2;
@@ -211,6 +210,7 @@ public class CollectableItems : MonoBehaviour
                             DialogueScript.GetInstance().turnOffColliderBegger();
                         }
                         canGiveToBeggar = false;
+                        Debug.Log(canGiveToBeggar); 
                     }
                 }
             }

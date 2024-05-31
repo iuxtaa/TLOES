@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class QuestObjectiveManager : MonoBehaviour
 {
     public static QuestObjectiveManager instance { get; private set; }
+
     public QuestObjective[] questObjectives;
     public Player player;
     private bool playerClose;
@@ -56,7 +57,6 @@ public class QuestObjectiveManager : MonoBehaviour
     public void updateCurrentQuestObjective()
     {
         QuestObjective currentObjective = null;
-
         if (Player.currentQuest != null)
         {
             if (Player.currentQuest.questNumber == (int)QuestIndex.SellingEggs)
@@ -68,7 +68,6 @@ public class QuestObjectiveManager : MonoBehaviour
                         currentObjective = sellingQuestObjective;
                     }
                 }
-
                 if (playerClose)
                 {
                     if (this.gameObject.name == "Egg_Begger" && canUpdateSelling_Beggar)
@@ -77,7 +76,6 @@ public class QuestObjectiveManager : MonoBehaviour
                         incrementObjectiveSellingCount(currentObjective, CollectableItems.amountGivenToBeggar);
                         canUpdateSelling_Beggar = false;
                     }
-
                     if (this.gameObject.name == "Egg_Cecil" && canUpdateSelling_Cecil && InputsHandler.GetInstance().check)
                     {
                         incrementObjectiveSellingCount(currentObjective, CollectableItems.amountGivenToCecil);
