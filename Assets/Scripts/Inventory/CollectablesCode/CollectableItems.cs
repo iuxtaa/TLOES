@@ -30,9 +30,9 @@ public class CollectableItems : MonoBehaviour
     private const int PAPER_SELL = 2;
 
     private const float INVOKE_OFFSET = 3.5f;
-    public int index = 0;
-    public bool canGiveToBeggar = true;
-    public bool canSellToCecil = true;
+    private bool canGiveToBeggar = true;
+    private bool canSellToCecil = true;
+    private bool canGiveToKnight = true;
     public void Update()
     {
         BuyOrGetItem();
@@ -45,7 +45,7 @@ public class CollectableItems : MonoBehaviour
         {
             if (this.gameObject.tag.Equals(CollectableItemsType.HAM.ToString()))
             {
-                if (moneyAmount >= HAM_COST)
+                if (changingnum >= HAM_COST)
                 {
                     player.inventory.Adding(this);
                     Player.money -= HAM_COST;
@@ -59,7 +59,7 @@ public class CollectableItems : MonoBehaviour
 
             else if (this.gameObject.tag.Equals(CollectableItemsType.WINE.ToString()))
             {
-                if (moneyAmount >= WINE_COST)
+                if (changingnum >= WINE_COST)
                 {
                     player.inventory.Adding(this);
                     Player.money -= WINE_COST;
@@ -72,7 +72,7 @@ public class CollectableItems : MonoBehaviour
             }
             else if (this.gameObject.tag.Equals(CollectableItemsType.APPLE.ToString()))
             {
-                if (moneyAmount >= APPLE_COST)
+                if (changingnum >= APPLE_COST)
                 {
                     player.inventory.Adding(this);
                     Player.money -= APPLE_COST;
@@ -87,7 +87,7 @@ public class CollectableItems : MonoBehaviour
 
             else if (this.gameObject.tag.Equals(CollectableItemsType.PAPER.ToString()))
             {
-                if (moneyAmount>= PAPER_COST)
+                if (changingnum >= PAPER_COST)
                 {
                     player.inventory.Adding(this);
                     Player.money -= PAPER_COST;
@@ -96,6 +96,22 @@ public class CollectableItems : MonoBehaviour
                 else
                 {
                     popupText.GetComponent<TextMeshProUGUI>().text = "You do not have enough money to buy paper.";
+                }
+            }
+            else if(this.gameObject.tag.Equals(CollectableItemsType.WATERBOTTLE.ToString()))
+            {
+                if(this.gameObject.name == "WaterBottle_WishingWell")
+                {
+                    if(CanRemoveItemFromInventory(CollectableItemsType.EMPTYBOTTLE))
+                    {
+                        player.inventory.Removing(CollectableItemsType.EMPTYBOTTLE);
+                        player.inventory.Adding(this);
+                        popupText.GetComponent<TextMeshProUGUI>().text = "Holy water has been added to your inventory.";
+                    }
+                    else
+                    {
+                        popupText.GetComponent<TextMeshProUGUI>().text = "You do not have any empty bottles in your inventory.";
+                    }
                 }
             }
             popupText.SetActive(true);
@@ -143,10 +159,23 @@ public class CollectableItems : MonoBehaviour
             {
                 if (CanRemoveItemFromInventory(CollectableItemsType.PAPER))
                 {
-                    player.inventory.Removing(this);
-                    Player.money += PAPER_SELL;
-                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold a paper to Patrick!";
-                    popupText.SetActive(true);
+                    if(this.gameObject.name == "Paper_Knight" && canGiveToKnight)
+                    {
+                        player.inventory.Removing(this);
+                        if(canGiveToKnight)
+                        {
+                            popupText.GetComponent<TextMeshProUGUI>().text = "You gave paper to the Knight!";
+                            popupText.SetActive(true);
+                        }
+                        canGiveToKnight = false;
+                    }
+                    else 
+                    {
+                        player.inventory.Removing(this);
+                        Player.money += PAPER_SELL;
+                        popupText.GetComponent<TextMeshProUGUI>().text = "You sold a paper to Patrick!";
+                        popupText.SetActive(true);
+                    }
                 }
             }
             else if(this.gameObject.tag.Equals(CollectableItemsType.EGG.ToString()))
