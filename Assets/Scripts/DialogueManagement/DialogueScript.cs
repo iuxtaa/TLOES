@@ -214,7 +214,7 @@ public class DialogueScript : MonoBehaviour
 
     }
 
-    public void turnOffCollider()
+    public void turnOffColliderBegger()
     {
         BoxCollider2D boxCollider = BeggerTrigger.GetComponent<BoxCollider2D>();
         if (boxCollider != null)
@@ -226,8 +226,20 @@ public class DialogueScript : MonoBehaviour
             Debug.Log("Box collider aint here chief");
         }
     }
+    public void turnOffColliderCecil()
+    {
+        BoxCollider2D boxCollider = EggSellerTrigger.GetComponent<BoxCollider2D>();
+        if (boxCollider != null)
+        {
+            boxCollider.enabled = false;
+        }
+        else
+        {
+            Debug.Log("Box collider aint here chief");
+        }
+    }
 
-   
+
 
     private void NextLine()
     {

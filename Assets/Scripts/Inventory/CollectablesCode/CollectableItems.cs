@@ -164,6 +164,7 @@ public class CollectableItems : MonoBehaviour
                         {
                             popupText.GetComponent<TextMeshProUGUI>().text = "You sold some eggs to Cecil!";
                             popupText.SetActive(true);
+                            DialogueScript.GetInstance().turnOffColliderCecil();
                         }
                         canSellToCecil = false;
                     }
@@ -175,7 +176,7 @@ public class CollectableItems : MonoBehaviour
                         {
                             popupText.GetComponent<TextMeshProUGUI>().text = "BEGGER says 'Thanks Bud' ";
                             popupText.SetActive(true);
-                            DialogueScript.GetInstance().turnOffCollider();
+                            DialogueScript.GetInstance().turnOffColliderBegger();
                         }
                         canGiveToBeggar = false;
                     }
