@@ -115,6 +115,7 @@ public class CollectableItems : MonoBehaviour
                     player.inventory.Removing(this);
                     Player.money += HAM_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a ham to Butch!";
+                    popupText.SetActive(true);
                 }
             }
 
@@ -125,6 +126,7 @@ public class CollectableItems : MonoBehaviour
                     player.inventory.Removing(this);
                     Player.money += WINE_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a wine to Jack!";
+                    popupText.SetActive(true);
                 }
             }
             else if (this.gameObject.tag.Equals(CollectableItemsType.APPLE.ToString()))
@@ -134,6 +136,7 @@ public class CollectableItems : MonoBehaviour
                     player.inventory.Removing(this);
                     Player.money += APPLE_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a apple to Kate!";
+                    popupText.SetActive(true);
                 }
             }
             else if (this.gameObject.tag.Equals(CollectableItemsType.PAPER.ToString()))
@@ -143,6 +146,7 @@ public class CollectableItems : MonoBehaviour
                     player.inventory.Removing(this);
                     Player.money += PAPER_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a paper to Patrick!";
+                    popupText.SetActive(true);
                 }
             }
             else if(this.gameObject.tag.Equals(CollectableItemsType.EGG.ToString()))
@@ -159,6 +163,7 @@ public class CollectableItems : MonoBehaviour
                         if(canSellToCecil)
                         {
                             popupText.GetComponent<TextMeshProUGUI>().text = "You sold some eggs to Cecil!";
+                            popupText.SetActive(true);
                         }
                         canSellToCecil = false;
                     }
@@ -169,13 +174,12 @@ public class CollectableItems : MonoBehaviour
                         if(canGiveToBeggar)
                         {
                             popupText.GetComponent<TextMeshProUGUI>().text = "BEGGER says 'Thanks Bud' ";
+                            popupText.SetActive(true);
                         }
                         canGiveToBeggar = false;
                     }
                 }
             }
-
-            popupText.SetActive(true);
         }
     }
     
