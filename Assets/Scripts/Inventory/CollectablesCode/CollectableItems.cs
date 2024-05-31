@@ -29,13 +29,12 @@ public class CollectableItems : MonoBehaviour
     private const int PAPER_SELL = 2;
 
     private const float INVOKE_OFFSET = 3.5f;
-    public static bool canGiveToBeggar = true;
+    private bool canGiveToBeggar = true;
+    private bool canSellToCecil = true;
+    private bool canGiveToKnight = true;
     public static int amountGivenToBeggar = 1;
-    public static bool canSellToCecil = true;
     public static int amountGivenToCecil = 4;
-    public static bool canGiveToKnight = true;
     public static int amountGivenToKnight = 1;
-
     public void Update()
     {
         BuyOrGetItem();
@@ -181,32 +180,34 @@ public class CollectableItems : MonoBehaviour
                     }
                 }
             }
-            else if(this.gameObject.tag.Equals(CollectableItemsType.EGG.ToString()))
+            else if (this.gameObject.tag.Equals(CollectableItemsType.EGG.ToString()))
             {
-                if(CanRemoveItemFromInventory(CollectableItemsType.EGG))
+                if (CanRemoveItemFromInventory(CollectableItemsType.EGG))
                 {
-                    if(this.gameObject.name == "Egg_Cecil" && canSellToCecil)
+                    if (this.gameObject.name == "Egg_Cecil" && canSellToCecil)
                     {
                         for (int i = 0; i < 4; i++)
-                        { 
+                        {
                             player.inventory.Removing(this);
                             Player.money += EGG_SELL;
                         }
-                        if(canSellToCecil)
+                        if (canSellToCecil)
                         {
                             popupText.GetComponent<TextMeshProUGUI>().text = "You sold some eggs to Cecil!";
                             popupText.SetActive(true);
+                            DialogueScript.GetInstance().turnOffColliderCecil();
                         }
                         canSellToCecil = false;
                     }
-                    if(this.gameObject.name == "Egg_Begger" && canGiveToBeggar)
+                    if (this.gameObject.name == "Egg_Begger" && canGiveToBeggar)
                     {
                         player.inventory.Removing(this);
                         this.gameObject.SetActive(false);
-                        if(canGiveToBeggar)
+                        if (canGiveToBeggar)
                         {
                             popupText.GetComponent<TextMeshProUGUI>().text = "BEGGER says 'Thanks Bud' ";
                             popupText.SetActive(true);
+                            DialogueScript.GetInstance().turnOffColliderBegger();
                         }
                         canGiveToBeggar = false;
                         Debug.Log(canGiveToBeggar); 

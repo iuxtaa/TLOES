@@ -33,11 +33,11 @@ public class InputsHandler : MonoBehaviour
 
     public void Movement(InputAction.CallbackContext action)
     {
-        if(action.performed)
+        if (action.performed)
         {
             move = action.ReadValue<Vector2>();
         }
-        else if(action.canceled) 
+        else if (action.canceled)
         {
             move = action.ReadValue<Vector2>();
         }
@@ -45,11 +45,11 @@ public class InputsHandler : MonoBehaviour
 
     public void ContinueButtonPressed(InputAction.CallbackContext action)
     {
-        if(action.performed)
+        if (action.performed)
         {
             continuePressed = true;
         }
-        else if(action.canceled)
+        else if (action.canceled)
         {
             continuePressed = false;
         }
@@ -135,7 +135,7 @@ public class InputsHandler : MonoBehaviour
     {
         bool endresult = interact;
         interact = false;
-        return endresult ;
+        return endresult;
     }
 
     public void teleportButtonPressed(InputAction.CallbackContext action)

@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class QuestObjectiveManager : MonoBehaviour
 {
-    public static QuestObjectiveManager instance {get; private set;}
+    public static QuestObjectiveManager instance { get; private set; }
+
     public QuestObjective[] questObjectives;
     public Player player;
     private bool playerClose;
@@ -28,7 +29,7 @@ public class QuestObjectiveManager : MonoBehaviour
     // at the start of a NEW game all quest objectives will start as incomplete
     public void initializeObjectives()
     {
-        foreach(QuestObjective objective in questObjectives)
+        foreach (QuestObjective objective in questObjectives)
         {
             objective.completionStatus = false;
         }
@@ -39,7 +40,7 @@ public class QuestObjectiveManager : MonoBehaviour
     {
         foreach (QuestObjective objective in questObjectives)
         {
-            if(!objective.completionStatus && objective.checkCanComplete())
+            if (!objective.completionStatus && objective.checkCanComplete())
             {
                 objective.complete();
                 Debug.Log($"Objective Completed: {objective.description}");
@@ -56,29 +57,26 @@ public class QuestObjectiveManager : MonoBehaviour
     public void updateCurrentQuestObjective()
     {
         QuestObjective currentObjective = null;
-
-        if(Player.currentQuest != null)
+        if (Player.currentQuest != null)
         {
-            if(Player.currentQuest.questNumber == (int)QuestIndex.SellingEggs)
+            if (Player.currentQuest.questNumber == (int)QuestIndex.SellingEggs)
             {
-                foreach(QuestObjective objective in questObjectives)
+                foreach (QuestObjective objective in questObjectives)
                 {
-                    if(objective is SellingQuestObjective sellingQuestObjective)
+                    if (objective is SellingQuestObjective sellingQuestObjective)
                     {
                         currentObjective = sellingQuestObjective;
                     }
                 }
-
-                if(playerClose)
+                if (playerClose)
                 {
-                    if(this.gameObject.name == "Egg_Begger" && canUpdateSelling_Beggar)
+                    if (this.gameObject.name == "Egg_Begger" && canUpdateSelling_Beggar)
                     {
                         Debug.Log("bleh bleh bleh");
                         incrementObjectiveSellingCount(currentObjective, CollectableItems.amountGivenToBeggar);
                         canUpdateSelling_Beggar = false;
                     }
-
-                    if(this.gameObject.name == "Egg_Cecil" && canUpdateSelling_Cecil && InputsHandler.GetInstance().check)    
+                    if (this.gameObject.name == "Egg_Cecil" && canUpdateSelling_Cecil && InputsHandler.GetInstance().check)
                     {
                         incrementObjectiveSellingCount(currentObjective, CollectableItems.amountGivenToCecil);
                         canUpdateSelling_Cecil = false;
@@ -90,7 +88,7 @@ public class QuestObjectiveManager : MonoBehaviour
     // Method for incrementing selling count of a quest, objective must be a SellingQuestObjective
     public void incrementObjectiveSellingCount(QuestObjective objective, int increment)
     {
-        if(objective is SellingQuestObjective sellingQuestObjective)
+        if (objective is SellingQuestObjective sellingQuestObjective)
         {
             sellingQuestObjective.incSellingCount(increment);
         }

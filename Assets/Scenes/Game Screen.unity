@@ -2251,6 +2251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2003926461}
+  playerClose: 0
   Instruction: {fileID: 1664960920}
   promptmessage: {fileID: 1509525144}
   DialogueFile: {fileID: 4900000, guid: 18aaf55ce0883fe4c8cfaa9a4471a5d7, type: 3}
@@ -6164,6 +6165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2003926461}
+  playerClose: 0
   Instruction: {fileID: 1011764462}
   promptmessage: {fileID: 394147931}
   DialogueFile: {fileID: 4900000, guid: 1fdbb42e2b9f607469a27d0bf2d2dded, type: 3}
@@ -10643,6 +10645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2003926461}
+  playerClose: 0
   Instruction: {fileID: 1343443377}
   promptmessage: {fileID: 330156751}
   DialogueFile: {fileID: 4900000, guid: 355b7bdd1e9a97a44a805992cfd3b7c4, type: 3}
@@ -16502,6 +16505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bf6c8424065834583c7ffd957634a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  check: 0
 --- !u!114 &982604950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38665,6 +38669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2003926461}
+  playerClose: 0
   Instruction: {fileID: 1342268553}
   promptmessage: {fileID: 808515872}
   DialogueFile: {fileID: 4900000, guid: 99a4e437050d49d4596625ef40e07fae, type: 3}
@@ -46492,6 +46497,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2003926461}
+  playerClose: 0
   Instruction: {fileID: 3505639}
   promptmessage: {fileID: 953960216}
   DialogueFile: {fileID: 4900000, guid: 3f08be03d5657f64199a8cb8580a7db8, type: 3}
@@ -53450,6 +53456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2003926461}
+  playerClose: 0
   Instruction: {fileID: 217706210}
   promptmessage: {fileID: 1416805310}
   DialogueFile: {fileID: 4900000, guid: 74efe3c0eb0f32d4b821c200b4e54d93, type: 3}
