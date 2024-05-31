@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class CollectableItems : MonoBehaviour
 {
-
     public Player player;
     private bool playerClose = false;
     public CollectableItemsType type;
@@ -33,6 +32,7 @@ public class CollectableItems : MonoBehaviour
     public int index = 0;
     public bool canGiveToBeggar = true;
     public bool canSellToCecil = true;
+
     public void Update()
     {
         BuyOrGetItem();
@@ -175,6 +175,7 @@ public class CollectableItems : MonoBehaviour
                         {
                             popupText.GetComponent<TextMeshProUGUI>().text = "BEGGER says 'Thanks Bud' ";
                             popupText.SetActive(true);
+                            DialogueScript.GetInstance().turnOffCollider();
                         }
                         canGiveToBeggar = false;
                     }

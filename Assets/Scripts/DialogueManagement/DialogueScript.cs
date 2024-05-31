@@ -37,9 +37,6 @@ public class DialogueScript : MonoBehaviour
     public Player player;
 
 
-    //private NPCindicatorTrigger npcIndicator;
-
-    //private QuestGiver questGivercurrent;
     private Coroutine typingDialogue;
     private bool canContinueNext;
 
@@ -52,6 +49,8 @@ public class DialogueScript : MonoBehaviour
     private static DialogueScript instance;
     private const string SPEAKER_TAG = "speaker";
     private const string PORTRAIT_TAG = "image";
+
+
 
     private void Awake()
     {
@@ -212,7 +211,23 @@ public class DialogueScript : MonoBehaviour
 
             NextLine();
         }
+
     }
+
+    public void turnOffCollider()
+    {
+        BoxCollider2D boxCollider = BeggerTrigger.GetComponent<BoxCollider2D>();
+        if (boxCollider != null)
+        {
+            boxCollider.enabled = false;
+        }
+        else
+        {
+            Debug.Log("Box collider aint here chief");
+        }
+    }
+
+   
 
     private void NextLine()
     {
