@@ -2251,6 +2251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2003926461}
+  playerClose: 0
   Instruction: {fileID: 1664960920}
   promptmessage: {fileID: 1509525144}
   DialogueFile: {fileID: 4900000, guid: 18aaf55ce0883fe4c8cfaa9a4471a5d7, type: 3}
@@ -2345,6 +2346,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 50684220270067813, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
   m_PrefabInstance: {fileID: 1219408663}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &94812567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94812559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f78e8501e67b04418d057009b00a4f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questObjectives:
+  - {fileID: 11400000, guid: 3b440b5158493704084b0fe238a3b6c8, type: 2}
+  player: {fileID: 2003926461}
 --- !u!1001 &100393409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6149,6 +6165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2003926461}
+  playerClose: 0
   Instruction: {fileID: 1011764462}
   promptmessage: {fileID: 394147931}
   DialogueFile: {fileID: 4900000, guid: 1fdbb42e2b9f607469a27d0bf2d2dded, type: 3}
@@ -10628,6 +10645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2003926461}
+  playerClose: 0
   Instruction: {fileID: 1343443377}
   promptmessage: {fileID: 330156751}
   DialogueFile: {fileID: 4900000, guid: 355b7bdd1e9a97a44a805992cfd3b7c4, type: 3}
@@ -16462,6 +16480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bf6c8424065834583c7ffd957634a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  check: 0
 --- !u!114 &982604950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37368,7 +37387,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7965927641155875108, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 94812567}
   m_SourcePrefab: {fileID: 100100000, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
 --- !u!1001 &1228650141
 PrefabInstance:
@@ -38622,6 +38644,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2003926461}
+  playerClose: 0
   Instruction: {fileID: 1342268553}
   promptmessage: {fileID: 808515872}
   DialogueFile: {fileID: 4900000, guid: 99a4e437050d49d4596625ef40e07fae, type: 3}
@@ -46449,6 +46472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2003926461}
+  playerClose: 0
   Instruction: {fileID: 3505639}
   promptmessage: {fileID: 953960216}
   DialogueFile: {fileID: 4900000, guid: 3f08be03d5657f64199a8cb8580a7db8, type: 3}
@@ -48071,13 +48095,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7965927641155875108, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1814124551}
   m_SourcePrefab: {fileID: 100100000, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
 --- !u!4 &1814124547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 50684220270067813, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
   m_PrefabInstance: {fileID: 1814124546}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1814124551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613965253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f78e8501e67b04418d057009b00a4f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questObjectives:
+  - {fileID: 11400000, guid: 3b440b5158493704084b0fe238a3b6c8, type: 2}
+  player: {fileID: 2003926461}
 --- !u!1001 &1814156333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53390,6 +53432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2003926461}
+  playerClose: 0
   Instruction: {fileID: 217706210}
   promptmessage: {fileID: 1416805310}
   DialogueFile: {fileID: 4900000, guid: 74efe3c0eb0f32d4b821c200b4e54d93, type: 3}
