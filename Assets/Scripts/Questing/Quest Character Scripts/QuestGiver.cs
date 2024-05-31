@@ -7,12 +7,14 @@ using UnityEngine;
 [System.Serializable]
 public class QuestGiver : MonoBehaviour // this will be an NPC which 'is a' character
 {
+    // VARIABLES
     public Quest quest; // the quest that the quest giver will give
-    public QuestObjective questObjective;
+    public QuestObjective questObjective; // the quest objective that the quest giver may have
     public Player player; // the player that will accept the quest
     public CollectableItems questItem;
-    public GameObject questOverlay;
+    // public GameObject questOverlay;
 
+    // METHODS
     public void acceptQuest()
     {
         if (quest != null && player != null)
@@ -43,7 +45,7 @@ public class QuestGiver : MonoBehaviour // this will be an NPC which 'is a' char
                     }
                 }
             }
-            questOverlay.SetActive(true);
+            //questOverlay.SetActive(true);
         }
     }
 
@@ -52,7 +54,7 @@ public class QuestGiver : MonoBehaviour // this will be an NPC which 'is a' char
         if (quest != null && player != null)
         {
             quest.complete();
-            questOverlay.SetActive(false);
+            //questOverlay.SetActive(false);
         }
     }
 }

@@ -21,7 +21,7 @@ public class CollectingQuestObjective : QuestObjective
     public override bool checkCanComplete()
     {
         //if (Player.inventory.getRequiredItem.getCount ?? >= requiredAmount) ?? NOT SURE -Ann
-        if (3 >= requiredAmount)
+        if (0 >= requiredAmount)
         {
             complete();
             return true;
@@ -32,6 +32,6 @@ public class CollectingQuestObjective : QuestObjective
     public override string toString()
     {
         // replace 3 with player's inventory required item count
-        return description + " " + 3 + "/" + requiredAmount;
+        return description + " " + 0 + "/" + requiredAmount;
     }
 }

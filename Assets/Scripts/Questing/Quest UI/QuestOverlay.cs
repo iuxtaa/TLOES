@@ -14,18 +14,18 @@ public class QuestOverlay : MonoBehaviour
     public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI objectiveText;
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject); // Destroy the new object if one already exists
-        }
-    }
+    //private void Awake()
+    //{
+    //    if (Instance == null)
+    //    {
+    //        Instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject); // Destroy the new object if one already exists
+    //    }
+    //}
 
     public void Update()
     {

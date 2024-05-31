@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 960f964054dff254f93b5195f8d09e84, type: 3}
-  m_Name: TalkToFather
+  m_Script: {fileID: 11500000, guid: 5dd0763ea97a6b64b95a9074d9309a23, type: 3}
+  m_Name: CollectPaper
   m_EditorClassIdentifier: 
-  dependentObjective: {fileID: 11400000, guid: 3b440b5158493704084b0fe238a3b6c8, type: 2}
-  description: Return to your father
-  completionStatus: 1
+  dependentObjective: {fileID: 0}
+  description: Gather paper for the Knight's letter
+  completionStatus: 0
+  requiredItem: {fileID: 0}
+  requiredAmount: 1

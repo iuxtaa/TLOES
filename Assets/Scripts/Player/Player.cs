@@ -13,6 +13,7 @@ public class Player : Character
     // CONSTANT VARIABLES
     public const int MAX_SLOTS = 5;
     // INSTANCE VARIABLES 
+    public static int money = 0;
     public static int favourability;
     public static Dictionary<string, int> tempinventory2 = new Dictionary<string, int>();  // Initialize inventory
     [SerializeField] public static Quest currentQuest;
