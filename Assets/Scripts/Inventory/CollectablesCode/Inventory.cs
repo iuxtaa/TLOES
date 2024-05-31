@@ -60,19 +60,6 @@ public class Inventory : MonoBehaviour
 
     public static Inventory Instance { get; private set; }
     public List<Slot> slots = new List<Slot>();
-    
-//     private void Awake()
-//     {
-//         if(Instance == null)
-//         {
-//             Instance = this;
-//             DontDestroyOnLoad(gameObject);
-//         }
-//         else 
-//         {
-//             Destroy(gameObject);
-//         }
-//    }
    
     public Inventory()
     {

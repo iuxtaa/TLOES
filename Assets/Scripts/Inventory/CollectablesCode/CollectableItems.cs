@@ -12,7 +12,7 @@ public class CollectableItems : MonoBehaviour
     private bool playerClose = false;
     public CollectableItemsType type;
     public Sprite icon;
-    public Inventory inventoryCountCheck;
+    public Inventory inventory;
     public GameObject popupText;
 
 
@@ -30,15 +30,16 @@ public class CollectableItems : MonoBehaviour
     private const int PAPER_SELL = 2;
 
     private const float INVOKE_OFFSET = 3.5f;
-    int index = 0;
+    public int index = 0;
+    public bool canGiveToBeggar = true;
+    public bool canSellToCecil = true;
     public void Update()
     {
-        BuyItem();
-        SellItem();
-        SellQuestItem();
+        BuyOrGetItem();
+        SellOrGiveItem();
         changingnum = Player.money;
     }
-    public void BuyItem()
+    public void BuyOrGetItem()
     {
         if (playerClose && InputsHandler.GetInstance().buyButtonPressed())
         {
@@ -101,7 +102,7 @@ public class CollectableItems : MonoBehaviour
         }
     }
 
-    public void SellItem()
+    public void SellOrGiveItem()
     {
         if (playerClose && InputsHandler.GetInstance().sellButtonPressed())
         {
@@ -146,64 +147,36 @@ public class CollectableItems : MonoBehaviour
             }
             else if(this.gameObject.tag.Equals(CollectableItemsType.EGG.ToString()))
             {
-                Debug.Log("Level 2");
-                
-                if (CanRemoveItemFromInventory(CollectableItemsType.EGG) && index <1 )
+                if(CanRemoveItemFromInventory(CollectableItemsType.EGG))
                 {
-                    index++;
-                    Debug.Log("Level 3");
-                    for (int i = 0; i < 4; i++)
-                    { 
-                        player.inventory.Removing(this);
-                        Player.money += EGG_SELL;
-                        Debug.Log("Level 4");
+                    if(this.gameObject.name == "Egg_Cecil" && canSellToCecil)
+                    {
+                        for (int i = 0; i < 4; i++)
+                        { 
+                            player.inventory.Removing(this);
+                            Player.money += EGG_SELL;
+                        }
+                        if(canSellToCecil)
+                        {
+                            popupText.GetComponent<TextMeshProUGUI>().text = "You sold some eggs to Cecil!";
+                        }
+                        canSellToCecil = false;
                     }
-
-                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold some eggs!";
-                }
-            }
-            else if (this.gameObject.tag.Equals("BEGGEREGG"))//one egg is given to the begger
-            {
-                if (CanRemoveItemFromInventory(CollectableItemsType.EGG))
-                {
-                    for (int i = 0; i < 1; i++)
+                    if(this.gameObject.name == "Egg_Begger" && canGiveToBeggar)
                     {
                         player.inventory.Removing(this);
-                        gameObject.SetActive(false);
+                        this.gameObject.SetActive(false);
+                        if(canGiveToBeggar)
+                        {
+                            popupText.GetComponent<TextMeshProUGUI>().text = "BEGGER says 'Thanks Bud' ";
+                        }
+                        canGiveToBeggar = false;
                     }
-                    popupText.GetComponent<TextMeshProUGUI>().text = "BEGGER says 'Thanks Bud' ";
-                    
                 }
             }
 
             popupText.SetActive(true);
         }
-    }
-    
-    public bool SellQuestItem()
-    {
-        if (playerClose && InputsHandler.GetInstance().sellButtonPressed())
-        {
-            Debug.Log("Level 1");
-            if(this.gameObject.tag.Equals(CollectableItemsType.EGG.ToString()))
-            {
-                Debug.Log("Level 2");
-                if (CanRemoveItemFromInventory(CollectableItemsType.EGG))
-                {
-                    Debug.Log("Level 3");
-                    for (int i = 0; i < 4; i++)
-                    {
-                        player.inventory.Removing(this);
-                        moneyAmount += EGG_SELL;
-                        Debug.Log("Level 4");
-                    }
-                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold some eggs!";
-                }
-            }
-            popupText.SetActive(true);
-            return true;
-        }
-        return false;
     }
     
     public void HidePopupText()

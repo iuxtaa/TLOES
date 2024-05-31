@@ -4825,6 +4825,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2003926461}
     - target: {fileID: 7824451954255973315, guid: 76f24f105c8d62749ba6547d1e52008f, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1889366804}
+    - target: {fileID: 7824451954255973315, guid: 76f24f105c8d62749ba6547d1e52008f, type: 3}
       propertyPath: popupText
       value: 
       objectReference: {fileID: 474915350}
@@ -7155,6 +7159,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF Village Props - Well
       objectReference: {fileID: 0}
+    - target: {fileID: 4863355952554908545, guid: d39672cc18ccd9545840277c51264e6f, type: 3}
+      propertyPath: m_TagString
+      value: WATERBOTTLE
+      objectReference: {fileID: 0}
     - target: {fileID: 4863355952554908546, guid: d39672cc18ccd9545840277c51264e6f, type: 3}
       propertyPath: m_SortingLayer
       value: -1
@@ -7206,8 +7214,82 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4863355952554908545, guid: d39672cc18ccd9545840277c51264e6f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 448863708}
+    - targetCorrespondingSourceObject: {fileID: 4863355952554908545, guid: d39672cc18ccd9545840277c51264e6f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 448863707}
   m_SourcePrefab: {fileID: 100100000, guid: d39672cc18ccd9545840277c51264e6f, type: 3}
+--- !u!1 &448863706 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4863355952554908545, guid: d39672cc18ccd9545840277c51264e6f, type: 3}
+  m_PrefabInstance: {fileID: 448863705}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &448863707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448863706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6874eb6e679efbf41b50680860641113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2003926461}
+  type: 8
+  icon: {fileID: 21300000, guid: 3a481bc5b3972b54ab4918d5226622af, type: 3}
+  inventory: {fileID: 0}
+  popupText: {fileID: 474915350}
+  changingnum: 0
+--- !u!61 &448863708
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448863706}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.054153442, y: 1.1003883}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.56458426, y: 0}
+    oldSize: {x: 2.71875, y: 2.84375}
+    newSize: {x: 2.71875, y: 2.84375}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.990631, y: 4.2582927}
+  m_EdgeRadius: 0
 --- !u!1 &452649793
 GameObject:
   m_ObjectHideFlags: 0
@@ -36815,7 +36897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2003926461}
-  newPlayerPosition: {x: 193, y: -2}
+  newPlayerPosition: {x: 259, y: -2}
   playerPosition: {fileID: 11400000, guid: f4d59ae7acddc0349ab58793831e75ce, type: 2}
   teleportationPromptMessage: {fileID: 1998003890}
 --- !u!114 &1201931884 stripped
@@ -37163,6 +37245,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2003926461}
+    - target: {fileID: 397091591339073620, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1889366804}
     - target: {fileID: 397091591339073620, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
       propertyPath: popupText
       value: 
@@ -44056,6 +44142,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2003926461}
     - target: {fileID: 1451266113834281721, guid: 239bf75045e3c9846af9e5fae32b5a93, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1889366804}
+    - target: {fileID: 1451266113834281721, guid: 239bf75045e3c9846af9e5fae32b5a93, type: 3}
       propertyPath: popupText
       value: 
       objectReference: {fileID: 474915350}
@@ -47852,6 +47942,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2003926461}
     - target: {fileID: 397091591339073620, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1889366804}
+    - target: {fileID: 397091591339073620, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
       propertyPath: popupText
       value: 
       objectReference: {fileID: 474915350}
@@ -47881,7 +47975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7965927641155875108, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
       propertyPath: m_TagString
-      value: BEGGEREGG
+      value: EGG
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -48503,6 +48597,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2003926461}
+    - target: {fileID: 7207542523651455663, guid: 5e4b7f939b2a0934c91a272cb95a977b, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1889366804}
     - target: {fileID: 7207542523651455663, guid: 5e4b7f939b2a0934c91a272cb95a977b, type: 3}
       propertyPath: popupText
       value: 
@@ -51517,6 +51615,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2003926461}
     - target: {fileID: 7824451954255973315, guid: 76f24f105c8d62749ba6547d1e52008f, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1889366804}
+    - target: {fileID: 7824451954255973315, guid: 76f24f105c8d62749ba6547d1e52008f, type: 3}
       propertyPath: popupText
       value: 
       objectReference: {fileID: 474915350}
@@ -52563,7 +52665,7 @@ PrefabInstance:
       objectReference: {fileID: 1444021709}
     - target: {fileID: 483212528196453806, guid: fd95cc774176bc848b265fc2d1d853ec, type: 3}
       propertyPath: playerResetPosition.x
-      value: 191
+      value: 259
       objectReference: {fileID: 0}
     - target: {fileID: 914177956342057761, guid: fd95cc774176bc848b265fc2d1d853ec, type: 3}
       propertyPath: m_Name
@@ -53282,6 +53384,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2003926461}
     - target: {fileID: 3508247525194230066, guid: e98d5e07f1da3b54da219bc0acdaa888, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1889366804}
+    - target: {fileID: 3508247525194230066, guid: e98d5e07f1da3b54da219bc0acdaa888, type: 3}
       propertyPath: popupText
       value: 
       objectReference: {fileID: 474915350}
@@ -53477,6 +53583,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2003926461}
     - target: {fileID: 397091591339073620, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1889366804}
+    - target: {fileID: 397091591339073620, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
       propertyPath: popupText
       value: 
       objectReference: {fileID: 474915350}
@@ -53631,6 +53741,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2003926461}
+    - target: {fileID: 8276157196117472639, guid: 1b0cb47cb16ab8a44bd69e283ad8a196, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1889366804}
     - target: {fileID: 8276157196117472639, guid: 1b0cb47cb16ab8a44bd69e283ad8a196, type: 3}
       propertyPath: popupText
       value: 
