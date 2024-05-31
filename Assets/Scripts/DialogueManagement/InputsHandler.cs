@@ -12,6 +12,7 @@ public class InputsHandler : MonoBehaviour
     private bool inventoryPressed;
     private bool buyPressed;
     private bool sellPressed;
+    public bool check;
 
     private static InputsHandler instance;
 
@@ -20,6 +21,7 @@ public class InputsHandler : MonoBehaviour
         instance = this;
         interact = false;
         continuePressed = false;
+        check = false;
         move = Vector2.zero;
     }
     public static InputsHandler GetInstance()
@@ -100,10 +102,12 @@ public class InputsHandler : MonoBehaviour
         if (action.performed)
         {
             sellPressed = true;
+            check = true;
         }
         else if (action.canceled)
         {
             sellPressed = false;
+            check = false;
         }
     }
     public bool sellButtonPressed()

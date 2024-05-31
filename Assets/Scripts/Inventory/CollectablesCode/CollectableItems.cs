@@ -17,7 +17,6 @@ public class CollectableItems : MonoBehaviour
 
 
     public int changingnum = 0;
-    public static int moneyAmount = 10;
     private const int HAM_COST = 6;
     private const int WINE_COST = 8;
     private const int APPLE_COST = 2;
@@ -30,9 +29,13 @@ public class CollectableItems : MonoBehaviour
     private const int PAPER_SELL = 2;
 
     private const float INVOKE_OFFSET = 3.5f;
-    private bool canGiveToBeggar = true;
-    private bool canSellToCecil = true;
-    private bool canGiveToKnight = true;
+    public static bool canGiveToBeggar = true;
+    public static int amountGivenToBeggar = 1;
+    public static bool canSellToCecil = true;
+    public static int amountGivenToCecil = 4;
+    public static bool canGiveToKnight = true;
+    public static int amountGivenToKnight = 1;
+
     public void Update()
     {
         BuyOrGetItem();
@@ -206,6 +209,7 @@ public class CollectableItems : MonoBehaviour
                             popupText.SetActive(true);
                         }
                         canGiveToBeggar = false;
+                        Debug.Log(canGiveToBeggar); 
                     }
                 }
             }

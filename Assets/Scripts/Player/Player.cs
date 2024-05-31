@@ -21,7 +21,7 @@ public class Player : Character
     // public VectorValue startingPosition;
     public PlayerVectorValue startingPosition;
     public Inventory inventory;
-    public InventoryUI inventoryUI;
+    // public InventoryUI inventoryUI;
 
 
     #endregion

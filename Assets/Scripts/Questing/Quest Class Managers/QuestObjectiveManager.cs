@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class QuestObjectiveManager : MonoBehaviour
 {
+    public static QuestObjectiveManager instance {get; private set;}
     public QuestObjective[] questObjectives;
+    public Player player;
+    private bool playerClose;
+    private bool canUpdateSelling_Beggar = true;
+    private bool canUpdateSelling_Cecil = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +22,7 @@ public class QuestObjectiveManager : MonoBehaviour
     void Update()
     {
         updateObjectives();
+        updateCurrentQuestObjective();
     }
 
     // at the start of a NEW game all quest objectives will start as incomplete
@@ -45,6 +53,40 @@ public class QuestObjectiveManager : MonoBehaviour
         objective.completionStatus = newStatus;
     }
 
+    public void updateCurrentQuestObjective()
+    {
+        QuestObjective currentObjective = null;
+
+        if(Player.currentQuest != null)
+        {
+            if(Player.currentQuest.questNumber == (int)QuestIndex.SellingEggs)
+            {
+                foreach(QuestObjective objective in questObjectives)
+                {
+                    if(objective is SellingQuestObjective sellingQuestObjective)
+                    {
+                        currentObjective = sellingQuestObjective;
+                    }
+                }
+
+                if(playerClose)
+                {
+                    if(this.gameObject.name == "Egg_Begger" && canUpdateSelling_Beggar)
+                    {
+                        Debug.Log("bleh bleh bleh");
+                        incrementObjectiveSellingCount(currentObjective, CollectableItems.amountGivenToBeggar);
+                        canUpdateSelling_Beggar = false;
+                    }
+
+                    if(this.gameObject.name == "Egg_Cecil" && canUpdateSelling_Cecil && InputsHandler.GetInstance().check)    
+                    {
+                        incrementObjectiveSellingCount(currentObjective, CollectableItems.amountGivenToCecil);
+                        canUpdateSelling_Cecil = false;
+                    }
+                }
+            }
+        }
+    }
     // Method for incrementing selling count of a quest, objective must be a SellingQuestObjective
     public void incrementObjectiveSellingCount(QuestObjective objective, int increment)
     {
@@ -64,5 +106,15 @@ public class QuestObjectiveManager : MonoBehaviour
     public bool isDependentObjectiveComplete(QuestObjective objective)
     {
         return (objective.isDependentObjectiveComplete());
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        playerClose = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        playerClose = false;
     }
 }

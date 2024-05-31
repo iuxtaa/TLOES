@@ -2345,6 +2345,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 50684220270067813, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
   m_PrefabInstance: {fileID: 1219408663}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &94812567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94812559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f78e8501e67b04418d057009b00a4f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questObjectives:
+  - {fileID: 11400000, guid: 3b440b5158493704084b0fe238a3b6c8, type: 2}
+  player: {fileID: 2003926461}
 --- !u!1001 &100393409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14367,6 +14382,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8276157196117472639, guid: 1b0cb47cb16ab8a44bd69e283ad8a196, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2003926461}
+    - target: {fileID: 8276157196117472639, guid: 1b0cb47cb16ab8a44bd69e283ad8a196, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1889366804}
+    - target: {fileID: 8276157196117472639, guid: 1b0cb47cb16ab8a44bd69e283ad8a196, type: 3}
+      propertyPath: popupText
+      value: 
+      objectReference: {fileID: 474915350}
+    - target: {fileID: 8397345997904140981, guid: 1b0cb47cb16ab8a44bd69e283ad8a196, type: 3}
+      propertyPath: money
+      value: 
+      objectReference: {fileID: 1768340864}
+    - target: {fileID: 8397345997904140981, guid: 1b0cb47cb16ab8a44bd69e283ad8a196, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8678427489149476435, guid: 1b0cb47cb16ab8a44bd69e283ad8a196, type: 3}
       propertyPath: m_Size.x
       value: 5.1543026
@@ -14387,7 +14422,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Paper_Knight
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9080448917282257219, guid: 1b0cb47cb16ab8a44bd69e283ad8a196, type: 3}
+      propertyPath: m_TagString
+      value: PAPER
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8397345997904140981, guid: 1b0cb47cb16ab8a44bd69e283ad8a196, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -37368,7 +37408,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7965927641155875108, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 94812567}
   m_SourcePrefab: {fileID: 100100000, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
 --- !u!1001 &1228650141
 PrefabInstance:
@@ -37778,7 +37821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1261858330
 Transform:
   m_ObjectHideFlags: 0
@@ -37807,14 +37850,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questObjectives:
-  - {fileID: 11400000, guid: 6098a56bcc3ccb741b2230231c58a70c, type: 2}
+  - {fileID: 11400000, guid: 3b440b5158493704084b0fe238a3b6c8, type: 2}
   - {fileID: 11400000, guid: bda7aa4554ac96148b9d309d7cdbc2ac, type: 2}
   - {fileID: 11400000, guid: 3253d0401e8e0da4f86fd71829166132, type: 2}
   - {fileID: 11400000, guid: 99b37e6ec6ff903478454c5000ba5fa1, type: 2}
   - {fileID: 11400000, guid: ab9e3ff8f8eb3354b8c83094467df76b, type: 2}
   - {fileID: 11400000, guid: 6098a56bcc3ccb741b2230231c58a70c, type: 2}
   - {fileID: 11400000, guid: 9a180a8d25f23b240a1c2d9fda6d25f7, type: 2}
-  player: {fileID: 0}
+  player: {fileID: 2003926461}
 --- !u!1001 &1268938153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48071,13 +48114,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7965927641155875108, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1814124551}
   m_SourcePrefab: {fileID: 100100000, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
 --- !u!4 &1814124547 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 50684220270067813, guid: d057864e1adb27149b3ac0b02e2ec61e, type: 3}
   m_PrefabInstance: {fileID: 1814124546}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1814124551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613965253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f78e8501e67b04418d057009b00a4f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questObjectives:
+  - {fileID: 11400000, guid: 3b440b5158493704084b0fe238a3b6c8, type: 2}
+  player: {fileID: 2003926461}
 --- !u!1001 &1814156333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51402,7 +51463,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
   startingPosition: {fileID: 11400000, guid: f4d59ae7acddc0349ab58793831e75ce, type: 2}
   inventory: {fileID: 1889366804}
-  inventoryUI: {fileID: 1889366803}
 --- !u!82 &2003926462
 AudioSource:
   m_ObjectHideFlags: 0
