@@ -3277,8 +3277,8 @@ MonoBehaviour:
   dialogueNoTalk: {fileID: 4900000, guid: bd46c5c83d2e9b24da08b7f5838550ca, type: 3}
   dialogueStartQuest: {fileID: 4900000, guid: 3263cb05e8d0785418193651b0277b79, type: 3}
   dialogueCannotFinishQuest: {fileID: 4900000, guid: 3263cb05e8d0785418193651b0277b79, type: 3}
-  dialogueCanFinishQuest: {fileID: 4900000, guid: 3263cb05e8d0785418193651b0277b79, type: 3}
-  dialogueFinishedQuest: {fileID: 4900000, guid: 3263cb05e8d0785418193651b0277b79, type: 3}
+  dialogueCanFinishQuest: {fileID: 4900000, guid: 2e6241cf95236cb4db3b045e7869f248, type: 3}
+  dialogueFinishedQuest: {fileID: 4900000, guid: 2e6241cf95236cb4db3b045e7869f248, type: 3}
   questCheck: {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
   player: {fileID: 2003926461}
 --- !u!114 &151040413
@@ -10144,7 +10144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
-  questObjective: {fileID: 0}
+  questObjective: {fileID: 11400000, guid: ab9e3ff8f8eb3354b8c83094467df76b, type: 2}
   player: {fileID: 2003926461}
   questItem: {fileID: 0}
   questOverlay: {fileID: 1026301343}
@@ -10178,8 +10178,8 @@ MonoBehaviour:
   dialogueNoTalk: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
   dialogueStartQuest: {fileID: 4900000, guid: c4ec619e4f258e54f9a121db984ce23b, type: 3}
   dialogueCannotFinishQuest: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
-  dialogueCanFinishQuest: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
-  dialogueFinishedQuest: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
+  dialogueCanFinishQuest: {fileID: 4900000, guid: 4c4ed1398c19d224eab4b3c5efca8c1e, type: 3}
+  dialogueFinishedQuest: {fileID: 4900000, guid: 4c4ed1398c19d224eab4b3c5efca8c1e, type: 3}
   questCheck: {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   player: {fileID: 2003926461}
 --- !u!1001 &620738158
