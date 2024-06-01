@@ -76,7 +76,7 @@ public class MarketTrigger : MonoBehaviour
     {
         
         itemToBuyOrSell.SetActive(true); // Activate the item
-        yield return new WaitForSeconds(10); // Wait for 20 seconds
+        yield return new WaitForSeconds(20); // Wait for 20 seconds
         itemToBuyOrSell.SetActive(false); // Deactivate the item
         
     }
