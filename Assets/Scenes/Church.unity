@@ -1406,7 +1406,6 @@ MonoBehaviour:
   questObjective: {fileID: 11400000, guid: 6098a56bcc3ccb741b2230231c58a70c, type: 2}
   player: {fileID: 1018197484}
   questItem: {fileID: 0}
-  questOverlay: {fileID: 1326176445}
 --- !u!114 &235057918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5667,6 +5666,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 788513495273198632, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
+      propertyPath: jump
+      value: 
+      objectReference: {fileID: 1018197485}
+    - target: {fileID: 788513495273198632, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
+      propertyPath: walk
+      value: 
+      objectReference: {fileID: 1018197487}
+    - target: {fileID: 788513495273198632, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: walking
       value: 
       objectReference: {fileID: 1018197487}
@@ -5975,7 +5982,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
   startingPosition: {fileID: 0}
   inventory: {fileID: 0}
-  inventoryUI: {fileID: 0}
 --- !u!82 &1018197485
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5986,7 +5992,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -6760,6 +6766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bf6c8424065834583c7ffd957634a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  check: 0
 --- !u!114 &1097699590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7224,13 +7231,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ec6725f847fe7f14dbb5da33703293f8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.074
+  m_Volume: 0.036
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 57
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -7928,8 +7935,13 @@ MonoBehaviour:
   AppleSellerTrigger: {fileID: 0}
   HamSellerTrigger: {fileID: 0}
   WineSellerTrigger: {fileID: 0}
+  EggSellerTrigger: {fileID: 0}
+  PaperSellerTrigger: {fileID: 0}
+  BeggerTrigger: {fileID: 0}
+  father: {fileID: 0}
+  Knight: {fileID: 0}
+  Priest: {fileID: 0}
   player: {fileID: 1018197484}
-  questGiver: {fileID: 235057914}
 --- !u!4 &1270375201
 Transform:
   m_ObjectHideFlags: 0
