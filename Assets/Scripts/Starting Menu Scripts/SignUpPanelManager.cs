@@ -5,7 +5,9 @@ using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
 using System;
+using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class SignUpPanelManager : MonoBehaviour
 {
@@ -20,6 +22,7 @@ public class SignUpPanelManager : MonoBehaviour
 
     private FirebaseAuth auth;
     private DatabaseReference databaseReference;
+    private FirebaseUser user;
 
     private void Awake()
     {
@@ -47,35 +50,98 @@ public class SignUpPanelManager : MonoBehaviour
 
         try
         {
-            // Check if the username is already taken
-            var usernameCheck = await databaseReference.Child("usernames").Child(username).GetValueAsync();
-            if (usernameCheck.Exists)
+            if (user == null)
             {
-                warningText.text = "Username already in use!";
-                return;
+                var authTask = await auth.CreateUserWithEmailAndPasswordAsync(email, password);
+                user = authTask.User;
+
+                if (user != null)
+                {
+                    await user.SendEmailVerificationAsync();
+                    await SaveUsernameToDatabase(user.UserId, username, email);
+                    await InitializePlayerData(user.UserId);
+                    warningText.text = "Verification email has been sent. Please verify your email and click signup again";
+                }
             }
-
-            // Create user with email and password
-            var authTask = await auth.CreateUserWithEmailAndPasswordAsync(email, password);
-            var user = authTask.User;
-
-            if (user != null)
+            else
             {
-                // Save the username to the database
-                await databaseReference.Child("usernames").Child(username).SetValueAsync(user.UserId);
-
-                // Save additional user information if needed
-                // Example: await databaseReference.Child("users").Child(user.UserId).SetValueAsync(new { username = username, email = email });
-
-                // Send verification email
-                await user.SendEmailVerificationAsync();
-                warningText.text = "Verification email has been sent!";
+                await user.ReloadAsync(); // Reload user data to get the latest email verification status
+                if (user.IsEmailVerified)
+                {
+                    SceneManager.LoadScene((int)ScreenEnum.MainMenu);
+                }
+                else
+                {
+                    warningText.text = "Please verify your email and click signup again.";
+                }
+            }
+        }
+        catch (AggregateException ae)
+        {
+            foreach (var innerException in ae.InnerExceptions)
+            {
+                Debug.LogError("Firebase authentication failed: " + innerException.Message);
+                warningText.text = "Sign up failed. Please try again later.";
             }
         }
         catch (Exception e)
         {
             Debug.LogError("Firebase authentication failed: " + e.Message);
             warningText.text = "Sign up failed. Please try again later.";
+        }
+    }
+
+    private async Task SaveUsernameToDatabase(string userId, string username, string email)
+    {
+        try
+        {
+            await databaseReference.Child("users").Child(userId).Child("username").SetValueAsync(username);
+            await databaseReference.Child("users").Child(userId).Child("email").SetValueAsync(email);
+        }
+        catch (AggregateException ae)
+        {
+            foreach (var innerException in ae.InnerExceptions)
+            {
+                Debug.LogError("Saving username to database failed: " + innerException.Message);
+                warningText.text = "Failed to save username to database.";
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Saving username to database failed: " + e.Message);
+            warningText.text = "Failed to save username to database.";
+        }
+    }
+
+    private async Task InitializePlayerData(string userId)
+    {
+        try
+        {
+            PlayerData initialPlayerData = new PlayerData
+            {
+                favourability = 0,
+                inventory = new Dictionary<string, int>(),
+                currentQuest = null,
+                startingPosition = new PositionData(Vector3.zero, Vector3.zero),
+                isQuestActive = false,
+                isQuestComplete = false
+            };
+
+            string json = JsonUtility.ToJson(initialPlayerData);
+            await databaseReference.Child("players").Child(userId).SetRawJsonValueAsync(json);
+        }
+        catch (AggregateException ae)
+        {
+            foreach (var innerException in ae.InnerExceptions)
+            {
+                Debug.LogError("Initializing player data failed: " + innerException.Message);
+                warningText.text = "Failed to initialize player data.";
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Initializing player data failed: " + e.Message);
+            warningText.text = "Failed to initialize player data.";
         }
     }
 
