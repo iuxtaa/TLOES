@@ -11,18 +11,22 @@ public class Player : Character
 {
 
     #region Variables
+    public static Player Instance { get; private set; }
 
+    // CONSTANT VARIABLES
+    public const int MAX_SLOTS = 5;
     // INSTANCE VARIABLES 
+    public static int money = 0;
     public static int favourability;
-    public static Dictionary<string, int> inventory = new Dictionary<string, int>();  // Initialize inventory
+    public static Dictionary<string, int> tempinventory2 = new Dictionary<string, int>();  // Initialize inventory
     [SerializeField] public static Quest currentQuest;
     public Quest[] questHistory = new Quest[3];
-    public VectorValue startingPosition;
+    public PlayerVectorValue startingPosition;
+    public Inventory inventory;
     private FirebaseAuth auth;
     private DatabaseReference databaseReference;
     private FirebaseUser user;
-
-    #endregion 
+    #endregion
 
     #region Constructor
 
@@ -31,9 +35,6 @@ public class Player : Character
         InitializeFirebase();
         SetFavourability(0);
         SetQuest(null);
-        //questHistory[0] = new SellingQuest(3,3, 0, "", "", 5);
-        //questHistory[1] = KnightsLetter;
-        //questHistory[2] = PriestsHolyWater;
     }
 
     public Player(string name, int currentLocation, int favourability, Quest currentQuest) : base(name, currentLocation)
@@ -59,6 +60,7 @@ public class Player : Character
         transform.position = startingPosition.changingValue;
         startingPosition.changingValue = startingPosition.initialValue;
     }
+
 
     #endregion
 
@@ -88,7 +90,7 @@ public class Player : Character
     }
 
     #endregion
-
+    
     #region InventoryMethods 
     public void AddItem(string item, int quantity)
     {
@@ -121,7 +123,7 @@ public class Player : Character
         return inventory.ContainsKey(item) ? inventory[item] : 0;
     }
     #endregion 
-
+    
     #region QuestingMethods
     public void acceptQuest(Quest quest)
     {
@@ -131,43 +133,14 @@ public class Player : Character
         Debug.Log(Player.currentQuest);
     }
 
-    public bool CanCompleteQuest()
-    {
-        if (currentQuest != null)
-        {
-            if (currentQuest is SellingQuest sellingQuest)
-            {
-                return GetItemCount(sellingQuest.requiredItem.name) >= sellingQuest.requiredAmount;
-            }
-            if (currentQuest is DoingQuest)
-            {
-                return true;
-            }
-            if (currentQuest is CollectingQuest collectingQuest)
-            {
-                return GetItemCount(collectingQuest.requiredItem.name) >= collectingQuest.requiredAmount;
-            }
-        }
-        return false;
-    }
-
     public void completeQuest()
     {
-        if (CanCompleteQuest())
-        {
-            favourability += currentQuest.favourabilityReward;
-            if (currentQuest is CollectingQuest collectingQuest)
-            {
-                RemoveItem(collectingQuest.requiredItem.name, collectingQuest.requiredAmount);
-            }
-            else if (currentQuest is SellingQuest sellingQuest)
-            {
-                RemoveItem(sellingQuest.requiredItem.name, sellingQuest.requiredAmount);
-            }
-            currentQuest.complete();
-            SetQuest(null);
-            SavePlayerData();
-        }
+        favourability += currentQuest.favourabilityReward;
+        // FOR YZA
+        // goldCount ?? += currentQuest.goldReward;
+        currentQuest.complete();
+        SetQuest(null);
+        SavePlayerData();
     }
 
     public void failQuest()
@@ -176,6 +149,21 @@ public class Player : Character
         currentQuest.complete();
         SetQuest(null);
         SavePlayerData();
+    }
+
+    private Quest findActiveQuest()
+    {
+        for (int i = 0; i < questHistory.Length; i++)
+        {
+            if (questHistory[i].isActive)
+                return questHistory[i];
+        }
+        return null;
+    }
+
+    public void setActiveQuest()
+    {
+        SetQuest(findActiveQuest());
     }
     #endregion
 

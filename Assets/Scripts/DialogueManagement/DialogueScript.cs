@@ -20,7 +20,23 @@ public class DialogueScript : MonoBehaviour
     [SerializeField] private GameObject[] choices;
     private TextMeshProUGUI[] choicesText;
 
-    public QuestGiver questGiver;
+    [Header("Trigger Zone Objects")]
+    public MarketTrigger AppleSellerTrigger;
+    public MarketTrigger HamSellerTrigger;
+    public MarketTrigger WineSellerTrigger;
+    public MarketTrigger EggSellerTrigger;
+    public MarketTrigger PaperSellerTrigger;
+    public MarketTrigger BeggerTrigger;
+
+    [Header("Quest Giver Objects")]
+    public QuestGiver father;
+    public QuestGiver Knight;
+    public QuestGiver Priest;
+
+    [Header("Player Object")]
+    public Player player;
+
+
     private Coroutine typingDialogue;
     private bool canContinueNext;
 
@@ -34,6 +50,8 @@ public class DialogueScript : MonoBehaviour
     private const string SPEAKER_TAG = "speaker";
     private const string PORTRAIT_TAG = "image";
 
+
+
     private void Awake()
     {
         if (instance != null)
@@ -41,7 +59,7 @@ public class DialogueScript : MonoBehaviour
             Debug.LogWarning("There is more than one instance");
         }
         instance = this;
-        questGiver = FindObjectOfType<QuestGiver>();
+       
     }
 
     public static DialogueScript GetInstance()
@@ -68,10 +86,76 @@ public class DialogueScript : MonoBehaviour
         currentDialogue = new Story(inkJSON.text);
         currentDialogueIsPlaying = true;
         dialogueDisplay.SetActive(true);
-        currentDialogue.BindExternalFunction("beginQuest", (string questName) =>
+        //Quest start Binders
+        currentDialogue.BindExternalFunction("fatherQuest", (string questName) =>
         {
-            questGiver.openQuestUI();
+            Debug.Log("Selling eggs letter should be running");
+            father.acceptQuest();
             Debug.Log(questName);
+        });
+        currentDialogue.BindExternalFunction("KnightQuest", (string questName) =>
+        {
+            Knight.acceptQuest();
+            Debug.Log(questName);
+        });
+        currentDialogue.BindExternalFunction("PriestQuest", (string questName) =>
+        {
+            Priest.acceptQuest();
+            Debug.Log(questName);
+        });
+
+        //Quest end binders
+        currentDialogue.BindExternalFunction("completeFatherQuest", (string compquestName) =>
+        {
+           father.completeQuest();
+           Debug.Log(compquestName + "completion");
+        });
+        currentDialogue.BindExternalFunction("completePriestQuest", (string compquestName) =>
+        {
+           Priest.completeQuest();
+            Debug.Log(compquestName + "completion");
+        });
+
+        currentDialogue.BindExternalFunction("completeKnightQuest", (string compquestName) =>
+        {
+           Knight.completeQuest();
+            Debug.Log(compquestName + "completion");
+        });
+
+        //Buying and Selling Binders
+        currentDialogue.BindExternalFunction("buyingandsellingApples", (string AppleActivity) =>
+          {
+              AppleSellerTrigger.purchase();  
+              Debug.Log("buying apples");
+              Debug.Log(AppleActivity); 
+         });
+        currentDialogue.BindExternalFunction("buyingandsellingHam", (string HamActivity) =>
+        {
+            HamSellerTrigger.purchase();
+            Debug.Log(HamActivity);
+        });
+        currentDialogue.BindExternalFunction("buyingandsellingWine", (string WineActivity) =>
+        {
+            WineSellerTrigger.purchase();
+            Debug.Log(WineActivity);
+        });
+        currentDialogue.BindExternalFunction("buyingandsellingEggs", (string EggActivity) =>
+        {
+            EggSellerTrigger.purchase();
+            Debug.Log(EggActivity);
+            Debug.Log("buying eggs");
+        });
+        currentDialogue.BindExternalFunction("buyingandsellingPaper", (string PaperActivity) =>
+        {
+            PaperSellerTrigger.purchase();
+            Debug.Log(PaperActivity);
+        });
+
+        //NPC actions
+        currentDialogue.BindExternalFunction("BeggerEgg", (string actionName) =>
+        {
+            BeggerTrigger.purchase();
+            Debug.Log(actionName + "completion");
         });
 
 
@@ -80,7 +164,23 @@ public class DialogueScript : MonoBehaviour
 
     private void LeaveDialogueView()
     {
-        currentDialogue.UnbindExternalFunction("beginQuest");
+        //Quests start unbinders
+        currentDialogue.UnbindExternalFunction("KnightQuest");
+        currentDialogue.UnbindExternalFunction("fatherQuest");
+        currentDialogue.UnbindExternalFunction("PriestQuest");
+        //Quest End unbinders
+        currentDialogue.UnbindExternalFunction("completeFatherQuest");
+        currentDialogue.UnbindExternalFunction("completePriestQuest");
+        currentDialogue.UnbindExternalFunction("completeKnightQuest");
+        //Selling unbunders
+        currentDialogue.UnbindExternalFunction("buyingandsellingApples");
+        currentDialogue.UnbindExternalFunction("buyingandsellingHam");
+        currentDialogue.UnbindExternalFunction("buyingandsellingWine");
+        currentDialogue.UnbindExternalFunction("buyingandsellingEggs");
+        currentDialogue.UnbindExternalFunction("buyingandsellingPaper");
+        //quest actions
+        currentDialogue.UnbindExternalFunction("BeggerEgg");
+
         currentDialogueIsPlaying = false;
         dialogueDisplay.SetActive(false);
         dialogueText.text = "";
@@ -111,7 +211,35 @@ public class DialogueScript : MonoBehaviour
 
             NextLine();
         }
+
     }
+
+    public void turnOffColliderBegger()
+    {
+        BoxCollider2D boxCollider = BeggerTrigger.GetComponent<BoxCollider2D>();
+        if (boxCollider != null)
+        {
+            boxCollider.enabled = false;
+        }
+        else
+        {
+            Debug.Log("Box collider aint here chief");
+        }
+    }
+    public void turnOffColliderCecil()
+    {
+        BoxCollider2D boxCollider = EggSellerTrigger.GetComponent<BoxCollider2D>();
+        if (boxCollider != null)
+        {
+            boxCollider.enabled = false;
+        }
+        else
+        {
+            Debug.Log("Box collider aint here chief");
+        }
+    }
+
+
 
     private void NextLine()
     {

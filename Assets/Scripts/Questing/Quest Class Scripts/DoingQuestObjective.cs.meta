@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Questing/Quest Class Scripts/DoingQuestObjective.cs.meta
+guid: 960f964054dff254f93b5195f8d09e84
+========
+guid: 0a5f6fa6de758aa438c90b6840026712
+>>>>>>>> ann-dev-2:Assets/Scripts/Questing/Quest Class Scripts/QuestObjective.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

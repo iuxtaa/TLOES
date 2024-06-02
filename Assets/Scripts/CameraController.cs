@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+    public static CameraController Instance { get; private set;}
+    public Transform player;
 
     private void Update()
     {

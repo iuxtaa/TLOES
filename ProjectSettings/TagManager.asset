@@ -9,6 +9,21 @@ TagManager:
   - Questing
   - NextMap
   - PrevMap
+  - HAM
+  - Apple
+  - EGG
+  - Begger
+  - WINE
+  - APPLE
+  - FARM
+  - CHURCH
+  - MARKET
+  - WELL
+  - PAPER
+  - EMPTYBOTTLE
+  - WATERBOTTLE
+  - Wine
+  - BEGGEREGG
   layers:
   - Default
   - TransparentFX
