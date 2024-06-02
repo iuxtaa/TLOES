@@ -20,7 +20,7 @@ public class CollectableItems : MonoBehaviour
     private const int HAM_COST = 6;
     private const int WINE_COST = 8;
     private const int APPLE_COST = 2;
-    private const int PAPER_COST = 3;
+    public const int PAPER_COST = 3;
 
     private const int HAM_SELL = 5;
     private const int WINE_SELL = 6;
@@ -34,7 +34,9 @@ public class CollectableItems : MonoBehaviour
     private bool canGiveToKnight = true;
     public static int amountGivenToBeggar = 1;
     public static int amountGivenToCecil = 4;
-    public static int amountGivenToKnight = 1;
+    public static int amountCollectForKnight = 1;
+    public static int amountCollectForPriest = 1;
+    public static int requiredAmountCollectForPriest = 2;
     public void Update()
     {
         BuyOrGetItem();

@@ -12,6 +12,8 @@ public class QuestObjectiveManager : MonoBehaviour
     private bool playerClose;
     private bool canUpdateSelling_Beggar = true;
     private bool canUpdateSelling_Cecil = true;
+    private bool canUpdateCollecting_Patrick = true;
+    private bool canUpdateCollecting_Well = true;
 
     // Start is called before the first frame update
     void Start()
@@ -63,7 +65,7 @@ public class QuestObjectiveManager : MonoBehaviour
             {
                 foreach (QuestObjective objective in questObjectives)
                 {
-                    if (objective is SellingQuestObjective sellingQuestObjective)
+                    if (objective is SellingQuestObjective sellingQuestObjective && !objective.completionStatus)
                     {
                         currentObjective = sellingQuestObjective;
                     }
@@ -72,7 +74,6 @@ public class QuestObjectiveManager : MonoBehaviour
                 {
                     if (this.gameObject.name == "Egg_Begger" && canUpdateSelling_Beggar)
                     {
-                        Debug.Log("bleh bleh bleh");
                         incrementObjectiveSellingCount(currentObjective, CollectableItems.amountGivenToBeggar);
                         canUpdateSelling_Beggar = false;
                     }
@@ -83,14 +84,63 @@ public class QuestObjectiveManager : MonoBehaviour
                     }
                 }
             }
+
+            else if(Player.currentQuest.questNumber == (int)QuestIndex.KnightsLetter)
+            {
+                foreach(QuestObjective objective in questObjectives)
+                {
+                    if(objective is CollectingQuestObjective collectingQuestObjective && !objective.completionStatus)
+                    {
+                        currentObjective = collectingQuestObjective;
+                    }
+                }
+
+                if(playerClose)
+                {
+                    if(this.gameObject.name == "Paper_Patrick" && canUpdateCollecting_Patrick && InputsHandler.GetInstance().check && Player.money >= CollectableItems.PAPER_COST)
+                    {
+                        incrementObjectiveCollectingCount(currentObjective, CollectableItems.amountCollectForKnight);
+                        canUpdateCollecting_Patrick = false;
+                    }
+                }
+            }
+            else if(Player.currentQuest.questNumber == (int) QuestIndex.PriestsHolyWater)
+            {
+                foreach(QuestObjective objective in questObjectives)
+                {
+                    if(objective is CollectingQuestObjective && !objective.completionStatus)
+                    {
+                        currentObjective = objective;
+                    }
+                }
+
+                if(playerClose)
+                {
+                    if(this.gameObject.name == "WaterBottle_WishingWell" && canUpdateCollecting_Well && InputsHandler.GetInstance().check)
+                    {
+                        incrementObjectiveCollectingCount(currentObjective, CollectableItems.amountCollectForPriest);
+                        canUpdateCollecting_Well = false;
+                    }
+                }
+            }
+
         }
     }
+
     // Method for incrementing selling count of a quest, objective must be a SellingQuestObjective
     public void incrementObjectiveSellingCount(QuestObjective objective, int increment)
     {
         if (objective is SellingQuestObjective sellingQuestObjective)
         {
             sellingQuestObjective.incSellingCount(increment);
+        }
+    }
+
+    public void incrementObjectiveCollectingCount(QuestObjective objective, int increment)
+    {
+        if(objective is CollectingQuestObjective collectingQuestObjective)
+        {
+            collectingQuestObjective.incCollectingCount(increment);
         }
     }
 
