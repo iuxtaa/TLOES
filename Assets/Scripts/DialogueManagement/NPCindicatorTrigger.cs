@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager.Requests;
@@ -13,12 +14,17 @@ public class NPCindicatorTrigger : MonoBehaviour
     [SerializeField] private GameObject promptIcon;
 
     [Header("Dialogue Files INK")]
-    [SerializeField] private TextAsset DialogueFile;
-    [SerializeField] private TextAsset DialogueFile2;
+    [SerializeField] private TextAsset dialogueNoTalk;
+    [SerializeField] private TextAsset dialogueStartQuest;
+    [SerializeField] private TextAsset dialogueCannotFinishQuest;
+    [SerializeField] private TextAsset dialogueCanFinishQuest;
+    [SerializeField] private TextAsset dialogueFinishedQuest;
 
+    [Header("Quest Check Object")]
     public Quest questCheck;
     private NPCmovement NPClook;
-    
+
+   
 
     public Player player;
 
@@ -30,11 +36,22 @@ public class NPCindicatorTrigger : MonoBehaviour
         floatingIcon.SetActive(false);
         promptIcon.SetActive(false);
         NPClook = GetComponent<NPCmovement>();
-
     }
+
+    public  void QuestAcceptance(QuestGiver questGiver) 
+    {
+        questGiver.acceptQuest();
+    }
+
+    public void QuestCompletion(QuestGiver questGiver)
+    {
+        questGiver.completeQuest();
+    }
+
 
     private void Update()
     {
+
         if (playerClose && !DialogueScript.GetInstance().currentDialogueIsPlaying)
         {
             floatingIcon.SetActive(true);
@@ -42,15 +59,53 @@ public class NPCindicatorTrigger : MonoBehaviour
             if(InputsHandler.GetInstance().GetInteract())
             {
                 NPClook.NPClookAtPlayer();
-                
-                //if (questCheck.isComplete)
-                if (questCheck.isComplete)
+                try
                 {
-                    DialogueScript.GetInstance().EnterDialogueView(DialogueFile2);//Dialogue 2 will only play if a preceeding quest is done
+                    
+                    if (!questCheck.isDependentQuestComplete())
+                    {
+                        
+                        DialogueScript.GetInstance().EnterDialogueView(dialogueNoTalk);
+                        Debug.Log("CANNOT START QUEST DIALOGUE");
+                    }
+                    // Player can start quest
+                    else
+                    {
+                        
+                        // First time starting the quest
+                        if (!questCheck.isActive && !questCheck.completionStatus)
+                        {
+                            DialogueScript.GetInstance().EnterDialogueView(dialogueStartQuest);
+                            Debug.Log("STARTING QUEST DIALOGUE");
+                            
+                        }
+                        // Has started quest already but CANNOT complete the quest
+                        else if (questCheck.isActive && !questCheck.canComplete())
+                        {
+                            DialogueScript.GetInstance().EnterDialogueView(dialogueCannotFinishQuest);
+                            Debug.Log("CANNOT FINISH QUEST DIALOGUE");
+                        }
+                        // Has started quest already and CAN complete the quest
+                        else if (questCheck.isActive && questCheck.canComplete())
+                        {
+                            DialogueScript.GetInstance().EnterDialogueView(dialogueCanFinishQuest);
+                            Debug.Log("CAN FINISH QUEST DIALOGUE");
+                        }
+                        // Player has finished quest
+                        else if (!questCheck.isActive && questCheck.completionStatus)
+                        {
+                            DialogueScript.GetInstance().EnterDialogueView(dialogueFinishedQuest);
+                            Debug.Log("FINISHED QUEST DIALOGUE");
+                        }
+                        else
+                        {
+                            Debug.Log("Quest start logic error");
+                        }
+                    }
                 }
-                else if(!questCheck.isComplete && questCheck.isActive)
+                catch (ArgumentNullException)
                 {
-                    DialogueScript.GetInstance().EnterDialogueView(DialogueFile);  
+                    Debug.Log("Null ");
                 }
             }
             
@@ -62,6 +117,7 @@ public class NPCindicatorTrigger : MonoBehaviour
 
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

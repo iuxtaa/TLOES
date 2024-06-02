@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Questing/Quest Class Scripts/SellingQuestObjective.cs.meta
+guid: 712be4712a2427b4582f4bed48aff80d
+========
+guid: 5dd0763ea97a6b64b95a9074d9309a23
+>>>>>>>> ann-dev-2:Assets/Scripts/Questing/Quest Class Scripts/CollectingQuestObjective.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "TeleportButton",
+                    "type": "Button",
+                    "id": "135d2f14-4ede-42bc-bbfe-dc4a1ee07326",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -307,6 +316,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SellButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "afeb5f85-be40-4eb2-977a-c6460a2465b1",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TeleportButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

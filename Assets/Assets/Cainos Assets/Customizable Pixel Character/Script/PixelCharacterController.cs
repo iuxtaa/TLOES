@@ -27,10 +27,7 @@ namespace Cainos.CustomizablePixelCharacter
         [FoldoutGroup("Movement")] public LayerMask groundCheckLayerMask;
         [Space]
         [FoldoutGroup("Movement")] public float walkSpeedMax = 2.5f;                           // max walk speed
-        [FoldoutGroup("Movement")] public float walkAcc = 10.0f;
-        [FoldoutGroup("Movement")] public AudioSource walking; 
-
-        // walking acceleration
+        [FoldoutGroup("Movement")] public float walkAcc = 10.0f;                               // walking acceleration
         [Space]
         [FoldoutGroup("Movement")] public float runSpeedMax = 5.0f;                            // max run speed
         [FoldoutGroup("Movement")] public float runAcc = 15.0f;                                // running acceleration
@@ -70,7 +67,6 @@ namespace Cainos.CustomizablePixelCharacter
         [FoldoutGroup("Movement"), ShowIf("ladderClimbEnabled")] public float ladderClimbSpeedFast = 1.5f;          // laddder climb speed when move modifier key is pressed
         [Space]
         [FoldoutGroup("Movement")] public bool ledgeClimbEnabled = true;
-        [FoldoutGroup("Movement")] public AudioSource JumpSound; 
 
         [FoldoutGroup("Attack")] public AttackActionType attackAction = AttackActionType.Swipe;
         [FoldoutGroup("Attack")] public AttackActionMeleeType attackActionMelee = AttackActionMeleeType.Swipe;
@@ -944,16 +940,6 @@ namespace Cainos.CustomizablePixelCharacter
         {
             //set isMoving and isRunning
             isMoving = (Mathf.Abs(inputMove.x) > MOVE_THRESHOLD);
-
-            if (isMoving && !walking.isPlaying)
-            {
-                walking.Play();
-            }
-            else if (!isMoving && walking.isPlaying)
-            {
-                walking.Stop();
-            }
-
             if (isMoving == false) return;
 
             isRunning = inputRun;
@@ -964,7 +950,6 @@ namespace Cainos.CustomizablePixelCharacter
             //is the character moving backward
             moveDir = (Mathf.Sign(inputMove.x) * facing) == 1 ? 1 : -1;
         }
-
 
         private void Move()
         {
@@ -1038,7 +1023,8 @@ namespace Cainos.CustomizablePixelCharacter
                 velocity = velocity.normalized * speed;
             }
             //in air, set limit to x and y direction separately
-            else if (IsInAir)
+            else
+            if ( IsInAir)
             {
                 float speedX = Mathf.Abs(velocity.x);
                 if (speedX > max) speedX = Mathf.MoveTowards(speedX, max, dragAcc * Time.fixedDeltaTime);
@@ -1056,7 +1042,8 @@ namespace Cainos.CustomizablePixelCharacter
             if (shouldMove)
             {
                 if (inputMove.x > 0.0f && velocity.x > max) shouldMove = false;
-                else if (inputMove.x < 0.0f && velocity.x < -max) shouldMove = false;
+                else
+                if (inputMove.x < 0.0f && velocity.x < -max) shouldMove = false;
             }
 
             //apply acceleration
@@ -1071,17 +1058,7 @@ namespace Cainos.CustomizablePixelCharacter
                     velocity += acc * facing * moveDir * Time.fixedDeltaTime * Vector2.right;
                 }
             }
-
-            if (isMoving && !walking.isPlaying)
-            {
-                walking.Play();
-            }
-            else if (!isMoving && walking.isPlaying)
-            {
-                walking.Stop();
-            }
         }
-
 
         private void UpdateMoveBlend()
         {
@@ -1089,7 +1066,6 @@ namespace Cainos.CustomizablePixelCharacter
             {
                 targetMoveBlend = 1.0f;
                 if (isRunning) targetMoveBlend = 3.0f;
-
             }
             else
             {
@@ -1097,7 +1073,6 @@ namespace Cainos.CustomizablePixelCharacter
             }
 
             moveBlend = Mathf.Lerp(moveBlend, targetMoveBlend, 7.0f * Time.deltaTime);
-           
         }
 
         #endregion
@@ -1410,7 +1385,6 @@ namespace Cainos.CustomizablePixelCharacter
                 }
 
                 //event
-                JumpSound.Play();
                 onJump.Invoke();
             }
 
