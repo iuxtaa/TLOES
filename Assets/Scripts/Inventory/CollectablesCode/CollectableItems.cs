@@ -122,6 +122,19 @@ public class CollectableItems : MonoBehaviour
 
     public void SellOrGiveItem()
     {
+        if (playerClose && this.gameObject.name == "Egg_Begger" && canGiveToBeggar)
+        {
+            player.inventory.Removing(this);
+            this.gameObject.SetActive(false);
+            if (canGiveToBeggar)
+            {
+                popupText.GetComponent<TextMeshProUGUI>().text = "BEGGER says 'Thanks Bud' ";
+                popupText.SetActive(true);
+                DialogueScript.GetInstance().turnOffColliderBegger();
+            }
+            canGiveToBeggar = false;
+            Debug.Log(canGiveToBeggar);
+        }
         if (playerClose && InputsHandler.GetInstance().sellButtonPressed())
         {
             
@@ -199,19 +212,7 @@ public class CollectableItems : MonoBehaviour
                         }
                         canSellToCecil = false;
                     }
-                    if (this.gameObject.name == "Egg_Begger" && canGiveToBeggar)
-                    {
-                        player.inventory.Removing(this);
-                        this.gameObject.SetActive(false);
-                        if (canGiveToBeggar)
-                        {
-                            popupText.GetComponent<TextMeshProUGUI>().text = "BEGGER says 'Thanks Bud' ";
-                            popupText.SetActive(true);
-                            DialogueScript.GetInstance().turnOffColliderBegger();
-                        }
-                        canGiveToBeggar = false;
-                        Debug.Log(canGiveToBeggar); 
-                    }
+                   
                 }
             }
         }
