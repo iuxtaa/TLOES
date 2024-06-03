@@ -107,19 +107,21 @@ public class DialogueScript : MonoBehaviour
         //Quest end binders
         currentDialogue.BindExternalFunction("completeFatherQuest", (string compquestName) =>
         {
-           father.completeQuest();
-           Debug.Log(compquestName + "completion");
+            turnOffColliderFather();
+           Debug.Log(compquestName + "completed");
         });
         currentDialogue.BindExternalFunction("completePriestQuest", (string compquestName) =>
         {
-           Priest.completeQuest();
-            Debug.Log(compquestName + "completion");
+            //Priest.completeQuest();
+            turnOffColliderPriest();
+            Debug.Log(compquestName + "completed");
         });
 
         currentDialogue.BindExternalFunction("completeKnightQuest", (string compquestName) =>
         {
-           Knight.completeQuest();
-            Debug.Log(compquestName + "completion");
+            //Knight.completeQuest();
+            turnOffColliderKnight();
+            Debug.Log(compquestName + "completed");
         });
 
         //Buying and Selling Binders
@@ -232,6 +234,47 @@ public class DialogueScript : MonoBehaviour
         if (boxCollider != null)
         {
             boxCollider.enabled = false;
+        }
+        else
+        {
+            Debug.Log("Box collider aint here chief");
+        }
+    }
+
+    public void turnOffColliderFather()
+    {
+        BoxCollider2D boxCollider = father.GetComponent<BoxCollider2D>();
+        if (boxCollider != null)
+        {
+            father.quest.objectives[1].complete();
+            boxCollider.enabled = false;  
+        }
+        else
+        {
+            Debug.Log("Box collider aint here chief");
+        }
+    }
+    public void turnOffColliderKnight()
+    {
+        BoxCollider2D boxCollider = Knight.GetComponent<BoxCollider2D>();
+        if (boxCollider != null)
+        {
+            Knight.quest.objectives[1].complete();
+            Knight.quest.objectives[2].complete();
+            //boxCollider.enabled = false;
+        }
+        else
+        {
+            Debug.Log("Box collider aint here chief");
+        }
+    }
+    public void turnOffColliderPriest()
+    {
+        BoxCollider2D boxCollider = Priest.GetComponent<BoxCollider2D>();
+        if (boxCollider != null)
+        {
+            Priest.quest.objectives[1].complete();
+            //boxCollider.enabled = false;
         }
         else
         {

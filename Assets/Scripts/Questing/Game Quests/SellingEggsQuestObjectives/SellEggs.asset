@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dependentObjective: {fileID: 0}
   description: Sell your father's eggs
-  completionStatus: 0
+  completionStatus: 1
   requiredItem: {fileID: 0}
   requiredSellingAmount: 5
-  sellingCount: 0
+  sellingCount: 5

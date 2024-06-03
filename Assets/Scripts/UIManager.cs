@@ -38,7 +38,9 @@ public class UIManager : MonoBehaviour
             questOverlay.SetActive(true);
         }
         else
+        {
             questOverlay.SetActive(false);
+        }
     }
 
     #region Pause
