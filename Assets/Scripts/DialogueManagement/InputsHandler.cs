@@ -84,10 +84,12 @@ public class InputsHandler : MonoBehaviour
         if (action.performed)
         {
             buyPressed = true;
+            check = true;
         }
         else if (action.canceled)
         {
             buyPressed = false;
+            check = false;
         }
     }
     public bool buyButtonPressed()

@@ -37,7 +37,6 @@ public class Quest : ScriptableObject
         this.objectives = new List<QuestObjective>(); // Initialize the objectives list
     }
 
-    
     public Quest(int questNumber, Quest dependentQuest, string title, string desc, int favourabilityReward, int goldReward)
     {
         this.questNumber = questNumber;
@@ -55,7 +54,7 @@ public class Quest : ScriptableObject
     // METHODS
     public bool canComplete()
     {
-        for(int i = 0; i < objectives.Count-1; i++)
+        for(int i = 0; i < objectives.Count; i++)
         {
             if (objectives[i].completionStatus == false)
                 return false;

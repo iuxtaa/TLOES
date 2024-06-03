@@ -6,10 +6,12 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     public Quest[] quests;
+    //public QuestObjectiveManager questObjectiveManager;
     // Start is called before the first frame update
     void Start()
     {
         initializeQuests();
+        //questObjectiveManager.initializeObjectives();
     }
 
     // Update is called once per frame

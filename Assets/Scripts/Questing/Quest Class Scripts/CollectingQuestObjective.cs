@@ -9,6 +9,7 @@ public class CollectingQuestObjective : QuestObjective
 {
     public CollectableItems requiredItem;
     public int requiredAmount;
+    public int collectingCount;
 
     // Constructor that initializes all fields
     public CollectingQuestObjective(QuestObjective dependentObjective, string description, CollectableItems requiredItem, int requiredAmount)
@@ -18,20 +19,26 @@ public class CollectingQuestObjective : QuestObjective
         this.requiredAmount = requiredAmount;
     }
 
+    public void incCollectingCount(int amount)
+    {
+        collectingCount += amount;
+    }
+
     public override bool checkCanComplete()
     {
+        return (collectingCount >= requiredAmount);
         //if (Player.inventory.getRequiredItem.getCount ?? >= requiredAmount) ?? NOT SURE -Ann
-        if (0 >= requiredAmount)
-        {
-            complete();
-            return true;
-        }
-        return false;
+        // if (0 >= requiredAmount)
+        // {
+        //     complete();
+        //     return true;
+        // }
+        // return false;
     }
 
     public override string toString()
     {
         // replace 3 with player's inventory required item count
-        return description + " " + 0 + "/" + requiredAmount;
+        return description + " " + collectingCount + "/" + requiredAmount;
     }
 }
