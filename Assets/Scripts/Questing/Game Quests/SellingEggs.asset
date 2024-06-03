@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SellingEggs
   m_EditorClassIdentifier: 
   questNumber: 0
-  isActive: 1
+  isActive: 0
   completionStatus: 0
   dependentQuest: {fileID: 0}
   title: Selling Eggs

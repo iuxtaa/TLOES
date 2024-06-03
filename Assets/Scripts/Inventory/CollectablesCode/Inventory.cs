@@ -60,19 +60,6 @@ public class Inventory : MonoBehaviour
 
     public static Inventory Instance { get; private set; }
     public List<Slot> slots = new List<Slot>();
-    
-//     private void Awake()
-//     {
-//         if(Instance == null)
-//         {
-//             Instance = this;
-//             DontDestroyOnLoad(gameObject);
-//         }
-//         else 
-//         {
-//             Destroy(gameObject);
-//         }
-//    }
    
     public Inventory()
     {
@@ -115,6 +102,19 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
+    public void Removing(CollectableItemsType itemType)
+    {
+        foreach (Slot slot in slots)
+        {
+            if (slot.type == itemType && CanRemoveItem(slot))
+            {
+                slot.RemoveItem();
+                return;
+            }
+        }
+    }
+    
     public bool CanRemoveItem(Slot slot)
     {
         if (slot.count > 0)

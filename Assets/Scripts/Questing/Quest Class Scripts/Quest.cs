@@ -92,3 +92,7 @@ public class Quest : ScriptableObject
         return true;
     }
 }
+public enum QuestIndex
+{
+    SellingEggs, KnightsLetter, PriestsHolyWater
+}

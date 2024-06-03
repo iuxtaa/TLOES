@@ -7,7 +7,7 @@ using UnityEngine;
 public class MarketTrigger : MonoBehaviour
 {
     public Player player;
-    private bool playerClose = false;
+    public bool playerClose = false;
 
     [Header("NPC Prompt")]
     [SerializeField] private GameObject Instruction;
@@ -64,9 +64,6 @@ public class MarketTrigger : MonoBehaviour
             promptmessage.SetActive(false);
             Instruction.SetActive(false);
         }
-
-
-
     }
 
     public void purchase()
@@ -78,11 +75,13 @@ public class MarketTrigger : MonoBehaviour
     private IEnumerator ActivateBuy()
     {
         
-            itemToBuyOrSell.SetActive(true); // Activate the item
-            yield return new WaitForSeconds(20); // Wait for 10 seconds
-            itemToBuyOrSell.SetActive(false); // Deactivate the item
+        itemToBuyOrSell.SetActive(true); // Activate the item
+        yield return new WaitForSeconds(20); // Wait for 20 seconds
+        itemToBuyOrSell.SetActive(false); // Deactivate the item
+        
     }
 
+    
 
 
     private void OnTriggerEnter2D(Collider2D collision)

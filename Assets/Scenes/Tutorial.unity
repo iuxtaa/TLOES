@@ -7206,7 +7206,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2236738492558090796, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
       propertyPath: sceneToLoad
-      value: Game
+      value: Game Screen
       objectReference: {fileID: 0}
     - target: {fileID: 2236738492558090796, guid: 2ceddf5881fa2894885793069f7dcb67, type: 3}
       propertyPath: playerPosition

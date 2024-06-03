@@ -14,7 +14,8 @@ public class StartingPanelManager : MonoBehaviour
     {
         startingPanel.loginButton.onClick.AddListener(LogInClicked);
         startingPanel.signUpButton.onClick.AddListener(SignUpClicked);
-        
+       
+
     }
 
     private void SignUpClicked()

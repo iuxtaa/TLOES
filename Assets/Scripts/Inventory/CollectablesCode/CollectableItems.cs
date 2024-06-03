@@ -12,17 +12,15 @@ public class CollectableItems : MonoBehaviour
     private bool playerClose = false;
     public CollectableItemsType type;
     public Sprite icon;
-    public Inventory inventoryCountCheck;
+    public Inventory inventory;
     public GameObject popupText;
 
 
     public int changingnum = 0;
-    public static int moneyAmount = 10;
     private const int HAM_COST = 6;
     private const int WINE_COST = 8;
     private const int APPLE_COST = 2;
-    private const int PAPER_COST = 3;
-    private const int QUILL_COST = 3;
+    public const int PAPER_COST = 3;
 
     private const int HAM_SELL = 5;
     private const int WINE_SELL = 6;
@@ -31,24 +29,30 @@ public class CollectableItems : MonoBehaviour
     private const int PAPER_SELL = 2;
 
     private const float INVOKE_OFFSET = 3.5f;
-    int index = 0;
+    private bool canGiveToBeggar = true;
+    private bool canSellToCecil = true;
+    private bool canGiveToKnight = true;
+    public static int amountGivenToBeggar = 1;
+    public static int amountGivenToCecil = 4;
+    public static int amountCollectForKnight = 1;
+    public static int amountCollectForPriest = 1;
+    public static int requiredAmountCollectForPriest = 2;
     public void Update()
     {
-        BuyItem();
-        SellItem();
-        SellQuestItem();
-        changingnum = moneyAmount;
+        BuyOrGetItem();
+        SellOrGiveItem();
+        changingnum = Player.money;
     }
-    public void BuyItem()
+    public void BuyOrGetItem()
     {
         if (playerClose && InputsHandler.GetInstance().buyButtonPressed())
         {
             if (this.gameObject.tag.Equals(CollectableItemsType.HAM.ToString()))
             {
-                if (moneyAmount >= HAM_COST)
+                if (changingnum >= HAM_COST)
                 {
                     player.inventory.Adding(this);
-                    moneyAmount -= HAM_COST;
+                    Player.money -= HAM_COST;
                     popupText.GetComponent<TextMeshProUGUI>().text = "Ham has been added to your inventory.";
                 }
                 else
@@ -59,10 +63,10 @@ public class CollectableItems : MonoBehaviour
 
             else if (this.gameObject.tag.Equals(CollectableItemsType.WINE.ToString()))
             {
-                if (moneyAmount >= WINE_COST)
+                if (changingnum >= WINE_COST)
                 {
                     player.inventory.Adding(this);
-                    moneyAmount -= WINE_COST;
+                    Player.money -= WINE_COST;
                     popupText.GetComponent<TextMeshProUGUI>().text = "Wine has been added to your inventory.";
                 }
                 else
@@ -72,10 +76,10 @@ public class CollectableItems : MonoBehaviour
             }
             else if (this.gameObject.tag.Equals(CollectableItemsType.APPLE.ToString()))
             {
-                if (moneyAmount >= APPLE_COST)
+                if (changingnum >= APPLE_COST)
                 {
                     player.inventory.Adding(this);
-                    moneyAmount -= APPLE_COST;
+                    Player.money -= APPLE_COST;
                     popupText.GetComponent<TextMeshProUGUI>().text = "Apple has been added to your inventory.";
                 }
                 else
@@ -87,10 +91,10 @@ public class CollectableItems : MonoBehaviour
 
             else if (this.gameObject.tag.Equals(CollectableItemsType.PAPER.ToString()))
             {
-                if (moneyAmount>= PAPER_COST)
+                if (changingnum >= PAPER_COST)
                 {
                     player.inventory.Adding(this);
-                    moneyAmount -= PAPER_COST;
+                    Player.money -= PAPER_COST;
                     popupText.GetComponent<TextMeshProUGUI>().text = "Paper has been added to your inventory.";
                 }
                 else
@@ -98,12 +102,41 @@ public class CollectableItems : MonoBehaviour
                     popupText.GetComponent<TextMeshProUGUI>().text = "You do not have enough money to buy paper.";
                 }
             }
+            else if(this.gameObject.tag.Equals(CollectableItemsType.WATERBOTTLE.ToString()))
+            {
+                if(this.gameObject.name == "WaterBottle_WishingWell")
+                {
+                    if(CanRemoveItemFromInventory(CollectableItemsType.EMPTYBOTTLE))
+                    {
+                        player.inventory.Removing(CollectableItemsType.EMPTYBOTTLE);
+                        player.inventory.Adding(this);
+                        popupText.GetComponent<TextMeshProUGUI>().text = "Holy water has been added to your inventory.";
+                    }
+                    else
+                    {
+                        popupText.GetComponent<TextMeshProUGUI>().text = "You do not have any empty bottles in your inventory.";
+                    }
+                }
+            }
             popupText.SetActive(true);
         }
     }
 
-    public void SellItem()
+    public void SellOrGiveItem()
     {
+        if (playerClose && this.gameObject.name == "Egg_Begger" && canGiveToBeggar)
+        {
+            player.inventory.Removing(this);
+            this.gameObject.SetActive(false);
+            if (canGiveToBeggar)
+            {
+                popupText.GetComponent<TextMeshProUGUI>().text = "BEGGER says 'Thanks Bud' ";
+                popupText.SetActive(true);
+                DialogueScript.GetInstance().turnOffColliderBegger();
+            }
+            canGiveToBeggar = false;
+            Debug.Log(canGiveToBeggar);
+        }
         if (playerClose && InputsHandler.GetInstance().sellButtonPressed())
         {
             
@@ -113,8 +146,9 @@ public class CollectableItems : MonoBehaviour
                 if (CanRemoveItemFromInventory(CollectableItemsType.HAM))
                 {
                     player.inventory.Removing(this);
-                    moneyAmount += HAM_SELL;
+                    Player.money += HAM_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a ham to Butch!";
+                    popupText.SetActive(true);
                 }
             }
 
@@ -123,8 +157,9 @@ public class CollectableItems : MonoBehaviour
                 if (CanRemoveItemFromInventory(CollectableItemsType.WINE))
                 {
                     player.inventory.Removing(this);
-                    moneyAmount += WINE_SELL;
+                    Player.money += WINE_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a wine to Jack!";
+                    popupText.SetActive(true);
                 }
             }
             else if (this.gameObject.tag.Equals(CollectableItemsType.APPLE.ToString()))
@@ -132,79 +167,57 @@ public class CollectableItems : MonoBehaviour
                 if (CanRemoveItemFromInventory(CollectableItemsType.APPLE))
                 {
                     player.inventory.Removing(this);
-                    moneyAmount += APPLE_SELL;
+                    Player.money += APPLE_SELL;
                     popupText.GetComponent<TextMeshProUGUI>().text = "You sold a apple to Kate!";
+                    popupText.SetActive(true);
                 }
             }
             else if (this.gameObject.tag.Equals(CollectableItemsType.PAPER.ToString()))
             {
                 if (CanRemoveItemFromInventory(CollectableItemsType.PAPER))
                 {
-                    player.inventory.Removing(this);
-                    moneyAmount += PAPER_SELL;
-                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold a paper to Patrick!";
-                }
-            }
-            else if(this.gameObject.tag.Equals(CollectableItemsType.EGG.ToString()))
-            {
-                Debug.Log("Level 2");
-                
-                if (CanRemoveItemFromInventory(CollectableItemsType.EGG) && index <1 )
-                {
-                    index++;
-                    Debug.Log("Level 3");
-                    for (int i = 0; i < 4; i++)
-                    { 
+                    if(this.gameObject.name == "Paper_Knight" && canGiveToKnight)
+                    {
                         player.inventory.Removing(this);
-                        moneyAmount += EGG_SELL;
-                        Debug.Log("Level 4");
+                        if(canGiveToKnight)
+                        {
+                            popupText.GetComponent<TextMeshProUGUI>().text = "You gave paper to the Knight!";
+                            popupText.SetActive(true);
+                        }
+                        canGiveToKnight = false;
                     }
-
-                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold some eggs!";
+                    else 
+                    {
+                        player.inventory.Removing(this);
+                        Player.money += PAPER_SELL;
+                        popupText.GetComponent<TextMeshProUGUI>().text = "You sold a paper to Patrick!";
+                        popupText.SetActive(true);
+                    }
                 }
             }
-            else if (this.gameObject.tag.Equals("BEGGEREGG"))//one egg is given to the begger
+            else if (this.gameObject.tag.Equals(CollectableItemsType.EGG.ToString()))
             {
                 if (CanRemoveItemFromInventory(CollectableItemsType.EGG))
                 {
-                    for (int i = 0; i < 1; i++)
+                    if (this.gameObject.name == "Egg_Cecil" && canSellToCecil)
                     {
-                        player.inventory.Removing(this);
-                        gameObject.SetActive(false);
+                        for (int i = 0; i < 4; i++)
+                        {
+                            player.inventory.Removing(this);
+                            Player.money += EGG_SELL;
+                        }
+                        if (canSellToCecil)
+                        {
+                            popupText.GetComponent<TextMeshProUGUI>().text = "You sold some eggs to Cecil!";
+                            popupText.SetActive(true);
+                            DialogueScript.GetInstance().turnOffColliderCecil();
+                        }
+                        canSellToCecil = false;
                     }
-                    popupText.GetComponent<TextMeshProUGUI>().text = "BEGGER says 'Thanks Bud' ";
-                    
+                   
                 }
             }
-
-            popupText.SetActive(true);
         }
-    }
-    
-    public bool SellQuestItem()
-    {
-        if (playerClose && InputsHandler.GetInstance().sellButtonPressed())
-        {
-            Debug.Log("Level 1");
-            if(this.gameObject.tag.Equals(CollectableItemsType.EGG.ToString()))
-            {
-                Debug.Log("Level 2");
-                if (CanRemoveItemFromInventory(CollectableItemsType.EGG))
-                {
-                    Debug.Log("Level 3");
-                    for (int i = 0; i < 4; i++)
-                    {
-                        player.inventory.Removing(this);
-                        moneyAmount += EGG_SELL;
-                        Debug.Log("Level 4");
-                    }
-                    popupText.GetComponent<TextMeshProUGUI>().text = "You sold some eggs!";
-                }
-            }
-            popupText.SetActive(true);
-            return true;
-        }
-        return false;
     }
     
     public void HidePopupText()
