@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,6 +35,8 @@ public class QuestObjectiveManager : MonoBehaviour
         foreach (QuestObjective objective in questObjectives)
         {
             objective.completionStatus = false;
+            //if (objective is SellingQuestObjective sellingQuestObjective)
+            //    sellingQuestObjective.sellingCount = 0;
         }
     }
 

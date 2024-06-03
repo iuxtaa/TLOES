@@ -54,7 +54,7 @@ public class Quest : ScriptableObject
     // METHODS
     public bool canComplete()
     {
-        for(int i = 0; i < objectives.Count-1; i++)
+        for(int i = 0; i < objectives.Count; i++)
         {
             if (objectives[i].completionStatus == false)
                 return false;
