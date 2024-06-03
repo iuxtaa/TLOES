@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dependentObjective: {fileID: 0}
   description: Gather paper for the Knight's letter
-  completionStatus: 1
+  completionStatus: 0
   requiredItem: {fileID: 0}
   requiredAmount: 1
-  collectingCount: 1
+  collectingCount: 0

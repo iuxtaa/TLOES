@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dependentObjective: {fileID: 0}
   description: Retrieve Holy Water
-  completionStatus: 1
+  completionStatus: 0
   requiredItem: {fileID: 0}
-  requiredAmount: 2
-  collectingCount: 2
+  requiredAmount: 1
+  collectingCount: 0
