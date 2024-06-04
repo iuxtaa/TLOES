@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ public class QuestCompletePopup : MonoBehaviour
     public Quest quest;
     public TextMeshProUGUI titleText;
 
-    public void Initialize(Quest quest)
+    public void initialize(Quest quest)
     {
         this.quest = quest;
         this.titleText.text = quest.title;
@@ -21,10 +22,17 @@ public class QuestCompletePopup : MonoBehaviour
         if (gameObject != null)
         {
             gameObject.SetActive(true);
+            StartCoroutine(closePopupAfterDelay(5f)); // Start coroutine to close popup after 5 seconds
         }
     }
 
-    public void closeCompleteQuestPopupButton()
+    private IEnumerator closePopupAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        closeCompleteQuestPopup();
+    }
+
+    public void closeCompleteQuestPopup()
     {
         if (gameObject != null)
         {

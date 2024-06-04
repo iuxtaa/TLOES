@@ -51,8 +51,8 @@ public class UIManager : MonoBehaviour
     {
         if (questCompletePopupScript != null)
         {
-            questCompletePopupScript.Initialize(quest);
-            questCompletePopup.SetActive(true);
+            questCompletePopupScript.initialize(quest);
+            questCompletePopupScript.openCompleteQuestPopup();
         }
     }
 

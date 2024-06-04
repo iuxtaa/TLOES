@@ -60,9 +60,11 @@ public class Quest : ScriptableObject
         {
             uiManager.ShowQuestCompletePopup(this);
         }
+        Player.favourability += this.favourabilityReward;
         this.completionStatus = true;
         this.isActive = false;
         Debug.Log(title + " quest is complete");
+        Debug.Log("Player's favourability: " + Player.favourability);
     }
 
     public string objectivesToString()
