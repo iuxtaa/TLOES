@@ -5,6 +5,8 @@ using UnityEngine;
 using TMPro; // Include this for TextMeshPro
 
 
+
+
 public class WellTrigger : MonoBehaviour
 {
     public Player player; // Reference to the Player component
@@ -22,7 +24,7 @@ public class WellTrigger : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             wellPopupText.SetActive(true); // Show the well popup
-            ShowEndingText(); // Evaluate and show ending based on player's state
+            StartCoroutine(ShowEndingAfterDelay(5)); // Wait for 5 seconds before showing the ending
         }
     }
 
@@ -31,15 +33,16 @@ public class WellTrigger : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             wellPopupText.SetActive(false); // Hide the well popup
-            endingPanel.SetActive(false); // Also hide the ending panel
+            // No longer deactivate the ending panel here
         }
     }
 
-    private void ShowEndingText()
+    IEnumerator ShowEndingAfterDelay(float delayInSeconds)
     {
-        string message;
+        yield return new WaitForSeconds(delayInSeconds); // Wait for the specified delay
 
         // Evaluate the ending based on the player's favourability
+        string message;
         if (Player.favourability > 5)
         {
             message = "Congratulations You've won with honor!";
@@ -56,5 +59,7 @@ public class WellTrigger : MonoBehaviour
         // Set the ending message and display it
         endingText.text = message;
         endingPanel.SetActive(true);
+
+        
     }
 }
