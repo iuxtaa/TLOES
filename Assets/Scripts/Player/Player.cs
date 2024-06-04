@@ -70,7 +70,7 @@ public class Player : Character
     public void SetFavourability(int favourability)
     {
         Player.favourability = favourability;
-        SavePlayerData();
+      
     }
 
     public int GetFavourability()
@@ -81,7 +81,7 @@ public class Player : Character
     public void SetQuest(Quest quest)
     {
         Player.currentQuest = quest;
-        SavePlayerData();
+        
     }
 
     public Quest GetQuest()
@@ -96,11 +96,30 @@ public class Player : Character
     {
         if (inventory.ContainsKey(item))
         {
+<<<<<<< Updated upstream
             inventory[item] += quantity;
+=======
+            if (slot.type.ToString() == item && slot.CanAddItem())
+            {
+                slot.count += quantity;
+                
+                return;
+            }
+>>>>>>> Stashed changes
         }
         else
         {
+<<<<<<< Updated upstream
             inventory.Add(item, quantity);
+=======
+            if (slot.type == CollectableItemsType.NONE)
+            {
+                slot.type = (CollectableItemsType)Enum.Parse(typeof(CollectableItemsType), item);
+                slot.count = quantity;
+                
+                return;
+            }
+>>>>>>> Stashed changes
         }
         SavePlayerData();
     }
@@ -112,7 +131,19 @@ public class Player : Character
             inventory[item] -= quantity;
             if (inventory[item] <= 0)
             {
+<<<<<<< Updated upstream
                 inventory.Remove(item);
+=======
+                slot.count -= quantity;
+                if (slot.count <= 0)
+                {
+                    slot.type = CollectableItemsType.NONE;
+                    slot.count = 0;
+                    slot.Icon = null;
+                }
+              
+                return;
+>>>>>>> Stashed changes
             }
         }
         SavePlayerData();
@@ -129,7 +160,7 @@ public class Player : Character
     {
         SetQuest(quest);
         currentQuest.isActive = true;
-        SavePlayerData();
+    
         Debug.Log(Player.currentQuest);
     }
 
@@ -140,7 +171,7 @@ public class Player : Character
         // goldCount ?? += currentQuest.goldReward;
         currentQuest.complete();
         SetQuest(null);
-        SavePlayerData();
+        
     }
 
     public void failQuest()
@@ -148,7 +179,7 @@ public class Player : Character
         favourability -= currentQuest.favourabilityReward;
         currentQuest.complete();
         SetQuest(null);
-        SavePlayerData();
+       
     }
 
     private Quest findActiveQuest()
@@ -169,6 +200,7 @@ public class Player : Character
 
     #region FirebaseMethods
 
+<<<<<<< Updated upstream
     private async void SavePlayerData()
     {
         if (user == null)
@@ -187,11 +219,14 @@ public class Player : Character
         string json = JsonUtility.ToJson(playerData);
         await databaseReference.Child("players").Child(user.UserId).SetRawJsonValueAsync(json);
     }
+=======
+>>>>>>> Stashed changes
 
     #endregion
 }
 
 [Serializable]
+<<<<<<< Updated upstream
 public class PlayerData
 {
     public int favourability;
@@ -201,8 +236,11 @@ public class PlayerData
     public bool isQuestActive;
     public bool isQuestComplete;
 }
+=======
+>>>>>>> Stashed changes
 
-[Serializable]
+
+
 public class QuestData
 {
     public int questNumber;
@@ -223,15 +261,42 @@ public class QuestData
     }
 }
 
-[Serializable]
-public class PositionData
-{
-    public Vector3 changingValue;
-    public Vector3 initialValue;
 
+<<<<<<< Updated upstream
     public PositionData(Vector3 changingValue, Vector3 initialValue)
     {
         this.changingValue = changingValue;
         this.initialValue = initialValue;
     }
 }
+=======
+
+[Serializable]
+public class QuestObjectiveData
+{
+    public string description;
+    public bool completionStatus;
+
+    public QuestObjectiveData(QuestObjective objective)
+    {
+        description = objective.description;
+        completionStatus = objective.completionStatus;
+    }
+
+    public class PlayerData
+    {
+        public int money;
+        public int favourability;
+        public Quest currentQuest;
+        public int savedLocation;
+
+        public PlayerData(int money, int favourability, Quest currentQuest, int savedLocation)
+        {
+            this.money = money;
+            this.favourability = favourability;
+            this.currentQuest = currentQuest;
+            this.savedLocation = savedLocation;
+        }
+    }
+}
+>>>>>>> Stashed changes

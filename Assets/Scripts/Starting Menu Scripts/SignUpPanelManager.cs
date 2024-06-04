@@ -59,7 +59,7 @@ public class SignUpPanelManager : MonoBehaviour
                 {
                     await user.SendEmailVerificationAsync();
                     await SaveUsernameToDatabase(user.UserId, username, email);
-                    await InitializePlayerData(user.UserId);
+                   
                     warningText.text = "Verification email has been sent. Please verify your email and click signup again";
                 }
             }
@@ -113,6 +113,7 @@ public class SignUpPanelManager : MonoBehaviour
         }
     }
 
+<<<<<<< Updated upstream
     private async Task InitializePlayerData(string userId)
     {
         try
@@ -144,6 +145,9 @@ public class SignUpPanelManager : MonoBehaviour
             warningText.text = "Failed to initialize player data.";
         }
     }
+=======
+  
+>>>>>>> Stashed changes
 
     private void LoginClicked()
     {
