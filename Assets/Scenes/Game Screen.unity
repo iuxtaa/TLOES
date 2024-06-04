@@ -17779,8 +17779,20 @@ PrefabInstance:
       value: QuestUI
       objectReference: {fileID: 0}
     - target: {fileID: 8440240188757759022, guid: 06cc0d74375fa7745a9f21f7a6bf1b8f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440240188757759022, guid: 06cc0d74375fa7745a9f21f7a6bf1b8f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440240188757759022, guid: 06cc0d74375fa7745a9f21f7a6bf1b8f, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440240188757759022, guid: 06cc0d74375fa7745a9f21f7a6bf1b8f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9032053376605638912, guid: 06cc0d74375fa7745a9f21f7a6bf1b8f, type: 3}
       propertyPath: m_Pivot.x
@@ -37914,7 +37926,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1261858330
 Transform:
   m_ObjectHideFlags: 0
