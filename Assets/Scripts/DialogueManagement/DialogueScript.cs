@@ -244,8 +244,12 @@ public class DialogueScript : MonoBehaviour
         BoxCollider2D boxCollider = father.GetComponent<BoxCollider2D>();
         if (boxCollider != null)
         {
-            father.quest.objectives[1].complete();// Complete father's quest objective
-            boxCollider.enabled = false;  // Disable father's collider
+            if (father.quest.objectives[1].isDependentObjectiveComplete())
+            {
+                father.quest.objectives[1].complete();// Complete father's quest objective
+                boxCollider.enabled = false;  // Disable father's collider
+            }
+            
         }
         else
         {
