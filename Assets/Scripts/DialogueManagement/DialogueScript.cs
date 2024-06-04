@@ -1,6 +1,7 @@
 using Ink.Runtime;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -51,6 +52,8 @@ public class DialogueScript : MonoBehaviour
     private const string PORTRAIT_TAG = "image";// Tag for character image
 
 
+    public bool giveletter;
+    public bool giveWater;
 
     private void Awake()
     {// Ensure a single instance
@@ -59,7 +62,8 @@ public class DialogueScript : MonoBehaviour
             Debug.LogWarning("There is more than one instance");
         }
         instance = this;
-       
+        giveletter = false;
+        giveWater = false;
     }
 
     public static DialogueScript GetInstance()
@@ -113,11 +117,13 @@ public class DialogueScript : MonoBehaviour
         currentDialogue.BindExternalFunction("completePriestQuest", (string compquestName) =>
         {
             turnOffColliderPriest();// Complete father's quest
+            
             Debug.Log(compquestName + "completed");
         });
 
         currentDialogue.BindExternalFunction("completeKnightQuest", (string compquestName) =>
         {
+            
             turnOffColliderKnight();// Complete Priest's quest
             Debug.Log(compquestName + "completed");
         });
@@ -244,17 +250,12 @@ public class DialogueScript : MonoBehaviour
         BoxCollider2D boxCollider = father.GetComponent<BoxCollider2D>();
         if (boxCollider != null)
         {
-
             if (father.quest.objectives[1].isDependentObjectiveComplete())
             {
                 father.quest.objectives[1].complete();// Complete father's quest objective
+                Player.money -= 5;//SUBTRACTING SOME MONEY
                 boxCollider.enabled = false;  // Disable father's collider
-            }
-            
-
-            father.quest.objectives[1].complete();// Complete father's quest objective
-            boxCollider.enabled = false;  // Disable father's collider
-
+            }   
         }
         else
         {
@@ -263,11 +264,13 @@ public class DialogueScript : MonoBehaviour
     }
     public void turnOffColliderKnight()
     {
+        
         BoxCollider2D boxCollider = Knight.GetComponent<BoxCollider2D>();
         if (boxCollider != null)
         {
             Knight.quest.objectives[1].complete();// Complete knight's quest objective 1
             Knight.quest.objectives[2].complete();// Complete knight's quest objective 2
+            giveletter = true;
             //boxCollider.enabled = false;
         }
         else
@@ -287,6 +290,7 @@ public class DialogueScript : MonoBehaviour
         {
             Debug.Log("Box collider aint here chief");
         }
+        giveWater = true;
     }
 
 
