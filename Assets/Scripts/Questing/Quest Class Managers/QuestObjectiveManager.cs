@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -34,6 +35,8 @@ public class QuestObjectiveManager : MonoBehaviour
         foreach (QuestObjective objective in questObjectives)
         {
             objective.completionStatus = false;
+            //if (objective is SellingQuestObjective sellingQuestObjective)
+            //    sellingQuestObjective.sellingCount = 0;
         }
     }
 
@@ -69,6 +72,10 @@ public class QuestObjectiveManager : MonoBehaviour
                     {
                         currentObjective = sellingQuestObjective;
                     }
+                   /* if (objective is DoingQuestObjective doingquestobjective && !objective.completionStatus)
+                    {
+                        currentObjective = doingquestobjective;
+                    }*/
                 }
                 if (playerClose)
                 {
@@ -82,8 +89,20 @@ public class QuestObjectiveManager : MonoBehaviour
                         incrementObjectiveSellingCount(currentObjective, CollectableItems.amountGivenToCecil);
                         canUpdateSelling_Cecil = false;
                     }
+                   /* if (this.gameObject.name == "Egg_Father" && currentObjective.isDependentObjectiveComplete())
+                    {
+                        Debug.Log("talked to father");
+                        currentObjective.complete();//hopefully
+                    }*/
+
                 }
+               
+                
+
             }
+            
+               
+            
 
             else if(Player.currentQuest.questNumber == (int)QuestIndex.KnightsLetter)
             {
@@ -125,6 +144,7 @@ public class QuestObjectiveManager : MonoBehaviour
             }
 
         }
+        
     }
 
     // Method for incrementing selling count of a quest, objective must be a SellingQuestObjective

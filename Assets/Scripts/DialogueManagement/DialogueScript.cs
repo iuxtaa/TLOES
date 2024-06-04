@@ -10,17 +10,17 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 public class DialogueScript : MonoBehaviour
 {
     [Header("Dialogue Management UI")]
-    [SerializeField] private GameObject dialogueDisplay;
-    [SerializeField] private TextMeshProUGUI dialogueText;
-    [SerializeField] private TextMeshProUGUI speakerNameText;
-    [SerializeField] private Animator imageAnimator;
+    [SerializeField] private GameObject dialogueDisplay; // UI element for displaying dialogue
+    [SerializeField] private TextMeshProUGUI dialogueText;// Text UI element for dialogue text
+    [SerializeField] private TextMeshProUGUI speakerNameText;// Text UI element for speaker name
+    [SerializeField] private Animator imageAnimator;// Animator for character images
 
 
     [Header("Dialogue Choice Options UI")]
-    [SerializeField] private GameObject[] choices;
-    private TextMeshProUGUI[] choicesText;
+    [SerializeField] private GameObject[] choices;// UI elements for dialogue choices
+    private TextMeshProUGUI[] choicesText;// Text UI elements for choices
 
-    [Header("Trigger Zone Objects")]
+    [Header("Trigger Zone Objects")] //trigger zones gameobject
     public MarketTrigger AppleSellerTrigger;
     public MarketTrigger HamSellerTrigger;
     public MarketTrigger WineSellerTrigger;
@@ -37,23 +37,23 @@ public class DialogueScript : MonoBehaviour
     public Player player;
 
 
-    private Coroutine typingDialogue;
-    private bool canContinueNext;
+    private Coroutine typingDialogue; // Coroutine for typing effect
+    private bool canContinueNext;// Flag to check if the dialogue can continue
 
 
-    private Story currentDialogue;
+    private Story currentDialogue;// Current Ink story
 
-    public bool currentDialogueIsPlaying { get; private set; }
+    public bool currentDialogueIsPlaying { get; private set; }// Flag to check if dialogue is playing
 
 
-    private static DialogueScript instance;
-    private const string SPEAKER_TAG = "speaker";
-    private const string PORTRAIT_TAG = "image";
+    private static DialogueScript instance;// Singleton instance
+    private const string SPEAKER_TAG = "speaker";// Tag for speaker name
+    private const string PORTRAIT_TAG = "image";// Tag for character image
 
 
 
     private void Awake()
-    {
+    {// Ensure a single instance
         if (instance != null)
         {
             Debug.LogWarning("There is more than one instance");
@@ -64,97 +64,97 @@ public class DialogueScript : MonoBehaviour
 
     public static DialogueScript GetInstance()
     {
-        return instance;
+        return instance;// Get singleton instance
     }
     private void Start()
     {
-        currentDialogueIsPlaying = false;
-        dialogueDisplay.SetActive(false);
+        currentDialogueIsPlaying = false;// Dialogue is not playing initially
+        dialogueDisplay.SetActive(false);// Hide dialogue UI initially
 
-        choicesText = new TextMeshProUGUI[choices.Length];
+        choicesText = new TextMeshProUGUI[choices.Length];// Initialize choices text array
         int index = 0;
 
         foreach (GameObject choice in choices)
         {
-            choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
+            choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();// Get TextMeshPro component for each choice
             index++;
         }
     }
 
     public void EnterDialogueView(TextAsset inkJSON)
     {
-        currentDialogue = new Story(inkJSON.text);
-        currentDialogueIsPlaying = true;
-        dialogueDisplay.SetActive(true);
+        currentDialogue = new Story(inkJSON.text);// Load Ink story
+        currentDialogueIsPlaying = true;// Set dialogue playing flag
+        dialogueDisplay.SetActive(true);// Show dialogue UI
         //Quest start Binders
         currentDialogue.BindExternalFunction("fatherQuest", (string questName) =>
         {
             Debug.Log("Selling eggs letter should be running");
-            father.acceptQuest();
+            father.acceptQuest();// Accept father's quest
             Debug.Log(questName);
         });
         currentDialogue.BindExternalFunction("KnightQuest", (string questName) =>
         {
-            Knight.acceptQuest();
+            Knight.acceptQuest();// Accept knight's quest
             Debug.Log(questName);
         });
         currentDialogue.BindExternalFunction("PriestQuest", (string questName) =>
         {
-            Priest.acceptQuest();
+            Priest.acceptQuest();// Accept priest's quest
             Debug.Log(questName);
         });
 
         //Quest end binders
         currentDialogue.BindExternalFunction("completeFatherQuest", (string compquestName) =>
         {
-           father.completeQuest();
-           Debug.Log(compquestName + "completion");
+            turnOffColliderFather();// Complete father's quest
+            Debug.Log(compquestName + "completed");
         });
         currentDialogue.BindExternalFunction("completePriestQuest", (string compquestName) =>
         {
-           Priest.completeQuest();
-            Debug.Log(compquestName + "completion");
+            turnOffColliderPriest();// Complete father's quest
+            Debug.Log(compquestName + "completed");
         });
 
         currentDialogue.BindExternalFunction("completeKnightQuest", (string compquestName) =>
         {
-           Knight.completeQuest();
-            Debug.Log(compquestName + "completion");
+            turnOffColliderKnight();// Complete Priest's quest
+            Debug.Log(compquestName + "completed");
         });
 
         //Buying and Selling Binders
         currentDialogue.BindExternalFunction("buyingandsellingApples", (string AppleActivity) =>
           {
-              AppleSellerTrigger.purchase();  
+              AppleSellerTrigger.purchase();// Handle apple purchase  
               Debug.Log("buying apples");
               Debug.Log(AppleActivity); 
          });
         currentDialogue.BindExternalFunction("buyingandsellingHam", (string HamActivity) =>
         {
-            HamSellerTrigger.purchase();
+            HamSellerTrigger.purchase();// Handle Ham purchase
             Debug.Log(HamActivity);
         });
         currentDialogue.BindExternalFunction("buyingandsellingWine", (string WineActivity) =>
         {
-            WineSellerTrigger.purchase();
+            WineSellerTrigger.purchase();// Handle Wine purchase
             Debug.Log(WineActivity);
         });
         currentDialogue.BindExternalFunction("buyingandsellingEggs", (string EggActivity) =>
         {
-            EggSellerTrigger.purchase();
+            EggSellerTrigger.purchase();// Handle Egg purchase
             Debug.Log(EggActivity);
             Debug.Log("buying eggs");
         });
         currentDialogue.BindExternalFunction("buyingandsellingPaper", (string PaperActivity) =>
         {
-            PaperSellerTrigger.purchase();
+            PaperSellerTrigger.purchase();// Handle Paper purchase
             Debug.Log(PaperActivity);
         });
 
         //NPC actions
         currentDialogue.BindExternalFunction("BeggerEgg", (string actionName) =>
         {
-            BeggerTrigger.purchase();
+            BeggerTrigger.purchase();// Handle beggar action
             Debug.Log(actionName + "completion");
         });
 
@@ -192,14 +192,14 @@ public class DialogueScript : MonoBehaviour
         {
             if (dialogueDisplay.activeInHierarchy)
             {
-                FreezePlayer(true);
+                FreezePlayer(true);// Freeze player during dialogue
             }
         }
         else if (!currentDialogueIsPlaying)
         {
             if (!dialogueDisplay.activeInHierarchy)
             {
-                FreezePlayer(false);
+                FreezePlayer(false);// Unfreeze player when dialogue is not playing
             }
             return;
         }
@@ -207,9 +207,9 @@ public class DialogueScript : MonoBehaviour
         if (canContinueNext && InputsHandler.GetInstance().GetContinuePressed())
         {
 
-            dialogueText.text = currentDialogue.currentText;
+            dialogueText.text = currentDialogue.currentText;// Display current dialogue text
 
-            NextLine();
+            NextLine();// Proceed to the next line of dialogue
         }
 
     }
@@ -219,7 +219,7 @@ public class DialogueScript : MonoBehaviour
         BoxCollider2D boxCollider = BeggerTrigger.GetComponent<BoxCollider2D>();
         if (boxCollider != null)
         {
-            boxCollider.enabled = false;
+            boxCollider.enabled = false;// Disable beggar's collider
         }
         else
         {
@@ -231,7 +231,48 @@ public class DialogueScript : MonoBehaviour
         BoxCollider2D boxCollider = EggSellerTrigger.GetComponent<BoxCollider2D>();
         if (boxCollider != null)
         {
-            boxCollider.enabled = false;
+            boxCollider.enabled = false;// Disable egg seller's collider
+        }
+        else
+        {
+            Debug.Log("Box collider aint here chief");
+        }
+    }
+
+    public void turnOffColliderFather()
+    {
+        BoxCollider2D boxCollider = father.GetComponent<BoxCollider2D>();
+        if (boxCollider != null)
+        {
+            father.quest.objectives[1].complete();// Complete father's quest objective
+            boxCollider.enabled = false;  // Disable father's collider
+        }
+        else
+        {
+            Debug.Log("Box collider aint here chief");
+        }
+    }
+    public void turnOffColliderKnight()
+    {
+        BoxCollider2D boxCollider = Knight.GetComponent<BoxCollider2D>();
+        if (boxCollider != null)
+        {
+            Knight.quest.objectives[1].complete();// Complete knight's quest objective 1
+            Knight.quest.objectives[2].complete();// Complete knight's quest objective 2
+            //boxCollider.enabled = false;
+        }
+        else
+        {
+            Debug.Log("Box collider aint here chief");
+        }
+    }
+    public void turnOffColliderPriest()
+    {
+        BoxCollider2D boxCollider = Priest.GetComponent<BoxCollider2D>();
+        if (boxCollider != null)
+        {
+            Priest.quest.objectives[1].complete();
+            //boxCollider.enabled = false;
         }
         else
         {
@@ -245,20 +286,20 @@ public class DialogueScript : MonoBehaviour
     {
         if (currentDialogue.canContinue)
         {
-            string line = currentDialogue.Continue();
+            string line = currentDialogue.Continue();// Get the next line of dialogue
             if (typingDialogue != null)
             {
 
-                StopCoroutine(typingDialogue);
+                StopCoroutine(typingDialogue);// Stop the current typing effect
 
             }
-            typingDialogue = StartCoroutine(TypeText(line));
+            typingDialogue = StartCoroutine(TypeText(line));// Start typing the new line
 
-            HandleTags(currentDialogue.currentTags);
+            HandleTags(currentDialogue.currentTags);// Handle tags in the dialogue
         }
         else
         {
-            LeaveDialogueView();
+            LeaveDialogueView();// End the dialogue if no more lines
 
         }
     }
@@ -275,15 +316,15 @@ public class DialogueScript : MonoBehaviour
             string tagKey = splitTag[0].Trim();
             string tagValue = splitTag[1].Trim();
 
-            // temperary code
+            // Handle specific tags
             switch (tagKey)
             {
                 case SPEAKER_TAG:
-                    speakerNameText.text = tagValue;
+                    speakerNameText.text = tagValue;// Set speaker name
                     Debug.Log("speaker=" + tagValue);
                     break;
                 case PORTRAIT_TAG:
-                    imageAnimator.Play(tagValue);
+                    imageAnimator.Play(tagValue);// Play character animation
                     Debug.Log("image=" + tagValue);
                     break;
                 default:
@@ -295,7 +336,7 @@ public class DialogueScript : MonoBehaviour
 
     private void OptionDisplay()
     {
-        List<Choice> currentChoices = currentDialogue.currentChoices;
+        List<Choice> currentChoices = currentDialogue.currentChoices;// Get current choices
 
         if (currentChoices.Count > choices.Length)
         {
@@ -305,48 +346,48 @@ public class DialogueScript : MonoBehaviour
         int index = 0;
         foreach (Choice choice in currentChoices)
         {
-            choices[index].gameObject.SetActive(true);
+            choices[index].gameObject.SetActive(true);// Show each choice
             choicesText[index].text = choice.text;
             index++;
         }
 
         for (int i = index; i < choices.Length; i++)
         {
-            choices[i].gameObject.SetActive(false);
+            choices[i].gameObject.SetActive(false);// Hide unused choice UI elements
         }
 
-        StartCoroutine(SelectedFristChoice());
+        StartCoroutine(SelectedFristChoice());// Select the first choice by default
     }
 
     private IEnumerator SelectedFristChoice()
     {
-        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(null);// Deselect current selection
 
         yield return new WaitForEndOfFrame();
 
-        EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
+        EventSystem.current.SetSelectedGameObject(choices[0].gameObject);// Select the first choice
     }
 
     private IEnumerator TypeText(string text)
     {
 
-        dialogueText.text = "";
-        canContinueNext = false;
-        float textDisplaySpeed = 0.03f;
-        HideOptions();
-        canContinueNext = false;
+        dialogueText.text = "";// Clear dialogue text
+        canContinueNext = false;// Prevent continuing while typing
+        float textDisplaySpeed = 0.03f;// Typing speed
+        HideOptions();// Hide options while typing
+        canContinueNext = false;// Prevent continuing while typing
         foreach (char c in text)
         {
             if (InputsHandler.GetInstance().GetContinuePressed())
             {
-                dialogueText.text = text;
+                dialogueText.text = text;// Skip typing if continue is pressed
                 break;
             }
             dialogueText.text += c; // Append one character at a time
             yield return new WaitForSecondsRealtime(textDisplaySpeed); // Wait for a specified duration
         }
-        OptionDisplay();
-        canContinueNext = true;
+        OptionDisplay();// Display options after typing
+        canContinueNext = true;// Allow continuing after typing
     }
 
 
@@ -354,20 +395,20 @@ public class DialogueScript : MonoBehaviour
     {
         if (optionIndex < 0 || optionIndex >= currentDialogue.currentChoices.Count)
         {
-            return;
+            return;// Return if the option index is out of range
         }
-        currentDialogue.ChooseChoiceIndex(optionIndex);
+        currentDialogue.ChooseChoiceIndex(optionIndex);// Choose the selected option
     }
 
     public void FreezePlayer(bool state)
     {
         if (state)
         {
-            Time.timeScale = 0;
+            Time.timeScale = 0;// Freeze the game
         }
         else
         {
-            Time.timeScale = 1;
+            Time.timeScale = 1;// Unfreeze the game
         }
     }
 
@@ -375,7 +416,7 @@ public class DialogueScript : MonoBehaviour
     {
         foreach (GameObject option in choices)
         {
-            option.SetActive(false);
+            option.SetActive(false);// Hide each option
         }
     }
 

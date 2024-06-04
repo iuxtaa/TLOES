@@ -3341,7 +3341,7 @@ MonoBehaviour:
   promptIcon: {fileID: 1857800153}
   dialogueNoTalk: {fileID: 4900000, guid: bd46c5c83d2e9b24da08b7f5838550ca, type: 3}
   dialogueStartQuest: {fileID: 4900000, guid: 3263cb05e8d0785418193651b0277b79, type: 3}
-  dialogueCannotFinishQuest: {fileID: 4900000, guid: 3263cb05e8d0785418193651b0277b79, type: 3}
+  dialogueCannotFinishQuest: {fileID: 4900000, guid: 2e6241cf95236cb4db3b045e7869f248, type: 3}
   dialogueCanFinishQuest: {fileID: 4900000, guid: 3263cb05e8d0785418193651b0277b79, type: 3}
   dialogueFinishedQuest: {fileID: 4900000, guid: 3263cb05e8d0785418193651b0277b79, type: 3}
   questCheck: {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
@@ -10322,7 +10322,7 @@ MonoBehaviour:
   promptIcon: {fileID: 1663191462}
   dialogueNoTalk: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
   dialogueStartQuest: {fileID: 4900000, guid: c4ec619e4f258e54f9a121db984ce23b, type: 3}
-  dialogueCannotFinishQuest: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
+  dialogueCannotFinishQuest: {fileID: 4900000, guid: 4c4ed1398c19d224eab4b3c5efca8c1e, type: 3}
   dialogueCanFinishQuest: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
   dialogueFinishedQuest: {fileID: 4900000, guid: cd2c5612dd6103c41a53f5cae9dab6da, type: 3}
   questCheck: {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
@@ -17698,9 +17698,25 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2003926461}
+    - target: {fileID: 3318424747412077367, guid: 06cc0d74375fa7745a9f21f7a6bf1b8f, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2003926461}
+    - target: {fileID: 3318424747412077367, guid: 06cc0d74375fa7745a9f21f7a6bf1b8f, type: 3}
+      propertyPath: questPopup
+      value: 
+      objectReference: {fileID: 1026301342}
     - target: {fileID: 4507036699823074070, guid: 06cc0d74375fa7745a9f21f7a6bf1b8f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5528710605541955548, guid: 06cc0d74375fa7745a9f21f7a6bf1b8f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1026301345}
+    - target: {fileID: 5528710605541955548, guid: 06cc0d74375fa7745a9f21f7a6bf1b8f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: closeCompleteQuestPopupButton
       objectReference: {fileID: 0}
     - target: {fileID: 6138181137001472691, guid: 06cc0d74375fa7745a9f21f7a6bf1b8f, type: 3}
       propertyPath: m_Name
@@ -17806,6 +17822,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6373627749978922443, guid: 06cc0d74375fa7745a9f21f7a6bf1b8f, type: 3}
   m_PrefabInstance: {fileID: 1026301340}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1026301345 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3318424747412077367, guid: 06cc0d74375fa7745a9f21f7a6bf1b8f, type: 3}
+  m_PrefabInstance: {fileID: 1026301340}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026301342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e688a4bc49e85a42bb0e6edb9d1ff96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1034261014
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51359,6 +51386,10 @@ PrefabInstance:
     - target: {fileID: 2972210481919786716, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: crounchKey
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3024377260798176882, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5219961313650418416, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: m_LocalPosition.x
