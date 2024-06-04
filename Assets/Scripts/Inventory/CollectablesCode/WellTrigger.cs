@@ -4,6 +4,7 @@ using UnityEngine;
 
 using TMPro; // Include this for TextMeshPro
 
+
 public class WellTrigger : MonoBehaviour
 {
     public Player player; // Reference to the Player component
@@ -18,7 +19,7 @@ public class WellTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             wellPopupText.SetActive(true); // Show the well popup
             ShowEndingText(); // Evaluate and show ending based on player's state
@@ -27,7 +28,7 @@ public class WellTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             wellPopupText.SetActive(false); // Hide the well popup
             endingPanel.SetActive(false); // Also hide the ending panel
@@ -41,7 +42,7 @@ public class WellTrigger : MonoBehaviour
         // Evaluate the ending based on the player's favourability
         if (Player.favourability > 5)
         {
-            message = "Congratulations! You've won with honor!";
+            message = "Congratulations You've won with honor!";
         }
         else if (Player.favourability <= 0)
         {
@@ -57,4 +58,3 @@ public class WellTrigger : MonoBehaviour
         endingPanel.SetActive(true);
     }
 }
-
