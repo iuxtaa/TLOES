@@ -21,12 +21,8 @@ public class Player : Character
     // CONSTANT VARIABLES
     public const int MAX_SLOTS = 5;
     // INSTANCE VARIABLES 
-    public static int money = 0;
+    public static int money = 4;
     public static int favourability;
-    public GameEnding gameEnding;
-    public GameObject endingPanel;  // Reference to the panel that contains the text
-    public TMP_Text endingText;
-    public static Dictionary<string, int> tempinventory2 = new Dictionary<string, int>();  // Initialize inventory
     [SerializeField] public static Quest currentQuest;
     public Quest[] questHistory = new Quest[3];
     public PlayerVectorValue startingPosition;
@@ -178,14 +174,6 @@ public class Player : Character
         SavePlayerData();
         Debug.Log(Player.currentQuest);
     }
-
-    public void ShowEndingText(string message)
-    {
-        endingText.text = message;
-        endingPanel.SetActive(true);
-    }
-
-
 
     public void completeQuest()
     {
