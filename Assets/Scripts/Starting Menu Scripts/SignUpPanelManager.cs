@@ -60,7 +60,7 @@ public class SignUpPanelManager : MonoBehaviour
                 {
                     await user.SendEmailVerificationAsync();
                     await SaveUsernameToDatabase(user.UserId, username, email);
-                   
+
                     warningText.text = "Verification email has been sent. Please verify your email and click signup again";
                 }
             }
@@ -114,41 +114,7 @@ public class SignUpPanelManager : MonoBehaviour
         }
     }
 
-<<<<<<< Updated upstream
-    private async Task InitializePlayerData(string userId)
-    {
-        try
-        {
-            PlayerData initialPlayerData = new PlayerData
-            {
-                favourability = 0,
-                inventory = new List<Inventory.Slot>(), // Initialize inventory as a List<Inventory.Slot>
-                currentQuest = null,
-                startingPosition = new PositionData(Vector3.zero, Vector3.zero),
-                isQuestActive = false,
-                isQuestComplete = false
-            };
 
-            string json = JsonUtility.ToJson(initialPlayerData);
-            await databaseReference.Child("players").Child(userId).SetRawJsonValueAsync(json);
-        }
-        catch (AggregateException ae)
-        {
-            foreach (var innerException in ae.InnerExceptions)
-            {
-                Debug.LogError("Initializing player data failed: " + innerException.Message);
-                warningText.text = "Failed to initialize player data.";
-            }
-        }
-        catch (Exception e)
-        {
-            Debug.LogError("Initializing player data failed: " + e.Message);
-            warningText.text = "Failed to initialize player data.";
-        }
-    }
-=======
-  
->>>>>>> Stashed changes
 
     private void LoginClicked()
     {

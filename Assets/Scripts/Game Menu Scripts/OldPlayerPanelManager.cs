@@ -107,7 +107,7 @@ public class OldPlayerPanelManager : MonoBehaviour
                     Player.currentQuest = null;
 
                     // Show confirmation panel
-                  
+
                 }
                 else
                 {

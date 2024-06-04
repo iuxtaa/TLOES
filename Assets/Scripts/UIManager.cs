@@ -132,7 +132,6 @@ public class UIManager : MonoBehaviour
         userKeybindsPanel.gameObject.SetActive(false);
         pauseScreen.SetActive(true);
     }
-    #endregion
 
     private void SavePlayerData()
     {
@@ -182,5 +181,4 @@ public class UIManager : MonoBehaviour
             this.favourability = favourability;
         }
     }
-}
 }
