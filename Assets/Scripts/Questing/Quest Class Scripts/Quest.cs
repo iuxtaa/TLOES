@@ -1,31 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-[System.Serializable] // Unity will serialize these fields so that they will show up in the Inspector
+[System.Serializable]
 [CreateAssetMenu(fileName = "New Quest", menuName = "Quest System/Quest")]
 public class Quest : ScriptableObject
 {
-    // PRIVATE INSTANCE VARIABLES
     public int questNumber;
-
-    public bool isActive; // boolean for quest activity status
-    public bool completionStatus; // boolean for quest completion status
+    public bool isActive;
+    public bool completionStatus;
     public Quest dependentQuest;
-
     public string title;
     public string description;
     public int favourabilityReward;
     public int goldReward;
 
-    public List<QuestObjective> objectives; // List of objectives for the quest
+    public List<QuestObjective> objectives;
 
-    // CONSTRUCTOR
     public Quest()
     {
         this.questNumber = 0;
-
         this.title = string.Empty;
         this.description = string.Empty;
         this.favourabilityReward = 0;
@@ -33,11 +27,9 @@ public class Quest : ScriptableObject
         this.isActive = false;
         this.completionStatus = false;
         this.dependentQuest = null;
-
-        this.objectives = new List<QuestObjective>(); // Initialize the objectives list
+        this.objectives = new List<QuestObjective>();
     }
 
-    
     public Quest(int questNumber, Quest dependentQuest, string title, string desc, int favourabilityReward, int goldReward)
     {
         this.questNumber = questNumber;
@@ -48,33 +40,37 @@ public class Quest : ScriptableObject
         this.goldReward = goldReward;
         this.isActive = false;
         this.completionStatus = false;
-
-        this.objectives = new List<QuestObjective>(); // Initialize the objectives list
+        this.objectives = new List<QuestObjective>();
     }
 
-    // METHODS
     public bool canComplete()
     {
-        for(int i = 0; i < objectives.Count-1; i++)
+        for (int i = 0; i < objectives.Count; i++)
         {
-            if (objectives[i].completionStatus == false)
+            if (!objectives[i].completionStatus)
                 return false;
         }
-        // complete();
         return true;
     }
 
     public void complete()
     {
+        UIManager uiManager = FindObjectOfType<UIManager>();
+        if (uiManager != null)
+        {
+            uiManager.ShowQuestCompletePopup(this);
+        }
+        Player.favourability += this.favourabilityReward;
         this.completionStatus = true;
         this.isActive = false;
         Debug.Log(title + " quest is complete");
+        Debug.Log("Player's favourability: " + Player.favourability);
     }
 
     public string objectivesToString()
     {
         string output = "";
-        for(int i =0; i < objectives.Count;i++)
+        for (int i = 0; i < objectives.Count; i++)
         {
             output += objectives[i].toString() + "\n";
         }
@@ -88,8 +84,8 @@ public class Quest : ScriptableObject
 
     public bool isDependentQuestComplete()
     {
-        if(this.dependentQuest != null)
-            return (this.dependentQuest.completionStatus);
+        if (this.dependentQuest != null)
+            return this.dependentQuest.completionStatus;
         return true;
     }
 }

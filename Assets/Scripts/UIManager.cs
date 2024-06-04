@@ -1,6 +1,8 @@
+
 using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,15 +18,18 @@ public class UIManager : MonoBehaviour
     [Header("Quest")]
     [SerializeField] private GameObject questOverlay;
     [SerializeField] private GameObject questCompletePopup;
+    private QuestCompletePopup questCompletePopupScript;
+    
     private FirebaseAuth auth;
-    private DatabaseReference databaseReference;
-
+    private DatabaseReference databaseReference;    
+    
     public void Awake()
     {
         pauseScreen.SetActive(false);
         pauseButton.SetActive(true);
         questOverlay.SetActive(false);
         questCompletePopup.SetActive(false);
+        questCompletePopupScript = questCompletePopup.GetComponent<QuestCompletePopup>();
 
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {
@@ -45,20 +50,31 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // If pause screen is already active, unpause
             if (pauseScreen.activeInHierarchy)
                 PauseGame(false);
-            // If pause screen not active, pause.
             else
                 PauseGame(true);
         }
+
         if (Player.currentQuest != null && Player.currentQuest.isActive)
         {
             questOverlay.SetActive(true);
         }
+        else
+        {
+            questOverlay.SetActive(false);
+        }
     }
 
-    #region Pause
+    public void ShowQuestCompletePopup(Quest quest)
+    {
+        if (questCompletePopupScript != null)
+        {
+            questCompletePopupScript.initialize(quest);
+            questCompletePopupScript.openCompleteQuestPopup();
+        }
+    }
+
     public void PauseGame(bool status)
     {
         if (userKeybindsPanel.gameObject.activeInHierarchy)
@@ -72,27 +88,22 @@ public class UIManager : MonoBehaviour
 
         pauseButton.SetActive(!status);
 
-        if (status) // If status is true, pause the game
+        if (status)
             Time.timeScale = 0;
-        else // If status is false, unpause the game
+        else
             Time.timeScale = 1;
     }
 
-    // PAUSE MENU FUNCTIONS
-
-    // Pause button
     public void PauseButton()
     {
         PauseGame(true);
     }
 
-    // Resume button
     public void ResumeButton()
     {
         PauseGame(false);
     }
 
-    // Show Keybinds button
     public void ShowKeybindsButton()
     {
         userKeybindsPanel.exitButton.onClick.AddListener(DeactivateKeybindsPanel);
@@ -100,35 +111,22 @@ public class UIManager : MonoBehaviour
         PauseGame(true);
     }
 
-    // Save game button
     public void SaveGameButton()
     {
         SavePlayerData();
     }
 
-    // Save & Quit game button
     public void SaveAndQuitGameButton()
     {
         SavePlayerData();
         SceneManager.LoadScene((int)ScreenEnum.StartingMenu);
-
-        //Application.Quit();
-
-        //#if UNITY_EDITOR
-        //UnityEditor.EditorApplication.isPlaying = false; // Exits play mode (will only be executed in the editor)
-        //#endif
     }
 
-    // Save game
     public void Save()
     {
-
+        // Implement save functionality
     }
-    #endregion
 
-    #region Keybinds
-
-    //Deactivates the keybinds panel when the pause button is clicked
     public void DeactivateKeybindsPanel()
     {
         userKeybindsPanel.gameObject.SetActive(false);
@@ -184,4 +182,5 @@ public class UIManager : MonoBehaviour
             this.favourability = favourability;
         }
     }
+}
 }

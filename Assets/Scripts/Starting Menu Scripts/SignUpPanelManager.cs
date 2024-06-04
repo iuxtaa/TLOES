@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -7,7 +9,6 @@ using Firebase.Database;
 using System;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
 
 public class SignUpPanelManager : MonoBehaviour
 {
@@ -121,7 +122,7 @@ public class SignUpPanelManager : MonoBehaviour
             PlayerData initialPlayerData = new PlayerData
             {
                 favourability = 0,
-                inventory = new Dictionary<string, int>(),
+                inventory = new List<Inventory.Slot>(), // Initialize inventory as a List<Inventory.Slot>
                 currentQuest = null,
                 startingPosition = new PositionData(Vector3.zero, Vector3.zero),
                 isQuestActive = false,

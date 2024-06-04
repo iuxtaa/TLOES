@@ -32,6 +32,8 @@ public class CollectableItems : MonoBehaviour
     private bool canGiveToBeggar = true;
     private bool canSellToCecil = true;
     private bool canGiveToKnight = true;
+    private bool canGiveToFather = true;
+    private bool canGiveToPriest = true;
     public static int amountGivenToBeggar = 1;
     public static int amountGivenToCecil = 4;
     public static int amountCollectForKnight = 1;
@@ -136,6 +138,31 @@ public class CollectableItems : MonoBehaviour
             }
             canGiveToBeggar = false;
             Debug.Log(canGiveToBeggar);
+        }
+        if (playerClose && this.gameObject.name == "Paper_Knight" && canGiveToKnight &&  DialogueScript.GetInstance().giveletter)
+        {
+            player.inventory.Removing(this);
+            
+            if (canGiveToBeggar)
+            {
+                popupText.GetComponent<TextMeshProUGUI>().text = "Knight thanks you for helping";
+                popupText.SetActive(true);
+                DialogueScript.GetInstance().turnOffColliderKnight();
+            }
+            this.gameObject.SetActive(false);
+            canGiveToKnight = false;
+        }
+        if (playerClose && this.gameObject.name == "WaterbottlePriest" && canGiveToPriest && DialogueScript.GetInstance().giveWater)
+        { 
+            player.inventory.Removing(this);
+            this.gameObject.SetActive(false);
+            if (canGiveToBeggar)
+            {
+                popupText.GetComponent<TextMeshProUGUI>().text = "Priest Wishes you well";
+                popupText.SetActive(true);
+                DialogueScript.GetInstance().turnOffColliderPriest();
+            }
+            canGiveToPriest = false;
         }
         if (playerClose && InputsHandler.GetInstance().sellButtonPressed())
         {

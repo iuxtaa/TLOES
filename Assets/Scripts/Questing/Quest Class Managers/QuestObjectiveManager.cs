@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,10 +16,18 @@ public class QuestObjectiveManager : MonoBehaviour
     private bool canUpdateCollecting_Patrick = true;
     private bool canUpdateCollecting_Well = true;
 
-    // Start is called before the first frame update
-    void Start()
+    // Static flag to check if objectives have been initialized
+    private static bool objectivesInitialized = false;
+
+    private void Start()
     {
-        initializeObjectives();
+        // Only initialize objectives if they haven't been initialized yet
+        if (!objectivesInitialized)
+        {
+            initializeObjectives();
+            resetSellingObjectives();
+            objectivesInitialized = true; // Set the flag to true after initializing
+        }
     }
 
     // Update is called once per frame
@@ -28,12 +37,21 @@ public class QuestObjectiveManager : MonoBehaviour
         updateCurrentQuestObjective();
     }
 
-    // at the start of a NEW game all quest objectives will start as incomplete
+    // At the start of a NEW game all quest objectives will start as incomplete
     public void initializeObjectives()
     {
         foreach (QuestObjective objective in questObjectives)
         {
             objective.completionStatus = false;
+        }
+    }
+
+    public void resetSellingObjectives()
+    {
+        foreach (QuestObjective objective in questObjectives)
+        {
+            if (objective is SellingQuestObjective sellingQuestObjective)
+                sellingQuestObjective.sellingCount = 0;
         }
     }
 
@@ -84,46 +102,44 @@ public class QuestObjectiveManager : MonoBehaviour
                     }
                 }
             }
-
-            else if(Player.currentQuest.questNumber == (int)QuestIndex.KnightsLetter)
+            else if (Player.currentQuest.questNumber == (int)QuestIndex.KnightsLetter)
             {
-                foreach(QuestObjective objective in questObjectives)
+                foreach (QuestObjective objective in questObjectives)
                 {
-                    if(objective is CollectingQuestObjective collectingQuestObjective && !objective.completionStatus)
+                    if (objective is CollectingQuestObjective collectingQuestObjective && !objective.completionStatus)
                     {
                         currentObjective = collectingQuestObjective;
                     }
                 }
 
-                if(playerClose)
+                if (playerClose)
                 {
-                    if(this.gameObject.name == "Paper_Patrick" && canUpdateCollecting_Patrick && InputsHandler.GetInstance().check && Player.money >= CollectableItems.PAPER_COST)
+                    if (this.gameObject.name == "Paper_Patrick" && canUpdateCollecting_Patrick && InputsHandler.GetInstance().check && Player.money >= CollectableItems.PAPER_COST)
                     {
                         incrementObjectiveCollectingCount(currentObjective, CollectableItems.amountCollectForKnight);
                         canUpdateCollecting_Patrick = false;
                     }
                 }
             }
-            else if(Player.currentQuest.questNumber == (int) QuestIndex.PriestsHolyWater)
+            else if (Player.currentQuest.questNumber == (int)QuestIndex.PriestsHolyWater)
             {
-                foreach(QuestObjective objective in questObjectives)
+                foreach (QuestObjective objective in questObjectives)
                 {
-                    if(objective is CollectingQuestObjective && !objective.completionStatus)
+                    if (objective is CollectingQuestObjective && !objective.completionStatus)
                     {
                         currentObjective = objective;
                     }
                 }
 
-                if(playerClose)
+                if (playerClose)
                 {
-                    if(this.gameObject.name == "WaterBottle_WishingWell" && canUpdateCollecting_Well && InputsHandler.GetInstance().check)
+                    if (this.gameObject.name == "WaterBottle_WishingWell" && canUpdateCollecting_Well && InputsHandler.GetInstance().check)
                     {
                         incrementObjectiveCollectingCount(currentObjective, CollectableItems.amountCollectForPriest);
                         canUpdateCollecting_Well = false;
                     }
                 }
             }
-
         }
     }
 
@@ -138,7 +154,7 @@ public class QuestObjectiveManager : MonoBehaviour
 
     public void incrementObjectiveCollectingCount(QuestObjective objective, int increment)
     {
-        if(objective is CollectingQuestObjective collectingQuestObjective)
+        if (objective is CollectingQuestObjective collectingQuestObjective)
         {
             collectingQuestObjective.incCollectingCount(increment);
         }

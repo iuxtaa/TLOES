@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PriestsHolyWater
   m_EditorClassIdentifier: 
   questNumber: 2
-  isActive: 1
+  isActive: 0
   completionStatus: 0
   dependentQuest: {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   title: Priests Holy Water

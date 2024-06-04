@@ -27,7 +27,9 @@ namespace Cainos.CustomizablePixelCharacter
         [FoldoutGroup("Movement")] public LayerMask groundCheckLayerMask;
         [Space]
         [FoldoutGroup("Movement")] public float walkSpeedMax = 2.5f;                           // max walk speed
-        [FoldoutGroup("Movement")] public float walkAcc = 10.0f;                               // walking acceleration
+        [FoldoutGroup("Movement")] public float walkAcc = 10.0f;
+        [FoldoutGroup("Movement")] public AudioSource walk;
+        // walking acceleration
         [Space]
         [FoldoutGroup("Movement")] public float runSpeedMax = 5.0f;                            // max run speed
         [FoldoutGroup("Movement")] public float runAcc = 15.0f;                                // running acceleration
@@ -45,6 +47,7 @@ namespace Cainos.CustomizablePixelCharacter
         [FoldoutGroup("Movement")] public float airDrag = 0.75f;                               // braking acceleration (from movement to still) while in air
         [Space]
         [FoldoutGroup("Movement")] public bool jumpEnabled = true;
+        [FoldoutGroup("Movement")] public AudioSource jump;
         [FoldoutGroup("Movement"), ShowIf("jumpEnabled")] public float jumpSpeed = 5.0f;                            // speed applied to character when jump
         [FoldoutGroup("Movement"), ShowIf("jumpEnabled")] public float jumpCooldown = 0.2f;                         // time to be able to jump again after landing
         [FoldoutGroup("Movement"), ShowIf("jumpEnabled")] public float jumpTolerance = 0.15f;                       // when the character's air time is less than this value, it is still able to jump
@@ -983,6 +986,10 @@ namespace Cainos.CustomizablePixelCharacter
                     max = dashSpeedMax;
                 }
 
+                if (Mathf.Abs(inputMove.x) > MOVE_THRESHOLD && !walk.isPlaying)
+                {
+                    walk.Play();
+                }
                 //limit max speed base on surface angle
                 float targetSurfaceSpeedMul = Mathf.Sin(Mathf.Min(surfaceAngleForward, 90.0f) * Mathf.Deg2Rad);
                 if (targetSurfaceSpeedMul < 1.0f) surfaceSpeedMul = Mathf.Lerp(surfaceSpeedMul, targetSurfaceSpeedMul, 1.0f * Time.fixedDeltaTime);
@@ -1065,14 +1072,22 @@ namespace Cainos.CustomizablePixelCharacter
             if (isMoving)
             {
                 targetMoveBlend = 1.0f;
+             
+               
                 if (isRunning) targetMoveBlend = 3.0f;
+
+                
             }
             else
             {
                 targetMoveBlend = 0.0f;
             }
 
+          
             moveBlend = Mathf.Lerp(moveBlend, targetMoveBlend, 7.0f * Time.deltaTime);
+        
+
+
         }
 
         #endregion
@@ -1386,6 +1401,8 @@ namespace Cainos.CustomizablePixelCharacter
 
                 //event
                 onJump.Invoke();
+                jump.Play();
+
             }
 
 

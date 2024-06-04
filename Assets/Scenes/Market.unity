@@ -525,8 +525,13 @@ MonoBehaviour:
   AppleSellerTrigger: {fileID: 693590395}
   HamSellerTrigger: {fileID: 1873740612}
   WineSellerTrigger: {fileID: 709642915}
+  EggSellerTrigger: {fileID: 0}
+  PaperSellerTrigger: {fileID: 0}
+  BeggerTrigger: {fileID: 0}
+  father: {fileID: 0}
+  Knight: {fileID: 0}
+  Priest: {fileID: 0}
   player: {fileID: 2044812155}
-  questGiver: {fileID: 1665528534}
 --- !u!4 &118384227 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8880890979157700243, guid: b18dcd3ee86986b469e9cfc64055704c, type: 3}
@@ -2069,7 +2074,6 @@ MonoBehaviour:
   questObjective: {fileID: 0}
   player: {fileID: 2044812155}
   questItem: {fileID: 0}
-  questOverlay: {fileID: 1328474738}
 --- !u!1 &323311899
 GameObject:
   m_ObjectHideFlags: 0
@@ -4986,6 +4990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bf6c8424065834583c7ffd957634a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  check: 0
 --- !u!114 &663558104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5670,7 +5675,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2044812155}
-  promptIcon: {fileID: 216442902}
+  playerClose: 0
+  Instruction: {fileID: 0}
   promptmessage: {fileID: 702678249}
   DialogueFile: {fileID: 4900000, guid: 355b7bdd1e9a97a44a805992cfd3b7c4, type: 3}
   invent: {fileID: 1703277710}
@@ -6287,7 +6293,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2044812155}
-  promptIcon: {fileID: 1298204528}
+  playerClose: 0
+  Instruction: {fileID: 0}
   promptmessage: {fileID: 1365076285}
   DialogueFile: {fileID: 4900000, guid: 18aaf55ce0883fe4c8cfaa9a4471a5d7, type: 3}
   invent: {fileID: 1703277710}
@@ -8455,7 +8462,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &958798068
 AudioSource:
   m_ObjectHideFlags: 0
@@ -13465,7 +13472,6 @@ MonoBehaviour:
   questObjective: {fileID: 0}
   player: {fileID: 2044812155}
   questItem: {fileID: 0}
-  questOverlay: {fileID: 1328474738}
 --- !u!1001 &1698425622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15819,7 +15825,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2044812155}
-  promptIcon: {fileID: 147817310}
+  playerClose: 0
+  Instruction: {fileID: 0}
   promptmessage: {fileID: 2120237615}
   DialogueFile: {fileID: 4900000, guid: 3f08be03d5657f64199a8cb8580a7db8, type: 3}
   invent: {fileID: 1703277710}
@@ -17013,6 +17020,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 788513495273198632, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
+      propertyPath: jump
+      value: 
+      objectReference: {fileID: 2044812156}
+    - target: {fileID: 788513495273198632, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
+      propertyPath: walk
+      value: 
+      objectReference: {fileID: 2044812157}
+    - target: {fileID: 788513495273198632, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: walking
       value: 
       objectReference: {fileID: 2044812157}
@@ -17823,9 +17838,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
   - {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   - {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
-  startingPosition: {fileID: 11400000, guid: fce9b2cfa7deaa14db422030ecbd1ac9, type: 2}
+  startingPosition: {fileID: 0}
   inventory: {fileID: 1523734060}
-  inventoryUI: {fileID: 1523734056}
 --- !u!82 &2044812156
 AudioSource:
   m_ObjectHideFlags: 0
@@ -17836,7 +17850,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f65b8caedf0c89b4c9f6ea1408f5e362, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1

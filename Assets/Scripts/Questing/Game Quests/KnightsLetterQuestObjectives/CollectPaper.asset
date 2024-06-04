@@ -17,3 +17,4 @@ MonoBehaviour:
   completionStatus: 0
   requiredItem: {fileID: 0}
   requiredAmount: 1
+  collectingCount: 0

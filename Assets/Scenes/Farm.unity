@@ -824,6 +824,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 788513495273198632, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
+      propertyPath: jump
+      value: 
+      objectReference: {fileID: 921882242}
+    - target: {fileID: 788513495273198632, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
+      propertyPath: walk
+      value: 
+      objectReference: {fileID: 921882243}
+    - target: {fileID: 788513495273198632, guid: 47cb56d644c70b34e9e49d57dcbedaf1, type: 3}
       propertyPath: walking
       value: 
       objectReference: {fileID: 921882243}
@@ -5335,7 +5343,6 @@ MonoBehaviour:
   questObjective: {fileID: 11400000, guid: 3b440b5158493704084b0fe238a3b6c8, type: 2}
   player: {fileID: 921882241}
   questItem: {fileID: 9189458637657334569}
-  questOverlay: {fileID: 1454741832}
 --- !u!1 &606237536
 GameObject:
   m_ObjectHideFlags: 0
@@ -6792,9 +6799,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 830e0b8bdd1085444a4d58c153461ded, type: 2}
   - {fileID: 11400000, guid: 942478911dba8934c9f0b839632d688d, type: 2}
   - {fileID: 11400000, guid: f4766a501b906cd4f963949a410aea90, type: 2}
-  startingPosition: {fileID: 11400000, guid: fce9b2cfa7deaa14db422030ecbd1ac9, type: 2}
+  startingPosition: {fileID: 0}
   inventory: {fileID: 1176081473}
-  inventoryUI: {fileID: 1176081469}
 --- !u!82 &921882242
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6805,7 +6811,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 70bfbaaebebfb0d4ba87a5e9947d5ad3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -8128,6 +8134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bf6c8424065834583c7ffd957634a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  check: 0
 --- !u!114 &1149035456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11808,8 +11815,13 @@ MonoBehaviour:
   AppleSellerTrigger: {fileID: 0}
   HamSellerTrigger: {fileID: 0}
   WineSellerTrigger: {fileID: 0}
+  EggSellerTrigger: {fileID: 0}
+  PaperSellerTrigger: {fileID: 0}
+  BeggerTrigger: {fileID: 0}
+  father: {fileID: 0}
+  Knight: {fileID: 0}
+  Priest: {fileID: 0}
   player: {fileID: 0}
-  questGiver: {fileID: 591285154}
 --- !u!1 &1832060248
 GameObject:
   m_ObjectHideFlags: 0
@@ -13964,7 +13976,7 @@ MonoBehaviour:
   player: {fileID: 921882241}
   type: 4
   icon: {fileID: 21300000, guid: ce993d5f7ca6ea8459974fd88e71861d, type: 3}
-  inventoryCountCheck: {fileID: 1176081473}
+  inventory: {fileID: 0}
   popupText: {fileID: 1924488629}
   changingnum: 0
 --- !u!1660057539 &9223372036854775807
