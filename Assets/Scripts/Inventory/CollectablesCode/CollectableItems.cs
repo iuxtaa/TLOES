@@ -152,7 +152,7 @@ public class CollectableItems : MonoBehaviour
             this.gameObject.SetActive(false);
             canGiveToKnight = false;
         }
-        if (playerClose && this.gameObject.name == "WaterbottlePriest" && canGiveToPriest && DialogueScript.GetInstance().giveWater)
+        if (playerClose && this.gameObject.name == "WaterBottlePriest" && canGiveToPriest && DialogueScript.GetInstance().giveWater)
         { 
             player.inventory.Removing(this);
             this.gameObject.SetActive(false);

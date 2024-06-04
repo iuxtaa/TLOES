@@ -285,12 +285,13 @@ public class DialogueScript : MonoBehaviour
         {
             Priest.quest.objectives[1].complete();
             //boxCollider.enabled = false;
+            giveWater = true;
         }
         else
         {
             Debug.Log("Box collider aint here chief");
         }
-        giveWater = true;
+        
     }
 
 
