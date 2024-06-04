@@ -7,6 +7,8 @@ using Firebase.Auth;
 using Firebase.Database;
 using Firebase;
 using static Inventory;
+using System.Linq;
+using TMPro;
 
 public class Player : Character
 {
@@ -14,11 +16,16 @@ public class Player : Character
     #region Variables
     public static Player Instance { get; private set; }
 
+  
+
     // CONSTANT VARIABLES
     public const int MAX_SLOTS = 5;
     // INSTANCE VARIABLES 
     public static int money = 0;
     public static int favourability;
+    public GameEnding gameEnding;
+    public GameObject endingPanel;  // Reference to the panel that contains the text
+    public TMP_Text endingText;
     public static Dictionary<string, int> tempinventory2 = new Dictionary<string, int>();  // Initialize inventory
     [SerializeField] public static Quest currentQuest;
     public Quest[] questHistory = new Quest[3];
@@ -58,6 +65,17 @@ public class Player : Character
 
     public void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+            return; // Ensure no further code execution happens on the destroyed object
+        }
+
         transform.position = startingPosition.changingValue;
         startingPosition.changingValue = startingPosition.initialValue;
     }
@@ -161,6 +179,14 @@ public class Player : Character
         Debug.Log(Player.currentQuest);
     }
 
+    public void ShowEndingText(string message)
+    {
+        endingText.text = message;
+        endingPanel.SetActive(true);
+    }
+
+
+
     public void completeQuest()
     {
         favourability += currentQuest.favourabilityReward;
@@ -169,6 +195,7 @@ public class Player : Character
         currentQuest.complete();
         SetQuest(null);
         SavePlayerData();
+        
     }
 
     public void failQuest()
@@ -177,6 +204,7 @@ public class Player : Character
         currentQuest.complete();
         SetQuest(null);
         SavePlayerData();
+        
     }
 
     private Quest findActiveQuest()
