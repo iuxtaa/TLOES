@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 using Firebase.Auth;
 using Firebase.Database;
 using Firebase;
+using static Inventory;
+using System.Linq;
+using TMPro;
 
 public class Player : Character
 {
@@ -13,11 +16,16 @@ public class Player : Character
     #region Variables
     public static Player Instance { get; private set; }
 
+  
+
     // CONSTANT VARIABLES
     public const int MAX_SLOTS = 5;
     // INSTANCE VARIABLES 
     public static int money = 0;
     public static int favourability;
+    public GameEnding gameEnding;
+    public GameObject endingPanel;  // Reference to the panel that contains the text
+    public TMP_Text endingText;
     public static Dictionary<string, int> tempinventory2 = new Dictionary<string, int>();  // Initialize inventory
     [SerializeField] public static Quest currentQuest;
     public Quest[] questHistory = new Quest[3];
@@ -57,6 +65,17 @@ public class Player : Character
 
     public void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+            return; // Ensure no further code execution happens on the destroyed object
+        }
+
         transform.position = startingPosition.changingValue;
         startingPosition.changingValue = startingPosition.initialValue;
     }
@@ -90,40 +109,67 @@ public class Player : Character
     }
 
     #endregion
-    
+
     #region InventoryMethods 
     public void AddItem(string item, int quantity)
     {
-        if (inventory.ContainsKey(item))
+        // Adjust this logic based on your new Inventory class
+        foreach (var slot in inventory.slots)
         {
-            inventory[item] += quantity;
+            if (slot.type.ToString() == item && slot.CanAddItem())
+            {
+                slot.count += quantity;
+                SavePlayerData();
+                return;
+            }
         }
-        else
+
+        foreach (var slot in inventory.slots)
         {
-            inventory.Add(item, quantity);
+            if (slot.type == CollectableItemsType.NONE)
+            {
+                slot.type = (CollectableItemsType)Enum.Parse(typeof(CollectableItemsType), item);
+                slot.count = quantity;
+                SavePlayerData();
+                return;
+            }
         }
-        SavePlayerData();
     }
 
     public void RemoveItem(string item, int quantity)
     {
-        if (inventory.ContainsKey(item))
+        // Adjust this logic based on your new Inventory class
+        foreach (var slot in inventory.slots)
         {
-            inventory[item] -= quantity;
-            if (inventory[item] <= 0)
+            if (slot.type.ToString() == item)
             {
-                inventory.Remove(item);
+                slot.count -= quantity;
+                if (slot.count <= 0)
+                {
+                    slot.type = CollectableItemsType.NONE;
+                    slot.count = 0;
+                    slot.Icon = null;
+                }
+                SavePlayerData();
+                return;
             }
         }
-        SavePlayerData();
     }
 
     public int GetItemCount(string item)
     {
-        return inventory.ContainsKey(item) ? inventory[item] : 0;
+        // Adjust this logic based on your new Inventory class
+        foreach (var slot in inventory.slots)
+        {
+            if (slot.type.ToString() == item)
+            {
+                return slot.count;
+            }
+        }
+        return 0;
     }
-    #endregion 
-    
+    #endregion
+
     #region QuestingMethods
     public void acceptQuest(Quest quest)
     {
@@ -133,6 +179,14 @@ public class Player : Character
         Debug.Log(Player.currentQuest);
     }
 
+    public void ShowEndingText(string message)
+    {
+        endingText.text = message;
+        endingPanel.SetActive(true);
+    }
+
+
+
     public void completeQuest()
     {
         favourability += currentQuest.favourabilityReward;
@@ -141,6 +195,7 @@ public class Player : Character
         currentQuest.complete();
         SetQuest(null);
         SavePlayerData();
+        
     }
 
     public void failQuest()
@@ -149,6 +204,7 @@ public class Player : Character
         currentQuest.complete();
         SetQuest(null);
         SavePlayerData();
+        
     }
 
     private Quest findActiveQuest()
@@ -177,11 +233,11 @@ public class Player : Character
         PlayerData playerData = new PlayerData
         {
             favourability = favourability,
-            inventory = inventory,
+            inventory = inventory.slots, // Save slots
             currentQuest = currentQuest != null ? new QuestData(currentQuest) : null,
             startingPosition = new PositionData(startingPosition.changingValue, startingPosition.initialValue),
             isQuestActive = currentQuest != null ? currentQuest.isActive : false,
-            isQuestComplete = currentQuest != null ? currentQuest.isComplete : false
+            isQuestComplete = currentQuest != null ? currentQuest.completionStatus : false
         };
 
         string json = JsonUtility.ToJson(playerData);
@@ -195,7 +251,7 @@ public class Player : Character
 public class PlayerData
 {
     public int favourability;
-    public Dictionary<string, int> inventory;
+    public List<Inventory.Slot> inventory; // Changed to List<Slot>
     public QuestData currentQuest;
     public PositionData startingPosition;
     public bool isQuestActive;
@@ -211,6 +267,8 @@ public class QuestData
     public int favourabilityReward;
     public bool isActive;
     public bool isComplete;
+    public int goldReward;
+    public List<QuestObjectiveData> objectives; // Include objectives
 
     public QuestData(Quest quest)
     {
@@ -219,7 +277,14 @@ public class QuestData
         description = quest.description;
         favourabilityReward = quest.favourabilityReward;
         isActive = quest.isActive;
-        isComplete = quest.isComplete;
+        isComplete = quest.completionStatus;
+        goldReward = quest.goldReward;
+        objectives = new List<QuestObjectiveData>();
+
+        foreach (var objective in quest.objectives)
+        {
+            objectives.Add(new QuestObjectiveData(objective));
+        }
     }
 }
 
@@ -233,5 +298,18 @@ public class PositionData
     {
         this.changingValue = changingValue;
         this.initialValue = initialValue;
+    }
+}
+
+[Serializable]
+public class QuestObjectiveData
+{
+    public string description;
+    public bool completionStatus;
+
+    public QuestObjectiveData(QuestObjective objective)
+    {
+        description = objective.description;
+        completionStatus = objective.completionStatus;
     }
 }
