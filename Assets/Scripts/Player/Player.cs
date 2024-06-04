@@ -89,7 +89,7 @@ public class Player : Character
     public void SetFavourability(int favourability)
     {
         Player.favourability = favourability;
-        SavePlayerData();
+      
     }
 
     public int GetFavourability()
@@ -100,7 +100,7 @@ public class Player : Character
     public void SetQuest(Quest quest)
     {
         Player.currentQuest = quest;
-        SavePlayerData();
+        
     }
 
     public Quest GetQuest()
@@ -113,13 +113,11 @@ public class Player : Character
     #region InventoryMethods 
     public void AddItem(string item, int quantity)
     {
-        // Adjust this logic based on your new Inventory class
         foreach (var slot in inventory.slots)
         {
             if (slot.type.ToString() == item && slot.CanAddItem())
             {
                 slot.count += quantity;
-                SavePlayerData();
                 return;
             }
         }
@@ -130,7 +128,6 @@ public class Player : Character
             {
                 slot.type = (CollectableItemsType)Enum.Parse(typeof(CollectableItemsType), item);
                 slot.count = quantity;
-                SavePlayerData();
                 return;
             }
         }
@@ -138,7 +135,6 @@ public class Player : Character
 
     public void RemoveItem(string item, int quantity)
     {
-        // Adjust this logic based on your new Inventory class
         foreach (var slot in inventory.slots)
         {
             if (slot.type.ToString() == item)
@@ -150,7 +146,6 @@ public class Player : Character
                     slot.count = 0;
                     slot.Icon = null;
                 }
-                SavePlayerData();
                 return;
             }
         }
@@ -158,7 +153,6 @@ public class Player : Character
 
     public int GetItemCount(string item)
     {
-        // Adjust this logic based on your new Inventory class
         foreach (var slot in inventory.slots)
         {
             if (slot.type.ToString() == item)
@@ -175,27 +169,14 @@ public class Player : Character
     {
         SetQuest(quest);
         currentQuest.isActive = true;
-        SavePlayerData();
         Debug.Log(Player.currentQuest);
     }
-
-    public void ShowEndingText(string message)
-    {
-        endingText.text = message;
-        endingPanel.SetActive(true);
-    }
-
-
 
     public void completeQuest()
     {
         favourability += currentQuest.favourabilityReward;
-        // FOR YZA
-        // goldCount ?? += currentQuest.goldReward;
         currentQuest.complete();
         SetQuest(null);
-        SavePlayerData();
-        
     }
 
     public void failQuest()
@@ -203,8 +184,6 @@ public class Player : Character
         favourability -= currentQuest.favourabilityReward;
         currentQuest.complete();
         SetQuest(null);
-        SavePlayerData();
-        
     }
 
     private Quest findActiveQuest()
@@ -224,92 +203,57 @@ public class Player : Character
     #endregion
 
     #region FirebaseMethods
-
-    private async void SavePlayerData()
+    public async Task SavePlayerData()
     {
         if (user == null)
-            return;
+            user = auth.CurrentUser;
 
-        PlayerData playerData = new PlayerData
+        if (user != null)
         {
-            favourability = favourability,
-            inventory = inventory.slots, // Save slots
-            currentQuest = currentQuest != null ? new QuestData(currentQuest) : null,
-            startingPosition = new PositionData(startingPosition.changingValue, startingPosition.initialValue),
-            isQuestActive = currentQuest != null ? currentQuest.isActive : false,
-            isQuestComplete = currentQuest != null ? currentQuest.completionStatus : false
-        };
+            PlayerData playerData = new PlayerData
+            {
+                money = Player.money,
+                favourability = Player.favourability,
+                inventory = inventory.slots,
+                questData = new QuestData(currentQuest),
+                questHistory = Array.ConvertAll(questHistory, quest => new QuestData(quest))
+            };
 
-        string json = JsonUtility.ToJson(playerData);
-        await databaseReference.Child("players").Child(user.UserId).SetRawJsonValueAsync(json);
+            string json = JsonUtility.ToJson(playerData);
+            await databaseReference.Child("users").Child(user.UserId).Child("playerData").SetRawJsonValueAsync(json);
+        }
     }
 
+    public async Task LoadPlayerData()
+    {
+        if (user == null)
+            user = auth.CurrentUser;
+
+        if (user != null)
+        {
+            var dataSnapshot = await databaseReference.Child("users").Child(user.UserId).Child("playerData").GetValueAsync();
+            if (dataSnapshot.Exists)
+            {
+                string json = dataSnapshot.GetRawJsonValue();
+                PlayerData playerData = JsonUtility.FromJson<PlayerData>(json);
+
+                Player.money = playerData.money;
+                Player.favourability = playerData.favourability;
+                inventory.slots = playerData.inventory;
+                currentQuest = new Quest(playerData.questData);
+                questHistory = Array.ConvertAll(playerData.questHistory, data => new Quest(data));
+            }
+        }
+    }
     #endregion
 }
 
 [Serializable]
 public class PlayerData
 {
+    public int money;
     public int favourability;
-    public List<Inventory.Slot> inventory; // Changed to List<Slot>
-    public QuestData currentQuest;
-    public PositionData startingPosition;
-    public bool isQuestActive;
-    public bool isQuestComplete;
-}
-
-[Serializable]
-public class QuestData
-{
-    public int questNumber;
-    public string title;
-    public string description;
-    public int favourabilityReward;
-    public bool isActive;
-    public bool isComplete;
-    public int goldReward;
-    public List<QuestObjectiveData> objectives; // Include objectives
-
-    public QuestData(Quest quest)
-    {
-        questNumber = quest.questNumber;
-        title = quest.title;
-        description = quest.description;
-        favourabilityReward = quest.favourabilityReward;
-        isActive = quest.isActive;
-        isComplete = quest.completionStatus;
-        goldReward = quest.goldReward;
-        objectives = new List<QuestObjectiveData>();
-
-        foreach (var objective in quest.objectives)
-        {
-            objectives.Add(new QuestObjectiveData(objective));
-        }
-    }
-}
-
-[Serializable]
-public class PositionData
-{
-    public Vector3 changingValue;
-    public Vector3 initialValue;
-
-    public PositionData(Vector3 changingValue, Vector3 initialValue)
-    {
-        this.changingValue = changingValue;
-        this.initialValue = initialValue;
-    }
-}
-
-[Serializable]
-public class QuestObjectiveData
-{
-    public string description;
-    public bool completionStatus;
-
-    public QuestObjectiveData(QuestObjective objective)
-    {
-        description = objective.description;
-        completionStatus = objective.completionStatus;
-    }
+    public List<InventorySlot> inventory;
+    public QuestData questData;
+    public QuestData[] questHistory;
 }
