@@ -19,21 +19,16 @@ public class QuestObjectiveManager : MonoBehaviour
     // Static flag to check if objectives have been initialized
     private static bool objectivesInitialized = false;
 
-    private void Awake()
+    private void Start()
     {
         // Only initialize objectives if they haven't been initialized yet
         if (!objectivesInitialized)
         {
             initializeObjectives();
+            resetSellingObjectives();
             objectivesInitialized = true; // Set the flag to true after initializing
         }
     }
-
-    // Start is called before the first frame update
-    //void Start()
-    //{
-    //    initializeObjectives();
-    //}
 
     // Update is called once per frame
     void Update()
@@ -48,6 +43,13 @@ public class QuestObjectiveManager : MonoBehaviour
         foreach (QuestObjective objective in questObjectives)
         {
             objective.completionStatus = false;
+        }
+    }
+
+    public void resetSellingObjectives()
+    {
+        foreach (QuestObjective objective in questObjectives)
+        {
             if (objective is SellingQuestObjective sellingQuestObjective)
                 sellingQuestObjective.sellingCount = 0;
         }
