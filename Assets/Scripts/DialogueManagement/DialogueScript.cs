@@ -253,6 +253,7 @@ public class DialogueScript : MonoBehaviour
             if (father.quest.objectives[1].isDependentObjectiveComplete())
             {
                 father.quest.objectives[1].complete();// Complete father's quest objective
+                Player.money -= 5;//SUBTRACTING SOME MONEY
                 boxCollider.enabled = false;  // Disable father's collider
             }   
         }
