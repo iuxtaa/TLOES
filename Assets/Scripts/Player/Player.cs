@@ -166,45 +166,6 @@ public class Player : Character
         SetQuest(findActiveQuest());
     }
     #endregion
-
-    #region FirebaseMethods
-    public async Task SavePlayerData()
-    {
-        if (user == null)
-            user = auth.CurrentUser;
-
-        if (user != null)
-        {
-            PlayerData playerData = new PlayerData
-            {
-                money = Player.money,
-                favourability = Player.favourability,
-            };
-
-            string json = JsonUtility.ToJson(playerData);
-            await databaseReference.Child("users").Child(user.UserId).Child("playerData").SetRawJsonValueAsync(json);
-        }
-    }
-
-    public async Task LoadPlayerData()
-    {
-        if (user == null)
-            user = auth.CurrentUser;
-
-        if (user != null)
-        {
-            var dataSnapshot = await databaseReference.Child("users").Child(user.UserId).Child("playerData").GetValueAsync();
-            if (dataSnapshot.Exists)
-            {
-                string json = dataSnapshot.GetRawJsonValue();
-                PlayerData playerData = JsonUtility.FromJson<PlayerData>(json);
-
-                Player.money = playerData.money;
-                Player.favourability = playerData.favourability;
-            }
-        }
-    }
-    #endregion
 }
 
 [Serializable]
